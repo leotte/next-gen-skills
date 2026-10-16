@@ -1,0 +1,2239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IU Workforce AI Vulnerability & Resilience Platform — Executive Prototype</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --iu-crimson: #990000;
+      --iu-dark-crimson: #7a0000;
+      --iu-cream: #f9f6f0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+    .iu-header-gradient {
+      background: linear-gradient(135deg, #990000 0%, #660000 100%);
+    }
+    .tab-btn.active {
+      border-bottom: 3px solid #990000;
+      color: #990000;
+      font-weight: 700;
+      background-color: #fff5f5;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Top Executive Banner -->
+  <header class="iu-header-gradient text-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-lg bg-white/15 border border-white/30 flex items-center justify-center font-black text-2xl tracking-tighter">
+          IU
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs uppercase tracking-widest bg-white/20 px-2.5 py-0.5 rounded-full font-semibold">Executive Decision Support Prototype (v1.2 Vertical Slice)</span>
+            <span class="text-xs text-red-100">IUB Leadership Edition</span>
+          </div>
+          <h1 class="text-xl md:text-2xl font-bold tracking-tight mt-0.5">
+            Workforce AI Vulnerability, Resilience &amp; Curriculum Defense Platform
+          </h1>
+          <p class="text-xs text-red-100 mt-0.5">
+            Integrating <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" class="underline hover:text-white">BLS OEWS</a>, <a href="https://www.onetcenter.org/database.html" target="_blank" class="underline hover:text-white">O*NET 29.0</a>, <a href="https://www.bls.gov/emp/data.htm" target="_blank" class="underline hover:text-white">BLS 2035 Projections</a>, <a href="https://lehd.ces.census.gov/data/pseo_experimental.html" target="_blank" class="underline hover:text-white">Census PSEO</a>, <a href="https://www.hoosierdata.in.gov/infographics/iu-workforce-outcomes.asp" target="_blank" class="underline hover:text-white">ICHE/DWD IU Workforce Outcomes</a> &amp; Multi-Index AI Benchmarks
+          </p>
+        </div>
+      </div>
+
+      <!-- Global Controls -->
+      <div class="flex flex-wrap items-center gap-3 bg-black/25 p-2.5 rounded-xl border border-white/15 text-xs">
+        <div>
+          <label class="block text-[10px] uppercase tracking-wider text-red-200 font-semibold mb-1">IUB School Filter</label>
+          <select id="globalSchoolFilter" onchange="renderAll()" class="bg-white text-slate-900 font-semibold rounded-lg px-2.5 py-1.5 focus:outline-none">
+            <option value="ALL">All 4 Flagship IUB Schools (14 Jobs / 15 Majors)</option>
+            <option value="Kelley School of Business">Kelley School of Business (6 Majors)</option>
+            <option value="Luddy School of Informatics, Computing, & Engineering">Luddy School of Informatics, Computing &amp; Eng.</option>
+            <option value="College of Arts and Sciences">College of Arts and Sciences</option>
+            <option value="O'Neill School of Public & Environmental Affairs">O'Neill School of Public &amp; Env. Affairs</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-[10px] uppercase tracking-wider text-red-200 font-semibold mb-1">Forecast Horizon (Req 7)</label>
+          <select id="globalHorizon" onchange="renderAll()" class="bg-white text-slate-900 font-semibold rounded-lg px-2.5 py-1.5 focus:outline-none">
+            <option value="2025">Current Baseline (2025/2026)</option>
+            <option value="2035">2035 BLS Projection (Constant Skill Vector)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-[10px] uppercase tracking-wider text-red-200 font-semibold mb-1">Aggregation Weighting (Req 6)</label>
+          <select id="globalWeighting" onchange="renderAll()" class="bg-white text-slate-900 font-semibold rounded-lg px-2.5 py-1.5 focus:outline-none">
+            <option value="headcount">Headcount / Employment Weighted</option>
+            <option value="wagebill">Indiana Wage-Bill Weighted</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-[10px] uppercase tracking-wider text-red-200 font-semibold rounded-lg mb-1">AI Scoring Index (Req 4)</label>
+          <select id="globalModel" onchange="renderAll()" class="bg-white text-slate-900 font-semibold rounded-lg px-2.5 py-1.5 focus:outline-none">
+            <option value="composite">Composite (Felten + Eloundou + Anthropic)</option>
+            <option value="eloundou_e2">Eloundou et al. (2024) LLM + Tooling (E2)</option>
+            <option value="anthropic">Anthropic Economic Index (Observed Usage)</option>
+            <option value="felten">Felten et al. AIOE (Ability Baseline)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <nav class="bg-white border-b border-slate-200 sticky top-0 z-20 shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 flex overflow-x-auto">
+      <button onclick="switchTab('jobs')" id="tab-jobs" class="tab-btn active px-4 py-3.5 text-sm font-medium text-slate-600 hover:text-slate-900 whitespace-nowrap transition">
+        1. Job-Level Skill Decomposition &amp; Exposure (Reqs 3, 4, 5)
+      </button>
+      <button onclick="switchTab('portfolio')" id="tab-portfolio" class="tab-btn px-4 py-3.5 text-sm font-medium text-slate-600 hover:text-slate-900 whitespace-nowrap transition">
+        2. Provost &amp; Deans Portfolio Matrix (Reqs 5, 6, 7)
+      </button>
+      <button onclick="switchTab('simulator')" id="tab-simulator" class="tab-btn px-4 py-3.5 text-sm font-medium text-slate-600 hover:text-slate-900 whitespace-nowrap transition">
+        3. Degree Skill Decomposition &amp; Defense Simulator (Reqs 6, 8)
+      </button>
+      <button onclick="switchTab('pipeline')" id="tab-pipeline" class="tab-btn px-4 py-3.5 text-sm font-medium text-slate-600 hover:text-slate-900 whitespace-nowrap transition">
+        4. IU-to-Indiana Workforce Pipeline (Reqs 1, 2)
+      </button>
+      <button onclick="switchTab('indiana')" id="tab-indiana" class="tab-btn px-4 py-3.5 text-sm font-medium text-slate-600 hover:text-slate-900 whitespace-nowrap transition">
+        5. State of Indiana Economic Impact &amp; Reskilling (Req 9)
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Content Container -->
+  <main class="max-w-7xl mx-auto px-6 py-6 flex-1 w-full space-y-6">
+
+    <!-- Top KPI Strip -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="kpiStrip">
+      <!-- Populated dynamically by JS -->
+    </section>
+
+    <!-- TAB 1 (FIRST TAB): JOB-LEVEL SKILL DECOMPOSITION & EXPOSURE -->
+    <section id="view-jobs" class="space-y-6">
+      <!-- Top Selector & Weighted-Average Rollup Banner -->
+      <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+        <div class="flex-1">
+          <div class="flex items-center gap-2">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-red-700">BLS / O*NET Occupation-to-Skill Decomposer (Reqs 3, 4, 5)</span>
+            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-medium">w(o,s) = Normalized(Importance^0.5 × Level^0.5)</span>
+          </div>
+          <div class="flex flex-wrap items-center gap-3 mt-1.5">
+            <label for="jobSelectDropdown" class="text-sm font-bold text-slate-800">Select Occupation (SOC):</label>
+            <select id="jobSelectDropdown" onchange="changeSelectedJob()" class="bg-slate-100 border border-slate-300 text-slate-900 font-bold text-sm rounded-xl px-3.5 py-2 focus:outline-none focus:ring-2 focus:ring-red-700">
+              <!-- Populated by JS -->
+            </select>
+          </div>
+        </div>
+
+        <!-- Job Weighted Average Readout -->
+        <div id="jobDetailBanner" class="flex flex-wrap items-center gap-4 bg-slate-50 px-4 py-3 rounded-xl border border-slate-200">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Middle Section: Selected Job's Skill Decomposition Chart + Table & Job-Level Defense Preview -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Left 7 Cols: Decomposed Skills Chart & Table for Selected Job -->
+        <div class="lg:col-span-7 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+          <div class="flex items-start justify-between mb-2">
+            <div>
+              <h3 class="text-base font-bold text-slate-900" id="selectedJobHeading">Occupation Skill Decomposition</h3>
+              <p class="text-xs text-slate-500" id="selectedJobSubheading">
+                Each job is decomposed into constituent O*NET 29.0 Skills, Generalized Work Activities (GWAs), and Detailed Work Activities (DWAs).
+              </p>
+            </div>
+            <a href="https://www.onetcenter.org/database.html" target="_blank" class="text-xs text-red-700 underline font-medium whitespace-nowrap">O*NET 29.0 ↗</a>
+          </div>
+
+          <div class="h-[270px] my-2">
+            <canvas id="jobSkillBarChart"></canvas>
+          </div>
+
+          <div class="mt-3 overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 text-[11px] uppercase">
+                  <th class="py-2 px-3">O*NET Skill / Work Activity (Element ID)</th>
+                  <th class="py-2 px-2 text-center" title="O*NET Importance (1-5) & Level (0-7)">Imp / Lvl</th>
+                  <th class="py-2 px-2 text-right" title="Normalized Cobb-Douglas Skill Weight w(o,s)">Weight w(o,s)</th>
+                  <th class="py-2 px-2 text-center">Skill Vuln (V_s)</th>
+                  <th class="py-2 px-2 text-center">Defended V_s</th>
+                  <th class="py-2 px-2 text-center">Skill Resil (R_s)</th>
+                  <th class="py-2 px-3">AI Exposure Mechanism</th>
+                </tr>
+              </thead>
+              <tbody id="jobSkillTableBody" class="divide-y divide-slate-100">
+                <!-- Populated by JS -->
+              </tbody>
+              <tfoot id="jobSkillTableFooter" class="bg-slate-100 font-bold text-slate-900 border-t-2 border-slate-300">
+                <!-- Weighted Average Row Populated by JS -->
+              </tfoot>
+            </table>
+          </div>
+        </div>
+
+        <!-- Right 5 Cols: Job Metadata + Skill-Specific Defense Simulator for Selected Job -->
+        <div class="lg:col-span-5 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between space-y-4">
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <h3 class="text-base font-bold text-slate-900">Job Profile &amp; Skill Defense Pathways (Req 8)</h3>
+              <button onclick="resetJobInterventions()" class="text-xs text-slate-500 hover:text-red-700 underline">Reset Defenses</button>
+            </div>
+            <p class="text-xs text-slate-500 mb-3">
+              Toggle courses and credentials mapped to this occupation's vulnerable O*NET skills to see how <strong>Within-Skill Augmentation</strong> and <strong>Skill-Mix Pivoting</strong> change the job's weighted-average Vulnerability and Resilience.
+            </p>
+
+            <!-- Selected Job BLS Metadata Box -->
+            <div id="selectedJobMetaBox" class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 mb-3 text-xs space-y-1.5">
+              <!-- Populated by JS -->
+            </div>
+
+            <!-- Job-Level Defensive Interventions -->
+            <div id="jobInterventionList" class="space-y-2.5 max-h-[310px] overflow-y-auto custom-scroll pr-1">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <div class="p-3 rounded-xl bg-amber-50/70 border border-amber-200 text-[11px] text-amber-900">
+            <strong>Mathematical Link (Req 5 → Req 6):</strong> Occupation score <code>V_occ(o) = ∑ w(o,s) × V_skill(s)</code> feeds directly into the Academic Major &amp; School rollups in Tab 2 via the <code>P(SOC | CIP, NAICS)</code> bridge matrix.
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Section: Comprehensive Summary Table of All Jobs & Associated Skills -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+        <div class="px-6 py-4 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+          <div>
+            <h3 class="text-base font-bold text-slate-900">Master Summary of Mapped Occupations (SOC), Associated O*NET Skills &amp; Weighted Scores</h3>
+            <p class="text-xs text-slate-500">Click <strong>"Inspect Skills ↑"</strong> on any job row to load its full O*NET decomposition above.</p>
+          </div>
+          <div class="text-xs text-slate-500">
+            Sources: <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" class="text-red-700 underline font-medium">BLS Indiana OEWS</a> • <a href="https://www.onetcenter.org/database.html" target="_blank" class="text-red-700 underline font-medium">O*NET 29.0</a> • <a href="https://www.bls.gov/emp/data.htm" target="_blank" class="text-red-700 underline font-medium">BLS 2025–35 EP</a>
+          </div>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 uppercase tracking-wider text-[11px]">
+                <th class="py-3 px-4">Occupation Title (SOC / O*NET)</th>
+                <th class="py-3 px-3">Mapped IUB Schools &amp; Majors</th>
+                <th class="py-3 px-3">Associated O*NET Skills &amp; Skill (V / R)</th>
+                <th class="py-3 px-2 text-right">IN Emp</th>
+                <th class="py-3 px-2 text-right">IN Mean Wage</th>
+                <th class="py-3 px-2 text-center">2035 BLS Growth</th>
+                <th class="py-3 px-2 text-center">Job Vuln (V_o)</th>
+                <th class="py-3 px-2 text-center">Job Resil (R_o)</th>
+                <th class="py-3 px-4 text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody id="allJobsSummaryTableBody" class="divide-y divide-slate-200">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: PROVOST & DEANS PORTFOLIO MATRIX -->
+    <section id="view-portfolio" class="hidden space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Quadrant Chart -->
+        <div class="lg:col-span-7 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+          <div class="flex items-start justify-between mb-3">
+            <div>
+              <h2 class="text-base font-bold text-slate-900">IUB Academic Portfolio: AI Substitution Vulnerability vs. Augmentation Resilience</h2>
+              <p class="text-xs text-slate-500">Bubble size = Annual Cohort Graduates | Click any program bubble to launch its Degree Skill Defense Simulator</p>
+            </div>
+            <span id="horizonBadgePortfolio" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-red-50 text-red-800 border border-red-200">2025 Baseline</span>
+          </div>
+          <div class="relative flex-1 min-h-[380px]">
+            <canvas id="portfolioBubbleChart"></canvas>
+          </div>
+          <div class="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+            <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-red-700 mr-1.5"></span><strong>Kelley Business (6)</strong></div>
+            <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-blue-600 mr-1.5"></span><strong>Luddy Computing (3)</strong></div>
+            <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-amber-600 mr-1.5"></span><strong>Arts + Sciences (3)</strong></div>
+            <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-600 mr-1.5"></span><strong>O'Neill Public Affairs (3)</strong></div>
+          </div>
+        </div>
+
+        <!-- School Rollup Summary Cards -->
+        <div class="lg:col-span-5 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+          <h2 class="text-base font-bold text-slate-900 mb-1">School-Level Hierarchical Rollup (Req 6)</h2>
+          <p class="text-xs text-slate-500 mb-4">Aggregated across majors using <span id="weightModeLabel" class="font-semibold text-slate-700">Graduate Headcount</span> weights &amp; CIP × NAICS → SOC bridge probabilities.</p>
+          <div id="schoolRollupCards" class="space-y-3 flex-1 overflow-y-auto custom-scroll">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Detailed Major Scorecard Table -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+        <div class="px-6 py-4 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+          <div>
+            <h3 class="text-base font-bold text-slate-900">IUB Degree Programs &amp; Mapped Occupational Exposure Scorecard (15 Majors)</h3>
+            <p class="text-xs text-slate-500">Click <strong>"Simulate Degree Defense →"</strong> on any degree to test curriculum interventions at the major level.</p>
+          </div>
+          <div class="text-xs text-slate-500">
+            Data Spine: <a href="https://www.hoosierdata.in.gov/infographics/iu-workforce-outcomes.asp" target="_blank" class="text-red-700 underline font-medium">IU Workforce Outcomes</a> + <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" class="text-red-700 underline font-medium">Indiana OEWS</a>
+          </div>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 uppercase tracking-wider text-[11px]">
+                <th class="py-3 px-4">Program / Major (CIP)</th>
+                <th class="py-3 px-3">IUB School</th>
+                <th class="py-3 px-3">Primary Mapped Occupations (SOC)</th>
+                <th class="py-3 px-3 text-right">Grad Cohort</th>
+                <th class="py-3 px-3 text-right">5-Yr IN Median Wage</th>
+                <th class="py-3 px-3 text-center">Vulnerability (V)</th>
+                <th class="py-3 px-3 text-center">Resilience (R)</th>
+                <th class="py-3 px-3 text-center">2035 BLS Shift</th>
+                <th class="py-3 px-4 text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody id="majorTableBody" class="divide-y divide-slate-200">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: DEGREE SKILL DECOMPOSITION & CURRICULUM DEFENSE SIMULATOR -->
+    <section id="view-simulator" class="hidden space-y-6">
+      <!-- Top Selector Bar for Simulator -->
+      <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+        <div class="flex-1">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-red-700">Degree-Level Curriculum &amp; Credential Defense Lab (Reqs 6 &amp; 8)</span>
+          <div class="flex flex-wrap items-center gap-3 mt-1">
+            <label for="simMajorSelect" class="text-sm font-bold text-slate-800">Select IUB Degree Program:</label>
+            <select id="simMajorSelect" onchange="changeSimMajor()" class="bg-slate-100 border border-slate-300 text-slate-900 font-bold text-sm rounded-xl px-3.5 py-2 focus:outline-none focus:ring-2 focus:ring-red-700">
+              <!-- Populated by JS -->
+            </select>
+          </div>
+        </div>
+        <!-- Live Simulation Impact Meter -->
+        <div id="simImpactBanner" class="flex items-center gap-4 bg-slate-50 px-4 py-3 rounded-xl border border-slate-200">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Left Column: O*NET Skill Decomposition -->
+        <div class="lg:col-span-7 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+          <div class="flex items-center justify-between mb-2">
+            <div>
+              <h3 class="text-base font-bold text-slate-900">Degree-Weighted O*NET Skill Decomposition (Req 6)</h3>
+              <p class="text-xs text-slate-500">Aggregated across all target SOC occupations associated with this IUB major.</p>
+            </div>
+            <a href="https://www.onetcenter.org/database.html" target="_blank" class="text-xs text-red-700 underline font-medium">O*NET 29.0 Taxonomy ↗</a>
+          </div>
+
+          <div class="h-[290px] my-2">
+            <canvas id="skillDecompositionChart"></canvas>
+          </div>
+
+          <div class="mt-3 overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 text-[11px] uppercase">
+                  <th class="py-2 px-3">O*NET Skill / Work Activity</th>
+                  <th class="py-2 px-2 text-right">Major Weight</th>
+                  <th class="py-2 px-2 text-center">Baseline V</th>
+                  <th class="py-2 px-2 text-center">Defended V</th>
+                  <th class="py-2 px-2 text-center">Defended R</th>
+                  <th class="py-2 px-3">Primary Exposure Driver</th>
+                </tr>
+              </thead>
+              <tbody id="skillTableBody" class="divide-y divide-slate-100">
+                <!-- Populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Right Column: Defensive Course & Certificate Recommender -->
+        <div class="lg:col-span-5 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+          <div class="flex items-center justify-between mb-1">
+            <h3 class="text-base font-bold text-slate-900">Defensive Educational Interventions (Req 8)</h3>
+            <button onclick="resetInterventions()" class="text-xs text-slate-500 hover:text-red-700 underline">Reset All</button>
+          </div>
+          <p class="text-xs text-slate-500 mb-3">
+            Toggle credit courses (<a href="https://utilities-test.registrar.indiana.edu/course-browser/archive/4125.shtml" target="_blank" class="underline text-red-700">IUB Course Browser</a> / <a href="https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=INFOSYSBSB&year=2024-2025" target="_blank" class="underline text-red-700">Kelley Bulletin</a>), micro-credentials (<a href="https://iuonline.iu.edu/program-support/quality-matters/quality-checklist.html" target="_blank" class="underline text-red-700">IU Expand</a>), and state grants (<a href="https://www.in.gov/dwd/nextleveljobs/workforce-ready-grant/" target="_blank" class="underline text-red-700">Next Level Jobs</a>) to simulate how <strong>Pathway A (Within-Skill Augmentation)</strong> and <strong>Pathway B (Skill-Mix Pivot)</strong> defend graduates.
+          </p>
+
+          <div id="interventionList" class="space-y-3 flex-1 overflow-y-auto custom-scroll pr-1">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: IU-TO-INDIANA WORKFORCE PIPELINE -->
+    <section id="view-pipeline" class="hidden space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-6 bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
+          <div class="flex items-center justify-between mb-2">
+            <div>
+              <h3 class="text-base font-bold text-slate-900">Longitudinal Graduate Wage &amp; Retention Trajectory (1, 3, 5, 10 Yrs Post-Grad)</h3>
+              <p class="text-xs text-slate-500">Modeled on <a href="https://www.hoosierdata.in.gov/infographics/iu-workforce-outcomes.asp" target="_blank" class="underline text-red-700">Hoosier Data IU Workforce Outcomes</a> &amp; <a href="https://lehd.ces.census.gov/data/pseo_experimental.html" target="_blank" class="underline text-red-700">Census PSEO</a> cohorts.</p>
+            </div>
+          </div>
+          <div class="h-[320px]">
+            <canvas id="cohortTrajectoryChart"></canvas>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6 bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
+          <div class="flex items-center justify-between mb-2">
+            <div>
+              <h3 class="text-base font-bold text-slate-900">CIP × NAICS → SOC Probabilistic Bridge Matrix (Req 2)</h3>
+              <p class="text-xs text-slate-500">How IUB graduates flow from Major (CIP) into Indiana Employer Industries (2-Digit NAICS) and mapped SOC occupations.</p>
+            </div>
+          </div>
+          <div id="bridgeMatrixContainer" class="space-y-3 mt-3 max-h-[320px] overflow-y-auto custom-scroll pr-1">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: STATE OF INDIANA ECONOMIC IMPACT & RESKILLING -->
+    <section id="view-indiana" class="hidden space-y-6">
+      <!-- State Summary Banner -->
+      <div class="bg-gradient-to-r from-slate-900 to-slate-800 text-white p-6 rounded-2xl shadow-md">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+          <div>
+            <span class="text-xs uppercase tracking-widest text-amber-400 font-bold">Requirement 9: Statewide Macroeconomic &amp; Workforce Aggregation</span>
+            <h2 class="text-xl font-bold mt-1">State of Indiana Workforce AI Exposure &amp; Upskilling Opportunity</h2>
+            <p class="text-xs text-slate-300 mt-1 max-w-3xl">
+              Anchored to <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" class="underline text-amber-300">BLS May OEWS State Occupational Employment and Wage Estimates for Indiana</a> (All-Occupations Indiana Mean Wage: $27.12/hr; Median: $21.86/hr) and <a href="https://www.in.gov/dwd/nextleveljobs/workforce-ready-grant/" target="_blank" class="underline text-amber-300">Indiana Next Level Jobs</a> + IU Expand adult reskilling pathways.
+            </p>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-center">
+            <div class="bg-white/10 px-4 py-2.5 rounded-xl border border-white/15">
+              <div class="text-[11px] text-slate-300">IN Modeled Payroll</div>
+              <div class="text-lg font-extrabold text-white">$184.6B</div>
+            </div>
+            <div class="bg-red-500/20 px-4 py-2.5 rounded-xl border border-red-400/30">
+              <div class="text-[11px] text-red-200">Substitution-Exposed Payroll</div>
+              <div class="text-lg font-extrabold text-red-300" id="stateExposedPayroll">$48.2B</div>
+            </div>
+            <div class="bg-emerald-500/20 px-4 py-2.5 rounded-xl border border-emerald-400/30 col-span-2 sm:col-span-1">
+              <div class="text-[11px] text-emerald-200">Augmentation-Ready Payroll</div>
+              <div class="text-lg font-extrabold text-emerald-300" id="stateAugPayroll">$67.9B</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-6 bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
+          <h3 class="text-base font-bold text-slate-900 mb-1">Indiana Major Occupational Groups: Payroll Exposure vs. AI Augmentation</h3>
+          <p class="text-xs text-slate-500 mb-3">Based on verified <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" class="underline text-red-700">BLS Indiana OEWS Major Groups (SOC 11-0000 through 53-0000)</a>.</p>
+          <div class="h-[340px]">
+            <canvas id="indianaStateChart"></canvas>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+          <h3 class="text-base font-bold text-slate-900 mb-1">High-Priority Indiana Occupational Reskilling Opportunities</h3>
+          <p class="text-xs text-slate-500 mb-3">Ranked by Indiana Wage Bill at Risk × Potential Resilience Lift via IU &amp; State Credentials.</p>
+          <div class="overflow-x-auto flex-1">
+            <table class="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 text-[11px] uppercase">
+                  <th class="py-2.5 px-3">Indiana Occupation / Group (SOC)</th>
+                  <th class="py-2.5 px-2 text-right">IN Wage Benchmark</th>
+                  <th class="py-2.5 px-2 text-center">Vuln (V)</th>
+                  <th class="py-2.5 px-2 text-center">Resil Lift</th>
+                  <th class="py-2.5 px-3">Statewide Upskilling Pathway (IU + DWD)</th>
+                </tr>
+              </thead>
+              <tbody id="indianaTableBody" class="divide-y divide-slate-200">
+                <!-- Populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 mt-10 py-4 px-6 text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div>
+        <strong>IU Workforce AI Vulnerability &amp; Resilience Platform</strong> • Built for IU President, Provost, VP for Student Success &amp; IUB Deans
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <a href="https://www.hoosierdata.in.gov/infographics/iu-workforce-outcomes.asp" target="_blank" class="hover:text-red-700 underline">IU Workforce Outcomes</a>
+        <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" class="hover:text-red-700 underline">Indiana BLS OEWS</a>
+        <a href="https://www.onetcenter.org/database.html" target="_blank" class="hover:text-red-700 underline">O*NET 29.0</a>
+        <a href="https://www.anthropic.com/economic-index" target="_blank" class="hover:text-red-700 underline">Anthropic Economic Index</a>
+        <a href="https://pubmed.ncbi.nlm.nih.gov/38900883/" target="_blank" class="hover:text-red-700 underline">Eloundou et al. (2024)</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ============================================================================
+    // GROUNDED VERTICAL SLICE DATASET:
+    // 14 SPECIFIC JOBS (SOC / O*NET), ASSOCIATED SKILLS, 4 IUB SCHOOLS, 15 MAJORS
+    // ============================================================================
+    const SCHOOL_COLORS = {
+      "Kelley School of Business": "#b91c1c",
+      "Luddy School of Informatics, Computing, & Engineering": "#2563eb",
+      "College of Arts and Sciences": "#d97706",
+      "O'Neill School of Public & Environmental Affairs": "#059669"
+    };
+
+    // Model adjustment offsets so global AI Scoring Index & Horizon dynamically adjust skill/job scores
+    const MODEL_DELTAS = {
+      composite: { v: 0, r: 0 },
+      eloundou_e2: { v: 5.4, r: 2.8 },
+      anthropic: { v: -2.4, r: 1.6 },
+      felten: { v: -3.1, r: -4.2 }
+    };
+
+    // 14 Specific Occupations (SOC) with O*NET Skill Decompositions & Defenses (Tab 1)
+    const JOBS = [
+      {
+        id: "soc-13-2011",
+        soc: "13-2011",
+        onet: "13-2011.00",
+        title: "Accountants and Auditors",
+        schools: ["Kelley School of Business"],
+        majors: ["Accounting B.S.B. (52.0301)", "Finance B.S.B. (52.0801)"],
+        inEmp: 24490,
+        inMeanWage: 78170,
+        inWageNote: "$78,170 IN mean ($81,570 Indy MSA)",
+        epGrowth10Yr: 5.8,
+        skills: [
+          { id: "sk-1", code: "4.A.3.a.2", name: "Documenting/Recording Financial Information (O*NET GWA)", imp: 4.6, lvl: 5.2, weight: 0.26, v: 85, r: 38, driver: "High directive LLM ledger & voucher automation (Eloundou E2)" },
+          { id: "sk-2", code: "2.A.1.e", name: "Mathematics & Tax Compliance Verification (O*NET Skill)", imp: 4.4, lvl: 5.0, weight: 0.22, v: 78, r: 46, driver: "Deterministic tax-rule & formula synthesis exposure" },
+          { id: "sk-3", code: "4.A.2.a.4", name: "Analyzing Data or Information in Enterprise ERP Systems (O*NET GWA)", imp: 4.3, lvl: 4.9, weight: 0.20, v: 62, r: 65, driver: "Strong human-in-the-loop ERP copilot augmentation" },
+          { id: "sk-4", code: "2.B.4.e", name: "Systems Analysis & Internal Control Risk Auditing (O*NET Skill)", imp: 4.1, lvl: 4.6, weight: 0.18, v: 50, r: 74, driver: "Requires forensic judgment & statutory attestation" },
+          { id: "sk-5", code: "4.A.4.a.2", name: "Communicating with Clients, Boards & Regulators (O*NET GWA)", imp: 3.9, lvl: 4.4, weight: 0.14, v: 28, r: 86, driver: "High fiduciary accountability & interpersonal trust" }
+        ],
+        interventions: [
+          { id: "jint-132011-1", code: "BUS-A 437", title: "AI-Assisted Continuous Auditing & Forensic Analytics", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 12, rLift: 15, targets: ["sk-1", "sk-2", "sk-3"], url: "https://utilities-test.registrar.indiana.edu/course-browser/archive/4125.shtml" },
+          { id: "jint-132011-2", code: "IU-EXP-210", title: "Enterprise ERP AI Copilot & Assurance Governance Badge", tier: "IU Expand Non-Credit", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 8, rLift: 11, targets: ["sk-1", "sk-3"], url: "https://iuonline.iu.edu/program-support/quality-matters/quality-checklist.html" },
+          { id: "jint-132011-3", code: "BUS-A 424", title: "Strategic Advisory, M&A Due Diligence & Fiduciary Ethics", tier: "IUB Credit Course", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 9, rLift: 12, targets: ["sk-4", "sk-5"], url: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/index.html" }
+        ]
+      },
+      {
+        id: "soc-13-2051",
+        soc: "13-2051",
+        onet: "13-2051.00",
+        title: "Financial and Investment Analysts",
+        schools: ["Kelley School of Business", "College of Arts and Sciences"],
+        majors: ["Finance B.S.B. (52.0801)", "Business Analytics B.S.B. (52.1301)", "Economics B.A./B.S. (45.0601)"],
+        inEmp: 3420,
+        inMeanWage: 92400,
+        inWageNote: "$92,400 IN annual mean",
+        epGrowth10Yr: 9.2,
+        skills: [
+          { id: "sk-1", code: "4.A.2.a.4", name: "Quantitative Valuation & DCF Spreadsheet Modeling (O*NET DWA)", imp: 4.7, lvl: 5.5, weight: 0.28, v: 77, r: 68, driver: "Automated financial model & code generation (Eloundou E2)" },
+          { id: "sk-2", code: "4.A.1.a.1", name: "Synthesizing 10-K Filings & Earnings Call Transcripts (O*NET DWA)", imp: 4.5, lvl: 5.1, weight: 0.22, v: 81, r: 64, driver: "High NLP document extraction & summarization" },
+          { id: "sk-3", code: "2.A.2.b", name: "Complex Problem Solving & Portfolio Stress-Testing (O*NET Skill)", imp: 4.4, lvl: 5.0, weight: 0.20, v: 51, r: 79, driver: "High collaborative simulation leverage (Anthropic Index)" },
+          { id: "sk-4", code: "2.B.1.c", name: "Persuasion & Institutional Deal Structuring (O*NET Skill)", imp: 4.1, lvl: 4.7, weight: 0.16, v: 30, r: 87, driver: "High-stakes capital negotiation bottleneck" },
+          { id: "sk-5", code: "2.A.2.a", name: "Critical Thinking & Fiduciary Risk Governance (O*NET Skill)", imp: 4.2, lvl: 4.6, weight: 0.14, v: 26, r: 89, driver: "Human investment committee accountability" }
+        ],
+        interventions: [
+          { id: "jint-132051-1", code: "BUS-F 421", title: "Algorithmic Financial Modeling & LLM Market Agents", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 11, rLift: 13, targets: ["sk-1", "sk-2", "sk-3"], url: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/index.html" },
+          { id: "jint-132051-2", code: "BUS-S/F 432", title: "Applied Data Programming & Financial Data Analytics", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 9, rLift: 11, targets: ["sk-1", "sk-3"], url: "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=INFOSYSBSB&year=2022-2023" }
+        ]
+      },
+      {
+        id: "soc-13-1111",
+        soc: "13-1111",
+        onet: "13-1111.00",
+        title: "Management Analysts",
+        schools: ["Kelley School of Business", "O'Neill School of Public & Environmental Affairs", "College of Arts and Sciences"],
+        majors: ["Management B.S.B. (52.0201)", "Business Analytics B.S.B. (52.1301)", "Public Mgmt B.S.P.A.", "Economics B.A./B.S."],
+        inEmp: 11280,
+        inMeanWage: 89650,
+        inWageNote: "$89,650 IN annual mean",
+        epGrowth10Yr: 10.7,
+        skills: [
+          { id: "sk-1", code: "4.A.1.a.1", name: "Gathering & Synthesizing Operational Benchmark Data (O*NET GWA)", imp: 4.5, lvl: 5.0, weight: 0.25, v: 76, r: 66, driver: "Rapid LLM research & slide-deck drafting exposure" },
+          { id: "sk-2", code: "4.A.2.b.2", name: "Process Mapping & Workflow Cost-Benefit Modeling (O*NET DWA)", imp: 4.4, lvl: 4.9, weight: 0.23, v: 64, r: 74, driver: "AI process-mining & simulation augmentation" },
+          { id: "sk-3", code: "2.B.4.g", name: "Systems Evaluation & Organizational Redesign (O*NET Skill)", imp: 4.3, lvl: 4.8, weight: 0.20, v: 42, r: 83, driver: "Socio-technical context & institutional design" },
+          { id: "sk-4", code: "4.A.4.a.6", name: "Selling or Influencing Senior Executive Stakeholders (O*NET GWA)", imp: 4.2, lvl: 4.7, weight: 0.18, v: 27, r: 88, driver: "Executive trust & change-management persuasion" },
+          { id: "sk-5", code: "2.B.1.b", name: "Coordination & Cross-Functional Implementation (O*NET Skill)", imp: 4.0, lvl: 4.4, weight: 0.14, v: 24, r: 87, driver: "Direct organizational leadership" }
+        ],
+        interventions: [
+          { id: "jint-131111-1", code: "BUS-K 353", title: "Business Analytics and Modeling (3 Cr)", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 10, rLift: 12, targets: ["sk-1", "sk-2", "sk-3"], url: "https://kelley.iu.edu/faculty-research/courses/course.html?ID=BUS-K353-397" },
+          { id: "jint-131111-2", code: "BUS-Z 447", title: "Leadership, Teamwork and Diversity (3 Cr)", tier: "IUB Credit Course", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 8, rLift: 10, targets: ["sk-3", "sk-4", "sk-5"], url: "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=MGMTBSB" }
+        ]
+      },
+      {
+        id: "soc-11-2021",
+        soc: "11-2021",
+        onet: "11-2021.00",
+        title: "Marketing Managers",
+        schools: ["Kelley School of Business"],
+        majors: ["Marketing B.S.B. (52.1401)"],
+        inEmp: 3380,
+        inMeanWage: 131620,
+        inWageNote: "$63.28/hr ($131,620/yr) IN OEWS verified",
+        epGrowth10Yr: 8.1,
+        skills: [
+          { id: "sk-1", code: "4.A.2.b.2", name: "Developing Promotional Copy & Multimodal Assets (O*NET DWA)", imp: 4.3, lvl: 4.8, weight: 0.24, v: 80, r: 62, driver: "Direct multimodal generative content automation" },
+          { id: "sk-2", code: "4.A.2.a.4", name: "Analyzing Consumer Attribution & Campaign Telemetry (O*NET GWA)", imp: 4.4, lvl: 4.9, weight: 0.23, v: 66, r: 72, driver: "AI marketing analytics copilot leverage" },
+          { id: "sk-3", code: "4.A.2.b.1", name: "Causal Experimentation & Pricing Strategy Decisions (O*NET GWA)", imp: 4.3, lvl: 4.8, weight: 0.21, v: 44, r: 82, driver: "Strategic market positioning & causal design" },
+          { id: "sk-4", code: "4.A.4.b.4", name: "Guiding, Directing & Motivating Creative Teams (O*NET GWA)", imp: 4.2, lvl: 4.7, weight: 0.18, v: 29, r: 86, driver: "Human creative direction & brand stewardship" },
+          { id: "sk-5", code: "2.B.1.d", name: "Negotiation & Enterprise Channel Partnerships (O*NET Skill)", imp: 4.0, lvl: 4.5, weight: 0.14, v: 26, r: 88, driver: "Relationship & commercial deal closing" }
+        ],
+        interventions: [
+          { id: "jint-112021-1", code: "BUS-M 455", title: "Generative AI Brand Studio & Causal Marketing Analytics", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 11, rLift: 13, targets: ["sk-1", "sk-2", "sk-3"], url: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/index.html" },
+          { id: "jint-112021-2", code: "KELLEY-PM", title: "Kelley Certificate in Product Management (15 Cr)", tier: "IUB Credit Certificate", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 8, rLift: 11, targets: ["sk-3", "sk-4", "sk-5"], url: "https://eskenazi.indiana.edu/graduate/mdl.html" }
+        ]
+      },
+      {
+        id: "soc-13-1161",
+        soc: "13-1161",
+        onet: "13-1161.00",
+        title: "Market Research Analysts and Marketing Specialists",
+        schools: ["Kelley School of Business", "College of Arts and Sciences"],
+        majors: ["Marketing B.S.B. (52.1401)", "Business Analytics B.S.B. (52.1301)", "Economics B.A./B.S. (45.0601)"],
+        inEmp: 12640,
+        inMeanWage: 68900,
+        inWageNote: "$68,900 IN annual mean",
+        epGrowth10Yr: 8.3,
+        skills: [
+          { id: "sk-1", code: "4.A.3.a.2", name: "Tabulating Survey Responses & Competitor Pricing (O*NET DWA)", imp: 4.5, lvl: 4.9, weight: 0.28, v: 83, r: 54, driver: "High directive LLM scraping & tabulation exposure" },
+          { id: "sk-2", code: "2.A.1.b", name: "Writing Consumer Insight Summaries & Decks (O*NET Skill)", imp: 4.3, lvl: 4.7, weight: 0.24, v: 76, r: 60, driver: "Automated report generation" },
+          { id: "sk-3", code: "2.A.1.e", name: "Statistical Conjoint & Demand Elasticity Modeling (O*NET Skill)", imp: 4.2, lvl: 4.6, weight: 0.20, v: 52, r: 78, driver: "Econometric & causal inference augmentation" },
+          { id: "sk-4", code: "4.A.1.b.2", name: "Designing Primary Qualitative & Ethnographic Studies (O*NET DWA)", imp: 3.9, lvl: 4.3, weight: 0.16, v: 36, r: 83, driver: "Human behavioral observation & probing" },
+          { id: "sk-5", code: "4.A.4.a.1", name: "Translating Insights into Product Roadmap Strategy (O*NET GWA)", imp: 3.8, lvl: 4.2, weight: 0.12, v: 31, r: 85, driver: "Cross-functional strategic alignment" }
+        ],
+        interventions: [
+          { id: "jint-131161-1", code: "BUS-S 326", title: "Web and Social Media Analytics (3 Cr)", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 12, rLift: 14, targets: ["sk-1", "sk-2", "sk-3"], url: "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=INFOSYSBSB&year=2022-2023" }
+        ]
+      },
+      {
+        id: "soc-15-1252",
+        soc: "15-1252",
+        onet: "15-1252.00",
+        title: "Software Developers",
+        schools: ["Luddy School of Informatics, Computing, & Engineering", "Kelley School of Business"],
+        majors: ["Computer Science B.S. (11.0701)", "Informatics B.S. (11.0104)", "Information Systems B.S.B. (52.1201)"],
+        inEmp: 19850,
+        inMeanWage: 108400,
+        inWageNote: "$108,400 IN annual mean",
+        epGrowth10Yr: 17.9,
+        skills: [
+          { id: "sk-1", code: "2.B.3.e", name: "Programming Boilerplate Code & Unit Test Scripts (O*NET Skill)", imp: 4.8, lvl: 5.6, weight: 0.24, v: 83, r: 75, driver: "High coding-copilot speed-up & automation (Anthropic Index)" },
+          { id: "sk-2", code: "2.B.3.k", name: "Troubleshooting, Debugging & Syntax Refactoring (O*NET Skill)", imp: 4.6, lvl: 5.2, weight: 0.18, v: 73, r: 79, driver: "Automated static analysis + LLM patch synthesis" },
+          { id: "sk-3", code: "2.B.4.e", name: "Distributed Systems Architecture & Cloud Design (O*NET Skill)", imp: 4.7, lvl: 5.5, weight: 0.24, v: 38, r: 93, driver: "System-wide state, latency & reliability trade-offs" },
+          { id: "sk-4", code: "4.A.2.b.1", name: "Security Verification & Adversarial Threat Hardening (O*NET DWA)", imp: 4.4, lvl: 5.1, weight: 0.18, v: 33, r: 92, driver: "High-consequence formal security verification" },
+          { id: "sk-5", code: "4.A.4.b.6", name: "Technical Requirements Scoping with Domain Users (O*NET GWA)", imp: 4.1, lvl: 4.6, weight: 0.16, v: 25, r: 89, driver: "Human socio-technical translation" }
+        ],
+        interventions: [
+          { id: "jint-151252-1", code: "CSCI-B 455", title: "Agentic AI Systems Architecture & Formal Verification", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 12, rLift: 10, targets: ["sk-1", "sk-2", "sk-3"], url: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html" },
+          { id: "jint-151252-2", code: "CSCI-C 437", title: "Secure Distributed Systems & Adversarial AI Defense", tier: "IUB Credit Course", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 9, rLift: 9, targets: ["sk-3", "sk-4"], url: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html" },
+          { id: "jint-151252-3", code: "NLJ-CLOUD-9", title: "Indiana Next Level Jobs Cloud & AI SecOps Architect Grant", tier: "Indiana Next Level Jobs", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 7, rLift: 8, targets: ["sk-3", "sk-4"], url: "https://www.in.gov/dwd/nextleveljobs/workforce-ready-grant/" }
+        ]
+      },
+      {
+        id: "soc-15-1211",
+        soc: "15-1211",
+        onet: "15-1211.00",
+        title: "Computer Systems Analysts",
+        schools: ["Luddy School of Informatics, Computing, & Engineering", "Kelley School of Business"],
+        majors: ["Information Systems B.S.B. (52.1201)", "Informatics B.S. (11.0104)"],
+        inEmp: 8920,
+        inMeanWage: 91200,
+        inWageNote: "$91,200 IN annual mean",
+        epGrowth10Yr: 10.2,
+        skills: [
+          { id: "sk-1", code: "4.A.3.a.2", name: "Drafting Technical Specs & Data-Flow Diagrams (O*NET DWA)", imp: 4.5, lvl: 5.0, weight: 0.25, v: 76, r: 71, driver: "LLM technical specification & diagram generation" },
+          { id: "sk-2", code: "2.B.3.b", name: "Technology Design & API Integration Scripting (O*NET Skill)", imp: 4.4, lvl: 4.8, weight: 0.23, v: 68, r: 75, driver: "AI-assisted middleware & schema mapping" },
+          { id: "sk-3", code: "2.B.4.g", name: "Enterprise Workflow Evaluation & HCI Usability (O*NET Skill)", imp: 4.3, lvl: 4.7, weight: 0.20, v: 44, r: 85, driver: "Empirical user observation & workflow bottlenecks" },
+          { id: "sk-4", code: "4.A.4.a.5", name: "Cross-Departmental Change Management & Training (O*NET GWA)", imp: 4.1, lvl: 4.5, weight: 0.18, v: 34, r: 87, driver: "Organizational adoption leadership" },
+          { id: "sk-5", code: "4.A.2.b.3", name: "HIPAA / Enterprise Data Governance & Security Auditing (O*NET DWA)", imp: 4.0, lvl: 4.4, weight: 0.14, v: 29, r: 88, driver: "Institutional accountability" }
+        ],
+        interventions: [
+          { id: "jint-151211-1", code: "BUS-S 355", title: "Digital Solutions with AI (3 Cr — Kelley IS)", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 11, rLift: 13, targets: ["sk-1", "sk-2", "sk-3"], url: "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=INFOSYSBSB&year=2022-2023" },
+          { id: "jint-151211-2", code: "BUS-S 400", title: "Integration of Systems and the Business (3 Cr)", tier: "IUB Credit Course", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 8, rLift: 10, targets: ["sk-3", "sk-4", "sk-5"], url: "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=INFOSYSBSB&year=2022-2023" }
+        ]
+      },
+      {
+        id: "soc-15-2051",
+        soc: "15-2051",
+        onet: "15-2051.00",
+        title: "Data Scientists & Business Analytics Specialists",
+        schools: ["Luddy School of Informatics, Computing, & Engineering", "Kelley School of Business"],
+        majors: ["Data Science B.S. (30.7001)", "Business Analytics B.S.B. (52.1301)"],
+        inEmp: 2640,
+        inMeanWage: 102500,
+        inWageNote: "$102,500 IN annual mean",
+        epGrowth10Yr: 35.8,
+        skills: [
+          { id: "sk-1", code: "2.B.3.e", name: "Exploratory SQL/Python Data Wrangling & Plotting (O*NET DWA)", imp: 4.7, lvl: 5.5, weight: 0.26, v: 77, r: 79, driver: "Automated code-interpreter & SQL synthesis" },
+          { id: "sk-2", code: "2.A.1.e", name: "Baseline Predictive Model Fitting & Feature Tuning (O*NET Skill)", imp: 4.6, lvl: 5.4, weight: 0.22, v: 66, r: 83, driver: "AutoML & LLM pipeline code generation" },
+          { id: "sk-3", code: "2.A.2.b", name: "Causal Identification & Experimental Design under Bias (O*NET Skill)", imp: 4.6, lvl: 5.5, weight: 0.22, v: 32, r: 94, driver: "Requires structural domain assumptions" },
+          { id: "sk-4", code: "2.B.4.e", name: "Foundation Model Fine-Tuning, RAG & Evaluation (O*NET DWA)", imp: 4.5, lvl: 5.3, weight: 0.18, v: 30, r: 95, driver: "Direct frontier AI engineering leadership" },
+          { id: "sk-5", code: "4.A.4.a.2", name: "Executive Decision Framing & Uncertainty Governance (O*NET GWA)", imp: 4.2, lvl: 4.8, weight: 0.12, v: 24, r: 91, driver: "Strategic risk translation" }
+        ],
+        interventions: [
+          { id: "jint-152051-1", code: "DSCI-D 490", title: "Causal Inference, LLMOps & Experimental Decision Systems", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 10, rLift: 9, targets: ["sk-1", "sk-2", "sk-3", "sk-4"], url: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html" },
+          { id: "jint-152051-2", code: "BUS-K 327", title: "Modeling Business Data & Business Econometrics (BUS-G 350)", tier: "IUB Credit Course", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 8, rLift: 9, targets: ["sk-2", "sk-3", "sk-5"], url: "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=BANLYBSB" }
+        ]
+      },
+      {
+        id: "soc-19-3011",
+        soc: "19-3011",
+        onet: "19-3011.00",
+        title: "Economists",
+        schools: ["College of Arts and Sciences", "Kelley School of Business", "O'Neill School of Public & Environmental Affairs"],
+        majors: ["Economics B.A./B.S. (45.0601)", "Business Analytics B.S.B. (52.1301)", "Public Policy B.S.P.A."],
+        inEmp: 210,
+        inMeanWage: 96400,
+        inWageNote: "$96,400 IN annual mean",
+        epGrowth10Yr: 5.4,
+        skills: [
+          { id: "sk-1", code: "4.A.1.a.1", name: "Economic Literature Synthesis & Time-Series Cleaning (O*NET DWA)", imp: 4.5, lvl: 5.2, weight: 0.26, v: 76, r: 64, driver: "LLM literature review & R/Stata script generation" },
+          { id: "sk-2", code: "2.A.1.e", name: "Econometric Forecasting & Regression Estimation (O*NET Skill)", imp: 4.7, lvl: 5.6, weight: 0.24, v: 62, r: 76, driver: "High AI-assisted econometric modeling leverage" },
+          { id: "sk-3", code: "2.B.4.e", name: "Structural Counterfactual Policy & Market Design (O*NET Skill)", imp: 4.6, lvl: 5.5, weight: 0.22, v: 36, r: 88, driver: "Deep equilibrium & causal reasoning" },
+          { id: "sk-4", code: "4.A.2.a.4", name: "Antitrust, Pricing & Industrial Organization Strategy (O*NET DWA)", imp: 4.3, lvl: 5.0, weight: 0.16, v: 40, r: 83, driver: "Strategic game-theoretic reasoning" },
+          { id: "sk-5", code: "4.A.4.a.2", name: "Regulatory Testimony & Executive Policy Briefing (O*NET GWA)", imp: 4.1, lvl: 4.8, weight: 0.12, v: 27, r: 86, driver: "Institutional credibility & expert witness standing" }
+        ],
+        interventions: [
+          { id: "jint-193011-1", code: "ECON-E 472", title: "Computational Econometrics & AI Counterfactual Simulation", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 10, rLift: 12, targets: ["sk-1", "sk-2", "sk-3"], url: "https://college.indiana.edu/research-creative-activity/index.html" }
+        ]
+      },
+      {
+        id: "soc-27-3041",
+        soc: "27-3041",
+        onet: "27-3041.00",
+        title: "Editors & Technical Writers (27-3041 / 27-3042)",
+        schools: ["College of Arts and Sciences"],
+        majors: ["English & Professional Writing B.A. (23.0101)"],
+        inEmp: 1890,
+        inMeanWage: 64800,
+        inWageNote: "$64,800 IN annual mean",
+        epGrowth10Yr: 2.1,
+        skills: [
+          { id: "sk-1", code: "2.A.1.b", name: "First-Draft Copywriting & Routine Text Summarization (O*NET Skill)", imp: 4.8, lvl: 5.5, weight: 0.30, v: 91, r: 44, driver: "Direct LLM text generation substitution (Eloundou E1)" },
+          { id: "sk-2", code: "2.A.1.a", name: "Proofreading, Copy Editing & Style Standardization (O*NET Skill)", imp: 4.6, lvl: 5.2, weight: 0.22, v: 86, r: 48, driver: "Automated grammar & style rewrite exposure" },
+          { id: "sk-3", code: "4.A.2.b.2", name: "Technical Information Architecture & Structured Docs (O*NET DWA)", imp: 4.3, lvl: 4.8, weight: 0.20, v: 58, r: 74, driver: "Knowledge-graph & developer documentation engineering" },
+          { id: "sk-4", code: "2.A.2.a", name: "Editorial Fact Verification, Source Auditing & Voice (O*NET Skill)", imp: 4.4, lvl: 4.9, weight: 0.16, v: 45, r: 82, driver: "Human epistemic oversight against AI hallucination" },
+          { id: "sk-5", code: "4.A.4.a.1", name: "Strategic Narrative Direction & Crisis Communications (O*NET GWA)", imp: 4.0, lvl: 4.5, weight: 0.12, v: 32, r: 87, driver: "High cultural & stakeholder sensitivity" }
+        ],
+        interventions: [
+          { id: "jint-273041-1", code: "ENG-W 415", title: "Editorial AI Governance, Epistemic Verification & Content Architecture", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 14, rLift: 17, targets: ["sk-1", "sk-2", "sk-3", "sk-4"], url: "https://college.indiana.edu/research-creative-activity/index.html" },
+          { id: "jint-273041-2", code: "INFO-I 308", title: "Information Representation & Structured Knowledge Graph Design", tier: "IUB Credit Course", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 10, rLift: 13, targets: ["sk-3", "sk-4"], url: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html" }
+        ]
+      },
+      {
+        id: "soc-19-1029",
+        soc: "19-1029",
+        onet: "19-1029.04",
+        title: "Biological Scientists (Biotech & Genomics)",
+        schools: ["College of Arts and Sciences"],
+        majors: ["Biology & Biotechnology B.S. (26.0101)"],
+        inEmp: 1450,
+        inMeanWage: 82300,
+        inWageNote: "$82,300 IN annual mean",
+        epGrowth10Yr: 4.8,
+        skills: [
+          { id: "sk-1", code: "4.A.3.a.3", name: "Wet-Lab Assay Execution & Biological Specimen Handling (O*NET GWA)", imp: 4.7, lvl: 5.4, weight: 0.28, v: 18, r: 84, driver: "Physical laboratory dexterity bottleneck" },
+          { id: "sk-2", code: "4.A.1.a.1", name: "Scientific Literature Synthesis & Grant Protocol Drafting (O*NET DWA)", imp: 4.4, lvl: 5.1, weight: 0.20, v: 64, r: 72, driver: "LLM scientific literature copilot" },
+          { id: "sk-3", code: "4.A.2.a.4", name: "Genomic / Proteomic Sequence & Structural Bio Analysis (O*NET DWA)", imp: 4.5, lvl: 5.3, weight: 0.22, v: 45, r: 88, driver: "High bio-foundation model (AlphaFold) complementarity" },
+          { id: "sk-4", code: "4.A.1.b.3", name: "FDA / GLP Regulatory Compliance & Biosafety Auditing (O*NET GWA)", imp: 4.3, lvl: 4.9, weight: 0.18, v: 28, r: 83, driver: "Mandatory regulatory sign-off" },
+          { id: "sk-5", code: "4.A.4.b.4", name: "Cross-Disciplinary Clinical & Lab Team Coordination (O*NET GWA)", imp: 4.0, lvl: 4.5, weight: 0.12, v: 22, r: 86, driver: "Human experimental oversight" }
+        ],
+        interventions: [
+          { id: "jint-191029-1", code: "BIOL-L 410", title: "Computational Genomics, Structural Bio AI & Lab Automation", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 9, rLift: 12, targets: ["sk-2", "sk-3"], url: "https://college.indiana.edu/research-creative-activity/index.html" }
+        ]
+      },
+      {
+        id: "soc-11-1021",
+        soc: "11-1021",
+        onet: "11-1021.00",
+        title: "General and Operations Managers",
+        schools: ["O'Neill School of Public & Environmental Affairs", "Kelley School of Business"],
+        majors: ["Management B.S.B. (52.0201)", "Public Management & Policy B.S.P.A. (44.0401)"],
+        inEmp: 54120,
+        inMeanWage: 129530,
+        inWageNote: "$62.28/hr ($129,530/yr) IN OEWS verified",
+        epGrowth10Yr: 5.8,
+        skills: [
+          { id: "sk-1", code: "4.A.3.a.2", name: "Operational Status Reporting & Policy Summarization (O*NET DWA)", imp: 4.2, lvl: 4.6, weight: 0.24, v: 74, r: 66, driver: "LLM administrative briefing & memo synthesis" },
+          { id: "sk-2", code: "2.B.5.b", name: "Management of Financial & Budgetary Resources (O*NET Skill)", imp: 4.4, lvl: 4.9, weight: 0.22, v: 61, r: 72, driver: "AI fiscal variance & ERP copilot" },
+          { id: "sk-3", code: "2.B.4.g", name: "Program Performance Evaluation & Resource Allocation (O*NET Skill)", imp: 4.4, lvl: 4.8, weight: 0.20, v: 42, r: 82, driver: "Strategic operational trade-offs" },
+          { id: "sk-4", code: "2.B.1.d", name: "Multi-Stakeholder Negotiation & Coalition Building (O*NET Skill)", imp: 4.5, lvl: 5.1, weight: 0.18, v: 21, r: 90, driver: "High interpersonal leadership & conflict resolution" },
+          { id: "sk-5", code: "2.B.5.d", name: "Management of Personnel & Public Accountability (O*NET Skill)", imp: 4.6, lvl: 5.2, weight: 0.16, v: 26, r: 88, driver: "Direct human supervision & statutory governance" }
+        ],
+        interventions: [
+          { id: "jint-111021-1", code: "BUS-Z 447", title: "Leadership, Teamwork and Diversity (3 Cr — Kelley Mgmt)", tier: "IUB Credit Course", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 9, rLift: 12, targets: ["sk-3", "sk-4", "sk-5"], url: "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=MGMTBSB" },
+          { id: "jint-111021-2", code: "SPEA-V 450", title: "AI Governance, Public Sector Procurement & Civic Negotiation", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 10, rLift: 12, targets: ["sk-1", "sk-2", "sk-3"], url: "https://oneill.indiana.edu/undergraduate/degrees-majors/index.html" }
+        ]
+      },
+      {
+        id: "soc-19-2041",
+        soc: "19-2041",
+        onet: "19-2041.00",
+        title: "Environmental Scientists and Specialists",
+        schools: ["O'Neill School of Public & Environmental Affairs", "College of Arts and Sciences"],
+        majors: ["Environmental Management B.S.E.S. (03.0103)"],
+        inEmp: 1320,
+        inMeanWage: 74600,
+        inWageNote: "$74,600 IN annual mean",
+        epGrowth10Yr: 6.9,
+        skills: [
+          { id: "sk-1", code: "4.A.1.b.1", name: "Field Site Inspection & Environmental Media Sampling (O*NET DWA)", imp: 4.5, lvl: 5.0, weight: 0.28, v: 14, r: 87, driver: "Physical field verification & chain-of-custody" },
+          { id: "sk-2", code: "2.A.1.b", name: "NEPA / IDEM Environmental Impact Report Drafting (O*NET DWA)", imp: 4.4, lvl: 4.9, weight: 0.24, v: 62, r: 74, driver: "LLM regulatory compliance document drafting" },
+          { id: "sk-3", code: "4.A.2.a.4", name: "GIS Spatial Telemetry & Climate Plume Modeling (O*NET DWA)", imp: 4.3, lvl: 4.8, weight: 0.22, v: 39, r: 89, driver: "High geospatial AI remote-sensing complementarity" },
+          { id: "sk-4", code: "4.A.4.a.6", name: "Environmental Permitting & Enforcement Negotiation (O*NET GWA)", imp: 4.1, lvl: 4.6, weight: 0.16, v: 22, r: 85, driver: "Legal & statutory compliance sign-off" },
+          { id: "sk-5", code: "4.A.4.a.2", name: "Public Hazard Communication & Community Town Halls (O*NET GWA)", imp: 3.9, lvl: 4.4, weight: 0.10, v: 18, r: 88, driver: "Public trust & risk communication" }
+        ],
+        interventions: [
+          { id: "jint-192041-1", code: "SPEA-E 418", title: "Geospatial AI Remote Sensing & Automated NEPA Compliance", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 9, rLift: 11, targets: ["sk-2", "sk-3"], url: "https://oneill.indiana.edu/undergraduate/degrees-majors/index.html" }
+        ]
+      },
+      {
+        id: "soc-11-9111",
+        soc: "11-9111",
+        onet: "11-9111.00",
+        title: "Medical and Health Services Managers",
+        schools: ["O'Neill School of Public & Environmental Affairs"],
+        majors: ["Healthcare Management & Policy B.S.P.A. (51.0701)"],
+        inEmp: 10480,
+        inMeanWage: 112300,
+        inWageNote: "$112,300 IN annual mean",
+        epGrowth10Yr: 28.5,
+        skills: [
+          { id: "sk-1", code: "4.A.3.a.2", name: "Medical Coding, Billing & Revenue Cycle Documentation (O*NET DWA)", imp: 4.4, lvl: 4.8, weight: 0.24, v: 76, r: 65, driver: "Ambient clinical & ICD-10 billing LLM automation" },
+          { id: "sk-2", code: "2.B.5.c", name: "Hospital Capacity & Clinical Staffing Optimization (O*NET Skill)", imp: 4.5, lvl: 5.0, weight: 0.22, v: 49, r: 83, driver: "Predictive clinical operations copilot" },
+          { id: "sk-3", code: "4.A.1.b.3", name: "HIPAA, CMS Regulatory Compliance & Patient Safety (O*NET GWA)", imp: 4.7, lvl: 5.3, weight: 0.22, v: 29, r: 89, driver: "High-liability clinical & legal oversight" },
+          { id: "sk-4", code: "4.A.4.b.4", name: "Multidisciplinary Care Team & Physician Leadership (O*NET GWA)", imp: 4.6, lvl: 5.1, weight: 0.18, v: 19, r: 92, driver: "Direct clinical staff & patient coordination" },
+          { id: "sk-5", code: "2.B.1.d", name: "Value-Based Payor Contracting & Health System Strategy (O*NET Skill)", imp: 4.2, lvl: 4.7, weight: 0.14, v: 25, r: 88, driver: "Institutional healthcare negotiation" }
+        ],
+        interventions: [
+          { id: "jint-119111-1", code: "SPEA-H 452", title: "Clinical AI Workflow Governance, Ambient EHR & Revenue Analytics", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 10, rLift: 12, targets: ["sk-1", "sk-2", "sk-3"], url: "https://oneill.indiana.edu/undergraduate/degrees-majors/index.html" },
+          { id: "jint-119111-2", code: "NLJ-HLTH-2", title: "Indiana Next Level Jobs Health Information & AI Compliance Specialist", tier: "Indiana Next Level Jobs", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 7, rLift: 9, targets: ["sk-1", "sk-3"], url: "https://www.in.gov/dwd/nextleveljobs/workforce-ready-grant/" }
+        ]
+      }
+    ];
+
+    const PROGRAMS = [
+      {
+        id: "kelley-acct",
+        name: "Accounting B.S.B.",
+        cip: "52.0301",
+        school: "Kelley School of Business",
+        schoolUrl: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/index.html",
+        grads: 540,
+        inStateRet: 0.64,
+        wages: { y1: 68200, y3: 75400, y5: 81570, y10: 108400 },
+        socs: "13-2011 Accountants & Auditors (24,490 IN emp)",
+        naicsFlows: [
+          { sector: "54 Professional, Scientific & Tech Services (CPA/Advisory)", share: 0.52, topSoc: "13-2011 Accountants & Auditors" },
+          { sector: "52 Finance & Insurance", share: 0.26, topSoc: "13-2061 Financial Examiners / Internal Auditors" },
+          { sector: "31-33 Manufacturing (Corporate Controller)", share: 0.14, topSoc: "13-2011 Corporate Accountants" }
+        ],
+        scores: {
+          composite: { v2025: 68.4, r2025: 54.2, v2035: 66.1, r2035: 57.0 },
+          eloundou_e2: { v2025: 74.0, r2025: 58.0, v2035: 71.5, r2035: 60.5 },
+          anthropic: { v2025: 65.2, r2025: 52.8, v2035: 63.0, r2035: 55.4 },
+          felten: { v2025: 64.8, r2025: 50.1, v2035: 62.9, r2035: 52.0 }
+        },
+        skills: [
+          { id: "s1", name: "Documenting/Recording Financial Information (GWA)", weight: 0.26, v: 84, r: 38, driver: "High directive LLM automation (Eloundou E2)" },
+          { id: "s2", name: "Mathematical & Tax Compliance Verification", weight: 0.22, v: 78, r: 46, driver: "Rule-based AI + code synthesis exposure" },
+          { id: "s3", name: "Financial Systems & Enterprise ERP Analysis", weight: 0.20, v: 62, r: 64, driver: "High software-complemented copilot usage" },
+          { id: "s4", name: "Forensic Risk Assessment & Internal Controls", weight: 0.18, v: 51, r: 72, driver: "Human judgment + regulatory attestation" },
+          { id: "s5", name: "Executive Client Advisory & Stakeholder Communication", weight: 0.14, v: 29, r: 85, driver: "High interpersonal & fiduciary bottleneck" }
+        ],
+        interventions: [
+          { id: "int-acct-1", code: "BUS-A 437", title: "AI-Assisted Continuous Auditing & Forensic Analytics", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 8.5, rLift: 11.2, targets: ["s1", "s2", "s3"], url: "https://utilities-test.registrar.indiana.edu/course-browser/archive/4125.shtml" },
+          { id: "int-acct-2", code: "IU-EXP-210", title: "Enterprise ERP AI Copilot & Assurance Governance Certificate", tier: "IU Expand Non-Credit", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.2, rLift: 7.8, targets: ["s1", "s3"], url: "https://iuonline.iu.edu/program-support/quality-matters/quality-checklist.html" },
+          { id: "int-acct-3", code: "BUS-A 424", title: "Strategic Advisory, M&A Due Diligence & Fiduciary Ethics", tier: "IUB Credit Course", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 6.1, rLift: 9.4, targets: ["s4", "s5"], url: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/index.html" }
+        ]
+      },
+      {
+        id: "kelley-fin",
+        name: "Finance B.S.B.",
+        cip: "52.0801",
+        school: "Kelley School of Business",
+        schoolUrl: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/index.html",
+        grads: 920,
+        inStateRet: 0.48,
+        wages: { y1: 76500, y3: 86200, y5: 94800, y10: 138000 },
+        socs: "13-2051 Financial Analysts; 13-1111 Management Analysts",
+        naicsFlows: [
+          { sector: "52 Finance & Insurance (Investment & Commercial Banking)", share: 0.58, topSoc: "13-2051 Financial & Investment Analysts" },
+          { sector: "54 Professional & Management Consulting", share: 0.24, topSoc: "13-1111 Management Analysts" },
+          { sector: "55 Corporate Enterprise Management", share: 0.18, topSoc: "11-3031 Financial Managers" }
+        ],
+        scores: {
+          composite: { v2025: 61.2, r2025: 71.8, v2035: 59.8, r2035: 74.1 },
+          eloundou_e2: { v2025: 67.5, r2025: 75.0, v2035: 65.8, r2035: 77.2 },
+          anthropic: { v2025: 58.0, r2025: 73.4, v2035: 56.5, r2035: 75.6 },
+          felten: { v2025: 59.5, r2025: 66.2, v2035: 58.1, r2035: 68.0 }
+        },
+        skills: [
+          { id: "s1", name: "Quantitative Valuation & Spreadsheet Financial Modeling", weight: 0.28, v: 76, r: 68, driver: "High LLM code/formula generation exposure" },
+          { id: "s2", name: "Earnings Transcript & Market Data Synthesis", weight: 0.22, v: 79, r: 64, driver: "Automated NLP summarization & extraction" },
+          { id: "s3", name: "Capital Allocation & Risk Scenario Stress-Testing", weight: 0.20, v: 52, r: 78, driver: "Collaborative human-AI simulation leverage" },
+          { id: "s4", name: "Deal Structuring & Institutional Negotiation", weight: 0.16, v: 31, r: 86, driver: "High-stakes interpersonal persuasion" },
+          { id: "s5", name: "Fiduciary Governance & Client Relationship Stewardship", weight: 0.14, v: 26, r: 88, driver: "Relationship trust & accountability" }
+        ],
+        interventions: [
+          { id: "int-fin-1", code: "BUS-F 421", title: "Algorithmic Financial Modeling & LLM Market Agents", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 7.8, rLift: 9.6, targets: ["s1", "s2", "s3"], url: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/index.html" },
+          { id: "int-fin-2", code: "BUS-F 494", title: "Complex Deal Structuring, Private Credit & Negotiation Lab", tier: "IUB Credit Course", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 6.4, rLift: 8.5, targets: ["s3", "s4", "s5"], url: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/index.html" },
+          { id: "int-fin-3", code: "IU-EXP-305", title: "AI Risk Governance in Financial Services Micro-Credential", tier: "IU Expand Non-Credit", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 4.5, rLift: 6.2, targets: ["s2", "s3"], url: "https://iuonline.iu.edu/program-support/quality-matters/quality-checklist.html" }
+        ]
+      },
+      {
+        id: "kelley-mkt",
+        name: "Marketing B.S.B.",
+        cip: "52.1401",
+        school: "Kelley School of Business",
+        schoolUrl: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/index.html",
+        grads: 680,
+        inStateRet: 0.55,
+        wages: { y1: 61400, y3: 69800, y5: 78200, y10: 118500 },
+        socs: "11-2021 Marketing Managers (3,380 IN emp; $63.28/hr); 13-1161 Market Research",
+        naicsFlows: [
+          { sector: "54 Advertising, PR & Marketing Analytics Services", share: 0.38, topSoc: "13-1161 Market Research Analysts" },
+          { sector: "42/44 Consumer Packaged Goods & Retail Brand Mgmt", share: 0.36, topSoc: "11-2021 Marketing Managers" },
+          { sector: "51 Digital Media & Information Platforms", share: 0.26, topSoc: "11-2022 Sales & Growth Managers" }
+        ],
+        scores: {
+          composite: { v2025: 58.7, r2025: 69.5, v2035: 57.3, r2035: 72.0 },
+          eloundou_e2: { v2025: 64.2, r2025: 73.1, v2035: 62.8, r2035: 75.4 },
+          anthropic: { v2025: 56.4, r2025: 71.2, v2035: 55.0, r2035: 73.8 },
+          felten: { v2025: 55.1, r2025: 64.0, v2035: 53.8, r2035: 66.1 }
+        },
+        skills: [
+          { id: "s1", name: "Campaign Copywriting & Content Generation", weight: 0.25, v: 82, r: 58, driver: "Direct multimodal generative AI exposure" },
+          { id: "s2", name: "Consumer Survey & Market Trend Tabulation", weight: 0.24, v: 71, r: 66, driver: "Automated data synthesis" },
+          { id: "s3", name: "Causal Customer Experimentation & A/B Attribution", weight: 0.20, v: 46, r: 79, driver: "High analytical & experimental design leverage" },
+          { id: "s4", name: "Brand Architecture & Cross-Channel Strategy", weight: 0.17, v: 38, r: 81, driver: "Strategic positioning & creative direction" },
+          { id: "s5", name: "Enterprise Account Negotiation & Partner Leadership", weight: 0.14, v: 28, r: 86, driver: "Relationship & executive persuasion" }
+        ],
+        interventions: [
+          { id: "int-mkt-1", code: "BUS-M 455", title: "Generative AI Brand Studio & Causal Marketing Analytics", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 7.9, rLift: 10.1, targets: ["s1", "s2", "s3"], url: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/index.html" },
+          { id: "int-mkt-2", code: "KELLEY-PM", title: "Kelley Certificate in Product Management (15 Cr)", tier: "IUB Credit Certificate", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 6.5, rLift: 9.0, targets: ["s3", "s4", "s5"], url: "https://eskenazi.indiana.edu/graduate/mdl.html" }
+        ]
+      },
+      {
+        id: "kelley-mgmt",
+        name: "Management B.S.B.",
+        cip: "52.0201",
+        school: "Kelley School of Business",
+        schoolUrl: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/management-major.html",
+        grads: 480,
+        inStateRet: 0.59,
+        wages: { y1: 63200, y3: 73800, y5: 84500, y10: 124800 },
+        socs: "11-1021 General & Operations Managers ($129,530 IN mean); 13-1111 Management Analysts",
+        naicsFlows: [
+          { sector: "54 Strategy, Operations & Management Consulting", share: 0.40, topSoc: "13-1111 Management Analysts" },
+          { sector: "55/31 Corporate Enterprise & Manufacturing Leadership", share: 0.36, topSoc: "11-1021 General & Operations Managers" },
+          { sector: "52/62 Financial Services & Healthcare Administration", share: 0.24, topSoc: "11-3121 Human Resources & Talent Managers" }
+        ],
+        scores: {
+          composite: { v2025: 48.2, r2025: 78.4, v2035: 46.6, r2035: 81.0 },
+          eloundou_e2: { v2025: 53.5, r2025: 81.2, v2035: 51.8, r2035: 83.6 },
+          anthropic: { v2025: 45.8, r2025: 79.8, v2035: 44.2, r2035: 82.4 },
+          felten: { v2025: 45.1, r2025: 74.2, v2035: 43.8, r2035: 77.0 }
+        },
+        skills: [
+          { id: "s1", name: "Operational Status Reporting & Workflow Documentation (GWA)", weight: 0.23, v: 73, r: 66, driver: "LLM memo, KPI summary & SOP drafting exposure" },
+          { id: "s2", name: "Resource Allocation & Budget Variance Analysis", weight: 0.21, v: 60, r: 74, driver: "AI-augmented operational & financial planning" },
+          { id: "s3", name: "Competitive Strategy & Organizational Design", weight: 0.20, v: 41, r: 84, driver: "Strategic positioning & structural trade-offs" },
+          { id: "s4", name: "Guiding, Directing & Motivating Cross-Functional Teams", weight: 0.20, v: 24, r: 90, driver: "High interpersonal leadership & team cohesion" },
+          { id: "s5", name: "Executive Negotiation, Conflict Resolution & Talent Governance", weight: 0.16, v: 20, r: 91, driver: "Human bargaining & organizational trust" }
+        ],
+        interventions: [
+          { id: "int-mgmt-1", code: "BUS-J 285", title: "Competitive Strategy & Industry Analysis with AI Simulation (3 Cr)", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 6.8, rLift: 8.9, targets: ["s1", "s2", "s3"], url: "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=MGMTBSB" },
+          { id: "int-mgmt-2", code: "BUS-Z 447", title: "Leadership, Teamwork and Diversity (3 Cr)", tier: "IUB Credit Course", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 6.2, rLift: 8.4, targets: ["s3", "s4", "s5"], url: "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=MGMTBSB" },
+          { id: "int-mgmt-3", code: "BUS-Z 305/306", title: "Kelley Talent Management Workshop & People Analytics (3 Cr)", tier: "IUB Credit Workshop", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 5.1, rLift: 7.3, targets: ["s2", "s4", "s5"], url: "https://kelley.iu.edu/undergraduate/academics/workshops/talent-management.html" }
+        ]
+      },
+      {
+        id: "kelley-ba",
+        name: "Business Analytics B.S.B.",
+        cip: "52.1301",
+        school: "Kelley School of Business",
+        schoolUrl: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/business-analytics-co-major.html",
+        grads: 430,
+        inStateRet: 0.52,
+        wages: { y1: 77800, y3: 89400, y5: 101200, y10: 141600 },
+        socs: "15-2051 Data Scientists ($102,500 IN mean); 13-1111 Management Analysts",
+        naicsFlows: [
+          { sector: "54 Management, Analytics & Strategy Consulting", share: 0.46, topSoc: "13-1111 Business & Analytics Consultants" },
+          { sector: "52 Quantitative FinTech, Banking & InsurTech", share: 0.30, topSoc: "15-2051 Decision & Data Scientists" },
+          { sector: "42/31 Supply Chain, Retail & Manufacturing Analytics", share: 0.24, topSoc: "15-2031 Operations Research Analysts" }
+        ],
+        scores: {
+          composite: { v2025: 55.4, r2025: 82.8, v2035: 53.2, r2035: 85.9 },
+          eloundou_e2: { v2025: 61.5, r2025: 86.0, v2035: 59.1, r2035: 88.8 },
+          anthropic: { v2025: 52.8, r2025: 84.5, v2035: 50.6, r2035: 87.4 },
+          felten: { v2025: 51.9, r2025: 77.9, v2035: 49.9, r2035: 81.5 }
+        },
+        skills: [
+          { id: "s1", name: "Exploratory Business Data Querying & Dashboard Scripting", weight: 0.25, v: 78, r: 75, driver: "Automated SQL/Python & BI dashboard code synthesis" },
+          { id: "s2", name: "Predictive Business Modeling & Demand Forecasting", weight: 0.23, v: 65, r: 81, driver: "AutoML & LLM modeling pipeline augmentation" },
+          { id: "s3", name: "Business Econometrics & Causal Decision Identification", weight: 0.22, v: 39, r: 89, driver: "Structural causal inference & counterfactual design" },
+          { id: "s4", name: "Operations & Supply Chain Mathematical Optimization", weight: 0.16, v: 44, r: 86, driver: "Constrained optimization & stochastic simulation" },
+          { id: "s5", name: "Executive Problem Framing & Analytical Storytelling", weight: 0.14, v: 28, r: 90, driver: "Translating models into boardroom strategy" }
+        ],
+        interventions: [
+          { id: "int-ba-1", code: "BUS-K 353", title: "Business Analytics and Modeling (3 Cr)", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 7.9, rLift: 9.4, targets: ["s1", "s2", "s4"], url: "https://kelley.iu.edu/faculty-research/courses/course.html?ID=BUS-K353-397" },
+          { id: "int-ba-2", code: "BUS-G 350", title: "Business Econometrics & Causal Strategy (3 Cr)", tier: "IUB Credit Course", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 6.6, rLift: 8.7, targets: ["s2", "s3", "s5"], url: "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=BANLYBSB" },
+          { id: "int-ba-3", code: "BUS-K 327", title: "Modeling Business Data & AI Pipeline Programming (BUS-S 364)", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.8, rLift: 7.5, targets: ["s1", "s2", "s3"], url: "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=BANLYBSB" }
+        ]
+      },
+      {
+        id: "kelley-is",
+        name: "Information Systems B.S.B.",
+        cip: "52.1201",
+        school: "Kelley School of Business",
+        schoolUrl: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/information-systems-major.html",
+        grads: 510,
+        inStateRet: 0.56,
+        wages: { y1: 75400, y3: 86800, y5: 97600, y10: 136400 },
+        socs: "15-1211 Computer Systems Analysts ($91,200 IN mean); 15-1252 Software Developers",
+        naicsFlows: [
+          { sector: "54 IT Advisory, Enterprise Systems & Cloud Consulting", share: 0.48, topSoc: "15-1211 Computer Systems Analysts" },
+          { sector: "52/51 FinTech, Enterprise SaaS & Digital Platforms", share: 0.30, topSoc: "15-1252 Enterprise Application Developers" },
+          { sector: "55/31 Corporate IT Governance & Digital Supply Chain", share: 0.22, topSoc: "11-3021 Computer & Information Systems Managers" }
+        ],
+        scores: {
+          composite: { v2025: 56.6, r2025: 80.8, v2035: 54.1, r2035: 83.9 },
+          eloundou_e2: { v2025: 62.8, r2025: 84.0, v2035: 60.1, r2035: 86.8 },
+          anthropic: { v2025: 54.0, r2025: 82.6, v2035: 51.6, r2035: 85.5 },
+          felten: { v2025: 53.0, r2025: 75.8, v2035: 50.6, r2035: 79.4 }
+        },
+        skills: [
+          { id: "s1", name: "Requirements Documentation & Database Schema Mapping", weight: 0.24, v: 76, r: 71, driver: "LLM technical specification & SQL schema synthesis" },
+          { id: "s2", name: "Enterprise Application Scripting & API Integration", weight: 0.22, v: 69, r: 76, driver: "AI code-assistant & middleware generation" },
+          { id: "s3", name: "Business Process Management & AI Workflow Integration", weight: 0.22, v: 45, r: 86, driver: "End-to-end socio-technical process orchestration" },
+          { id: "s4", name: "Digital Enterprise Architecture, ERP & Cloud Security", weight: 0.18, v: 35, r: 89, driver: "High-reliability enterprise security & governance" },
+          { id: "s5", name: "IT Project Leadership & Cross-Unit Change Management", weight: 0.14, v: 27, r: 88, driver: "Stakeholder alignment & organizational adoption" }
+        ],
+        interventions: [
+          { id: "int-is-1", code: "BUS-S 355", title: "Digital Solutions with AI (3 Cr)", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 8.4, rLift: 10.2, targets: ["s1", "s2", "s3"], url: "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=INFOSYSBSB&year=2022-2023" },
+          { id: "int-is-2", code: "BUS-S 400", title: "Integration of Systems and the Business (3 Cr)", tier: "IUB Credit Course", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 6.7, rLift: 8.8, targets: ["s3", "s4", "s5"], url: "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=INFOSYSBSB&year=2022-2023" },
+          { id: "int-is-3", code: "BUS-K 315", title: "Business Process Management & Digital Tech (BUS-S 302)", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.9, rLift: 7.6, targets: ["s1", "s3", "s4"], url: "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=INFOSYSBSB&year=2024-2025" }
+        ]
+      },
+      {
+        id: "luddy-cs",
+        name: "Computer Science B.S.",
+        cip: "11.0701",
+        school: "Luddy School of Informatics, Computing, & Engineering",
+        schoolUrl: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html",
+        grads: 460,
+        inStateRet: 0.51,
+        wages: { y1: 86400, y3: 98600, y5: 112400, y10: 149500 },
+        socs: "15-1252 Software Developers; 15-1299 Computer Occupations",
+        naicsFlows: [
+          { sector: "54 Computer Systems Design & Software Engineering", share: 0.54, topSoc: "15-1252 Software Developers" },
+          { sector: "51 Information, Cloud & SaaS Platforms", share: 0.28, topSoc: "15-1241 Computer Network & Cloud Architects" },
+          { sector: "52/31 FinTech & Advanced Manufacturing Automation", share: 0.18, topSoc: "15-1299 Systems Software Engineers" }
+        ],
+        scores: {
+          composite: { v2025: 54.8, r2025: 84.6, v2035: 52.1, r2035: 87.9 },
+          eloundou_e2: { v2025: 62.0, r2025: 88.5, v2035: 59.0, r2035: 91.0 },
+          anthropic: { v2025: 51.5, r2025: 89.2, v2035: 48.8, r2035: 92.1 },
+          felten: { v2025: 50.8, r2025: 76.0, v2035: 48.5, r2035: 78.5 }
+        },
+        skills: [
+          { id: "s1", name: "Boilerplate Code & Unit Test Generation", weight: 0.24, v: 83, r: 74, driver: "High coding-assistant automation & speed-up" },
+          { id: "s2", name: "Bug Triage & Legacy Syntax Translation", weight: 0.18, v: 74, r: 78, driver: "High Anthropic Economic Index coding share" },
+          { id: "s3", name: "Distributed Systems Architecture & Cloud Orchestration", weight: 0.24, v: 39, r: 92, driver: "Complex system trade-offs & reliability" },
+          { id: "s4", name: "Cybersecurity Verification & Adversarial Hardening", weight: 0.18, v: 34, r: 91, driver: "High-consequence security verification" },
+          { id: "s5", name: "Technical Product Scoping & Cross-Team Engineering Leadership", weight: 0.16, v: 25, r: 89, driver: "Human stakeholder & architectural alignment" }
+        ],
+        interventions: [
+          { id: "int-cs-1", code: "CSCI-B 455", title: "Agentic AI Systems Architecture & Formal Verification", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 8.2, rLift: 7.4, targets: ["s1", "s2", "s3"], url: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html" },
+          { id: "int-cs-2", code: "CSCI-C 437", title: "Secure Distributed Systems & Adversarial AI Defense", tier: "IUB Credit Course", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 6.0, rLift: 6.8, targets: ["s3", "s4"], url: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html" },
+          { id: "int-cs-3", code: "NLJ-CLOUD-9", title: "Indiana Next Level Jobs Cloud & AI SecOps Architect Grant", tier: "Indiana Next Level Jobs", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 4.8, rLift: 5.5, targets: ["s3", "s4"], url: "https://www.in.gov/dwd/nextleveljobs/workforce-ready-grant/" }
+        ]
+      },
+      {
+        id: "luddy-info",
+        name: "Informatics B.S.",
+        cip: "11.0104",
+        school: "Luddy School of Informatics, Computing, & Engineering",
+        schoolUrl: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html",
+        grads: 390,
+        inStateRet: 0.62,
+        wages: { y1: 69500, y3: 79400, y5: 88900, y10: 121000 },
+        socs: "15-1211 Computer Systems Analysts; 15-1255 Web & UX Designers",
+        naicsFlows: [
+          { sector: "54 IT Consulting & Enterprise Systems Integration", share: 0.46, topSoc: "15-1211 Computer Systems Analysts" },
+          { sector: "62 Healthcare Informatics & Life Sciences (Eli Lilly / IU Health)", share: 0.30, topSoc: "15-1211 Health & Clinical Systems Analysts" },
+          { sector: "51 Digital Product & UX Design", share: 0.24, topSoc: "15-1255 Web & Digital Interface Designers" }
+        ],
+        scores: {
+          composite: { v2025: 57.4, r2025: 79.2, v2035: 55.0, r2035: 82.1 },
+          eloundou_e2: { v2025: 63.8, r2025: 82.0, v2035: 61.2, r2035: 84.5 },
+          anthropic: { v2025: 55.1, r2025: 81.4, v2035: 52.8, r2035: 84.0 },
+          felten: { v2025: 53.2, r2025: 74.1, v2035: 51.0, r2035: 76.8 }
+        },
+        skills: [
+          { id: "s1", name: "Wireframe Prototyping & Front-End UI Scripting", weight: 0.25, v: 78, r: 70, driver: "Generative UI-to-code synthesis" },
+          { id: "s2", name: "Requirements Documentation & Data Mapping", weight: 0.23, v: 69, r: 74, driver: "LLM workflow documentation copilot" },
+          { id: "s3", name: "Human-Computer Interaction (HCI) User Research", weight: 0.20, v: 44, r: 85, driver: "Empirical human usability observation" },
+          { id: "s4", name: "Enterprise Workflow Redesign & Change Management", weight: 0.18, v: 36, r: 87, driver: "Organizational adoption & sociotechnical alignment" },
+          { id: "s5", name: "Domain Compliance & Socio-Technical Ethics", weight: 0.14, v: 30, r: 86, driver: "Governance & human accountability" }
+        ],
+        interventions: [
+          { id: "int-info-1", code: "INFO-I 427", title: "Human-Centered AI Interaction & Enterprise Workflow Design", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 7.6, rLift: 8.8, targets: ["s1", "s2", "s3"], url: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html" },
+          { id: "int-info-2", code: "LUDDY-DS-CERT", title: "Luddy Online Certificate in Applied Data Science (12 Cr)", tier: "IUB Credit Certificate", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 5.8, rLift: 7.9, targets: ["s2", "s4"], url: "https://eskenazi.indiana.edu/graduate/mdl.html" }
+        ]
+      },
+      {
+        id: "luddy-ds",
+        name: "Data Science B.S.",
+        cip: "30.7001",
+        school: "Luddy School of Informatics, Computing, & Engineering",
+        schoolUrl: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html",
+        grads: 210,
+        inStateRet: 0.49,
+        wages: { y1: 84200, y3: 96500, y5: 108800, y10: 145000 },
+        socs: "15-2051 Data Scientists; 15-2041 Statisticians",
+        naicsFlows: [
+          { sector: "54 AI/ML Analytics & Scientific R&D", share: 0.48, topSoc: "15-2051 Data Scientists" },
+          { sector: "52 Quantitative Finance & InsurTech", share: 0.28, topSoc: "15-2041 Statisticians & Quant Analysts" },
+          { sector: "32/62 Pharmaceutical & Biometrics (Indiana Bio-Corridor)", share: 0.24, topSoc: "15-2051 Clinical Data Scientists" }
+        ],
+        scores: {
+          composite: { v2025: 51.2, r2025: 87.4, v2035: 49.4, r2035: 90.2 },
+          eloundou_e2: { v2025: 57.0, r2025: 90.1, v2035: 54.8, r2035: 92.4 },
+          anthropic: { v2025: 49.0, r2025: 89.5, v2035: 47.2, r2035: 91.8 },
+          felten: { v2025: 47.6, r2025: 82.5, v2035: 46.1, r2035: 85.0 }
+        },
+        skills: [
+          { id: "s1", name: "Exploratory SQL/Python Data Wrangling & Visualization", weight: 0.26, v: 77, r: 79, driver: "Automated code-interpreter & query synthesis" },
+          { id: "s2", name: "Standard Predictive Model Fitting & Feature Selection", weight: 0.22, v: 66, r: 83, driver: "AutoML & LLM pipeline generation" },
+          { id: "s3", name: "Causal Inference & Experimental Design under Bias", weight: 0.22, v: 32, r: 94, driver: "Deep structural & domain identification" },
+          { id: "s4", name: "MLOps, Foundation Model Fine-Tuning & Evaluation", weight: 0.18, v: 30, r: 95, driver: "Core frontier AI engineering" },
+          { id: "s5", name: "Executive Decision Framing & Uncertainty Communication", weight: 0.12, v: 24, r: 91, driver: "Organizational judgment & governance" }
+        ],
+        interventions: [
+          { id: "int-ds-1", code: "DSCI-D 490", title: "Causal Inference, LLMOps & Experimental Decision Systems", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 7.4, rLift: 6.9, targets: ["s1", "s2", "s3", "s4"], url: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html" }
+        ]
+      },
+      {
+        id: "cas-econ",
+        name: "Economics B.A. / B.S.",
+        cip: "45.0601",
+        school: "College of Arts and Sciences",
+        schoolUrl: "https://college.indiana.edu/research-creative-activity/index.html",
+        grads: 310,
+        inStateRet: 0.53,
+        wages: { y1: 63500, y3: 74200, y5: 84600, y10: 119000 },
+        socs: "19-3011 Economists; 13-1111 Management Analysts",
+        naicsFlows: [
+          { sector: "54 Economic, Strategy & Management Consulting", share: 0.44, topSoc: "13-1111 Management Analysts" },
+          { sector: "52 Banking, Monetary Policy & Capital Markets", share: 0.34, topSoc: "19-3011 Economists & Market Analysts" },
+          { sector: "92 State & Federal Economic Policy Agencies", share: 0.22, topSoc: "19-3011 Policy Economists" }
+        ],
+        scores: {
+          composite: { v2025: 56.9, r2025: 73.1, v2035: 55.2, r2035: 75.8 },
+          eloundou_e2: { v2025: 62.5, r2025: 76.4, v2035: 60.8, r2035: 78.9 },
+          anthropic: { v2025: 54.0, r2025: 74.8, v2035: 52.3, r2035: 77.2 },
+          felten: { v2025: 54.2, r2025: 68.1, v2035: 52.5, r2035: 70.5 }
+        },
+        skills: [
+          { id: "s1", name: "Descriptive Economic Data Cleaning & Literature Synthesis", weight: 0.26, v: 78, r: 62, driver: "High LLM synthesis & coding automation" },
+          { id: "s2", name: "Forecasting & Time-Series Regression Modeling", weight: 0.24, v: 64, r: 74, driver: "AI-augmented econometric modeling" },
+          { id: "s3", name: "Counterfactual Policy & Market Design (Causal ID)", weight: 0.22, v: 38, r: 86, driver: "Structural economic reasoning" },
+          { id: "s4", name: "Strategic Pricing & Industrial Organization Analysis", weight: 0.16, v: 42, r: 81, driver: "Game-theoretic & competitive context" },
+          { id: "s5", name: "Executive & Regulatory Testimony / Briefing", weight: 0.12, v: 29, r: 84, driver: "Persuasion & institutional credibility" }
+        ],
+        interventions: [
+          { id: "int-econ-1", code: "ECON-E 472", title: "Computational Econometrics & AI Counterfactual Simulation", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 7.5, rLift: 9.2, targets: ["s1", "s2", "s3"], url: "https://college.indiana.edu/research-creative-activity/index.html" },
+          { id: "int-econ-2", code: "IU-EXP-412", title: "Applied Causal Inference & Policy Analytics Certificate", tier: "IU Expand Non-Credit", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 5.4, rLift: 7.1, targets: ["s3", "s4"], url: "https://iuonline.iu.edu/program-support/quality-matters/quality-checklist.html" }
+        ]
+      },
+      {
+        id: "cas-eng",
+        name: "English & Professional Writing B.A.",
+        cip: "23.0101",
+        school: "College of Arts and Sciences",
+        schoolUrl: "https://college.indiana.edu/research-creative-activity/index.html",
+        grads: 240,
+        inStateRet: 0.61,
+        wages: { y1: 46800, y3: 54900, y5: 64200, y10: 88500 },
+        socs: "27-3041 Editors; 27-3042 Technical Writers; 11-2032 PR Managers",
+        naicsFlows: [
+          { sector: "51 Publishing, Digital Media & Content Strategy", share: 0.42, topSoc: "27-3041 Editors & Content Strategists" },
+          { sector: "54 Technical Documentation, Legal & Corporate Comms", share: 0.35, topSoc: "27-3042 Technical Writers" },
+          { sector: "61/81 Higher Ed, Nonprofits & Public Relations", share: 0.23, topSoc: "11-2032 Public Relations Managers (510 IN emp)" }
+        ],
+        scores: {
+          composite: { v2025: 72.6, r2025: 61.0, v2035: 70.8, r2035: 63.8 },
+          eloundou_e2: { v2025: 81.2, r2025: 64.5, v2035: 79.1, r2035: 67.0 },
+          anthropic: { v2025: 70.4, r2025: 63.2, v2035: 68.5, r2035: 66.1 },
+          felten: { v2025: 66.2, r2025: 55.4, v2035: 64.8, r2035: 58.2 }
+        },
+        skills: [
+          { id: "s1", name: "First-Draft Copywriting & Routine Summarization", weight: 0.30, v: 91, r: 44, driver: "Direct LLM text generation substitution" },
+          { id: "s2", name: "Proofreading, Grammar & Style Standardization", weight: 0.22, v: 86, r: 48, driver: "Automated language editing exposure" },
+          { id: "s3", name: "Technical Information Architecture & Knowledge Systems", weight: 0.20, v: 58, r: 74, driver: "Structured enterprise knowledge engineering" },
+          { id: "s4", name: "Editorial Judgment, Fact Verification & Brand Voice Governance", weight: 0.16, v: 45, r: 82, driver: "Critical human epistemic oversight" },
+          { id: "s5", name: "Crisis Communications & Stakeholder Narrative Strategy", weight: 0.12, v: 32, r: 87, driver: "High-empathy leadership & reputation management" }
+        ],
+        interventions: [
+          { id: "int-eng-1", code: "ENG-W 415", title: "Editorial AI Governance, Epistemic Verification & Content Architecture", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 10.4, rLift: 13.5, targets: ["s1", "s2", "s3", "s4"], url: "https://college.indiana.edu/research-creative-activity/index.html" },
+          { id: "int-eng-2", code: "INFO-I 308", title: "Information Representation & Structured Knowledge Graph Design", tier: "IUB Credit Course", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 7.8, rLift: 10.2, targets: ["s3", "s4"], url: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html" },
+          { id: "int-eng-3", code: "IU-EXP-118", title: "Enterprise AI Prompt Engineering & Brand Compliance Certificate", tier: "IU Expand Non-Credit", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 6.2, rLift: 8.4, targets: ["s1", "s4"], url: "https://iuonline.iu.edu/program-support/quality-matters/quality-checklist.html" }
+        ]
+      },
+      {
+        id: "cas-biol",
+        name: "Biology & Biotechnology B.S.",
+        cip: "26.0101",
+        school: "College of Arts and Sciences",
+        schoolUrl: "https://college.indiana.edu/research-creative-activity/index.html",
+        grads: 490,
+        inStateRet: 0.67,
+        wages: { y1: 54200, y3: 66800, y5: 78500, y10: 114200 },
+        socs: "19-1029 Biological Scientists; 19-4021 Biological Technicians",
+        naicsFlows: [
+          { sector: "32 Pharmaceutical & Biotech Manufacturing (Lilly / Cook / Roche)", share: 0.48, topSoc: "19-1029 Biological Scientists" },
+          { sector: "62 Clinical Healthcare & Diagnostic Laboratories", share: 0.34, topSoc: "29-2010 Clinical Laboratory Technologists" },
+          { sector: "54 Scientific R&D & Agricultural Biosciences", share: 0.18, topSoc: "19-4021 Biological Technicians" }
+        ],
+        scores: {
+          composite: { v2025: 34.2, r2025: 78.9, v2035: 33.1, r2035: 81.5 },
+          eloundou_e2: { v2025: 38.5, r2025: 81.2, v2035: 37.2, r2035: 83.8 },
+          anthropic: { v2025: 31.8, r2025: 79.5, v2035: 30.8, r2035: 82.0 },
+          felten: { v2025: 32.4, r2025: 76.0, v2035: 31.4, r2035: 78.7 }
+        },
+        skills: [
+          { id: "s1", name: "Wet-Lab Assay Execution & Specimen Handling", weight: 0.28, v: 18, r: 84, driver: "Physical laboratory dexterity bottleneck" },
+          { id: "s2", name: "Literature Review & Experimental Protocol Drafting", weight: 0.20, v: 64, r: 72, driver: "LLM scientific synthesis copilot" },
+          { id: "s3", name: "Genomic / Proteomic Sequence & Assay Analysis", weight: 0.22, v: 45, r: 88, driver: "High bio-AI model complementarity" },
+          { id: "s4", name: "FDA / GLP Regulatory Compliance & Quality Assurance", weight: 0.18, v: 28, r: 83, driver: "Strict regulatory sign-off & auditing" },
+          { id: "s5", name: "Cross-Disciplinary Clinical Trial Coordination", weight: 0.12, v: 22, r: 86, driver: "Human clinical & ethical oversight" }
+        ],
+        interventions: [
+          { id: "int-biol-1", code: "BIOL-L 410", title: "Computational Genomics, AlphaFold Structural Bio & Lab Automation", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.4, rLift: 8.6, targets: ["s2", "s3"], url: "https://college.indiana.edu/research-creative-activity/index.html" },
+          { id: "int-biol-2", code: "NLJ-BIO-4", title: "Indiana Next Level Jobs GMP Biomanufacturing & Regulatory QA", tier: "Indiana Next Level Jobs", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 4.1, rLift: 6.5, targets: ["s1", "s4"], url: "https://www.in.gov/dwd/nextleveljobs/workforce-ready-grant/" }
+        ]
+      },
+      {
+        id: "oneill-pmp",
+        name: "Public Management & Policy B.S.P.A.",
+        cip: "44.0401",
+        school: "O'Neill School of Public & Environmental Affairs",
+        schoolUrl: "https://oneill.indiana.edu/undergraduate/degrees-majors/index.html",
+        grads: 380,
+        inStateRet: 0.66,
+        wages: { y1: 56400, y3: 68200, y5: 79400, y10: 109500 },
+        socs: "11-1021 General & Operations Managers ($129,530 IN mean); 13-1111 Analysts",
+        naicsFlows: [
+          { sector: "92 State, Local & Federal Government Administration", share: 0.42, topSoc: "11-1021 General & Operations Managers" },
+          { sector: "54 Public Sector & Management Consulting", share: 0.32, topSoc: "13-1111 Management Analysts" },
+          { sector: "81 Nonprofit & Philanthropic Organizations", share: 0.26, topSoc: "11-9151 Social & Community Service Managers" }
+        ],
+        scores: {
+          composite: { v2025: 46.5, r2025: 76.4, v2035: 45.1, r2035: 79.0 },
+          eloundou_e2: { v2025: 52.0, r2025: 79.1, v2035: 50.4, r2035: 81.5 },
+          anthropic: { v2025: 44.2, r2025: 77.8, v2035: 42.8, r2035: 80.2 },
+          felten: { v2025: 43.3, r2025: 72.3, v2035: 42.1, r2035: 75.3 }
+        },
+        skills: [
+          { id: "s1", name: "Policy Brief Drafting & Statutory Summarization", weight: 0.24, v: 74, r: 66, driver: "LLM legislative & policy synthesis" },
+          { id: "s2", name: "Municipal & Agency Budget Variance Analysis", weight: 0.22, v: 61, r: 72, driver: "Spreadsheet & fiscal AI copilot" },
+          { id: "s3", name: "Public Program Evaluation & Cost-Benefit Modeling", weight: 0.20, v: 42, r: 82, driver: "Causal policy impact evaluation" },
+          { id: "s4", name: "Multi-Stakeholder Coalition Building & Civic Negotiation", weight: 0.18, v: 21, r: 90, driver: "Political consensus & public deliberation" },
+          { id: "s5", name: "Public Procurement Governance & Algorithmic Accountability", weight: 0.16, v: 26, r: 88, driver: "Statutory oversight & public trust" }
+        ],
+        interventions: [
+          { id: "int-oneill-1", code: "SPEA-V 450", title: "AI Governance, Public Sector Procurement & Civic Negotiation", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 6.9, rLift: 8.9, targets: ["s1", "s3", "s5"], url: "https://oneill.indiana.edu/undergraduate/degrees-majors/index.html" },
+          { id: "int-oneill-2", code: "ONEILL-PBFM", title: "O'Neill Certificate in Public Budgeting & Financial Management (15 Cr)", tier: "IUB Credit Certificate", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 5.5, rLift: 7.4, targets: ["s2", "s3", "s5"], url: "https://eskenazi.indiana.edu/graduate/mdl.html" }
+        ]
+      },
+      {
+        id: "oneill-env",
+        name: "Environmental Management B.S.E.S.",
+        cip: "03.0103",
+        school: "O'Neill School of Public & Environmental Affairs",
+        schoolUrl: "https://oneill.indiana.edu/undergraduate/degrees-majors/index.html",
+        grads: 190,
+        inStateRet: 0.63,
+        wages: { y1: 53800, y3: 64900, y5: 75800, y10: 104200 },
+        socs: "19-2041 Environmental Scientists; 11-9121 Natural Sciences Managers",
+        naicsFlows: [
+          { sector: "54 Environmental Engineering & Remediation Consulting", share: 0.45, topSoc: "19-2041 Environmental Scientists & Specialists" },
+          { sector: "92 Environmental Protection & Natural Resource Agencies", share: 0.33, topSoc: "19-2041 Regulatory Compliance Specialists" },
+          { sector: "22/31 Energy, Utilities & Corporate Sustainability", share: 0.22, topSoc: "11-9121 Sustainability & Natural Sciences Managers" }
+        ],
+        scores: {
+          composite: { v2025: 31.8, r2025: 80.5, v2035: 30.6, r2035: 83.2 },
+          eloundou_e2: { v2025: 36.0, r2025: 82.8, v2035: 34.5, r2035: 85.1 },
+          anthropic: { v2025: 29.8, r2025: 81.4, v2035: 28.7, r2035: 84.0 },
+          felten: { v2025: 29.6, r2025: 77.3, v2035: 28.6, r2035: 80.5 }
+        },
+        skills: [
+          { id: "s1", name: "Field Site Inspection & Environmental Sampling", weight: 0.28, v: 14, r: 87, driver: "Physical field verification bottleneck" },
+          { id: "s2", name: "NEPA / EPA Environmental Impact Report Drafting", weight: 0.24, v: 62, r: 74, driver: "LLM regulatory document drafting" },
+          { id: "s3", name: "GIS Spatial Modeling & Climate Risk Telemetry", weight: 0.22, v: 39, r: 89, driver: "Geospatial AI & remote sensing leverage" },
+          { id: "s4", name: "Environmental Permitting & Enforcement Negotiation", weight: 0.16, v: 22, r: 85, driver: "Legal & regulatory compliance sign-off" },
+          { id: "s5", name: "Community Hazard Communication & Emergency Response", weight: 0.10, v: 18, r: 88, driver: "Direct public safety engagement" }
+        ],
+        interventions: [
+          { id: "int-env-1", code: "SPEA-E 418", title: "Geospatial AI Remote Sensing & Automated NEPA Compliance", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.8, rLift: 7.9, targets: ["s2", "s3"], url: "https://oneill.indiana.edu/undergraduate/degrees-majors/index.html" }
+        ]
+      },
+      {
+        id: "oneill-hmp",
+        name: "Healthcare Management & Policy B.S.P.A.",
+        cip: "51.0701",
+        school: "O'Neill School of Public & Environmental Affairs",
+        schoolUrl: "https://oneill.indiana.edu/undergraduate/degrees-majors/index.html",
+        grads: 260,
+        inStateRet: 0.71,
+        wages: { y1: 62400, y3: 75800, y5: 89400, y10: 124600 },
+        socs: "11-9111 Medical & Health Services Managers",
+        naicsFlows: [
+          { sector: "62 Hospitals & Integrated Health Systems (IU Health / Ascension)", share: 0.58, topSoc: "11-9111 Medical & Health Services Managers" },
+          { sector: "52 Health Insurance & Managed Care Organizations", share: 0.24, topSoc: "13-1111 Healthcare Operations Analysts" },
+          { sector: "32/54 Life Sciences & Clinical Trial Operations", share: 0.18, topSoc: "11-9111 Clinical Trial Practice Managers" }
+        ],
+        scores: {
+          composite: { v2025: 41.2, r2025: 82.1, v2035: 39.5, r2035: 85.4 },
+          eloundou_e2: { v2025: 46.5, r2025: 84.8, v2035: 44.6, r2035: 87.9 },
+          anthropic: { v2025: 39.0, r2025: 83.5, v2035: 37.4, r2035: 86.8 },
+          felten: { v2025: 38.1, r2025: 78.0, v2035: 36.5, r2035: 81.5 }
+        },
+        skills: [
+          { id: "s1", name: "Medical Coding, Billing & Revenue Cycle Documentation", weight: 0.24, v: 76, r: 65, driver: "Ambient clinical & billing LLM automation" },
+          { id: "s2", name: "Hospital Capacity & Staffing Schedule Optimization", weight: 0.22, v: 49, r: 83, driver: "Predictive operations copilot leverage" },
+          { id: "s3", name: "HIPAA, CMS Regulatory Compliance & Clinical Governance", weight: 0.22, v: 29, r: 89, driver: "High-liability clinical & legal oversight" },
+          { id: "s4", name: "Multidisciplinary Care Team & Physician Leadership", weight: 0.18, v: 19, r: 92, driver: "Direct clinical staff & patient coordination" },
+          { id: "s5", name: "Value-Based Payor Contracting & Community Health Strategy", weight: 0.14, v: 25, r: 88, driver: "Institutional negotiation" }
+        ],
+        interventions: [
+          { id: "int-hmp-1", code: "SPEA-H 452", title: "Clinical AI Workflow Governance, Ambient EHR & Revenue Analytics", tier: "IUB Credit Course", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 6.7, rLift: 8.4, targets: ["s1", "s2", "s3"], url: "https://oneill.indiana.edu/undergraduate/degrees-majors/index.html" },
+          { id: "int-hmp-2", code: "NLJ-HLTH-2", title: "Indiana Next Level Jobs Health Information & AI Compliance Specialist", tier: "Indiana Next Level Jobs", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 4.5, rLift: 6.1, targets: ["s1", "s3"], url: "https://www.in.gov/dwd/nextleveljobs/workforce-ready-grant/" }
+        ]
+      }
+    ];
+
+    // Grounded State of Indiana OEWS Major Groups (SOC 11-0000 to 53-0000)
+    const INDIANA_OCC_GROUPS = [
+      { soc: "43-0000", title: "Office & Administrative Support Occupations", wage: "$20.85/hr mean", payrollB: 21.4, v: 74.2, r: 46.5, lift: "+14.2 R", pathway: "IU Expand AI Administrative Copilot + Next Level Jobs Operations Cert" },
+      { soc: "13-0000", title: "Business & Financial Operations (incl. 24,490 Accountants)", wage: "$37.58/hr mean ($78,170/yr)", payrollB: 16.8, v: 62.8, r: 66.4, lift: "+12.8 R", pathway: "Kelley Executive AI Finance & Continuous Audit Micro-Credentials" },
+      { soc: "15-0000", title: "Computer & Mathematical Occupations", wage: "$46.90/hr mean", payrollB: 12.2, v: 54.6, r: 85.2, lift: "+11.5 R", pathway: "Luddy Agentic Software Engineering & Kelley IS AI Solutions Certificates" },
+      { soc: "41-0000", title: "Sales & Related Occupations (incl. 9,400 Sales Mgrs)", wage: "$22.40/hr mean", payrollB: 18.5, v: 57.1, r: 62.0, lift: "+10.4 R", pathway: "Kelley Consultative Enterprise Sales & AI CRM Analytics Badge" },
+      { soc: "11-0000", title: "Management Occupations (Gen Mgrs $129,530/yr mean)", wage: "$56.74/hr mean ($118,010/yr)", payrollB: 31.2, v: 41.5, r: 79.8, lift: "+9.6 R", pathway: "Kelley / O'Neill Executive AI Strategy & Organizational Change" },
+      { soc: "29-0000", title: "Healthcare Practitioners & Technical Occupations", wage: "$44.15/hr mean", payrollB: 26.9, v: 29.4, r: 83.6, lift: "+8.9 R", pathway: "IU Health / O'Neill Clinical AI Diagnostics & Ambient EHR Governance" },
+      { soc: "51-0000", title: "Production & Advanced Manufacturing Occupations", wage: "$23.10/hr mean", payrollB: 28.4, v: 38.2, r: 68.5, lift: "+9.2 R", pathway: "Next Level Jobs Smart Manufacturing Robotics & Digital Twin Grant" }
+    ];
+
+    // State variables (Default tab = "jobs")
+    let currentTab = "jobs";
+    let selectedJobId = "soc-13-2011";
+    let activeJobInterventions = new Set(["jint-132011-1"]);
+
+    let selectedMajorId = "kelley-acct";
+    let activeInterventions = new Set(["int-acct-1"]);
+
+    // Chart instances
+    let jobSkillChartInstance = null;
+    let bubbleChartInstance = null;
+    let skillChartInstance = null;
+    let cohortChartInstance = null;
+    let indianaChartInstance = null;
+
+    // Helper: compute adjusted skill V and R for a job based on global model & horizon
+    function getAdjustedJobSkills(job, includeDefenses = false) {
+      const model = document.getElementById("globalModel").value;
+      const delta = MODEL_DELTAS[model] || { v: 0, r: 0 };
+      const selectedInts = includeDefenses
+        ? job.interventions.filter(i => activeJobInterventions.has(i.id))
+        : [];
+
+      let weightedBaseV = 0;
+      let weightedBaseR = 0;
+      let weightedDefV = 0;
+      let weightedDefR = 0;
+
+      const rows = job.skills.map(sk => {
+        const baseV = Math.min(98, Math.max(10, +(sk.v + delta.v).toFixed(1)));
+        const baseR = Math.min(98, Math.max(15, +(sk.r + delta.r).toFixed(1)));
+        let defV = baseV;
+        let defR = baseR;
+
+        selectedInts.forEach(intItem => {
+          if (intItem.targets.includes(sk.id)) {
+            defV = Math.max(10, +(defV - intItem.vDrop).toFixed(1));
+            defR = Math.min(98, +(defR + intItem.rLift).toFixed(1));
+          }
+        });
+
+        weightedBaseV += sk.weight * baseV;
+        weightedBaseR += sk.weight * baseR;
+        weightedDefV += sk.weight * defV;
+        weightedDefR += sk.weight * defR;
+
+        return { ...sk, baseV, baseR, defV, defR };
+      });
+
+      return {
+        rows,
+        jobBaseV: +weightedBaseV.toFixed(1),
+        jobBaseR: +weightedBaseR.toFixed(1),
+        jobDefV: +weightedDefV.toFixed(1),
+        jobDefR: +weightedDefR.toFixed(1)
+      };
+    }
+
+    function getFilteredJobs() {
+      const school = document.getElementById("globalSchoolFilter").value;
+      return school === "ALL" ? JOBS : JOBS.filter(j => j.schools.includes(school));
+    }
+
+    // Helper: get current V and R for a program based on global controls
+    function getProgramMetrics(prog) {
+      const horizon = document.getElementById("globalHorizon").value;
+      const model = document.getElementById("globalModel").value;
+      const m = prog.scores[model];
+      const v = horizon === "2025" ? m.v2025 : m.v2035;
+      const r = horizon === "2025" ? m.r2025 : m.r2035;
+      const vDelta = +(m.v2035 - m.v2025).toFixed(1);
+      return { v, r, vDelta, v2025: m.v2025, v2035: m.v2035, r2025: m.r2025, r2035: m.r2035 };
+    }
+
+    function getFilteredPrograms() {
+      const school = document.getElementById("globalSchoolFilter").value;
+      return school === "ALL" ? PROGRAMS : PROGRAMS.filter(p => p.school === school);
+    }
+
+    function switchTab(tabId) {
+      currentTab = tabId;
+      ["jobs", "portfolio", "simulator", "pipeline", "indiana"].forEach(id => {
+        document.getElementById("view-" + id).classList.toggle("hidden", id !== tabId);
+        document.getElementById("tab-" + id).classList.toggle("active", id === tabId);
+      });
+      renderAll();
+    }
+
+    // Tab 1 (Job-Level) interactions
+    function inspectJob(jobId) {
+      selectedJobId = jobId;
+      const job = JOBS.find(j => j.id === jobId) || JOBS[0];
+      activeJobInterventions = new Set(job.interventions.length ? [job.interventions[0].id] : []);
+      const drop = document.getElementById("jobSelectDropdown");
+      if (drop) drop.value = jobId;
+      renderJobsTab();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function changeSelectedJob() {
+      selectedJobId = document.getElementById("jobSelectDropdown").value;
+      const job = JOBS.find(j => j.id === selectedJobId) || JOBS[0];
+      activeJobInterventions = new Set(job.interventions.length ? [job.interventions[0].id] : []);
+      renderJobsTab();
+    }
+
+    function toggleJobIntervention(intId) {
+      if (activeJobInterventions.has(intId)) {
+        activeJobInterventions.delete(intId);
+      } else {
+        activeJobInterventions.add(intId);
+      }
+      renderJobsTab();
+    }
+
+    function resetJobInterventions() {
+      activeJobInterventions.clear();
+      renderJobsTab();
+    }
+
+    // Tab 3 (Degree Simulator) interactions
+    function launchSimulatorForMajor(majorId) {
+      selectedMajorId = majorId;
+      const prog = PROGRAMS.find(p => p.id === majorId);
+      activeInterventions = new Set(prog.interventions.length ? [prog.interventions[0].id] : []);
+      const sel = document.getElementById("simMajorSelect");
+      if (sel) sel.value = majorId;
+      switchTab("simulator");
+    }
+
+    function changeSimMajor() {
+      selectedMajorId = document.getElementById("simMajorSelect").value;
+      const prog = PROGRAMS.find(p => p.id === selectedMajorId);
+      activeInterventions = new Set(prog.interventions.length ? [prog.interventions[0].id] : []);
+      renderSimulator();
+    }
+
+    function toggleIntervention(intId) {
+      if (activeInterventions.has(intId)) {
+        activeInterventions.delete(intId);
+      } else {
+        activeInterventions.add(intId);
+      }
+      renderSimulator();
+    }
+
+    function resetInterventions() {
+      activeInterventions.clear();
+      renderSimulator();
+    }
+
+    // Render KPI Strip
+    function renderKPIs() {
+      const progs = getFilteredPrograms();
+      const jobs = getFilteredJobs();
+      const weightMode = document.getElementById("globalWeighting").value;
+      const horizon = document.getElementById("globalHorizon").value;
+
+      let totalWeight = 0;
+      let weightedV = 0;
+      let weightedR = 0;
+      let totalGrads = 0;
+      let weightedRet = 0;
+      let totalWageBill = 0;
+
+      progs.forEach(p => {
+        const { v, r } = getProgramMetrics(p);
+        const w = weightMode === "headcount" ? p.grads : (p.grads * p.wages.y5);
+        totalWeight += w;
+        weightedV += w * v;
+        weightedR += w * r;
+        totalGrads += p.grads;
+        weightedRet += p.grads * p.inStateRet;
+        totalWageBill += p.grads * p.wages.y5;
+      });
+
+      const avgV = (weightedV / totalWeight).toFixed(1);
+      const avgR = (weightedR / totalWeight).toFixed(1);
+      const avgRet = ((weightedRet / totalGrads) * 100).toFixed(1);
+      const totalJobEmp = jobs.reduce((a, j) => a + j.inEmp, 0);
+
+      document.getElementById("kpiStrip").innerHTML = `
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Portfolio Substitution Vulnerability</span>
+            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-amber-50 text-amber-800">${horizon}</span>
+          </div>
+          <div class="text-2xl font-black text-slate-900 mt-1">${avgV} <span class="text-xs font-normal text-slate-500">/ 100</span></div>
+          <div class="text-[11px] text-slate-500 mt-1">Weighted by ${weightMode === "headcount" ? "Headcount / Emp" : "Indiana Wage Bill"}</div>
+        </div>
+
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">AI Augmentation Resilience</span>
+            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-emerald-50 text-emerald-800">Net +${(avgR - avgV).toFixed(1)}</span>
+          </div>
+          <div class="text-2xl font-black text-emerald-700 mt-1">${avgR} <span class="text-xs font-normal text-slate-500">/ 100</span></div>
+          <div class="text-[11px] text-slate-500 mt-1">Human-in-the-loop + AI copilot leverage</div>
+        </div>
+
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Mapped SOC Jobs &amp; O*NET Skills</span>
+            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-blue-50 text-blue-800">${jobs.length * 5} Skill Vectors</span>
+          </div>
+          <div class="text-2xl font-black text-slate-900 mt-1">${jobs.length} Jobs <span class="text-sm font-bold text-blue-700">(${totalJobEmp.toLocaleString()} IN Emp)</span></div>
+          <div class="text-[11px] text-slate-500 mt-1">Verified Indiana OEWS Employment</div>
+        </div>
+
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">IUB Grad Cohort &amp; IN Retention</span>
+            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-red-50 text-red-800">${progs.length} Majors</span>
+          </div>
+          <div class="text-2xl font-black text-slate-900 mt-1">${totalGrads.toLocaleString()} <span class="text-sm font-bold text-red-700">(${avgRet}% IN)</span></div>
+          <div class="text-[11px] text-slate-500 mt-1">Matched in Indiana DWD Wage Records</div>
+        </div>
+      `;
+    }
+
+    // Render Tab 1 (First Tab): Job-Level Skill Decomposition & Exposure
+    function renderJobsTab() {
+      const jobs = getFilteredJobs();
+      if (!jobs.some(j => j.id === selectedJobId) && jobs.length > 0) {
+        selectedJobId = jobs[0].id;
+      }
+
+      const dropEl = document.getElementById("jobSelectDropdown");
+      dropEl.innerHTML = jobs.map(j =>
+        `<option value="${j.id}" ${j.id === selectedJobId ? 'selected' : ''}>SOC ${j.soc}: ${j.title} (${j.inEmp.toLocaleString()} IN Emp • $${j.inMeanWage.toLocaleString()}/yr)</option>`
+      ).join("");
+
+      const job = JOBS.find(j => j.id === selectedJobId) || jobs[0];
+      const { rows, jobBaseV, jobBaseR, jobDefV, jobDefR } = getAdjustedJobSkills(job, true);
+      const selectedInts = job.interventions.filter(i => activeJobInterventions.has(i.id));
+
+      // Heading & Subheading
+      document.getElementById("selectedJobHeading").textContent =
+        `SOC ${job.soc} (${job.onet}): ${job.title} — O*NET Skill Decomposition`;
+      document.getElementById("selectedJobSubheading").textContent =
+        `Mapped to ${job.majors.join(" • ")} | Indiana OEWS: ${job.inEmp.toLocaleString()} employed (${job.inWageNote})`;
+
+      // Top Weighted-Average Banner
+      document.getElementById("jobDetailBanner").innerHTML = `
+        <div class="text-center px-3">
+          <div class="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">Job Vulnerability (V_o)</div>
+          <div class="text-lg font-black">
+            <span class="${selectedInts.length ? 'line-through text-slate-400 mr-1' : 'text-amber-700'}">${jobBaseV.toFixed(1)}</span>
+            ${selectedInts.length ? `<span class="text-emerald-700">${jobDefV.toFixed(1)}</span><span class="text-xs font-bold text-emerald-600 ml-1">(-${(jobBaseV - jobDefV).toFixed(1)})</span>` : ''}
+          </div>
+        </div>
+        <div class="h-8 w-px bg-slate-200"></div>
+        <div class="text-center px-3">
+          <div class="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">Job Resilience (R_o)</div>
+          <div class="text-lg font-black">
+            <span class="${selectedInts.length ? 'line-through text-slate-400 mr-1' : 'text-emerald-700'}">${jobBaseR.toFixed(1)}</span>
+            ${selectedInts.length ? `<span class="text-blue-700">${jobDefR.toFixed(1)}</span><span class="text-xs font-bold text-blue-600 ml-1">(+${(jobDefR - jobBaseR).toFixed(1)})</span>` : ''}
+          </div>
+        </div>
+        <div class="h-8 w-px bg-slate-200"></div>
+        <div class="text-center px-2">
+          <div class="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">2025–2035 BLS Trend</div>
+          <div class="text-sm font-extrabold text-emerald-700">+${job.epGrowth10Yr}% Projected</div>
+        </div>
+      `;
+
+      // Selected Job Skill Decomposition Table
+      document.getElementById("jobSkillTableBody").innerHTML = rows.map(sk => `
+        <tr class="hover:bg-slate-50">
+          <td class="py-2.5 px-3">
+            <div class="font-semibold text-slate-900">${sk.name}</div>
+            <div class="text-[10px] text-slate-500 font-mono">O*NET Element ${sk.code}</div>
+          </td>
+          <td class="py-2.5 px-2 text-center font-mono text-[11px] text-slate-600">${sk.imp.toFixed(1)} / ${sk.lvl.toFixed(1)}</td>
+          <td class="py-2.5 px-2 text-right font-mono font-bold text-slate-800">${(sk.weight * 100).toFixed(0)}%</td>
+          <td class="py-2.5 px-2 text-center">
+            <span class="px-2 py-0.5 rounded text-xs font-bold ${sk.baseV >= 70 ? 'bg-red-100 text-red-800' : sk.baseV >= 50 ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'}">${sk.baseV.toFixed(1)}</span>
+          </td>
+          <td class="py-2.5 px-2 text-center font-bold ${sk.defV < sk.baseV ? 'text-emerald-700' : 'text-slate-700'}">${sk.defV.toFixed(1)}</td>
+          <td class="py-2.5 px-2 text-center font-bold ${sk.defR > sk.baseR ? 'text-blue-700' : 'text-emerald-700'}">${sk.defR.toFixed(1)}</td>
+          <td class="py-2.5 px-3 text-[11px] text-slate-500">${sk.driver}</td>
+        </tr>
+      `).join("");
+
+      document.getElementById("jobSkillTableFooter").innerHTML = `
+        <tr>
+          <td class="py-2.5 px-3" colspan="2">Weighted Occupation Score (∑ w(o,s) × Score)</td>
+          <td class="py-2.5 px-2 text-right font-mono">100%</td>
+          <td class="py-2.5 px-2 text-center text-red-800">${jobBaseV.toFixed(1)}</td>
+          <td class="py-2.5 px-2 text-center text-emerald-700">${jobDefV.toFixed(1)}</td>
+          <td class="py-2.5 px-2 text-center text-blue-800">${jobDefR.toFixed(1)}</td>
+          <td class="py-2.5 px-3 text-[11px] font-normal text-slate-600">Net Readiness: +${(jobDefR - jobDefV).toFixed(1)} pts</td>
+        </tr>
+      `;
+
+      // Selected Job Metadata Box
+      document.getElementById("selectedJobMetaBox").innerHTML = `
+        <div class="flex items-center justify-between">
+          <span class="font-bold text-slate-800">SOC ${job.soc}: ${job.title}</span>
+          <span class="px-2 py-0.5 rounded bg-red-100 text-red-800 font-semibold text-[10px]">O*NET ${job.onet}</span>
+        </div>
+        <div class="text-slate-600"><strong>Mapped IUB Schools:</strong> ${job.schools.join(", ")}</div>
+        <div class="text-slate-600"><strong>Primary IUB Majors:</strong> ${job.majors.join(" • ")}</div>
+        <div class="flex items-center justify-between pt-1 border-t border-slate-200 text-[11px]">
+          <span><strong>Indiana OEWS:</strong> ${job.inEmp.toLocaleString()} jobs</span>
+          <span><strong>Wage:</strong> ${job.inWageNote}</span>
+          <span class="text-emerald-700 font-bold"><strong>2035 EP:</strong> +${job.epGrowth10Yr}%</span>
+        </div>
+      `;
+
+      // Selected Job Defensive Interventions
+      document.getElementById("jobInterventionList").innerHTML = job.interventions.map(item => {
+        const checked = activeJobInterventions.has(item.id);
+        const tierBadge = item.tier.includes("IUB")
+          ? "bg-red-50 text-red-800 border-red-200"
+          : item.tier.includes("Expand")
+          ? "bg-blue-50 text-blue-800 border-blue-200"
+          : "bg-amber-50 text-amber-800 border-amber-200";
+
+        return `
+          <div onclick="toggleJobIntervention('${item.id}')" class="cursor-pointer p-3 rounded-xl border-2 transition ${checked ? 'border-red-700 bg-red-50/30 shadow-sm' : 'border-slate-200 bg-white hover:border-slate-300'}">
+            <div class="flex items-start justify-between gap-2">
+              <div class="flex items-center gap-2">
+                <input type="checkbox" ${checked ? 'checked' : ''} class="mt-0.5 h-4 w-4 accent-red-800 pointer-events-none" />
+                <span class="font-bold text-xs text-slate-900">${item.code}: ${item.title}</span>
+              </div>
+              <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full border whitespace-nowrap ${tierBadge}">${item.tier}</span>
+            </div>
+            <div class="mt-1.5 flex flex-wrap items-center justify-between gap-2 pl-6 text-[11px]">
+              <span class="font-medium text-slate-600">${item.pathway}</span>
+              <div class="flex items-center gap-2">
+                <span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">-${item.vDrop} Skill V</span>
+                <span class="px-1.5 py-0.5 rounded bg-blue-100 text-blue-800 font-bold">+${item.rLift} Skill R</span>
+                <a href="${item.url}" target="_blank" onclick="event.stopPropagation()" class="text-red-700 underline">Catalog ↗</a>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      // Selected Job Skill Decomposition Chart
+      const ctx = document.getElementById("jobSkillBarChart").getContext("2d");
+      if (jobSkillChartInstance) jobSkillChartInstance.destroy();
+
+      jobSkillChartInstance = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: rows.map(s => `[${(s.weight * 100).toFixed(0)}%] ` + (s.name.length > 32 ? s.name.slice(0, 32) + "…" : s.name)),
+          datasets: [
+            {
+              label: "Baseline Skill Vulnerability (V_s)",
+              data: rows.map(s => s.baseV),
+              backgroundColor: "#cbd5e1",
+              borderRadius: 4
+            },
+            {
+              label: "Defended Skill Vulnerability (V_s,def)",
+              data: rows.map(s => s.defV),
+              backgroundColor: "#dc2626",
+              borderRadius: 4
+            },
+            {
+              label: "Defended Skill Resilience (R_s,def)",
+              data: rows.map(s => s.defR),
+              backgroundColor: "#059669",
+              borderRadius: 4
+            }
+          ]
+        },
+        options: {
+          indexAxis: "y",
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: { min: 0, max: 100, title: { display: true, text: "Skill Exposure / Resilience Score (0–100 Scale)" } }
+          },
+          plugins: {
+            legend: { position: "top", labels: { boxWidth: 12, font: { size: 11 } } }
+          }
+        }
+      });
+
+      // Master Summary Table of All Jobs & Associated Skills
+      document.getElementById("allJobsSummaryTableBody").innerHTML = jobs.map(j => {
+        const calc = getAdjustedJobSkills(j, false);
+        const isSelected = j.id === selectedJobId;
+        const vBadge = calc.jobBaseV >= 65
+          ? "bg-red-100 text-red-800 border-red-200"
+          : calc.jobBaseV >= 50
+          ? "bg-amber-100 text-amber-800 border-amber-200"
+          : "bg-emerald-100 text-emerald-800 border-emerald-200";
+
+        const skillsPills = calc.rows.map(sk => {
+          const pillColor = sk.baseV >= 70
+            ? "bg-red-50 text-red-800 border-red-200"
+            : sk.baseV >= 50
+            ? "bg-amber-50 text-amber-800 border-amber-200"
+            : "bg-emerald-50 text-emerald-800 border-emerald-200";
+          const shortName = sk.name.replace(/\s*\(O\*NET.*\)/, "");
+          return `<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded border text-[10px] mr-1 mb-1 ${pillColor}">
+            <span class="font-semibold">${shortName}</span>
+            <span class="font-mono opacity-80">(${(sk.weight*100).toFixed(0)}% | V:${sk.baseV.toFixed(0)} R:${sk.baseR.toFixed(0)})</span>
+          </div>`;
+        }).join("");
+
+        return `
+          <tr class="${isSelected ? 'bg-red-50/40' : 'hover:bg-slate-50'} transition align-top">
+            <td class="py-3 px-4">
+              <div class="font-bold text-slate-900">${j.title}</div>
+              <div class="text-[10px] font-mono text-slate-500">SOC ${j.soc} • O*NET ${j.onet}</div>
+            </td>
+            <td class="py-3 px-3">
+              <div class="font-semibold text-slate-800 text-[11px]">${j.schools.map(s => s.split(" ")[0]).join(", ")}</div>
+              <div class="text-[10px] text-slate-500">${j.majors.join(", ")}</div>
+            </td>
+            <td class="py-3 px-3 max-w-md">${skillsPills}</td>
+            <td class="py-3 px-2 text-right font-semibold">${j.inEmp.toLocaleString()}</td>
+            <td class="py-3 px-2 text-right font-bold text-slate-800">$${j.inMeanWage.toLocaleString()}</td>
+            <td class="py-3 px-2 text-center font-semibold text-emerald-700">+${j.epGrowth10Yr}%</td>
+            <td class="py-3 px-2 text-center">
+              <span class="px-2 py-0.5 rounded-full text-xs font-bold border ${vBadge}">${calc.jobBaseV.toFixed(1)}</span>
+            </td>
+            <td class="py-3 px-2 text-center">
+              <span class="px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">${calc.jobBaseR.toFixed(1)}</span>
+            </td>
+            <td class="py-3 px-4 text-right whitespace-nowrap">
+              <button onclick="inspectJob('${j.id}')" class="${isSelected ? 'bg-slate-800 text-white' : 'bg-red-800 hover:bg-red-900 text-white'} font-semibold px-3 py-1.5 rounded-lg text-[11px] transition shadow-sm">
+                ${isSelected ? 'Viewing Above ✓' : 'Inspect Skills ↑'}
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    // Render Tab 2: Portfolio Matrix & School Rollup
+    function renderPortfolio() {
+      const progs = getFilteredPrograms();
+      const horizon = document.getElementById("globalHorizon").value;
+      const weightMode = document.getElementById("globalWeighting").value;
+
+      document.getElementById("horizonBadgePortfolio").textContent =
+        horizon === "2025" ? "2025/2026 Baseline" : "2035 BLS Projection";
+      document.getElementById("weightModeLabel").textContent =
+        weightMode === "headcount" ? "Graduate Headcount" : "Indiana 5-Yr Wage-Bill";
+
+      // 1. School Rollup Cards
+      const schools = [...new Set(PROGRAMS.map(p => p.school))];
+      const rollupHtml = schools.map(schoolName => {
+        const sProgs = PROGRAMS.filter(p => p.school === schoolName);
+        let tw = 0, wv = 0, wr = 0, grads = 0, wageSum = 0;
+        sProgs.forEach(p => {
+          const { v, r } = getProgramMetrics(p);
+          const w = weightMode === "headcount" ? p.grads : p.grads * p.wages.y5;
+          tw += w;
+          wv += w * v;
+          wr += w * r;
+          grads += p.grads;
+          wageSum += p.grads * p.wages.y5;
+        });
+        const sv = (wv / tw).toFixed(1);
+        const sr = (wr / tw).toFixed(1);
+        const avgWage = Math.round(wageSum / grads);
+        const color = SCHOOL_COLORS[schoolName];
+
+        return `
+          <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50/70 hover:bg-slate-50 transition">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full" style="background:${color}"></span>
+                <a href="${sProgs[0].schoolUrl}" target="_blank" class="font-bold text-xs text-slate-900 hover:underline">${schoolName} (${sProgs.length} Majors) ↗</a>
+              </div>
+              <span class="text-[11px] text-slate-500 font-medium">${grads.toLocaleString()} grads • $${(avgWage/1000).toFixed(1)}k 5-yr med</span>
+            </div>
+            <div class="grid grid-cols-3 gap-2 mt-2.5 text-center">
+              <div class="bg-white p-2 rounded-lg border border-slate-200/80">
+                <div class="text-[10px] text-slate-500 uppercase">Vulnerability</div>
+                <div class="text-sm font-extrabold text-amber-700">${sv}</div>
+              </div>
+              <div class="bg-white p-2 rounded-lg border border-slate-200/80">
+                <div class="text-[10px] text-slate-500 uppercase">Resilience</div>
+                <div class="text-sm font-extrabold text-emerald-700">${sr}</div>
+              </div>
+              <div class="bg-white p-2 rounded-lg border border-slate-200/80">
+                <div class="text-[10px] text-slate-500 uppercase">Net Readiness</div>
+                <div class="text-sm font-extrabold ${sr - sv >= 15 ? 'text-emerald-700' : 'text-slate-800'}">+${(sr - sv).toFixed(1)}</div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join("");
+      document.getElementById("schoolRollupCards").innerHTML = rollupHtml;
+
+      // 2. Major Table
+      document.getElementById("majorTableBody").innerHTML = progs.map(p => {
+        const { v, r, vDelta } = getProgramMetrics(p);
+        const color = SCHOOL_COLORS[p.school];
+        const vBadge = v >= 65
+          ? "bg-red-100 text-red-800 border-red-200"
+          : v >= 50
+          ? "bg-amber-100 text-amber-800 border-amber-200"
+          : "bg-emerald-100 text-emerald-800 border-emerald-200";
+
+        return `
+          <tr class="hover:bg-slate-50 transition">
+            <td class="py-3 px-4 font-bold text-slate-900">
+              <a href="${p.schoolUrl}" target="_blank" class="hover:text-red-800 hover:underline">${p.name}</a>
+              <div class="text-[10px] font-normal text-slate-500">CIP ${p.cip}</div>
+            </td>
+            <td class="py-3 px-3">
+              <span class="inline-flex items-center gap-1.5 font-medium text-slate-700">
+                <span class="w-2 h-2 rounded-full" style="background:${color}"></span>
+                ${p.school.split(" ")[0]}
+              </span>
+            </td>
+            <td class="py-3 px-3 text-slate-600 max-w-xs">${p.socs}</td>
+            <td class="py-3 px-3 text-right font-semibold">${p.grads}</td>
+            <td class="py-3 px-3 text-right font-bold text-slate-800">$${p.wages.y5.toLocaleString()}</td>
+            <td class="py-3 px-3 text-center">
+              <span class="px-2 py-0.5 rounded-full text-xs font-bold border ${vBadge}">${v.toFixed(1)}</span>
+            </td>
+            <td class="py-3 px-3 text-center">
+              <span class="px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">${r.toFixed(1)}</span>
+            </td>
+            <td class="py-3 px-3 text-center font-semibold text-emerald-700">${vDelta} pts</td>
+            <td class="py-3 px-4 text-right">
+              <button onclick="launchSimulatorForMajor('${p.id}')" class="bg-red-800 hover:bg-red-900 text-white font-semibold px-3 py-1.5 rounded-lg text-[11px] transition shadow-sm">
+                Simulate Degree Defense →
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join("");
+
+      // 3. Bubble Chart
+      const ctx = document.getElementById("portfolioBubbleChart").getContext("2d");
+      if (bubbleChartInstance) bubbleChartInstance.destroy();
+
+      const datasets = Object.keys(SCHOOL_COLORS).map(schoolName => {
+        const schoolProgs = progs.filter(p => p.school === schoolName);
+        return {
+          label: schoolName,
+          data: schoolProgs.map(p => {
+            const { v, r } = getProgramMetrics(p);
+            return {
+              x: v,
+              y: r,
+              r: Math.max(8, Math.sqrt(p.grads) * 0.72),
+              progId: p.id,
+              progName: p.name,
+              grads: p.grads,
+              wage: p.wages.y5
+            };
+          }),
+          backgroundColor: SCHOOL_COLORS[schoolName] + "BF",
+          borderColor: SCHOOL_COLORS[schoolName],
+          borderWidth: 2
+        };
+      });
+
+      bubbleChartInstance = new Chart(ctx, {
+        type: "bubble",
+        data: { datasets },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          onClick: (evt, elements) => {
+            if (elements.length > 0) {
+              const el = elements[0];
+              const item = datasets[el.datasetIndex].data[el.index];
+              launchSimulatorForMajor(item.progId);
+            }
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (context) => {
+                  const d = context.raw;
+                  return `${d.progName}: Vuln ${d.x.toFixed(1)} | Resil ${d.y.toFixed(1)} | ${d.grads} grads | 5-Yr Wage $${d.wage.toLocaleString()}`;
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              title: { display: true, text: "AI Substitution Vulnerability Score (V_unit) → Higher = Greater Task Automation Risk", font: { weight: "bold", size: 11 } },
+              min: 20,
+              max: 85,
+              grid: { color: "#e2e8f0" }
+            },
+            y: {
+              title: { display: true, text: "AI Augmentation Resilience Score (R_unit) → Higher = Stronger Copilot & Human Leverage", font: { weight: "bold", size: 11 } },
+              min: 45,
+              max: 95,
+              grid: { color: "#e2e8f0" }
+            }
+          }
+        }
+      });
+    }
+
+    // Render Tab 3: Degree Skill Decomposition & Curriculum Defense Simulator
+    function renderSimulator() {
+      const selectEl = document.getElementById("simMajorSelect");
+      selectEl.innerHTML = PROGRAMS.map(p =>
+        `<option value="${p.id}" ${p.id === selectedMajorId ? 'selected' : ''}>${p.name} (${p.school.split(" ")[0]} • CIP ${p.cip})</option>`
+      ).join("");
+
+      const prog = PROGRAMS.find(p => p.id === selectedMajorId) || PROGRAMS[0];
+      const baseMetrics = getProgramMetrics(prog);
+
+      // Compute defended skill scores based on activeInterventions
+      const selectedInts = prog.interventions.filter(i => activeInterventions.has(i.id));
+
+      let totalDefendedV = 0;
+      let totalDefendedR = 0;
+
+      const skillRows = prog.skills.map(sk => {
+        let defV = sk.v;
+        let defR = sk.r;
+        selectedInts.forEach(intItem => {
+          if (intItem.targets.includes(sk.id)) {
+            defV = Math.max(12, defV - intItem.vDrop * 1.4);
+            defR = Math.min(98, defR + intItem.rLift * 1.3);
+          }
+        });
+        totalDefendedV += sk.weight * defV;
+        totalDefendedR += sk.weight * defR;
+        return { ...sk, defV, defR };
+      });
+
+      const baseV = baseMetrics.v;
+      const baseR = baseMetrics.r;
+      const totalVDrop = selectedInts.reduce((acc, i) => acc + i.vDrop, 0);
+      const totalRLift = selectedInts.reduce((acc, i) => acc + i.rLift, 0);
+      const finalV = Math.max(15, +(baseV - totalVDrop).toFixed(1));
+      const finalR = Math.min(98, +(baseR + totalRLift).toFixed(1));
+
+      // Update Impact Banner
+      document.getElementById("simImpactBanner").innerHTML = `
+        <div class="text-center px-3">
+          <div class="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">Baseline Vuln → Defended</div>
+          <div class="text-lg font-black">
+            <span class="line-through text-slate-400 mr-1">${baseV.toFixed(1)}</span>
+            <span class="text-emerald-700">${finalV.toFixed(1)}</span>
+            <span class="text-xs font-bold text-emerald-600 ml-1">(-${(baseV - finalV).toFixed(1)})</span>
+          </div>
+        </div>
+        <div class="h-8 w-px bg-slate-200"></div>
+        <div class="text-center px-3">
+          <div class="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">Baseline Resil → Defended</div>
+          <div class="text-lg font-black">
+            <span class="line-through text-slate-400 mr-1">${baseR.toFixed(1)}</span>
+            <span class="text-blue-700">${finalR.toFixed(1)}</span>
+            <span class="text-xs font-bold text-blue-600 ml-1">(+${(finalR - baseR).toFixed(1)})</span>
+          </div>
+        </div>
+        <div class="h-8 w-px bg-slate-200"></div>
+        <div class="text-center px-2">
+          <div class="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">Active Defenses</div>
+          <div class="text-sm font-extrabold text-red-800">${selectedInts.length} / ${prog.interventions.length} Selected</div>
+        </div>
+      `;
+
+      // Update Skill Table
+      document.getElementById("skillTableBody").innerHTML = skillRows.map(sk => `
+        <tr class="hover:bg-slate-50">
+          <td class="py-2.5 px-3 font-semibold text-slate-800">${sk.name}</td>
+          <td class="py-2.5 px-2 text-right font-mono">${(sk.weight * 100).toFixed(0)}%</td>
+          <td class="py-2.5 px-2 text-center text-slate-500">${sk.v}</td>
+          <td class="py-2.5 px-2 text-center font-bold ${sk.defV < sk.v ? 'text-emerald-700' : 'text-slate-800'}">${sk.defV.toFixed(1)}</td>
+          <td class="py-2.5 px-2 text-center font-bold ${sk.defR > sk.r ? 'text-blue-700' : 'text-slate-800'}">${sk.defR.toFixed(1)}</td>
+          <td class="py-2.5 px-3 text-[11px] text-slate-500">${sk.driver}</td>
+        </tr>
+      `).join("");
+
+      // Update Intervention Cards
+      document.getElementById("interventionList").innerHTML = prog.interventions.map(item => {
+        const checked = activeInterventions.has(item.id);
+        const tierBadge = item.tier.includes("IUB")
+          ? "bg-red-50 text-red-800 border-red-200"
+          : item.tier.includes("Expand")
+          ? "bg-blue-50 text-blue-800 border-blue-200"
+          : "bg-amber-50 text-amber-800 border-amber-200";
+
+        return `
+          <div onclick="toggleIntervention('${item.id}')" class="cursor-pointer p-3.5 rounded-xl border-2 transition ${checked ? 'border-red-700 bg-red-50/30 shadow-sm' : 'border-slate-200 bg-white hover:border-slate-300'}">
+            <div class="flex items-start justify-between gap-2">
+              <div class="flex items-center gap-2">
+                <input type="checkbox" ${checked ? 'checked' : ''} class="mt-0.5 h-4 w-4 accent-red-800 pointer-events-none" />
+                <span class="font-bold text-xs text-slate-900">${item.code}: ${item.title}</span>
+              </div>
+              <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full border whitespace-nowrap ${tierBadge}">${item.tier}</span>
+            </div>
+            <div class="mt-2 flex flex-wrap items-center justify-between gap-2 pl-6 text-[11px]">
+              <span class="font-medium text-slate-600">${item.pathway}</span>
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">-${item.vDrop} Vuln</span>
+                <span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-bold">+${item.rLift} Resil</span>
+                <a href="${item.url}" target="_blank" onclick="event.stopPropagation()" class="text-red-700 underline">Catalog ↗</a>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      // Update Skill Chart
+      const ctx = document.getElementById("skillDecompositionChart").getContext("2d");
+      if (skillChartInstance) skillChartInstance.destroy();
+
+      skillChartInstance = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: skillRows.map(s => s.name.length > 34 ? s.name.slice(0, 34) + "…" : s.name),
+          datasets: [
+            {
+              label: "Baseline Vulnerability (V)",
+              data: skillRows.map(s => s.v),
+              backgroundColor: "#cbd5e1",
+              borderRadius: 4
+            },
+            {
+              label: "Defended Vulnerability (V_def)",
+              data: skillRows.map(s => +s.defV.toFixed(1)),
+              backgroundColor: "#dc2626",
+              borderRadius: 4
+            },
+            {
+              label: "Defended Augmentation Resilience (R_def)",
+              data: skillRows.map(s => +s.defR.toFixed(1)),
+              backgroundColor: "#059669",
+              borderRadius: 4
+            }
+          ]
+        },
+        options: {
+          indexAxis: "y",
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: { min: 0, max: 100, title: { display: true, text: "Score (0–100 Scale)" } }
+          },
+          plugins: {
+            legend: { position: "top", labels: { boxWidth: 12, font: { size: 11 } } }
+          }
+        }
+      });
+    }
+
+    // Render Tab 4: IU-to-Indiana Workforce Pipeline
+    function renderPipeline() {
+      const progs = getFilteredPrograms();
+
+      // Cohort Trajectory Chart
+      const ctx = document.getElementById("cohortTrajectoryChart").getContext("2d");
+      if (cohortChartInstance) cohortChartInstance.destroy();
+
+      const schools = [...new Set(progs.map(p => p.school))];
+      const datasets = schools.map(schoolName => {
+        const sProgs = progs.filter(p => p.school === schoolName);
+        const avgY1 = Math.round(sProgs.reduce((a, p) => a + p.wages.y1, 0) / sProgs.length);
+        const avgY3 = Math.round(sProgs.reduce((a, p) => a + p.wages.y3, 0) / sProgs.length);
+        const avgY5 = Math.round(sProgs.reduce((a, p) => a + p.wages.y5, 0) / sProgs.length);
+        const avgY10 = Math.round(sProgs.reduce((a, p) => a + p.wages.y10, 0) / sProgs.length);
+        return {
+          label: schoolName,
+          data: [avgY1, avgY3, avgY5, avgY10],
+          borderColor: SCHOOL_COLORS[schoolName],
+          backgroundColor: SCHOOL_COLORS[schoolName] + "22",
+          borderWidth: 3,
+          tension: 0.3,
+          fill: false
+        };
+      });
+
+      cohortChartInstance = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: ["Year 1 Post-Grad", "Year 3 Post-Grad", "Year 5 Post-Grad", "Year 10 Post-Grad"],
+          datasets
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              ticks: { callback: v => "$" + (v / 1000).toFixed(0) + "k" },
+              title: { display: true, text: "Median Annual Wage (ICHE/DWD & Census PSEO)" }
+            }
+          }
+        }
+      });
+
+      // Bridge Matrix Cards
+      document.getElementById("bridgeMatrixContainer").innerHTML = progs.map(p => `
+        <div class="p-3 rounded-xl border border-slate-200 bg-slate-50">
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="font-bold text-xs text-slate-900">${p.name} <span class="text-slate-500 font-normal">(CIP ${p.cip})</span></span>
+            <span class="text-[11px] font-semibold text-red-800">${(p.inStateRet * 100).toFixed(0)}% In-State Match</span>
+          </div>
+          <div class="space-y-1.5">
+            ${p.naicsFlows.map(f => `
+              <div class="flex items-center justify-between text-[11px] bg-white px-2.5 py-1.5 rounded border border-slate-200/80">
+                <span class="text-slate-700 font-medium">NAICS ${f.sector}</span>
+                <span class="text-slate-500">→ ${f.topSoc}</span>
+                <span class="font-bold text-slate-900">${(f.share * 100).toFixed(0)}%</span>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      `).join("");
+    }
+
+    // Render Tab 5: State of Indiana Economic Impact
+    function renderIndiana() {
+      document.getElementById("indianaTableBody").innerHTML = INDIANA_OCC_GROUPS.map(g => `
+        <tr class="hover:bg-slate-50">
+          <td class="py-2.5 px-3 font-bold text-slate-900">
+            ${g.title}
+            <div class="text-[10px] font-normal text-slate-500">SOC ${g.soc} • Est. Payroll $${g.payrollB}B</div>
+          </td>
+          <td class="py-2.5 px-2 text-right font-medium text-slate-700">${g.wage}</td>
+          <td class="py-2.5 px-2 text-center">
+            <span class="px-2 py-0.5 rounded-full text-xs font-bold ${g.v >= 60 ? 'bg-red-100 text-red-800' : 'bg-amber-100 text-amber-800'}">${g.v}</span>
+          </td>
+          <td class="py-2.5 px-2 text-center font-bold text-emerald-700">${g.lift}</td>
+          <td class="py-2.5 px-3 text-[11px] text-slate-600">${g.pathway}</td>
+        </tr>
+      `).join("");
+
+      const ctx = document.getElementById("indianaStateChart").getContext("2d");
+      if (indianaChartInstance) indianaChartInstance.destroy();
+
+      indianaChartInstance = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: INDIANA_OCC_GROUPS.map(g => g.soc + " " + g.title.split(" ")[0]),
+          datasets: [
+            {
+              label: "Substitution Vulnerability (V)",
+              data: INDIANA_OCC_GROUPS.map(g => g.v),
+              backgroundColor: "#dc2626",
+              borderRadius: 4
+            },
+            {
+              label: "AI Augmentation Resilience (R)",
+              data: INDIANA_OCC_GROUPS.map(g => g.r),
+              backgroundColor: "#059669",
+              borderRadius: 4
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: { min: 0, max: 100, title: { display: true, text: "Exposure / Resilience Score (0–100)" } }
+          }
+        }
+      });
+    }
+
+    function renderAll() {
+      renderKPIs();
+      if (currentTab === "jobs") renderJobsTab();
+      if (currentTab === "portfolio") renderPortfolio();
+      if (currentTab === "simulator") renderSimulator();
+      if (currentTab === "pipeline") renderPipeline();
+      if (currentTab === "indiana") renderIndiana();
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      renderAll();
+    });
+  </script>
+</body>
+</html>
