@@ -24,12 +24,12 @@
         <div class="w-12 h-12 rounded-lg bg-white/15 border border-white/30 flex items-center justify-center font-black text-2xl tracking-tighter">IU</div>
         <div>
           <div class="flex items-center gap-2">
-            <span class="text-xs uppercase tracking-widest bg-white/20 px-2.5 py-0.5 rounded-full font-semibold">Executive Decision Support Prototype (v1.3 Vertical Slice)</span>
+            <span class="text-xs uppercase tracking-widest bg-white/20 px-2.5 py-0.5 rounded-full font-semibold">Executive Decision Support Prototype (v1.4 Vertical Slice)</span>
             <span class="text-xs text-red-100">IUB Leadership Edition</span>
           </div>
           <h1 class="text-xl md:text-2xl font-bold tracking-tight mt-0.5">Workforce AI Vulnerability, Resilience &amp; Curriculum Defense Platform</h1>
           <p class="text-xs text-red-100 mt-0.5">
-            Integrating <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" class="underline hover:text-white">BLS OEWS</a>, <a href="https://www.onetcenter.org/database.html" target="_blank" class="underline hover:text-white">O*NET 29.0</a>, <a href="https://www.bls.gov/emp/data.htm" target="_blank" class="underline hover:text-white">BLS 2035 Projections</a>, <a href="https://lehd.ces.census.gov/data/pseo_experimental.html" target="_blank" class="underline hover:text-white">Census PSEO</a>, <a href="https://www.hoosierdata.in.gov/infographics/iu-workforce-outcomes.asp" target="_blank" class="underline hover:text-white">ICHE/DWD IU Workforce Outcomes</a> &amp; Multi-Index AI Benchmarks
+            Integrating <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" class="underline hover:text-white">BLS OEWS</a>, <a href="https://www.onetcenter.org/database.html" target="_blank" class="underline hover:text-white">O*NET 29.0</a>, <a href="https://www.bls.gov/emp/data.htm" target="_blank" class="underline hover:text-white">BLS 5-Year Projections</a>, <a href="https://lehd.ces.census.gov/data/pseo_experimental.html" target="_blank" class="underline hover:text-white">Census PSEO</a>, <a href="https://www.hoosierdata.in.gov/infographics/iu-workforce-outcomes.asp" target="_blank" class="underline hover:text-white">ICHE/DWD IU Workforce Outcomes</a> &amp; Multi-Index AI Benchmarks
           </p>
         </div>
       </div>
@@ -50,7 +50,7 @@
           <label class="block text-[10px] uppercase tracking-wider text-red-200 font-semibold mb-1">Forecast Horizon (Req 7)</label>
           <select id="globalHorizon" onchange="renderAll()" class="bg-white text-slate-900 font-semibold rounded-lg px-2.5 py-1.5 focus:outline-none">
             <option value="2025">Current Baseline (2025/2026)</option>
-            <option value="2035">2035 BLS Projection (Constant Skill Vector)</option>
+            <option value="2030">5-Year BLS Projection (2030 • Constant Skill Vector)</option>
           </select>
         </div>
         <div>
@@ -170,7 +170,7 @@
             <p class="text-xs text-slate-500">Click <strong>"Inspect Skills ↑"</strong> on any job row to load its full O*NET decomposition and 8 cross-school defense pathways above.</p>
           </div>
           <div class="text-xs text-slate-500">
-            Sources: <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" class="text-red-700 underline font-medium">BLS Indiana OEWS</a> • <a href="https://www.onetcenter.org/database.html" target="_blank" class="text-red-700 underline font-medium">O*NET 29.0</a> • <a href="https://www.bls.gov/emp/data.htm" target="_blank" class="text-red-700 underline font-medium">BLS 2025–35 EP</a>
+            Sources: <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" class="text-red-700 underline font-medium">BLS Indiana OEWS</a> • <a href="https://www.onetcenter.org/database.html" target="_blank" class="text-red-700 underline font-medium">O*NET 29.0</a> • <a href="https://www.bls.gov/emp/data.htm" target="_blank" class="text-red-700 underline font-medium">BLS 5-Yr EP</a>
           </div>
         </div>
         <div class="overflow-x-auto">
@@ -182,7 +182,7 @@
                 <th class="py-3 px-3">Associated O*NET Skills &amp; Skill (V / R)</th>
                 <th class="py-3 px-2 text-right">IN Emp</th>
                 <th class="py-3 px-2 text-right">IN Mean Wage</th>
-                <th class="py-3 px-2 text-center">2035 BLS Growth</th>
+                <th class="py-3 px-2 text-center">5-Yr BLS Growth</th>
                 <th class="py-3 px-2 text-center">Job Vuln (V_o)</th>
                 <th class="py-3 px-2 text-center">Job Resil (R_o)</th>
                 <th class="py-3 px-4 text-right">Action</th>
@@ -242,7 +242,7 @@
                 <th class="py-3 px-3 text-right">5-Yr IN Median Wage</th>
                 <th class="py-3 px-3 text-center">Vulnerability (V)</th>
                 <th class="py-3 px-3 text-center">Resilience (R)</th>
-                <th class="py-3 px-3 text-center">2035 BLS Shift</th>
+                <th class="py-3 px-3 text-center">5-Yr BLS Shift (2030)</th>
                 <th class="py-3 px-4 text-right">Action</th>
               </tr>
             </thead>
@@ -305,17 +305,17 @@
       </div>
     </section>
 
-    <!-- TAB 4: IU-TO-INDIANA WORKFORCE PIPELINE -->
+    <!-- TAB 4: IU-TO-INDIANA WORKFORCE PIPELINE (LIMITED TO 5-YEAR HORIZON) -->
     <section id="view-pipeline" class="hidden space-y-6">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <div class="lg:col-span-6 bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
-          <h3 class="text-base font-bold text-slate-900">Longitudinal Graduate Wage &amp; Retention Trajectory (1, 3, 5, 10 Yrs Post-Grad)</h3>
-          <p class="text-xs text-slate-500 mb-2">Modeled on <a href="https://www.hoosierdata.in.gov/infographics/iu-workforce-outcomes.asp" target="_blank" class="underline text-red-700">Hoosier Data IU Workforce Outcomes</a> &amp; <a href="https://lehd.ces.census.gov/data/pseo_experimental.html" target="_blank" class="underline text-red-700">Census PSEO</a> cohorts.</p>
+          <h3 class="text-base font-bold text-slate-900">Longitudinal Graduate Wage &amp; Retention Trajectory (1, 3 &amp; 5 Yrs Post-Grad — 5-Year Horizon)</h3>
+          <p class="text-xs text-slate-500 mb-2">Modeled on 5-year post-graduation cohorts from <a href="https://www.hoosierdata.in.gov/infographics/iu-workforce-outcomes.asp" target="_blank" class="underline text-red-700">Hoosier Data IU Workforce Outcomes</a> &amp; <a href="https://lehd.ces.census.gov/data/pseo_experimental.html" target="_blank" class="underline text-red-700">Census PSEO</a>.</p>
           <div class="h-[320px]"><canvas id="cohortTrajectoryChart"></canvas></div>
         </div>
         <div class="lg:col-span-6 bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
           <h3 class="text-base font-bold text-slate-900">CIP × NAICS → SOC Probabilistic Bridge Matrix (Req 2)</h3>
-          <p class="text-xs text-slate-500">How IUB graduates flow from Major (CIP) into Indiana Employer Industries (2-Digit NAICS) and mapped SOC occupations.</p>
+          <p class="text-xs text-slate-500">How IUB graduates flow from Major (CIP) into Indiana Employer Industries (2-Digit NAICS) and mapped SOC occupations over the 5-year window.</p>
           <div id="bridgeMatrixContainer" class="space-y-3 mt-3 max-h-[320px] overflow-y-auto custom-scroll pr-1"></div>
         </div>
       </div>
@@ -406,7 +406,7 @@
       felten: { v: -3.1, r: -4.2 }
     };
 
-    // CENTRALIZED CROSS-SCHOOL & CREDENTIAL CATALOG (Used to provide 8 rich in-major & cross-school options per Job and Major)
+    // CENTRALIZED CROSS-SCHOOL & CREDENTIAL CATALOG (8 options per Job and Major)
     const COURSE_CATALOG = {
       "BUS-A437": { code: "BUS-A 437", title: "AI-Assisted Continuous Auditing & Forensic Analytics", unit: "Kelley Business", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.5, rLift: 6.8, targets: [0,1,2], url: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/index.html" },
       "BUS-A424": { code: "BUS-A 424", title: "Strategic Advisory, M&A Due Diligence & Fiduciary Ethics", unit: "Kelley Business", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 4.5, rLift: 5.9, targets: [3,4], url: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/index.html" },
@@ -449,12 +449,12 @@
       "NLJ-CLOUD9": { code: "NLJ-CLOUD-9", title: "Indiana Next Level Jobs Cloud, GIS & AI SecOps Grant", unit: "Indiana Next Level Jobs", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 4.3, rLift: 5.5, targets: [1,2,3], url: "https://www.in.gov/dwd/nextleveljobs/workforce-ready-grant/" }
     };
 
-    // 17 Specific Occupations (SOC) including new jobs for Criminology, Geography & Mathematics
+    // 17 Specific Occupations (SOC) with 5-Year BLS Employment Projections (epGrowth5Yr)
     const JOBS = [
       {
         id: "soc-13-2011", soc: "13-2011", onet: "13-2011.00", title: "Accountants and Auditors",
         schools: ["Kelley School of Business"], majors: ["Accounting B.S.B. (52.0301)", "Finance B.S.B. (52.0801)"],
-        inEmp: 24490, inMeanWage: 78170, inWageNote: "$78,170 IN mean ($81,570 Indy MSA)", epGrowth10Yr: 5.8,
+        inEmp: 24490, inMeanWage: 78170, inWageNote: "$78,170 IN mean ($81,570 Indy MSA)", epGrowth5Yr: 2.9,
         courseIds: ["BUS-A437","BUS-A424","BUS-S355","BUS-K353","CSCI-C437","SPEA-V450","IU-EXP-210","NLJ-CLOUD9"],
         skills: [
           { id: "sk-1", code: "4.A.3.a.2", name: "Documenting/Recording Financial Information (O*NET GWA)", imp: 4.6, lvl: 5.2, weight: 0.26, v: 85, r: 38, driver: "High directive LLM ledger & voucher automation (Eloundou E2)" },
@@ -467,7 +467,7 @@
       {
         id: "soc-13-2051", soc: "13-2051", onet: "13-2051.00", title: "Financial and Investment Analysts",
         schools: ["Kelley School of Business", "College of Arts and Sciences"], majors: ["Finance B.S.B. (52.0801)", "Mathematics B.S. (27.0101)", "Economics B.A./B.S."],
-        inEmp: 3420, inMeanWage: 92400, inWageNote: "$92,400 IN annual mean", epGrowth10Yr: 9.2,
+        inEmp: 3420, inMeanWage: 92400, inWageNote: "$92,400 IN annual mean", epGrowth5Yr: 4.6,
         courseIds: ["BUS-F421","BUS-F494","BUS-G350","MATH-M371","ECON-E472","DSCI-D490","SPEA-V450","IU-EXP-210"],
         skills: [
           { id: "sk-1", code: "4.A.2.a.4", name: "Quantitative Valuation & DCF Spreadsheet Modeling (O*NET DWA)", imp: 4.7, lvl: 5.5, weight: 0.28, v: 77, r: 68, driver: "Automated financial model & code generation (Eloundou E2)" },
@@ -481,7 +481,7 @@
         id: "soc-13-1111", soc: "13-1111", onet: "13-1111.00", title: "Management Analysts",
         schools: ["Kelley School of Business", "O'Neill School of Public & Environmental Affairs", "College of Arts and Sciences"],
         majors: ["Management B.S.B.", "Business Analytics B.S.B.", "Public Mgmt B.S.P.A.", "Economics B.A./B.S."],
-        inEmp: 11280, inMeanWage: 89650, inWageNote: "$89,650 IN annual mean", epGrowth10Yr: 10.7,
+        inEmp: 11280, inMeanWage: 89650, inWageNote: "$89,650 IN annual mean", epGrowth5Yr: 5.4,
         courseIds: ["BUS-J285","BUS-K353","BUS-Z447","INFO-I427","ECON-E472","SPEA-V450","ENG-W415","IU-EXP-210"],
         skills: [
           { id: "sk-1", code: "4.A.1.a.1", name: "Gathering & Synthesizing Operational Benchmark Data (O*NET GWA)", imp: 4.5, lvl: 5.0, weight: 0.25, v: 76, r: 66, driver: "Rapid LLM research & slide-deck drafting exposure" },
@@ -494,7 +494,7 @@
       {
         id: "soc-11-2021", soc: "11-2021", onet: "11-2021.00", title: "Marketing Managers",
         schools: ["Kelley School of Business"], majors: ["Marketing B.S.B. (52.1401)"],
-        inEmp: 3380, inMeanWage: 131620, inWageNote: "$63.28/hr ($131,620/yr) IN OEWS verified", epGrowth10Yr: 8.1,
+        inEmp: 3380, inMeanWage: 131620, inWageNote: "$63.28/hr ($131,620/yr) IN OEWS verified", epGrowth5Yr: 4.1,
         courseIds: ["BUS-M455","KELLEY-PM","BUS-K353","ENG-W415","INFO-I427","ECON-E472","BUS-Z447","IU-EXP-210"],
         skills: [
           { id: "sk-1", code: "4.A.2.b.2", name: "Developing Promotional Copy & Multimodal Assets (O*NET DWA)", imp: 4.3, lvl: 4.8, weight: 0.24, v: 80, r: 62, driver: "Direct multimodal generative content automation" },
@@ -507,7 +507,7 @@
       {
         id: "soc-13-1161", soc: "13-1161", onet: "13-1161.00", title: "Market Research Analysts and Marketing Specialists",
         schools: ["Kelley School of Business", "College of Arts and Sciences"], majors: ["Marketing B.S.B.", "Business Analytics B.S.B.", "Economics B.A./B.S."],
-        inEmp: 12640, inMeanWage: 68900, inWageNote: "$68,900 IN annual mean", epGrowth10Yr: 8.3,
+        inEmp: 12640, inMeanWage: 68900, inWageNote: "$68,900 IN annual mean", epGrowth5Yr: 4.2,
         courseIds: ["BUS-M455","BUS-K327","BUS-G350","DSCI-D490","GEOG-G488","ENG-W415","INFO-I427","IU-EXP-210"],
         skills: [
           { id: "sk-1", code: "4.A.3.a.2", name: "Tabulating Survey Responses & Competitor Pricing (O*NET DWA)", imp: 4.5, lvl: 4.9, weight: 0.28, v: 83, r: 54, driver: "High directive LLM scraping & tabulation exposure" },
@@ -521,7 +521,7 @@
         id: "soc-15-1252", soc: "15-1252", onet: "15-1252.00", title: "Software Developers",
         schools: ["Luddy School of Informatics, Computing, & Engineering", "Kelley School of Business"],
         majors: ["Computer Science B.S. (11.0701)", "Informatics B.S. (11.0104)", "Information Systems B.S.B. (52.1201)"],
-        inEmp: 19850, inMeanWage: 108400, inWageNote: "$108,400 IN annual mean", epGrowth10Yr: 17.9,
+        inEmp: 19850, inMeanWage: 108400, inWageNote: "$108,400 IN annual mean", epGrowth5Yr: 9.0,
         courseIds: ["CSCI-B455","CSCI-C437","INFO-I427","MATH-M391","BUS-S355","KELLEY-PM","SPEA-V450","NLJ-CLOUD9"],
         skills: [
           { id: "sk-1", code: "2.B.3.e", name: "Programming Boilerplate Code & Unit Test Scripts (O*NET Skill)", imp: 4.8, lvl: 5.6, weight: 0.24, v: 83, r: 75, driver: "High coding-copilot speed-up & automation (Anthropic Index)" },
@@ -535,7 +535,7 @@
         id: "soc-15-1211", soc: "15-1211", onet: "15-1211.00", title: "Computer Systems Analysts",
         schools: ["Luddy School of Informatics, Computing, & Engineering", "Kelley School of Business"],
         majors: ["Information Systems B.S.B. (52.1201)", "Informatics B.S. (11.0104)"],
-        inEmp: 8920, inMeanWage: 91200, inWageNote: "$91,200 IN annual mean", epGrowth10Yr: 10.2,
+        inEmp: 8920, inMeanWage: 91200, inWageNote: "$91,200 IN annual mean", epGrowth5Yr: 5.1,
         courseIds: ["BUS-S355","BUS-S400","BUS-K315","INFO-I427","CSCI-C437","SPEA-H452","BUS-Z447","NLJ-CLOUD9"],
         skills: [
           { id: "sk-1", code: "4.A.3.a.2", name: "Drafting Technical Specs & Data-Flow Diagrams (O*NET DWA)", imp: 4.5, lvl: 5.0, weight: 0.25, v: 76, r: 71, driver: "LLM technical specification & diagram generation" },
@@ -549,7 +549,7 @@
         id: "soc-15-2051", soc: "15-2051", onet: "15-2051.00", title: "Data Scientists & Business Analytics Specialists",
         schools: ["Luddy School of Informatics, Computing, & Engineering", "Kelley School of Business", "College of Arts and Sciences"],
         majors: ["Data Science B.S. (30.7001)", "Business Analytics B.S.B. (52.1301)", "Mathematics B.S. (27.0101)"],
-        inEmp: 2640, inMeanWage: 102500, inWageNote: "$102,500 IN annual mean", epGrowth10Yr: 35.8,
+        inEmp: 2640, inMeanWage: 102500, inWageNote: "$102,500 IN annual mean", epGrowth5Yr: 17.9,
         courseIds: ["DSCI-D490","BUS-K353","BUS-G350","MATH-M301","GEOG-G488","CSCI-B455","ECON-E472","IU-EXP-210"],
         skills: [
           { id: "sk-1", code: "2.B.3.e", name: "Exploratory SQL/Python Data Wrangling & Plotting (O*NET DWA)", imp: 4.7, lvl: 5.5, weight: 0.26, v: 77, r: 79, driver: "Automated code-interpreter & SQL synthesis" },
@@ -563,7 +563,7 @@
         id: "soc-15-2041", soc: "15-2041", onet: "15-2041.00", title: "Statisticians, Actuaries & Quantitative Mathematicians",
         schools: ["College of Arts and Sciences", "Luddy School of Informatics, Computing, & Engineering", "Kelley School of Business"],
         majors: ["Mathematics B.A./B.S. (27.0101)", "Data Science B.S. (30.7001)", "Business Analytics B.S.B. (52.1301)"],
-        inEmp: 1180, inMeanWage: 99800, inWageNote: "$99,800 IN annual mean", epGrowth10Yr: 31.6,
+        inEmp: 1180, inMeanWage: 99800, inWageNote: "$99,800 IN annual mean", epGrowth5Yr: 15.8,
         courseIds: ["MATH-M301","MATH-M371","MATH-M391","DSCI-D490","BUS-F421","BUS-G350","CSCI-B455","ECON-E472"],
         skills: [
           { id: "sk-1", code: "2.A.1.e", name: "Routine Symbolic/Numerical Computation & Code Translation (O*NET Skill)", imp: 4.7, lvl: 5.6, weight: 0.22, v: 75, r: 76, driver: "LLM + CAS/Python solver code generation" },
@@ -577,7 +577,7 @@
         id: "soc-19-3011", soc: "19-3011", onet: "19-3011.00", title: "Economists",
         schools: ["College of Arts and Sciences", "Kelley School of Business", "O'Neill School of Public & Environmental Affairs"],
         majors: ["Economics B.A./B.S. (45.0601)", "Business Analytics B.S.B.", "Public Policy B.S.P.A."],
-        inEmp: 210, inMeanWage: 96400, inWageNote: "$96,400 IN annual mean", epGrowth10Yr: 5.4,
+        inEmp: 210, inMeanWage: 96400, inWageNote: "$96,400 IN annual mean", epGrowth5Yr: 2.7,
         courseIds: ["ECON-E472","BUS-G350","MATH-M301","DSCI-D490","SPEA-V450","BUS-J285","GEOG-G488","IU-EXP-210"],
         skills: [
           { id: "sk-1", code: "4.A.1.a.1", name: "Economic Literature Synthesis & Time-Series Cleaning (O*NET DWA)", imp: 4.5, lvl: 5.2, weight: 0.26, v: 76, r: 64, driver: "LLM literature review & R/Stata script generation" },
@@ -590,7 +590,7 @@
       {
         id: "soc-27-3041", soc: "27-3041", onet: "27-3041.00", title: "Editors & Technical Writers (27-3041 / 27-3042)",
         schools: ["College of Arts and Sciences"], majors: ["English & Professional Writing B.A. (23.0101)"],
-        inEmp: 1890, inMeanWage: 64800, inWageNote: "$64,800 IN annual mean", epGrowth10Yr: 2.1,
+        inEmp: 1890, inMeanWage: 64800, inWageNote: "$64,800 IN annual mean", epGrowth5Yr: 1.1,
         courseIds: ["ENG-W415","INFO-I308","INFO-I427","BUS-M455","KELLEY-PM","SPEA-V450","CJUS-P314","IU-EXP-210"],
         skills: [
           { id: "sk-1", code: "2.A.1.b", name: "First-Draft Copywriting & Routine Text Summarization (O*NET Skill)", imp: 4.8, lvl: 5.5, weight: 0.30, v: 91, r: 44, driver: "Direct LLM text generation substitution (Eloundou E1)" },
@@ -603,7 +603,7 @@
       {
         id: "soc-19-1029", soc: "19-1029", onet: "19-1029.04", title: "Biological Scientists (Biotech & Genomics)",
         schools: ["College of Arts and Sciences"], majors: ["Biology & Biotechnology B.S. (26.0101)"],
-        inEmp: 1450, inMeanWage: 82300, inWageNote: "$82,300 IN annual mean", epGrowth10Yr: 4.8,
+        inEmp: 1450, inMeanWage: 82300, inWageNote: "$82,300 IN annual mean", epGrowth5Yr: 2.4,
         courseIds: ["BIOL-L410","DSCI-D490","MATH-M371","SPEA-H452","SPEA-E418","GEOG-G485","BUS-K353","NLJ-CLOUD9"],
         skills: [
           { id: "sk-1", code: "4.A.3.a.3", name: "Wet-Lab Assay Execution & Biological Specimen Handling (O*NET GWA)", imp: 4.7, lvl: 5.4, weight: 0.28, v: 18, r: 84, driver: "Physical laboratory dexterity bottleneck" },
@@ -617,7 +617,7 @@
         id: "soc-33-3021", soc: "33-3021", onet: "33-3021.00", title: "Detectives, Criminal Investigators & Intelligence Analysts",
         schools: ["College of Arts and Sciences", "O'Neill School of Public & Environmental Affairs"],
         majors: ["Criminology & Criminal Justice B.A. (43.0104)", "Public Management & Policy B.S.P.A."],
-        inEmp: 2140, inMeanWage: 76400, inWageNote: "$76,400 IN annual mean", epGrowth10Yr: 4.5,
+        inEmp: 2140, inMeanWage: 76400, inWageNote: "$76,400 IN annual mean", epGrowth5Yr: 2.3,
         courseIds: ["CJUS-P299","CJUS-P200","CJUS-P314","CSCI-C437","SPEA-V450","GEOG-G485","INFO-I427","BUS-A437"],
         skills: [
           { id: "sk-1", code: "4.A.3.a.2", name: "Incident Report Drafting & Case Dossier Summarization (O*NET DWA)", imp: 4.5, lvl: 4.8, weight: 0.24, v: 76, r: 64, driver: "Automated body-cam & investigative report synthesis" },
@@ -631,12 +631,12 @@
         id: "soc-19-3092", soc: "19-3092", onet: "19-3092.00", title: "Geographers & GIS Spatial Scientists (19-3092 / 15-1299.02)",
         schools: ["College of Arts and Sciences", "O'Neill School of Public & Environmental Affairs"],
         majors: ["Geography B.A./B.S. (45.0701)", "Environmental Management B.S.E.S. (03.0103)"],
-        inEmp: 1680, inMeanWage: 79800, inWageNote: "$79,800 IN annual mean", epGrowth10Yr: 7.4,
+        inEmp: 1680, inMeanWage: 79800, inWageNote: "$79,800 IN annual mean", epGrowth5Yr: 3.7,
         courseIds: ["GEOG-G485","GEOG-G488","GEOG-G350","SPEA-E418","DSCI-D490","CSCI-B455","BUS-K353","NLJ-CLOUD9"],
         skills: [
           { id: "sk-1", code: "4.A.3.a.2", name: "Routine Map Digitization & Spatial Layer Geocoding (O*NET DWA)", imp: 4.4, lvl: 4.8, weight: 0.24, v: 74, r: 70, driver: "Automated computer-vision map feature extraction" },
           { id: "sk-2", code: "4.A.2.a.4", name: "Satellite Remote Sensing & Multispectral Image Analysis (O*NET DWA)", imp: 4.6, lvl: 5.3, weight: 0.24, v: 54, r: 86, driver: "Geospatial foundation-model copilot leverage" },
-          { id: "sk-3", code: "2.B.3.e", name: "Geospatial Python / Earth Engine Pipeline Programming (O*NET Skill)", imp: 4.5, lvl: 5.2, weight: 0.20, v: 42, r: 90, driver: " Scalable cloud-native spatial modeling" },
+          { id: "sk-3", code: "2.B.3.e", name: "Geospatial Python / Earth Engine Pipeline Programming (O*NET Skill)", imp: 4.5, lvl: 5.2, weight: 0.20, v: 42, r: 90, driver: "Scalable cloud-native spatial modeling" },
           { id: "sk-4", code: "4.A.1.b.1", name: "Physical Terrain Surveying, LiDAR & Field Ground-Truthing (O*NET GWA)", imp: 4.2, lvl: 4.7, weight: 0.18, v: 16, r: 88, driver: "Physical environmental field instrumentation" },
           { id: "sk-5", code: "4.A.2.b.1", name: "Regional Climate Adaptation & Infrastructure Site Planning (O*NET GWA)", imp: 4.1, lvl: 4.6, weight: 0.14, v: 28, r: 87, driver: "Multi-jurisdictional land-use governance" }
         ]
@@ -645,7 +645,7 @@
         id: "soc-11-1021", soc: "11-1021", onet: "11-1021.00", title: "General and Operations Managers",
         schools: ["O'Neill School of Public & Environmental Affairs", "Kelley School of Business"],
         majors: ["Management B.S.B. (52.0201)", "Public Management & Policy B.S.P.A. (44.0401)"],
-        inEmp: 54120, inMeanWage: 129530, inWageNote: "$62.28/hr ($129,530/yr) IN OEWS verified", epGrowth10Yr: 5.8,
+        inEmp: 54120, inMeanWage: 129530, inWageNote: "$62.28/hr ($129,530/yr) IN OEWS verified", epGrowth5Yr: 2.9,
         courseIds: ["BUS-Z447","BUS-J285","SPEA-V450","ONEILL-PBFM","BUS-K315","INFO-I427","ECON-E472","IU-EXP-210"],
         skills: [
           { id: "sk-1", code: "4.A.3.a.2", name: "Operational Status Reporting & Policy Summarization (O*NET DWA)", imp: 4.2, lvl: 4.6, weight: 0.24, v: 74, r: 66, driver: "LLM administrative briefing & memo synthesis" },
@@ -659,7 +659,7 @@
         id: "soc-19-2041", soc: "19-2041", onet: "19-2041.00", title: "Environmental Scientists and Specialists",
         schools: ["O'Neill School of Public & Environmental Affairs", "College of Arts and Sciences"],
         majors: ["Environmental Management B.S.E.S. (03.0103)", "Geography B.A./B.S. (45.0701)"],
-        inEmp: 1320, inMeanWage: 74600, inWageNote: "$74,600 IN annual mean", epGrowth10Yr: 6.9,
+        inEmp: 1320, inMeanWage: 74600, inWageNote: "$74,600 IN annual mean", epGrowth5Yr: 3.5,
         courseIds: ["SPEA-E418","GEOG-G485","GEOG-G350","BIOL-L410","SPEA-V450","DSCI-D490","BUS-K353","NLJ-CLOUD9"],
         skills: [
           { id: "sk-1", code: "4.A.1.b.1", name: "Field Site Inspection & Environmental Media Sampling (O*NET DWA)", imp: 4.5, lvl: 5.0, weight: 0.28, v: 14, r: 87, driver: "Physical field verification & chain-of-custody" },
@@ -672,7 +672,7 @@
       {
         id: "soc-11-9111", soc: "11-9111", onet: "11-9111.00", title: "Medical and Health Services Managers",
         schools: ["O'Neill School of Public & Environmental Affairs"], majors: ["Healthcare Management & Policy B.S.P.A. (51.0701)"],
-        inEmp: 10480, inMeanWage: 112300, inWageNote: "$112,300 IN annual mean", epGrowth10Yr: 28.5,
+        inEmp: 10480, inMeanWage: 112300, inWageNote: "$112,300 IN annual mean", epGrowth5Yr: 14.3,
         courseIds: ["SPEA-H452","ONEILL-PBFM","BUS-Z447","BUS-K315","INFO-I427","BIOL-L410","CJUS-P314","IU-EXP-210"],
         skills: [
           { id: "sk-1", code: "4.A.3.a.2", name: "Medical Coding, Billing & Revenue Cycle Documentation (O*NET DWA)", imp: 4.4, lvl: 4.8, weight: 0.24, v: 76, r: 65, driver: "Ambient clinical & ICD-10 billing LLM automation" },
@@ -684,12 +684,12 @@
       }
     ];
 
-    // 18 IUB Degree Programs (6 Kelley, 6 College of Arts & Sciences, 3 Luddy, 3 O'Neill)
+    // 18 IUB Degree Programs with 5-Year (2030) Forecast Scores & 5-Year Wage Cohorts (y1, y3, y5)
     const PROGRAMS = [
       {
         id: "kelley-acct", name: "Accounting B.S.B.", cip: "52.0301", school: "Kelley School of Business", shortSchool: "Kelley Business",
         schoolUrl: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/index.html",
-        grads: 540, inStateRet: 0.64, wages: { y1: 68200, y3: 75400, y5: 81570, y10: 108400 },
+        grads: 540, inStateRet: 0.64, wages: { y1: 68200, y3: 75400, y5: 81570 },
         socs: "13-2011 Accountants & Auditors (24,490 IN emp)",
         courseIds: ["BUS-A437","BUS-A424","BUS-S355","BUS-K353","CSCI-C437","SPEA-V450","IU-EXP-210","NLJ-CLOUD9"],
         naicsFlows: [
@@ -697,7 +697,7 @@
           { sector: "52 Finance & Insurance", share: 0.26, topSoc: "13-2061 Financial Examiners / Internal Auditors" },
           { sector: "31-33 Manufacturing (Corporate Controller)", share: 0.14, topSoc: "13-2011 Corporate Accountants" }
         ],
-        scores: { composite: { v2025: 68.4, r2025: 54.2, v2035: 66.1, r2035: 57.0 }, eloundou_e2: { v2025: 74.0, r2025: 58.0, v2035: 71.5, r2035: 60.5 }, anthropic: { v2025: 65.2, r2025: 52.8, v2035: 63.0, r2035: 55.4 }, felten: { v2025: 64.8, r2025: 50.1, v2035: 62.9, r2035: 52.0 } },
+        scores: { composite: { v2025: 68.4, r2025: 54.2, v2030: 67.2, r2030: 55.6 }, eloundou_e2: { v2025: 74.0, r2025: 58.0, v2030: 72.7, r2030: 59.3 }, anthropic: { v2025: 65.2, r2025: 52.8, v2030: 64.1, r2030: 54.1 }, felten: { v2025: 64.8, r2025: 50.1, v2030: 63.8, r2030: 51.1 } },
         skills: [
           { id: "s1", name: "Documenting/Recording Financial Information (GWA)", weight: 0.26, v: 84, r: 38, driver: "High directive LLM automation (Eloundou E2)" },
           { id: "s2", name: "Mathematical & Tax Compliance Verification", weight: 0.22, v: 78, r: 46, driver: "Rule-based AI + code synthesis exposure" },
@@ -709,7 +709,7 @@
       {
         id: "kelley-fin", name: "Finance B.S.B.", cip: "52.0801", school: "Kelley School of Business", shortSchool: "Kelley Business",
         schoolUrl: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/index.html",
-        grads: 920, inStateRet: 0.48, wages: { y1: 76500, y3: 86200, y5: 94800, y10: 138000 },
+        grads: 920, inStateRet: 0.48, wages: { y1: 76500, y3: 86200, y5: 94800 },
         socs: "13-2051 Financial Analysts; 13-1111 Management Analysts",
         courseIds: ["BUS-F421","BUS-F494","BUS-G350","MATH-M371","ECON-E472","DSCI-D490","SPEA-V450","IU-EXP-210"],
         naicsFlows: [
@@ -717,7 +717,7 @@
           { sector: "54 Professional & Management Consulting", share: 0.24, topSoc: "13-1111 Management Analysts" },
           { sector: "55 Corporate Enterprise Management", share: 0.18, topSoc: "11-3031 Financial Managers" }
         ],
-        scores: { composite: { v2025: 61.2, r2025: 71.8, v2035: 59.8, r2035: 74.1 }, eloundou_e2: { v2025: 67.5, r2025: 75.0, v2035: 65.8, r2035: 77.2 }, anthropic: { v2025: 58.0, r2025: 73.4, v2035: 56.5, r2035: 75.6 }, felten: { v2025: 59.5, r2025: 66.2, v2035: 58.1, r2035: 68.0 } },
+        scores: { composite: { v2025: 61.2, r2025: 71.8, v2030: 60.5, r2030: 73.0 }, eloundou_e2: { v2025: 67.5, r2025: 75.0, v2030: 66.6, r2030: 76.1 }, anthropic: { v2025: 58.0, r2025: 73.4, v2030: 57.2, r2030: 74.5 }, felten: { v2025: 59.5, r2025: 66.2, v2030: 58.8, r2030: 67.1 } },
         skills: [
           { id: "s1", name: "Quantitative Valuation & Spreadsheet Financial Modeling", weight: 0.28, v: 76, r: 68, driver: "High LLM code/formula generation exposure" },
           { id: "s2", name: "Earnings Transcript & Market Data Synthesis", weight: 0.22, v: 79, r: 64, driver: "Automated NLP summarization & extraction" },
@@ -729,7 +729,7 @@
       {
         id: "kelley-mkt", name: "Marketing B.S.B.", cip: "52.1401", school: "Kelley School of Business", shortSchool: "Kelley Business",
         schoolUrl: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/index.html",
-        grads: 680, inStateRet: 0.55, wages: { y1: 61400, y3: 69800, y5: 78200, y10: 118500 },
+        grads: 680, inStateRet: 0.55, wages: { y1: 61400, y3: 69800, y5: 78200 },
         socs: "11-2021 Marketing Managers (3,380 IN emp; $63.28/hr); 13-1161 Market Research",
         courseIds: ["BUS-M455","KELLEY-PM","BUS-K353","ENG-W415","INFO-I427","ECON-E472","BUS-Z447","IU-EXP-210"],
         naicsFlows: [
@@ -737,7 +737,7 @@
           { sector: "42/44 Consumer Packaged Goods & Retail Brand Mgmt", share: 0.36, topSoc: "11-2021 Marketing Managers" },
           { sector: "51 Digital Media & Information Platforms", share: 0.26, topSoc: "11-2022 Sales & Growth Managers" }
         ],
-        scores: { composite: { v2025: 58.7, r2025: 69.5, v2035: 57.3, r2035: 72.0 }, eloundou_e2: { v2025: 64.2, r2025: 73.1, v2035: 62.8, r2035: 75.4 }, anthropic: { v2025: 56.4, r2025: 71.2, v2035: 55.0, r2035: 73.8 }, felten: { v2025: 55.1, r2025: 64.0, v2035: 53.8, r2035: 66.1 } },
+        scores: { composite: { v2025: 58.7, r2025: 69.5, v2030: 58.0, r2030: 70.8 }, eloundou_e2: { v2025: 64.2, r2025: 73.1, v2030: 63.5, r2030: 74.3 }, anthropic: { v2025: 56.4, r2025: 71.2, v2030: 55.7, r2030: 72.5 }, felten: { v2025: 55.1, r2025: 64.0, v2030: 54.4, r2030: 65.1 } },
         skills: [
           { id: "s1", name: "Campaign Copywriting & Content Generation", weight: 0.25, v: 82, r: 58, driver: "Direct multimodal generative AI exposure" },
           { id: "s2", name: "Consumer Survey & Market Trend Tabulation", weight: 0.24, v: 71, r: 66, driver: "Automated data synthesis" },
@@ -749,7 +749,7 @@
       {
         id: "kelley-mgmt", name: "Management B.S.B.", cip: "52.0201", school: "Kelley School of Business", shortSchool: "Kelley Business",
         schoolUrl: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/management-major.html",
-        grads: 480, inStateRet: 0.59, wages: { y1: 63200, y3: 73800, y5: 84500, y10: 124800 },
+        grads: 480, inStateRet: 0.59, wages: { y1: 63200, y3: 73800, y5: 84500 },
         socs: "11-1021 General & Operations Managers ($129,530 IN mean); 13-1111 Management Analysts",
         courseIds: ["BUS-J285","BUS-Z447","BUS-Z305","BUS-K315","SPEA-V450","INFO-I427","ECON-E472","IU-EXP-210"],
         naicsFlows: [
@@ -757,7 +757,7 @@
           { sector: "55/31 Corporate Enterprise & Manufacturing Leadership", share: 0.36, topSoc: "11-1021 General & Operations Managers" },
           { sector: "52/62 Financial Services & Healthcare Administration", share: 0.24, topSoc: "11-3121 Human Resources & Talent Managers" }
         ],
-        scores: { composite: { v2025: 48.2, r2025: 78.4, v2035: 46.6, r2035: 81.0 }, eloundou_e2: { v2025: 53.5, r2025: 81.2, v2035: 51.8, r2035: 83.6 }, anthropic: { v2025: 45.8, r2025: 79.8, v2035: 44.2, r2035: 82.4 }, felten: { v2025: 45.1, r2025: 74.2, v2035: 43.8, r2035: 77.0 } },
+        scores: { composite: { v2025: 48.2, r2025: 78.4, v2030: 47.4, r2030: 79.7 }, eloundou_e2: { v2025: 53.5, r2025: 81.2, v2030: 52.6, r2030: 82.4 }, anthropic: { v2025: 45.8, r2025: 79.8, v2030: 45.0, r2030: 81.1 }, felten: { v2025: 45.1, r2025: 74.2, v2030: 44.4, r2030: 75.6 } },
         skills: [
           { id: "s1", name: "Operational Status Reporting & Workflow Documentation (GWA)", weight: 0.23, v: 73, r: 66, driver: "LLM memo, KPI summary & SOP drafting exposure" },
           { id: "s2", name: "Resource Allocation & Budget Variance Analysis", weight: 0.21, v: 60, r: 74, driver: "AI-augmented operational & financial planning" },
@@ -769,7 +769,7 @@
       {
         id: "kelley-ba", name: "Business Analytics B.S.B.", cip: "52.1301", school: "Kelley School of Business", shortSchool: "Kelley Business",
         schoolUrl: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/business-analytics-co-major.html",
-        grads: 430, inStateRet: 0.52, wages: { y1: 77800, y3: 89400, y5: 101200, y10: 141600 },
+        grads: 430, inStateRet: 0.52, wages: { y1: 77800, y3: 89400, y5: 101200 },
         socs: "15-2051 Data Scientists ($102,500 IN mean); 13-1111 Management Analysts",
         courseIds: ["BUS-K353","BUS-G350","BUS-K327","DSCI-D490","MATH-M301","CSCI-B455","ECON-E472","GEOG-G488"],
         naicsFlows: [
@@ -777,7 +777,7 @@
           { sector: "52 Quantitative FinTech, Banking & InsurTech", share: 0.30, topSoc: "15-2051 Decision & Data Scientists" },
           { sector: "42/31 Supply Chain, Retail & Manufacturing Analytics", share: 0.24, topSoc: "15-2031 Operations Research Analysts" }
         ],
-        scores: { composite: { v2025: 55.4, r2025: 82.8, v2035: 53.2, r2035: 85.9 }, eloundou_e2: { v2025: 61.5, r2025: 86.0, v2035: 59.1, r2035: 88.8 }, anthropic: { v2025: 52.8, r2025: 84.5, v2035: 50.6, r2035: 87.4 }, felten: { v2025: 51.9, r2025: 77.9, v2035: 49.9, r2035: 81.5 } },
+        scores: { composite: { v2025: 55.4, r2025: 82.8, v2030: 54.3, r2030: 84.4 }, eloundou_e2: { v2025: 61.5, r2025: 86.0, v2030: 60.3, r2030: 87.4 }, anthropic: { v2025: 52.8, r2025: 84.5, v2030: 51.7, r2030: 86.0 }, felten: { v2025: 51.9, r2025: 77.9, v2030: 50.9, r2030: 79.7 } },
         skills: [
           { id: "s1", name: "Exploratory Business Data Querying & Dashboard Scripting", weight: 0.25, v: 78, r: 75, driver: "Automated SQL/Python & BI dashboard code synthesis" },
           { id: "s2", name: "Predictive Business Modeling & Demand Forecasting", weight: 0.23, v: 65, r: 81, driver: "AutoML & LLM modeling pipeline augmentation" },
@@ -789,7 +789,7 @@
       {
         id: "kelley-is", name: "Information Systems B.S.B.", cip: "52.1201", school: "Kelley School of Business", shortSchool: "Kelley Business",
         schoolUrl: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/information-systems-major.html",
-        grads: 510, inStateRet: 0.56, wages: { y1: 75400, y3: 86800, y5: 97600, y10: 136400 },
+        grads: 510, inStateRet: 0.56, wages: { y1: 75400, y3: 86800, y5: 97600 },
         socs: "15-1211 Computer Systems Analysts ($91,200 IN mean); 15-1252 Software Developers",
         courseIds: ["BUS-S355","BUS-S400","BUS-K315","CSCI-C437","INFO-I427","CSCI-B455","SPEA-V450","NLJ-CLOUD9"],
         naicsFlows: [
@@ -797,7 +797,7 @@
           { sector: "52/51 FinTech, Enterprise SaaS & Digital Platforms", share: 0.30, topSoc: "15-1252 Enterprise Application Developers" },
           { sector: "55/31 Corporate IT Governance & Digital Supply Chain", share: 0.22, topSoc: "11-3021 Computer & Information Systems Managers" }
         ],
-        scores: { composite: { v2025: 56.6, r2025: 80.8, v2035: 54.1, r2035: 83.9 }, eloundou_e2: { v2025: 62.8, r2025: 84.0, v2035: 60.1, r2035: 86.8 }, anthropic: { v2025: 54.0, r2025: 82.6, v2035: 51.6, r2035: 85.5 }, felten: { v2025: 53.0, r2025: 75.8, v2035: 50.6, r2035: 79.4 } },
+        scores: { composite: { v2025: 56.6, r2025: 80.8, v2030: 55.3, r2030: 82.4 }, eloundou_e2: { v2025: 62.8, r2025: 84.0, v2030: 61.4, r2030: 85.4 }, anthropic: { v2025: 54.0, r2025: 82.6, v2030: 52.8, r2030: 84.1 }, felten: { v2025: 53.0, r2025: 75.8, v2030: 51.8, r2030: 77.6 } },
         skills: [
           { id: "s1", name: "Requirements Documentation & Database Schema Mapping", weight: 0.24, v: 76, r: 71, driver: "LLM technical specification & SQL schema synthesis" },
           { id: "s2", name: "Enterprise Application Scripting & API Integration", weight: 0.22, v: 69, r: 76, driver: "AI code-assistant & middleware generation" },
@@ -809,7 +809,7 @@
       {
         id: "luddy-cs", name: "Computer Science B.S.", cip: "11.0701", school: "Luddy School of Informatics, Computing, & Engineering", shortSchool: "Luddy Computing",
         schoolUrl: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html",
-        grads: 460, inStateRet: 0.51, wages: { y1: 86400, y3: 98600, y5: 112400, y10: 149500 },
+        grads: 460, inStateRet: 0.51, wages: { y1: 86400, y3: 98600, y5: 112400 },
         socs: "15-1252 Software Developers; 15-1299 Computer Occupations",
         courseIds: ["CSCI-B455","CSCI-C437","DSCI-D490","MATH-M391","BUS-S355","KELLEY-PM","SPEA-V450","NLJ-CLOUD9"],
         naicsFlows: [
@@ -817,7 +817,7 @@
           { sector: "51 Information, Cloud & SaaS Platforms", share: 0.28, topSoc: "15-1241 Computer Network & Cloud Architects" },
           { sector: "52/31 FinTech & Advanced Manufacturing Automation", share: 0.18, topSoc: "15-1299 Systems Software Engineers" }
         ],
-        scores: { composite: { v2025: 54.8, r2025: 84.6, v2035: 52.1, r2035: 87.9 }, eloundou_e2: { v2025: 62.0, r2025: 88.5, v2035: 59.0, r2035: 91.0 }, anthropic: { v2025: 51.5, r2025: 89.2, v2035: 48.8, r2035: 92.1 }, felten: { v2025: 50.8, r2025: 76.0, v2035: 48.5, r2035: 78.5 } },
+        scores: { composite: { v2025: 54.8, r2025: 84.6, v2030: 53.4, r2030: 86.3 }, eloundou_e2: { v2025: 62.0, r2025: 88.5, v2030: 60.5, r2030: 89.8 }, anthropic: { v2025: 51.5, r2025: 89.2, v2030: 50.1, r2030: 90.7 }, felten: { v2025: 50.8, r2025: 76.0, v2030: 49.6, r2030: 77.3 } },
         skills: [
           { id: "s1", name: "Boilerplate Code & Unit Test Generation", weight: 0.24, v: 83, r: 74, driver: "High coding-assistant automation & speed-up" },
           { id: "s2", name: "Bug Triage & Legacy Syntax Translation", weight: 0.18, v: 74, r: 78, driver: "High Anthropic Economic Index coding share" },
@@ -829,7 +829,7 @@
       {
         id: "luddy-info", name: "Informatics B.S.", cip: "11.0104", school: "Luddy School of Informatics, Computing, & Engineering", shortSchool: "Luddy Computing",
         schoolUrl: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html",
-        grads: 390, inStateRet: 0.62, wages: { y1: 69500, y3: 79400, y5: 88900, y10: 121000 },
+        grads: 390, inStateRet: 0.62, wages: { y1: 69500, y3: 79400, y5: 88900 },
         socs: "15-1211 Computer Systems Analysts; 15-1255 Web & UX Designers",
         courseIds: ["INFO-I427","INFO-I308","LUDDY-DSC","BUS-S355","BUS-K315","SPEA-H452","ENG-W415","IU-EXP-210"],
         naicsFlows: [
@@ -837,7 +837,7 @@
           { sector: "62 Healthcare Informatics & Life Sciences (Eli Lilly / IU Health)", share: 0.30, topSoc: "15-1211 Health & Clinical Systems Analysts" },
           { sector: "51 Digital Product & UX Design", share: 0.24, topSoc: "15-1255 Web & Digital Interface Designers" }
         ],
-        scores: { composite: { v2025: 57.4, r2025: 79.2, v2035: 55.0, r2035: 82.1 }, eloundou_e2: { v2025: 63.8, r2025: 82.0, v2035: 61.2, r2035: 84.5 }, anthropic: { v2025: 55.1, r2025: 81.4, v2035: 52.8, r2035: 84.0 }, felten: { v2025: 53.2, r2025: 74.1, v2035: 51.0, r2035: 76.8 } },
+        scores: { composite: { v2025: 57.4, r2025: 79.2, v2030: 56.2, r2030: 80.7 }, eloundou_e2: { v2025: 63.8, r2025: 82.0, v2030: 62.5, r2030: 83.3 }, anthropic: { v2025: 55.1, r2025: 81.4, v2030: 53.9, r2030: 82.7 }, felten: { v2025: 53.2, r2025: 74.1, v2030: 52.1, r2030: 75.5 } },
         skills: [
           { id: "s1", name: "Wireframe Prototyping & Front-End UI Scripting", weight: 0.25, v: 78, r: 70, driver: "Generative UI-to-code synthesis" },
           { id: "s2", name: "Requirements Documentation & Data Mapping", weight: 0.23, v: 69, r: 74, driver: "LLM workflow documentation copilot" },
@@ -849,7 +849,7 @@
       {
         id: "luddy-ds", name: "Data Science B.S.", cip: "30.7001", school: "Luddy School of Informatics, Computing, & Engineering", shortSchool: "Luddy Computing",
         schoolUrl: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html",
-        grads: 210, inStateRet: 0.49, wages: { y1: 84200, y3: 96500, y5: 108800, y10: 145000 },
+        grads: 210, inStateRet: 0.49, wages: { y1: 84200, y3: 96500, y5: 108800 },
         socs: "15-2051 Data Scientists; 15-2041 Statisticians",
         courseIds: ["DSCI-D490","CSCI-B455","MATH-M301","MATH-M371","BUS-G350","ECON-E472","GEOG-G488","BIOL-L410"],
         naicsFlows: [
@@ -857,7 +857,7 @@
           { sector: "52 Quantitative Finance & InsurTech", share: 0.28, topSoc: "15-2041 Statisticians & Quant Analysts" },
           { sector: "32/62 Pharmaceutical & Biometrics (Indiana Bio-Corridor)", share: 0.24, topSoc: "15-2051 Clinical Data Scientists" }
         ],
-        scores: { composite: { v2025: 51.2, r2025: 87.4, v2035: 49.4, r2035: 90.2 }, eloundou_e2: { v2025: 57.0, r2025: 90.1, v2035: 54.8, r2035: 92.4 }, anthropic: { v2025: 49.0, r2025: 89.5, v2035: 47.2, r2035: 91.8 }, felten: { v2025: 47.6, r2025: 82.5, v2035: 46.1, r2035: 85.0 } },
+        scores: { composite: { v2025: 51.2, r2025: 87.4, v2030: 50.3, r2030: 88.8 }, eloundou_e2: { v2025: 57.0, r2025: 90.1, v2030: 55.9, r2030: 91.3 }, anthropic: { v2025: 49.0, r2025: 89.5, v2030: 48.1, r2030: 90.7 }, felten: { v2025: 47.6, r2025: 82.5, v2030: 46.8, r2030: 83.8 } },
         skills: [
           { id: "s1", name: "Exploratory SQL/Python Data Wrangling & Visualization", weight: 0.26, v: 77, r: 79, driver: "Automated code-interpreter & query synthesis" },
           { id: "s2", name: "Standard Predictive Model Fitting & Feature Selection", weight: 0.22, v: 66, r: 83, driver: "AutoML & LLM pipeline generation" },
@@ -869,7 +869,7 @@
       {
         id: "cas-econ", name: "Economics B.A. / B.S.", cip: "45.0601", school: "College of Arts and Sciences", shortSchool: "Arts + Sciences",
         schoolUrl: "https://college.indiana.edu/research-creative-activity/index.html",
-        grads: 310, inStateRet: 0.53, wages: { y1: 63500, y3: 74200, y5: 84600, y10: 119000 },
+        grads: 310, inStateRet: 0.53, wages: { y1: 63500, y3: 74200, y5: 84600 },
         socs: "19-3011 Economists; 13-1111 Management Analysts",
         courseIds: ["ECON-E472","MATH-M301","BUS-G350","BUS-F421","DSCI-D490","SPEA-V450","ONEILL-PBFM","IU-EXP-210"],
         naicsFlows: [
@@ -877,7 +877,7 @@
           { sector: "52 Banking, Monetary Policy & Capital Markets", share: 0.34, topSoc: "19-3011 Economists & Market Analysts" },
           { sector: "92 State & Federal Economic Policy Agencies", share: 0.22, topSoc: "19-3011 Policy Economists" }
         ],
-        scores: { composite: { v2025: 56.9, r2025: 73.1, v2035: 55.2, r2035: 75.8 }, eloundou_e2: { v2025: 62.5, r2025: 76.4, v2035: 60.8, r2035: 78.9 }, anthropic: { v2025: 54.0, r2025: 74.8, v2035: 52.3, r2035: 77.2 }, felten: { v2025: 54.2, r2025: 68.1, v2035: 52.5, r2035: 70.5 } },
+        scores: { composite: { v2025: 56.9, r2025: 73.1, v2030: 56.0, r2030: 74.5 }, eloundou_e2: { v2025: 62.5, r2025: 76.4, v2030: 61.6, r2030: 77.7 }, anthropic: { v2025: 54.0, r2025: 74.8, v2030: 53.1, r2030: 76.0 }, felten: { v2025: 54.2, r2025: 68.1, v2030: 53.3, r2030: 69.3 } },
         skills: [
           { id: "s1", name: "Descriptive Economic Data Cleaning & Literature Synthesis", weight: 0.26, v: 78, r: 62, driver: "High LLM synthesis & coding automation" },
           { id: "s2", name: "Forecasting & Time-Series Regression Modeling", weight: 0.24, v: 64, r: 74, driver: "AI-augmented econometric modeling" },
@@ -889,7 +889,7 @@
       {
         id: "cas-eng", name: "English & Professional Writing B.A.", cip: "23.0101", school: "College of Arts and Sciences", shortSchool: "Arts + Sciences",
         schoolUrl: "https://college.indiana.edu/research-creative-activity/index.html",
-        grads: 240, inStateRet: 0.61, wages: { y1: 46800, y3: 54900, y5: 64200, y10: 88500 },
+        grads: 240, inStateRet: 0.61, wages: { y1: 46800, y3: 54900, y5: 64200 },
         socs: "27-3041 Editors; 27-3042 Technical Writers; 11-2032 PR Managers",
         courseIds: ["ENG-W415","INFO-I308","INFO-I427","BUS-M455","KELLEY-PM","SPEA-V450","CJUS-P314","IU-EXP-210"],
         naicsFlows: [
@@ -897,7 +897,7 @@
           { sector: "54 Technical Documentation, Legal & Corporate Comms", share: 0.35, topSoc: "27-3042 Technical Writers" },
           { sector: "61/81 Higher Ed, Nonprofits & Public Relations", share: 0.23, topSoc: "11-2032 Public Relations Managers (510 IN emp)" }
         ],
-        scores: { composite: { v2025: 72.6, r2025: 61.0, v2035: 70.8, r2035: 63.8 }, eloundou_e2: { v2025: 81.2, r2025: 64.5, v2035: 79.1, r2035: 67.0 }, anthropic: { v2025: 70.4, r2025: 63.2, v2035: 68.5, r2035: 66.1 }, felten: { v2025: 66.2, r2025: 55.4, v2035: 64.8, r2035: 58.2 } },
+        scores: { composite: { v2025: 72.6, r2025: 61.0, v2030: 71.7, r2030: 62.4 }, eloundou_e2: { v2025: 81.2, r2025: 64.5, v2030: 80.1, r2030: 65.8 }, anthropic: { v2025: 70.4, r2025: 63.2, v2030: 69.4, r2030: 64.7 }, felten: { v2025: 66.2, r2025: 55.4, v2030: 65.5, r2030: 56.8 } },
         skills: [
           { id: "s1", name: "First-Draft Copywriting & Routine Summarization", weight: 0.30, v: 91, r: 44, driver: "Direct LLM text generation substitution" },
           { id: "s2", name: "Proofreading, Grammar & Style Standardization", weight: 0.22, v: 86, r: 48, driver: "Automated language editing exposure" },
@@ -909,7 +909,7 @@
       {
         id: "cas-biol", name: "Biology & Biotechnology B.S.", cip: "26.0101", school: "College of Arts and Sciences", shortSchool: "Arts + Sciences",
         schoolUrl: "https://college.indiana.edu/research-creative-activity/index.html",
-        grads: 490, inStateRet: 0.67, wages: { y1: 54200, y3: 66800, y5: 78500, y10: 114200 },
+        grads: 490, inStateRet: 0.67, wages: { y1: 54200, y3: 66800, y5: 78500 },
         socs: "19-1029 Biological Scientists; 19-4021 Biological Technicians",
         courseIds: ["BIOL-L410","GEOG-G485","MATH-M371","DSCI-D490","SPEA-H452","SPEA-E418","BUS-K353","NLJ-CLOUD9"],
         naicsFlows: [
@@ -917,7 +917,7 @@
           { sector: "62 Clinical Healthcare & Diagnostic Laboratories", share: 0.34, topSoc: "29-2010 Clinical Laboratory Technologists" },
           { sector: "54 Scientific R&D & Agricultural Biosciences", share: 0.18, topSoc: "19-4021 Biological Technicians" }
         ],
-        scores: { composite: { v2025: 34.2, r2025: 78.9, v2035: 33.1, r2035: 81.5 }, eloundou_e2: { v2025: 38.5, r2025: 81.2, v2035: 37.2, r2035: 83.8 }, anthropic: { v2025: 31.8, r2025: 79.5, v2035: 30.8, r2035: 82.0 }, felten: { v2025: 32.4, r2025: 76.0, v2035: 31.4, r2035: 78.7 } },
+        scores: { composite: { v2025: 34.2, r2025: 78.9, v2030: 33.6, r2030: 80.2 }, eloundou_e2: { v2025: 38.5, r2025: 81.2, v2030: 37.8, r2030: 82.5 }, anthropic: { v2025: 31.8, r2025: 79.5, v2030: 31.3, r2030: 80.8 }, felten: { v2025: 32.4, r2025: 76.0, v2030: 31.9, r2030: 77.4 } },
         skills: [
           { id: "s1", name: "Wet-Lab Assay Execution & Specimen Handling", weight: 0.28, v: 18, r: 84, driver: "Physical laboratory dexterity bottleneck" },
           { id: "s2", name: "Literature Review & Experimental Protocol Drafting", weight: 0.20, v: 64, r: 72, driver: "LLM scientific synthesis copilot" },
@@ -929,7 +929,7 @@
       {
         id: "cas-cjus", name: "Criminology & Criminal Justice B.A.", cip: "43.0104", school: "College of Arts and Sciences", shortSchool: "Arts + Sciences",
         schoolUrl: "https://bulletin.college.indiana.edu/programs/4235/CJUSBA/",
-        grads: 280, inStateRet: 0.69, wages: { y1: 51200, y3: 62400, y5: 74200, y10: 102800 },
+        grads: 280, inStateRet: 0.69, wages: { y1: 51200, y3: 62400, y5: 74200 },
         socs: "33-3021 Detectives, Criminal Investigators & Intelligence Analysts ($76,400 IN mean)",
         courseIds: ["CJUS-P299","CJUS-P200","CJUS-P314","CSCI-C437","SPEA-V450","INFO-I427","BUS-A437","BUS-Z447"],
         naicsFlows: [
@@ -937,7 +937,7 @@
           { sector: "54 Corporate Security, Fraud Investigation & Cyber Intelligence", share: 0.26, topSoc: "13-2099 Fraud & Intelligence Analysts" },
           { sector: "81/62 Legal Aid, Victim Advocacy & Community Corrections", share: 0.22, topSoc: "21-1092 Probation & Correctional Treatment Specialists" }
         ],
-        scores: { composite: { v2025: 44.3, r2025: 79.8, v2035: 42.8, r2035: 82.5 }, eloundou_e2: { v2025: 49.5, r2025: 82.4, v2035: 47.8, r2035: 85.0 }, anthropic: { v2025: 41.8, r2025: 81.2, v2035: 40.4, r2035: 83.8 }, felten: { v2025: 41.6, r2025: 75.8, v2035: 40.2, r2035: 78.7 } },
+        scores: { composite: { v2025: 44.3, r2025: 79.8, v2030: 43.5, r2030: 81.2 }, eloundou_e2: { v2025: 49.5, r2025: 82.4, v2030: 48.6, r2030: 83.7 }, anthropic: { v2025: 41.8, r2025: 81.2, v2030: 41.1, r2030: 82.5 }, felten: { v2025: 41.6, r2025: 75.8, v2030: 40.9, r2030: 77.3 } },
         skills: [
           { id: "s1", name: "Incident Report Drafting & Case Dossier Summarization", weight: 0.24, v: 76, r: 64, driver: "Automated body-cam & investigative report synthesis" },
           { id: "s2", name: "Crime Pattern, OSINT & Forensic Evidence Data Analysis", weight: 0.22, v: 58, r: 78, driver: "AI link-analysis & digital forensics augmentation" },
@@ -949,7 +949,7 @@
       {
         id: "cas-geog", name: "Geography B.A. / B.S.", cip: "45.0701", school: "College of Arts and Sciences", shortSchool: "Arts + Sciences",
         schoolUrl: "https://bulletin.college.indiana.edu/programs/4195/GEOGBS",
-        grads: 145, inStateRet: 0.60, wages: { y1: 55800, y3: 67400, y5: 79800, y10: 111500 },
+        grads: 145, inStateRet: 0.60, wages: { y1: 55800, y3: 67400, y5: 79800 },
         socs: "19-3092 Geographers & GIS Spatial Scientists; 19-2041 Environmental Scientists",
         courseIds: ["GEOG-G485","GEOG-G488","GEOG-G350","SPEA-E418","DSCI-D490","CSCI-B455","BUS-K353","NLJ-CLOUD9"],
         naicsFlows: [
@@ -957,7 +957,7 @@
           { sector: "92 Regional Planning, Defense & Natural Resource Agencies", share: 0.32, topSoc: "19-3051 Urban & Regional Planners" },
           { sector: "22/48 Utilities, Supply Chain Logistics & Climate Risk", share: 0.22, topSoc: "19-2041 Environmental & Spatial Analysts" }
         ],
-        scores: { composite: { v2025: 45.2, r2025: 83.4, v2035: 43.4, r2035: 86.2 }, eloundou_e2: { v2025: 50.8, r2025: 86.1, v2035: 48.9, r2035: 88.7 }, anthropic: { v2025: 42.9, r2025: 84.8, v2035: 41.2, r2035: 87.5 }, felten: { v2025: 41.9, r2025: 79.3, v2035: 40.1, r2035: 82.4 } },
+        scores: { composite: { v2025: 45.2, r2025: 83.4, v2030: 44.3, r2030: 84.8 }, eloundou_e2: { v2025: 50.8, r2025: 86.1, v2030: 49.8, r2030: 87.4 }, anthropic: { v2025: 42.9, r2025: 84.8, v2030: 42.0, r2030: 86.2 }, felten: { v2025: 41.9, r2025: 79.3, v2030: 41.0, r2030: 80.9 } },
         skills: [
           { id: "s1", name: "Routine Cartographic Digitization & Spatial Layer Cleaning", weight: 0.24, v: 74, r: 70, driver: "Computer-vision map feature extraction" },
           { id: "s2", name: "Remote Sensing Telemetry & Satellite Image Classification", weight: 0.24, v: 54, r: 86, driver: "Geospatial foundation-model copilot leverage" },
@@ -969,7 +969,7 @@
       {
         id: "cas-math", name: "Mathematics B.A. / B.S.", cip: "27.0101", school: "College of Arts and Sciences", shortSchool: "Arts + Sciences",
         schoolUrl: "https://bulletin.college.indiana.edu/programs/4255/MATHBS1",
-        grads: 225, inStateRet: 0.50, wages: { y1: 74600, y3: 88200, y5: 101400, y10: 142800 },
+        grads: 225, inStateRet: 0.50, wages: { y1: 74600, y3: 88200, y5: 101400 },
         socs: "15-2041 Statisticians & Quantitative Mathematicians; 15-2051 Data Scientists",
         courseIds: ["MATH-M301","MATH-M371","MATH-M391","DSCI-D490","CSCI-B455","BUS-F421","BUS-G350","ECON-E472"],
         naicsFlows: [
@@ -977,7 +977,7 @@
           { sector: "54 Scientific R&D, Cryptography & AI/ML Engineering", share: 0.38, topSoc: "15-2041 Mathematicians & Statisticians" },
           { sector: "61/92 National Labs, Defense & Higher Education Research", share: 0.20, topSoc: "15-2031 Operations Research Analysts" }
         ],
-        scores: { composite: { v2025: 45.9, r2025: 87.6, v2035: 43.8, r2035: 90.4 }, eloundou_e2: { v2025: 51.4, r2025: 90.2, v2035: 49.1, r2035: 92.6 }, anthropic: { v2025: 43.5, r2025: 89.4, v2035: 41.5, r2035: 91.9 }, felten: { v2025: 42.8, r2025: 83.2, v2035: 40.8, r2035: 86.7 } },
+        scores: { composite: { v2025: 45.9, r2025: 87.6, v2030: 44.8, r2030: 89.0 }, eloundou_e2: { v2025: 51.4, r2025: 90.2, v2030: 50.2, r2030: 91.4 }, anthropic: { v2025: 43.5, r2025: 89.4, v2030: 42.5, r2030: 90.7 }, felten: { v2025: 42.8, r2025: 83.2, v2030: 41.8, r2030: 85.0 } },
         skills: [
           { id: "s1", name: "Routine Symbolic/Numerical Computation & Script Translation", weight: 0.22, v: 75, r: 76, driver: "Automated CAS/Python solver synthesis" },
           { id: "s2", name: "Stochastic Modeling, Probability & Actuarial Risk Estimation", weight: 0.24, v: 52, r: 88, driver: "High quantitative simulation complementarity" },
@@ -989,7 +989,7 @@
       {
         id: "oneill-pmp", name: "Public Management & Policy B.S.P.A.", cip: "44.0401", school: "O'Neill School of Public & Environmental Affairs", shortSchool: "O'Neill Public Affairs",
         schoolUrl: "https://oneill.indiana.edu/undergraduate/degrees-majors/index.html",
-        grads: 380, inStateRet: 0.66, wages: { y1: 56400, y3: 68200, y5: 79400, y10: 109500 },
+        grads: 380, inStateRet: 0.66, wages: { y1: 56400, y3: 68200, y5: 79400 },
         socs: "11-1021 General & Operations Managers ($129,530 IN mean); 13-1111 Analysts",
         courseIds: ["SPEA-V450","ONEILL-PBFM","BUS-Z447","BUS-G350","ECON-E472","CJUS-P314","INFO-I427","IU-EXP-210"],
         naicsFlows: [
@@ -997,7 +997,7 @@
           { sector: "54 Public Sector & Management Consulting", share: 0.32, topSoc: "13-1111 Management Analysts" },
           { sector: "81 Nonprofit & Philanthropic Organizations", share: 0.26, topSoc: "11-9151 Social & Community Service Managers" }
         ],
-        scores: { composite: { v2025: 46.5, r2025: 76.4, v2035: 45.1, r2035: 79.0 }, eloundou_e2: { v2025: 52.0, r2025: 79.1, v2035: 50.4, r2035: 81.5 }, anthropic: { v2025: 44.2, r2025: 77.8, v2035: 42.8, r2035: 80.2 }, felten: { v2025: 43.3, r2025: 72.3, v2035: 42.1, r2035: 75.3 } },
+        scores: { composite: { v2025: 46.5, r2025: 76.4, v2030: 45.8, r2030: 77.7 }, eloundou_e2: { v2025: 52.0, r2025: 79.1, v2030: 51.2, r2030: 80.3 }, anthropic: { v2025: 44.2, r2025: 77.8, v2030: 43.5, r2030: 79.0 }, felten: { v2025: 43.3, r2025: 72.3, v2030: 42.7, r2030: 73.8 } },
         skills: [
           { id: "s1", name: "Policy Brief Drafting & Statutory Summarization", weight: 0.24, v: 74, r: 66, driver: "LLM legislative & policy synthesis" },
           { id: "s2", name: "Municipal & Agency Budget Variance Analysis", weight: 0.22, v: 61, r: 72, driver: "Spreadsheet & fiscal AI copilot" },
@@ -1009,7 +1009,7 @@
       {
         id: "oneill-env", name: "Environmental Management B.S.E.S.", cip: "03.0103", school: "O'Neill School of Public & Environmental Affairs", shortSchool: "O'Neill Public Affairs",
         schoolUrl: "https://oneill.indiana.edu/undergraduate/degrees-majors/index.html",
-        grads: 190, inStateRet: 0.63, wages: { y1: 53800, y3: 64900, y5: 75800, y10: 104200 },
+        grads: 190, inStateRet: 0.63, wages: { y1: 53800, y3: 64900, y5: 75800 },
         socs: "19-2041 Environmental Scientists; 11-9121 Natural Sciences Managers",
         courseIds: ["SPEA-E418","SPEA-V450","GEOG-G485","GEOG-G350","BIOL-L410","DSCI-D490","BUS-K353","NLJ-CLOUD9"],
         naicsFlows: [
@@ -1017,7 +1017,7 @@
           { sector: "92 Environmental Protection & Natural Resource Agencies", share: 0.33, topSoc: "19-2041 Regulatory Compliance Specialists" },
           { sector: "22/31 Energy, Utilities & Corporate Sustainability", share: 0.22, topSoc: "11-9121 Sustainability & Natural Sciences Managers" }
         ],
-        scores: { composite: { v2025: 31.8, r2025: 80.5, v2035: 30.6, r2035: 83.2 }, eloundou_e2: { v2025: 36.0, r2025: 82.8, v2035: 34.5, r2035: 85.1 }, anthropic: { v2025: 29.8, r2025: 81.4, v2035: 28.7, r2035: 84.0 }, felten: { v2025: 29.6, r2025: 77.3, v2035: 28.6, r2035: 80.5 } },
+        scores: { composite: { v2025: 31.8, r2025: 80.5, v2030: 31.2, r2030: 81.9 }, eloundou_e2: { v2025: 36.0, r2025: 82.8, v2030: 35.2, r2030: 84.0 }, anthropic: { v2025: 29.8, r2025: 81.4, v2030: 29.2, r2030: 82.7 }, felten: { v2025: 29.6, r2025: 77.3, v2030: 29.1, r2030: 78.9 } },
         skills: [
           { id: "s1", name: "Field Site Inspection & Environmental Sampling", weight: 0.28, v: 14, r: 87, driver: "Physical field verification bottleneck" },
           { id: "s2", name: "NEPA / EPA Environmental Impact Report Drafting", weight: 0.24, v: 62, r: 74, driver: "LLM regulatory document drafting" },
@@ -1029,7 +1029,7 @@
       {
         id: "oneill-hmp", name: "Healthcare Management & Policy B.S.P.A.", cip: "51.0701", school: "O'Neill School of Public & Environmental Affairs", shortSchool: "O'Neill Public Affairs",
         schoolUrl: "https://oneill.indiana.edu/undergraduate/degrees-majors/index.html",
-        grads: 260, inStateRet: 0.71, wages: { y1: 62400, y3: 75800, y5: 89400, y10: 124600 },
+        grads: 260, inStateRet: 0.71, wages: { y1: 62400, y3: 75800, y5: 89400 },
         socs: "11-9111 Medical & Health Services Managers",
         courseIds: ["SPEA-H452","ONEILL-PBFM","SPEA-V450","BUS-K315","BUS-Z447","INFO-I427","BIOL-L410","IU-EXP-210"],
         naicsFlows: [
@@ -1037,7 +1037,7 @@
           { sector: "52 Health Insurance & Managed Care Organizations", share: 0.24, topSoc: "13-1111 Healthcare Operations Analysts" },
           { sector: "32/54 Life Sciences & Clinical Trial Operations", share: 0.18, topSoc: "11-9111 Clinical Trial Practice Managers" }
         ],
-        scores: { composite: { v2025: 41.2, r2025: 82.1, v2035: 39.5, r2035: 85.4 }, eloundou_e2: { v2025: 46.5, r2025: 84.8, v2035: 44.6, r2035: 87.9 }, anthropic: { v2025: 39.0, r2025: 83.5, v2035: 37.4, r2035: 86.8 }, felten: { v2025: 38.1, r2025: 78.0, v2035: 36.5, r2035: 81.5 } },
+        scores: { composite: { v2025: 41.2, r2025: 82.1, v2030: 40.3, r2030: 83.8 }, eloundou_e2: { v2025: 46.5, r2025: 84.8, v2030: 45.5, r2030: 86.4 }, anthropic: { v2025: 39.0, r2025: 83.5, v2030: 38.2, r2030: 85.2 }, felten: { v2025: 38.1, r2025: 78.0, v2030: 37.3, r2030: 79.8 } },
         skills: [
           { id: "s1", name: "Medical Coding, Billing & Revenue Cycle Documentation", weight: 0.24, v: 76, r: 65, driver: "Ambient clinical & billing LLM automation" },
           { id: "s2", name: "Hospital Capacity & Staffing Schedule Optimization", weight: 0.22, v: 49, r: 83, driver: "Predictive operations copilot leverage" },
@@ -1127,9 +1127,9 @@
       const horizon = document.getElementById("globalHorizon").value;
       const model = document.getElementById("globalModel").value;
       const m = prog.scores[model];
-      const v = horizon === "2025" ? m.v2025 : m.v2035;
-      const r = horizon === "2025" ? m.r2025 : m.r2035;
-      const vDelta = +(m.v2035 - m.v2025).toFixed(1);
+      const v = horizon === "2025" ? m.v2025 : m.v2030;
+      const r = horizon === "2025" ? m.r2025 : m.r2030;
+      const vDelta = +(m.v2030 - m.v2025).toFixed(1);
       return { v, r, vDelta };
     }
 
@@ -1207,6 +1207,7 @@
       const jobs = getFilteredJobs();
       const weightMode = document.getElementById("globalWeighting").value;
       const horizon = document.getElementById("globalHorizon").value;
+      const horizonLabel = horizon === "2025" ? "2025 Baseline" : "5-Yr Forecast (2030)";
 
       let totalWeight = 0, weightedV = 0, weightedR = 0, totalGrads = 0, weightedRet = 0;
       progs.forEach(p => {
@@ -1228,7 +1229,7 @@
         <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
           <div class="flex items-center justify-between">
             <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Portfolio Substitution Vulnerability</span>
-            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-amber-50 text-amber-800">${horizon}</span>
+            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-amber-50 text-amber-800">${horizonLabel}</span>
           </div>
           <div class="text-2xl font-black text-slate-900 mt-1">${avgV} <span class="text-xs font-normal text-slate-500">/ 100</span></div>
           <div class="text-[11px] text-slate-500 mt-1">Weighted by ${weightMode === "headcount" ? "Headcount / Emp" : "Indiana Wage Bill"}</div>
@@ -1296,8 +1297,8 @@
         </div>
         <div class="h-8 w-px bg-slate-200"></div>
         <div class="text-center px-2">
-          <div class="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">Active Defenses</div>
-          <div class="text-sm font-extrabold text-red-800">${selectedInts.length} / ${courses.length} Selected</div>
+          <div class="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">5-Yr BLS Trend (2030)</div>
+          <div class="text-sm font-extrabold text-emerald-700">+${job.epGrowth5Yr}% (5-Yr) • ${selectedInts.length}/${courses.length} Defenses</div>
         </div>
       `;
 
@@ -1336,6 +1337,11 @@
         </div>
         <div class="text-slate-600"><strong>Mapped IUB Schools:</strong> ${job.schools.join(", ")}</div>
         <div class="text-slate-600"><strong>Primary IUB Majors:</strong> ${job.majors.join(" • ")}</div>
+        <div class="flex items-center justify-between pt-1 border-t border-slate-200 text-[11px]">
+          <span><strong>Indiana OEWS:</strong> ${job.inEmp.toLocaleString()} jobs</span>
+          <span><strong>Wage:</strong> ${job.inWageNote}</span>
+          <span class="text-emerald-700 font-bold"><strong>5-Yr EP:</strong> +${job.epGrowth5Yr}%</span>
+        </div>
       `;
 
       document.getElementById("jobInterventionList").innerHTML = courses.map(item => {
@@ -1418,7 +1424,7 @@
             <td class="py-3 px-3 max-w-md">${skillsPills}</td>
             <td class="py-3 px-2 text-right font-semibold">${j.inEmp.toLocaleString()}</td>
             <td class="py-3 px-2 text-right font-bold text-slate-800">$${j.inMeanWage.toLocaleString()}</td>
-            <td class="py-3 px-2 text-center font-semibold text-emerald-700">+${j.epGrowth10Yr}%</td>
+            <td class="py-3 px-2 text-center font-semibold text-emerald-700">+${j.epGrowth5Yr}%</td>
             <td class="py-3 px-2 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${vBadge}">${calc.jobBaseV.toFixed(1)}</span></td>
             <td class="py-3 px-2 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">${calc.jobBaseR.toFixed(1)}</span></td>
             <td class="py-3 px-4 text-right whitespace-nowrap">
@@ -1436,7 +1442,7 @@
       const horizon = document.getElementById("globalHorizon").value;
       const weightMode = document.getElementById("globalWeighting").value;
 
-      document.getElementById("horizonBadgePortfolio").textContent = horizon === "2025" ? "2025/2026 Baseline" : "2035 BLS Projection";
+      document.getElementById("horizonBadgePortfolio").textContent = horizon === "2025" ? "2025/2026 Baseline" : "5-Year BLS Projection (2030)";
       document.getElementById("weightModeLabel").textContent = weightMode === "headcount" ? "Graduate Headcount" : "Indiana 5-Yr Wage-Bill";
 
       const schools = [...new Set(PROGRAMS.map(p => p.school))];
@@ -1650,6 +1656,7 @@
       });
     }
 
+    // Tab 4: Limited to 5-Year Horizon (Year 1, Year 3, Year 5 Post-Grad)
     function renderPipeline() {
       const progs = getFilteredPrograms();
       const ctx = document.getElementById("cohortTrajectoryChart").getContext("2d");
@@ -1661,7 +1668,7 @@
         const avg = (k) => Math.round(sProgs.reduce((a, p) => a + p.wages[k], 0) / sProgs.length);
         return {
           label: schoolName,
-          data: [avg("y1"), avg("y3"), avg("y5"), avg("y10")],
+          data: [avg("y1"), avg("y3"), avg("y5")],
           borderColor: SCHOOL_COLORS[schoolName],
           backgroundColor: SCHOOL_COLORS[schoolName] + "22",
           borderWidth: 3, tension: 0.3, fill: false
@@ -1670,10 +1677,10 @@
 
       cohortChartInstance = new Chart(ctx, {
         type: "line",
-        data: { labels: ["Year 1 Post-Grad", "Year 3 Post-Grad", "Year 5 Post-Grad", "Year 10 Post-Grad"], datasets },
+        data: { labels: ["Year 1 Post-Grad", "Year 3 Post-Grad", "Year 5 Post-Grad (5-Yr Cap)"], datasets },
         options: {
           responsive: true, maintainAspectRatio: false,
-          scales: { y: { ticks: { callback: v => "$" + (v / 1000).toFixed(0) + "k" }, title: { display: true, text: "Median Annual Wage (ICHE/DWD & Census PSEO)" } } }
+          scales: { y: { ticks: { callback: v => "$" + (v / 1000).toFixed(0) + "k" }, title: { display: true, text: "Median Annual Wage Across 5-Year Horizon (ICHE/DWD & PSEO)" } } }
         }
       });
 
@@ -1681,7 +1688,7 @@
         <div class="p-3 rounded-xl border border-slate-200 bg-slate-50">
           <div class="flex items-center justify-between mb-1.5">
             <span class="font-bold text-xs text-slate-900">${p.name} <span class="text-slate-500 font-normal">(CIP ${p.cip})</span></span>
-            <span class="text-[11px] font-semibold text-red-800">${(p.inStateRet * 100).toFixed(0)}% In-State Match</span>
+            <span class="text-[11px] font-semibold text-red-800">${(p.inStateRet * 100).toFixed(0)}% 5-Yr In-State Match</span>
           </div>
           <div class="space-y-1.5">
             ${p.naicsFlows.map(f => `
