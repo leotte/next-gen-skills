@@ -24,7 +24,7 @@
         <div class="w-12 h-12 rounded-lg bg-white/15 border border-white/30 flex items-center justify-center font-black text-2xl tracking-tighter">IU</div>
         <div>
           <div class="flex items-center gap-2">
-            <span class="text-xs uppercase tracking-widest bg-white/20 px-2.5 py-0.5 rounded-full font-semibold">Executive Decision Support Prototype (v1.4 Vertical Slice)</span>
+            <span class="text-xs uppercase tracking-widest bg-white/20 px-2.5 py-0.5 rounded-full font-semibold">Executive Decision Support Prototype (v1.5 Vertical Slice)</span>
             <span class="text-xs text-red-100">IUB Leadership Edition</span>
           </div>
           <h1 class="text-xl md:text-2xl font-bold tracking-tight mt-0.5">Workforce AI Vulnerability, Resilience &amp; Curriculum Defense Platform</h1>
@@ -34,11 +34,11 @@
         </div>
       </div>
 
-      <!-- Global Controls -->
-      <div class="flex flex-wrap items-center gap-3 bg-black/25 p-2.5 rounded-xl border border-white/15 text-xs">
+      <!-- Global Controls: 2x2 Grid Layout -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 bg-black/25 p-3 rounded-xl border border-white/15 text-xs min-w-[320px] lg:min-w-[540px]">
         <div>
           <label class="block text-[10px] uppercase tracking-wider text-red-200 font-semibold mb-1">IUB School Filter</label>
-          <select id="globalSchoolFilter" onchange="renderAll()" class="bg-white text-slate-900 font-semibold rounded-lg px-2.5 py-1.5 focus:outline-none">
+          <select id="globalSchoolFilter" onchange="renderAll()" class="w-full bg-white text-slate-900 font-semibold rounded-lg px-2.5 py-1.5 focus:outline-none">
             <option value="ALL">All 4 Flagship IUB Schools (17 Jobs / 18 Majors)</option>
             <option value="Kelley School of Business">Kelley School of Business (6 Majors)</option>
             <option value="College of Arts and Sciences">College of Arts and Sciences (6 Majors)</option>
@@ -48,21 +48,21 @@
         </div>
         <div>
           <label class="block text-[10px] uppercase tracking-wider text-red-200 font-semibold mb-1">Forecast Horizon (Req 7)</label>
-          <select id="globalHorizon" onchange="renderAll()" class="bg-white text-slate-900 font-semibold rounded-lg px-2.5 py-1.5 focus:outline-none">
+          <select id="globalHorizon" onchange="renderAll()" class="w-full bg-white text-slate-900 font-semibold rounded-lg px-2.5 py-1.5 focus:outline-none">
             <option value="2025">Current Baseline (2025/2026)</option>
             <option value="2030">5-Year BLS Projection (2030 • Constant Skill Vector)</option>
           </select>
         </div>
         <div>
           <label class="block text-[10px] uppercase tracking-wider text-red-200 font-semibold mb-1">Aggregation Weighting (Req 6)</label>
-          <select id="globalWeighting" onchange="renderAll()" class="bg-white text-slate-900 font-semibold rounded-lg px-2.5 py-1.5 focus:outline-none">
+          <select id="globalWeighting" onchange="renderAll()" class="w-full bg-white text-slate-900 font-semibold rounded-lg px-2.5 py-1.5 focus:outline-none">
             <option value="headcount">Headcount / Employment Weighted</option>
             <option value="wagebill">Indiana Wage-Bill Weighted</option>
           </select>
         </div>
         <div>
           <label class="block text-[10px] uppercase tracking-wider text-red-200 font-semibold mb-1">AI Scoring Index (Req 4)</label>
-          <select id="globalModel" onchange="renderAll()" class="bg-white text-slate-900 font-semibold rounded-lg px-2.5 py-1.5 focus:outline-none">
+          <select id="globalModel" onchange="renderAll()" class="w-full bg-white text-slate-900 font-semibold rounded-lg px-2.5 py-1.5 focus:outline-none">
             <option value="composite">Composite (Felten + Eloundou + Anthropic)</option>
             <option value="eloundou_e2">Eloundou et al. (2024) LLM + Tooling (E2)</option>
             <option value="anthropic">Anthropic Economic Index (Observed Usage)</option>
@@ -73,14 +73,14 @@
     </div>
   </header>
 
-  <!-- Navigation Tabs -->
+  <!-- Navigation Tabs (Swapped Tabs 1 and 2) -->
   <nav class="bg-white border-b border-slate-200 sticky top-0 z-20 shadow-sm">
     <div class="max-w-7xl mx-auto px-6 flex overflow-x-auto">
-      <button onclick="switchTab('jobs')" id="tab-jobs" class="tab-btn active px-4 py-3.5 text-sm font-medium text-slate-600 hover:text-slate-900 whitespace-nowrap transition">
-        1. Job-Level Skill Decomposition &amp; Exposure (Reqs 3, 4, 5)
+      <button onclick="switchTab('portfolio')" id="tab-portfolio" class="tab-btn active px-4 py-3.5 text-sm font-medium text-slate-600 hover:text-slate-900 whitespace-nowrap transition">
+        1. Provost &amp; Deans Portfolio Matrix (Reqs 5, 6, 7)
       </button>
-      <button onclick="switchTab('portfolio')" id="tab-portfolio" class="tab-btn px-4 py-3.5 text-sm font-medium text-slate-600 hover:text-slate-900 whitespace-nowrap transition">
-        2. Provost &amp; Deans Portfolio Matrix (Reqs 5, 6, 7)
+      <button onclick="switchTab('jobs')" id="tab-jobs" class="tab-btn px-4 py-3.5 text-sm font-medium text-slate-600 hover:text-slate-900 whitespace-nowrap transition">
+        2. Job-Level Skill Decomposition &amp; Exposure (Reqs 3, 4, 5)
       </button>
       <button onclick="switchTab('simulator')" id="tab-simulator" class="tab-btn px-4 py-3.5 text-sm font-medium text-slate-600 hover:text-slate-900 whitespace-nowrap transition">
         3. Degree Skill Decomposition &amp; Defense Simulator (Reqs 6, 8)
@@ -100,8 +100,66 @@
     <!-- Top KPI Strip -->
     <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="kpiStrip"></section>
 
-    <!-- TAB 1: JOB-LEVEL SKILL DECOMPOSITION & EXPOSURE -->
-    <section id="view-jobs" class="space-y-6">
+    <!-- TAB 1: PROVOST & DEANS PORTFOLIO MATRIX -->
+    <section id="view-portfolio" class="space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-7 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+          <div class="flex items-start justify-between mb-3">
+            <div>
+              <h2 class="text-base font-bold text-slate-900">IUB Academic Portfolio: AI Substitution Vulnerability vs. Augmentation Resilience</h2>
+              <p class="text-xs text-slate-500">Bubble size = Annual Cohort Graduates | Click any program bubble to launch its Degree Skill Defense Simulator</p>
+            </div>
+            <span id="horizonBadgePortfolio" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-red-50 text-red-800 border border-red-200">2025 Baseline</span>
+          </div>
+          <div class="relative flex-1 min-h-[380px]"><canvas id="portfolioBubbleChart"></canvas></div>
+          <div class="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+            <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-red-700 mr-1.5"></span><strong>Kelley Business (6)</strong></div>
+            <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-amber-600 mr-1.5"></span><strong>Arts + Sciences (6)</strong></div>
+            <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-blue-600 mr-1.5"></span><strong>Luddy Computing (3)</strong></div>
+            <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-600 mr-1.5"></span><strong>O'Neill Public Affairs (3)</strong></div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+          <h2 class="text-base font-bold text-slate-900 mb-1">School-Level Hierarchical Rollup (Req 6)</h2>
+          <p class="text-xs text-slate-500 mb-4">Aggregated across majors using <span id="weightModeLabel" class="font-semibold text-slate-700">Graduate Headcount</span> weights &amp; CIP × NAICS → SOC bridge probabilities.</p>
+          <div id="schoolRollupCards" class="space-y-3 flex-1 overflow-y-auto custom-scroll"></div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+        <div class="px-6 py-4 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+          <div>
+            <h3 class="text-base font-bold text-slate-900">IUB Degree Programs &amp; Mapped Occupational Exposure Scorecard (18 Majors)</h3>
+            <p class="text-xs text-slate-500">Click <strong>"Simulate Degree Defense →"</strong> on any degree to test in-school and cross-school curriculum interventions.</p>
+          </div>
+          <div class="text-xs text-slate-500">
+            Data Spine: <a href="https://www.hoosierdata.in.gov/infographics/iu-workforce-outcomes.asp" target="_blank" class="text-red-700 underline font-medium">IU Workforce Outcomes</a> + <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" class="text-red-700 underline font-medium">Indiana OEWS</a>
+          </div>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 uppercase tracking-wider text-[11px]">
+                <th class="py-3 px-4">Program / Major (CIP)</th>
+                <th class="py-3 px-3">IUB School</th>
+                <th class="py-3 px-3">Primary Mapped Occupations (SOC)</th>
+                <th class="py-3 px-3 text-right">Grad Cohort</th>
+                <th class="py-3 px-3 text-right">5-Yr IN Median Wage</th>
+                <th class="py-3 px-3 text-center">Vulnerability (V)</th>
+                <th class="py-3 px-3 text-center">Resilience (R)</th>
+                <th class="py-3 px-3 text-center">5-Yr BLS Shift (2030)</th>
+                <th class="py-3 px-4 text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody id="majorTableBody" class="divide-y divide-slate-200"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: JOB-LEVEL SKILL DECOMPOSITION & EXPOSURE -->
+    <section id="view-jobs" class="hidden space-y-6">
       <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div class="flex-1">
           <div class="flex items-center gap-2">
@@ -158,7 +216,7 @@
             <div id="jobInterventionList" class="space-y-2 max-h-[380px] overflow-y-auto custom-scroll pr-1"></div>
           </div>
           <div class="p-3 rounded-xl bg-amber-50/70 border border-amber-200 text-[11px] text-amber-900">
-            <strong>Mathematical Link (Req 5 → Req 6):</strong> Occupation score <code>V_occ(o) = ∑ w(o,s) × V_skill(s)</code> feeds directly into the Academic Major &amp; School rollups in Tab 2 via the <code>P(SOC | CIP, NAICS)</code> bridge matrix.
+            <strong>Mathematical Link (Req 5 → Req 6):</strong> Occupation score <code>V_occ(o) = ∑ w(o,s) × V_skill(s)</code> feeds directly into the Academic Major &amp; School rollups in Tab 1 via the <code>P(SOC | CIP, NAICS)</code> bridge matrix.
           </div>
         </div>
       </div>
@@ -189,64 +247,6 @@
               </tr>
             </thead>
             <tbody id="allJobsSummaryTableBody" class="divide-y divide-slate-200"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- TAB 2: PROVOST & DEANS PORTFOLIO MATRIX -->
-    <section id="view-portfolio" class="hidden space-y-6">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <div class="lg:col-span-7 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
-          <div class="flex items-start justify-between mb-3">
-            <div>
-              <h2 class="text-base font-bold text-slate-900">IUB Academic Portfolio: AI Substitution Vulnerability vs. Augmentation Resilience</h2>
-              <p class="text-xs text-slate-500">Bubble size = Annual Cohort Graduates | Click any program bubble to launch its Degree Skill Defense Simulator</p>
-            </div>
-            <span id="horizonBadgePortfolio" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-red-50 text-red-800 border border-red-200">2025 Baseline</span>
-          </div>
-          <div class="relative flex-1 min-h-[380px]"><canvas id="portfolioBubbleChart"></canvas></div>
-          <div class="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-            <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-red-700 mr-1.5"></span><strong>Kelley Business (6)</strong></div>
-            <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-amber-600 mr-1.5"></span><strong>Arts + Sciences (6)</strong></div>
-            <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-blue-600 mr-1.5"></span><strong>Luddy Computing (3)</strong></div>
-            <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-600 mr-1.5"></span><strong>O'Neill Public Affairs (3)</strong></div>
-          </div>
-        </div>
-
-        <div class="lg:col-span-5 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
-          <h2 class="text-base font-bold text-slate-900 mb-1">School-Level Hierarchical Rollup (Req 6)</h2>
-          <p class="text-xs text-slate-500 mb-4">Aggregated across majors using <span id="weightModeLabel" class="font-semibold text-slate-700">Graduate Headcount</span> weights &amp; CIP × NAICS → SOC bridge probabilities.</p>
-          <div id="schoolRollupCards" class="space-y-3 flex-1 overflow-y-auto custom-scroll"></div>
-        </div>
-      </div>
-
-      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-        <div class="px-6 py-4 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-          <div>
-            <h3 class="text-base font-bold text-slate-900">IUB Degree Programs &amp; Mapped Occupational Exposure Scorecard (18 Majors)</h3>
-            <p class="text-xs text-slate-500">Click <strong>"Simulate Degree Defense →"</strong> on any degree to test in-school and cross-school curriculum interventions.</p>
-          </div>
-          <div class="text-xs text-slate-500">
-            Data Spine: <a href="https://www.hoosierdata.in.gov/infographics/iu-workforce-outcomes.asp" target="_blank" class="text-red-700 underline font-medium">IU Workforce Outcomes</a> + <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" class="text-red-700 underline font-medium">Indiana OEWS</a>
-          </div>
-        </div>
-        <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse text-xs">
-            <thead>
-              <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 uppercase tracking-wider text-[11px]">
-                <th class="py-3 px-4">Program / Major (CIP)</th>
-                <th class="py-3 px-3">IUB School</th>
-                <th class="py-3 px-3">Primary Mapped Occupations (SOC)</th>
-                <th class="py-3 px-3 text-right">Grad Cohort</th>
-                <th class="py-3 px-3 text-right">5-Yr IN Median Wage</th>
-                <th class="py-3 px-3 text-center">Vulnerability (V)</th>
-                <th class="py-3 px-3 text-center">Resilience (R)</th>
-                <th class="py-3 px-3 text-center">5-Yr BLS Shift (2030)</th>
-                <th class="py-3 px-4 text-right">Action</th>
-              </tr>
-            </thead>
-            <tbody id="majorTableBody" class="divide-y divide-slate-200"></tbody>
           </table>
         </div>
       </div>
@@ -1058,7 +1058,8 @@
       { soc: "51-0000", title: "Production & Advanced Manufacturing Occupations", wage: "$23.10/hr mean", payrollB: 28.4, v: 38.2, r: 68.5, lift: "+9.2 R", pathway: "Next Level Jobs Smart Manufacturing Robotics & Digital Twin Grant" }
     ];
 
-    let currentTab = "jobs";
+    // Default tab is now "portfolio" (1. Provost & Deans Portfolio Matrix)
+    let currentTab = "portfolio";
     let selectedJobId = "soc-13-2011";
     let activeJobInterventions = new Set(["BUS-A437", "BUS-S355"]);
 
@@ -1140,7 +1141,7 @@
 
     function switchTab(tabId) {
       currentTab = tabId;
-      ["jobs", "portfolio", "simulator", "pipeline", "indiana"].forEach(id => {
+      ["portfolio", "jobs", "simulator", "pipeline", "indiana"].forEach(id => {
         document.getElementById("view-" + id).classList.toggle("hidden", id !== tabId);
         document.getElementById("tab-" + id).classList.toggle("active", id === tabId);
       });
@@ -1735,8 +1736,8 @@
 
     function renderAll() {
       renderKPIs();
-      if (currentTab === "jobs") renderJobsTab();
       if (currentTab === "portfolio") renderPortfolio();
+      if (currentTab === "jobs") renderJobsTab();
       if (currentTab === "simulator") renderSimulator();
       if (currentTab === "pipeline") renderPipeline();
       if (currentTab === "indiana") renderIndiana();
