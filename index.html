@@ -24,7 +24,7 @@
         <div class="w-12 h-12 rounded-lg bg-white/15 border border-white/30 flex items-center justify-center font-black text-2xl tracking-tighter">IU</div>
         <div>
           <div class="flex items-center gap-2">
-            <span class="text-xs uppercase tracking-widest bg-white/20 px-2.5 py-0.5 rounded-full font-semibold">Executive Decision Support Prototype (v1.5 Vertical Slice)</span>
+            <span class="text-xs uppercase tracking-widest bg-white/20 px-2.5 py-0.5 rounded-full font-semibold">Executive Decision Support Prototype (v1.6 Vertical Slice)</span>
             <span class="text-xs text-red-100">IUB Leadership Edition</span>
           </div>
           <h1 class="text-xl md:text-2xl font-bold tracking-tight mt-0.5">Workforce AI Vulnerability, Resilience &amp; Curriculum Defense Platform</h1>
@@ -39,11 +39,11 @@
         <div>
           <label class="block text-[10px] uppercase tracking-wider text-red-200 font-semibold mb-1">IUB School Filter</label>
           <select id="globalSchoolFilter" onchange="renderAll()" class="w-full bg-white text-slate-900 font-semibold rounded-lg px-2.5 py-1.5 focus:outline-none">
-            <option value="ALL">All 4 Flagship IUB Schools (17 Jobs / 18 Majors)</option>
+            <option value="ALL">All 4 Flagship IUB Schools (22 Jobs / 23 Majors)</option>
             <option value="Kelley School of Business">Kelley School of Business (6 Majors)</option>
+            <option value="Luddy School of Informatics, Computing, & Engineering">Luddy School of Informatics, Computing &amp; Eng. (6 Majors)</option>
             <option value="College of Arts and Sciences">College of Arts and Sciences (6 Majors)</option>
-            <option value="Luddy School of Informatics, Computing, & Engineering">Luddy School of Informatics, Computing &amp; Eng. (3 Majors)</option>
-            <option value="O'Neill School of Public & Environmental Affairs">O'Neill School of Public &amp; Env. Affairs (3 Majors)</option>
+            <option value="O'Neill School of Public & Environmental Affairs">O'Neill School of Public &amp; Env. Affairs (5 Majors)</option>
           </select>
         </div>
         <div>
@@ -73,7 +73,7 @@
     </div>
   </header>
 
-  <!-- Navigation Tabs (Swapped Tabs 1 and 2) -->
+  <!-- Navigation Tabs -->
   <nav class="bg-white border-b border-slate-200 sticky top-0 z-20 shadow-sm">
     <div class="max-w-7xl mx-auto px-6 flex overflow-x-auto">
       <button onclick="switchTab('portfolio')" id="tab-portfolio" class="tab-btn active px-4 py-3.5 text-sm font-medium text-slate-600 hover:text-slate-900 whitespace-nowrap transition">
@@ -114,9 +114,9 @@
           <div class="relative flex-1 min-h-[380px]"><canvas id="portfolioBubbleChart"></canvas></div>
           <div class="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] bg-slate-50 p-2.5 rounded-xl border border-slate-200">
             <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-red-700 mr-1.5"></span><strong>Kelley Business (6)</strong></div>
+            <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-blue-600 mr-1.5"></span><strong>Luddy Computing (6)</strong></div>
             <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-amber-600 mr-1.5"></span><strong>Arts + Sciences (6)</strong></div>
-            <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-blue-600 mr-1.5"></span><strong>Luddy Computing (3)</strong></div>
-            <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-600 mr-1.5"></span><strong>O'Neill Public Affairs (3)</strong></div>
+            <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-600 mr-1.5"></span><strong>O'Neill Public Affairs (5)</strong></div>
           </div>
         </div>
 
@@ -130,7 +130,7 @@
       <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
         <div class="px-6 py-4 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <div>
-            <h3 class="text-base font-bold text-slate-900">IUB Degree Programs &amp; Mapped Occupational Exposure Scorecard (18 Majors)</h3>
+            <h3 class="text-base font-bold text-slate-900">IUB Degree Programs &amp; Mapped Occupational Exposure Scorecard (23 Majors)</h3>
             <p class="text-xs text-slate-500">Click <strong>"Simulate Degree Defense →"</strong> on any degree to test in-school and cross-school curriculum interventions.</p>
           </div>
           <div class="text-xs text-slate-500">
@@ -146,6 +146,7 @@
                 <th class="py-3 px-3">Primary Mapped Occupations (SOC)</th>
                 <th class="py-3 px-3 text-right">Grad Cohort</th>
                 <th class="py-3 px-3 text-right">5-Yr IN Median Wage</th>
+                <th class="py-3 px-3 text-center">5-Yr BLS Growth</th>
                 <th class="py-3 px-3 text-center">Vulnerability (V)</th>
                 <th class="py-3 px-3 text-center">Resilience (R)</th>
                 <th class="py-3 px-3 text-center">5-Yr BLS Shift (2030)</th>
@@ -224,7 +225,7 @@
       <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
         <div class="px-6 py-4 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <div>
-            <h3 class="text-base font-bold text-slate-900">Master Summary of Mapped Occupations (17 SOC Jobs), Associated O*NET Skills &amp; Weighted Scores</h3>
+            <h3 class="text-base font-bold text-slate-900">Master Summary of Mapped Occupations (22 SOC Jobs), Associated O*NET Skills &amp; Weighted Scores</h3>
             <p class="text-xs text-slate-500">Click <strong>"Inspect Skills ↑"</strong> on any job row to load its full O*NET decomposition and 8 cross-school defense pathways above.</p>
           </div>
           <div class="text-xs text-slate-500">
@@ -243,6 +244,7 @@
                 <th class="py-3 px-2 text-center">5-Yr BLS Growth</th>
                 <th class="py-3 px-2 text-center">Job Vuln (V_o)</th>
                 <th class="py-3 px-2 text-center">Job Resil (R_o)</th>
+                <th class="py-3 px-2 text-center">5-Yr BLS Shift (2030)</th>
                 <th class="py-3 px-4 text-right">Action</th>
               </tr>
             </thead>
@@ -374,6 +376,123 @@
           </div>
         </div>
       </div>
+
+      <!-- Complete 22 Two-Digit Major Occupational Groups (SOC 11-0000 through 53-0000) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-6 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+          <h3 class="text-base font-bold text-slate-900 mb-1">All 22 Two-Digit Major Occupational Groups (11- through 53-): Substitution Vulnerability vs. AI Augmented Resilience</h3>
+          <p class="text-xs text-slate-500 mb-3">Complete statewide profile across all 22 <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" class="underline text-red-700">BLS Indiana OEWS Two-Digit SOC Groups (11-0000 through 53-0000)</a>.</p>
+          <div class="h-[680px] flex-1"><canvas id="indianaAllGroupsChart"></canvas></div>
+        </div>
+        <div class="lg:col-span-6 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+          <h3 class="text-base font-bold text-slate-900 mb-1">All Two-Digit Major Occupational Groups Summary (SOC 11-0000 through 53-0000)</h3>
+          <p class="text-xs text-slate-500 mb-3">Comprehensive statewide table covering all 22 two-digit major occupational groups in Indiana.</p>
+          <div class="overflow-x-auto flex-1 max-h-[680px] overflow-y-auto custom-scroll">
+            <table class="w-full text-left border-collapse text-xs">
+              <thead class="sticky top-0 z-10">
+                <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 text-[11px] uppercase">
+                  <th class="py-2.5 px-3">Indiana Occupation / Group (SOC)</th>
+                  <th class="py-2.5 px-2 text-right">IN Wage Benchmark</th>
+                  <th class="py-2.5 px-2 text-center">Vuln (V)</th>
+                  <th class="py-2.5 px-2 text-center">Resil Lift</th>
+                  <th class="py-2.5 px-3">Statewide Upskilling Pathway (IU + DWD)</th>
+                </tr>
+              </thead>
+              <tbody id="indianaAllGroupsTableBody" class="divide-y divide-slate-200"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Map of Indiana's 15 Metropolitan Statistical Areas (MSAs) -->
+      <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2 pb-4 border-b border-slate-200">
+          <div>
+            <span class="text-[11px] font-bold uppercase tracking-wider text-red-700">Regional Labor Market Geography • BLS OEWS Metropolitan Statistical Areas</span>
+            <h3 class="text-base font-bold text-slate-900 mt-0.5">Interactive Map of Indiana’s 15 Metropolitan Statistical Areas (MSAs): Top 3 Two-Digit Occupations by MSA</h3>
+            <p class="text-xs text-slate-500">Hover over any of the <strong>15 Indiana MSAs</strong> on the map (or in the regional cards on the right) to inspect its <strong>three largest two-digit major occupational groups</strong> and their <strong>Substitution Vulnerability (V)</strong> and <strong>AI Augmented Resilience (R)</strong> scores.</p>
+          </div>
+          <div class="flex items-center gap-3 text-xs">
+            <a href="https://www.bls.gov/oes/2023/may/oessrcma.htm" target="_blank" class="text-red-700 underline font-semibold whitespace-nowrap">BLS OEWS Metro Data ↗</a>
+            <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" class="text-red-700 underline font-semibold whitespace-nowrap">Indiana State OEWS ↗</a>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-5 items-start">
+          <!-- Left: Interactive SVG Map of Indiana with Floating Mouseover Tooltip -->
+          <div class="lg:col-span-6 relative bg-slate-900 rounded-2xl p-4 border border-slate-800 shadow-inner flex flex-col items-center">
+            <div class="w-full flex items-center justify-between text-[11px] text-slate-300 mb-2 px-1">
+              <span><strong>15 BLS OEWS MSAs</strong> • Hover node for Top 3 Two-Digit SOCs</span>
+              <div class="flex items-center gap-2">
+                <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-red-500 inline-block"></span>Higher V</span>
+                <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span>Balanced</span>
+                <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span>Higher R</span>
+              </div>
+            </div>
+
+            <div id="indianaMsaMapWrapper" class="relative w-full max-w-[440px] select-none">
+              <svg id="indianaMsaSvg" viewBox="0 0 420 560" class="w-full h-auto drop-shadow-md">
+                <defs>
+                  <linearGradient id="inStateGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#1e293b" />
+                    <stop offset="100%" stop-color="#0f172a" />
+                  </linearGradient>
+                  <filter id="msaGlow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.5" />
+                  </filter>
+                </defs>
+
+                <!-- Lake Michigan Water Feature (NW Corner) -->
+                <path d="M 78,35 L 138,35 Q 118,58 95,56 L 78,48 Z" fill="#0ea5e9" fill-opacity="0.22" stroke="#38bdf8" stroke-width="1" />
+                <text x="84" y="28" fill="#38bdf8" font-size="8" font-weight="bold" letter-spacing="0.06em">LAKE MICHIGAN</text>
+
+                <!-- State of Indiana Accurate Geographic Boundary Polygon -->
+                <path d="M 138,35 L 362,35 L 365,412 L 348,430 L 318,442 L 292,468 L 265,482 L 235,488 L 208,504 L 172,498 L 142,516 L 105,522 L 62,526 L 56,502 L 66,476 L 74,442 L 64,412 L 72,382 L 80,348 L 78,310 L 78,48 Q 98,58 118,52 Z"
+                      fill="url(#inStateGrad)" stroke="#64748b" stroke-width="2.2" stroke-linejoin="round" />
+
+                <!-- Subtle Regional Grid & Major Interstate Corridors (I-65, I-69, I-70, I-74, I-80/90) -->
+                <g stroke="#334155" stroke-width="1" stroke-dasharray="3,3" fill="none">
+                  <!-- I-80/90 Toll Road -->
+                  <path d="M 85,54 Q 210,50 360,48" />
+                  <!-- I-65 Corridor (NW IN to Lafayette to Indy to Columbus to Louisville) -->
+                  <path d="M 108,68 L 148,196 L 228,278 L 254,362 L 268,462" />
+                  <!-- I-69 Corridor (NE IN to Fort Wayne to Muncie to Indy to Bloomington to Evansville) -->
+                  <path d="M 340,42 L 325,128 L 306,226 L 228,278 L 192,358 L 98,496" />
+                  <!-- I-70 Corridor (Terre Haute to Indy to Richmond) -->
+                  <path d="M 78,318 L 106,318 L 228,278 L 363,272" />
+                  <!-- I-74 Corridor (Covington to Indy to Cincinnati) -->
+                  <path d="M 78,225 L 228,278 L 352,378" />
+                </g>
+
+                <!-- Dynamic MSA Catchment Polygons & Nodes injected by JS -->
+                <g id="indianaMsaPolygonsLayer"></g>
+                <g id="indianaMsaNodesLayer"></g>
+              </svg>
+
+              <!-- Floating Mouseover Tooltip -->
+              <div id="msaHoverTooltip" class="hidden pointer-events-none absolute z-30 w-80 bg-slate-950/95 text-white p-3.5 rounded-xl border border-red-500/60 shadow-2xl text-xs backdrop-blur-md"></div>
+            </div>
+
+            <div class="w-full mt-2 pt-2 border-t border-slate-800 flex items-center justify-between text-[10px] text-slate-400 px-1">
+              <span>Bubble radius = Log(MSA Total Employment)</span>
+              <span>★ Bloomington MSA = Home of IU Bloomington</span>
+            </div>
+          </div>
+
+          <!-- Right: Active MSA Spotlight Card + Interactive 15-MSA Directory Grid -->
+          <div class="lg:col-span-6 flex flex-col space-y-4">
+            <div id="msaSpotlightCard" class="p-4 rounded-2xl bg-slate-50 border-2 border-red-800/30 shadow-sm"></div>
+
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700">All 15 Indiana MSAs — Hover or Click Any MSA to Inspect Top 3 Two-Digit Occupations</h4>
+                <span class="text-[11px] text-slate-500">Sorted by MSA Employment</span>
+              </div>
+              <div id="msaDirectoryGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-[385px] overflow-y-auto custom-scroll pr-1"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
   </main>
@@ -429,6 +548,10 @@
       "INFO-I308": { code: "INFO-I 308", title: "Information Representation & Knowledge Graph Design", unit: "Luddy Computing", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 4.6, rLift: 5.7, targets: [0,2,3], url: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html" },
       "DSCI-D490": { code: "DSCI-D 490", title: "Causal Inference, LLMOps & Experimental Decision Systems", unit: "Luddy Computing", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.4, rLift: 6.5, targets: [0,1,2,3], url: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html" },
       "LUDDY-DSC": { code: "LUDDY-DS-CERT", title: "Luddy Online Certificate in Applied Data Science (12 Cr)", unit: "Luddy Computing", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 4.9, rLift: 6.2, targets: [1,2,3], url: "https://eskenazi.indiana.edu/graduate/mdl.html" },
+      "ENGR-E312": { code: "ENGR-E 312", title: "Robotics, Cyber-Physical Systems & Sensor Fusion", unit: "Luddy Computing", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.5, rLift: 6.8, targets: [0,1,2], url: "https://luddy.iu.edu/academics/undergraduate/bs-robotics.html" },
+      "ENGR-E433": { code: "ENGR-E 433", title: "Autonomous Kinematics, Control Theory & Embedded AI", unit: "Luddy Computing", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 5.0, rLift: 6.5, targets: [2,3,4], url: "https://luddy.iu.edu/academics/undergraduate/bs-robotics.html" },
+      "INFO-I430": { code: "INFO-I 430", title: "Security for Networked Systems & Zero-Trust Architecture", unit: "Luddy Computing", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.6, rLift: 6.7, targets: [0,1,2], url: "https://luddy.iu.edu/academics/undergraduate/bs-cyber-security-global-policy.html" },
+      "INFO-I422": { code: "INFO-I 422", title: "Data Visualization, BI Architecture & Executive Dashboards", unit: "Luddy Computing", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.3, rLift: 6.4, targets: [0,1,2], url: "https://luddy.iu.edu/academics/undergraduate/index.html" },
       "ECON-E472": { code: "ECON-E 472", title: "Computational Econometrics & AI Counterfactual Simulation", unit: "Arts + Sciences", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.2, rLift: 6.4, targets: [0,1,2], url: "https://college.indiana.edu/research-creative-activity/index.html" },
       "ENG-W415": { code: "ENG-W 415", title: "Editorial AI Governance, Fact Auditing & Content Architecture", unit: "Arts + Sciences", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 6.2, rLift: 7.4, targets: [0,1,2,3], url: "https://college.indiana.edu/research-creative-activity/index.html" },
       "BIOL-L410": { code: "BIOL-L 410", title: "Computational Genomics, AlphaFold Bio & Lab Automation", unit: "Arts + Sciences", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 4.8, rLift: 6.6, targets: [1,2], url: "https://college.indiana.edu/research-creative-activity/index.html" },
@@ -441,15 +564,19 @@
       "MATH-M301": { code: "MATH-M 301", title: "Linear Algebra & High-Dimensional Matrix Applications", unit: "Arts + Sciences", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.0, rLift: 6.3, targets: [0,1,2], url: "https://bulletin.college.indiana.edu/programs/4255/MATHBS1" },
       "MATH-M371": { code: "MATH-M 371", title: "Elementary Computational Methods & PDEs (MATH-M 442)", unit: "Arts + Sciences", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.4, rLift: 6.7, targets: [0,1,2], url: "https://bulletin.college.indiana.edu/programs/4195/MATHBA/" },
       "MATH-M391": { code: "MATH-M 391", title: "Formal Mathematical Reasoning, Logic & Proof Verification", unit: "Arts + Sciences", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 4.8, rLift: 6.5, targets: [2,3,4], url: "https://bulletin.college.indiana.edu/programs/4195/MATHBA/" },
-      "SPEA-V450": { code: "SPEA-V 450", title: "AI Governance, Public Procurement & Civic Negotiation", unit: "O'Neill Public Affairs", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 4.9, rLift: 6.2, targets: [0,3,4], url: "https://oneill.indiana.edu/undergraduate/degrees-majors/index.html" },
+      "SPEA-V450": { code: "SPEA-V 450", title: "AI Governance, Public Procurement & Civic Negotiation", unit: "O'Neill Public Affairs", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 4.9, rLift: 6.2, targets: [0,3,4], url: "https://oneill.indiana.edu/undergraduate/course-advising/courses/v450.html" },
+      "SPEA-V370": { code: "SPEA-V 370", title: "Research Methods & Statistical Modeling in Public Affairs", unit: "O'Neill Public Affairs", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.1, rLift: 6.4, targets: [0,1,2], url: "https://oneill.indiana.edu/undergraduate/degrees-majors/bspa.html" },
+      "SPEA-V326": { code: "SPEA-V 326", title: "Communication & Stakeholder Leadership for Gov & Nonprofits", unit: "O'Neill Public Affairs", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 4.5, rLift: 5.9, targets: [2,3,4], url: "https://oneill.indiana.edu/undergraduate/degrees-majors/public-management.html" },
+      "SPEA-A354": { code: "SPEA-A 354", title: "Arts Marketing Fundamentals & Audience AI Analytics", unit: "O'Neill Public Affairs", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.4, rLift: 6.6, targets: [0,1,2], url: "https://oneill.indiana.edu/undergraduate/degrees-majors/arts-management.html" },
+      "SPEA-A439": { code: "SPEA-A 439", title: "Fund Development, Philanthropy & Cultural Stewardship (SPEA-A 401)", unit: "O'Neill Public Affairs", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 4.8, rLift: 6.3, targets: [2,3,4], url: "https://oneill.indiana.edu/undergraduate/degrees-majors/arts-management.html" },
       "SPEA-E418": { code: "SPEA-E 418", title: "Geospatial AI Remote Sensing & NEPA Regulatory Compliance", unit: "O'Neill Public Affairs", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 4.8, rLift: 6.1, targets: [1,2,3], url: "https://oneill.indiana.edu/undergraduate/degrees-majors/index.html" },
       "SPEA-H452": { code: "SPEA-H 452", title: "Clinical AI Workflow Governance & Healthcare Operations", unit: "O'Neill Public Affairs", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.1, rLift: 6.4, targets: [0,1,2], url: "https://oneill.indiana.edu/undergraduate/degrees-majors/index.html" },
       "ONEILL-PBFM": { code: "ONEILL-PBFM", title: "O'Neill Certificate in Public Budgeting & Financial Mgmt (15 Cr)", unit: "O'Neill Public Affairs", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 4.5, rLift: 5.8, targets: [1,2,4], url: "https://eskenazi.indiana.edu/graduate/mdl.html" },
       "IU-EXP-210": { code: "IU-EXP-210", title: "Enterprise AI Copilot, Prompt Auditing & Governance Badge", unit: "IU Expand Non-Credit", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 4.2, rLift: 5.4, targets: [0,1], url: "https://iuonline.iu.edu/program-support/quality-matters/quality-checklist.html" },
-      "NLJ-CLOUD9": { code: "NLJ-CLOUD-9", title: "Indiana Next Level Jobs Cloud, GIS & AI SecOps Grant", unit: "Indiana Next Level Jobs", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 4.3, rLift: 5.5, targets: [1,2,3], url: "https://www.in.gov/dwd/nextleveljobs/workforce-ready-grant/" }
+      "NLJ-CLOUD9": { code: "NLJ-CLOUD-9", title: "Indiana Next Level Jobs Cloud, Robotics & AI SecOps Grant", unit: "Indiana Next Level Jobs", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 4.3, rLift: 5.5, targets: [1,2,3], url: "https://www.in.gov/dwd/nextleveljobs/workforce-ready-grant/" }
     };
 
-    // 17 Specific Occupations (SOC) with 5-Year BLS Employment Projections (epGrowth5Yr)
+    // 22 Specific Occupations (SOC) with 5-Year BLS Employment Projections (epGrowth5Yr)
     const JOBS = [
       {
         id: "soc-13-2011", soc: "13-2011", onet: "13-2011.00", title: "Accountants and Auditors",
@@ -480,7 +607,7 @@
       {
         id: "soc-13-1111", soc: "13-1111", onet: "13-1111.00", title: "Management Analysts",
         schools: ["Kelley School of Business", "O'Neill School of Public & Environmental Affairs", "College of Arts and Sciences"],
-        majors: ["Management B.S.B.", "Business Analytics B.S.B.", "Public Mgmt B.S.P.A.", "Economics B.A./B.S."],
+        majors: ["Management B.S.B.", "Business Analytics B.S.B.", "Public Affairs B.S.P.A.", "Economics B.A./B.S."],
         inEmp: 11280, inMeanWage: 89650, inWageNote: "$89,650 IN annual mean", epGrowth5Yr: 5.4,
         courseIds: ["BUS-J285","BUS-K353","BUS-Z447","INFO-I427","ECON-E472","SPEA-V450","ENG-W415","IU-EXP-210"],
         skills: [
@@ -493,9 +620,9 @@
       },
       {
         id: "soc-11-2021", soc: "11-2021", onet: "11-2021.00", title: "Marketing Managers",
-        schools: ["Kelley School of Business"], majors: ["Marketing B.S.B. (52.1401)"],
+        schools: ["Kelley School of Business", "O'Neill School of Public & Environmental Affairs"], majors: ["Marketing B.S.B. (52.1401)", "Arts Management B.S.A.M. (50.1002)"],
         inEmp: 3380, inMeanWage: 131620, inWageNote: "$63.28/hr ($131,620/yr) IN OEWS verified", epGrowth5Yr: 4.1,
-        courseIds: ["BUS-M455","KELLEY-PM","BUS-K353","ENG-W415","INFO-I427","ECON-E472","BUS-Z447","IU-EXP-210"],
+        courseIds: ["BUS-M455","KELLEY-PM","BUS-K353","SPEA-A354","ENG-W415","INFO-I427","BUS-Z447","IU-EXP-210"],
         skills: [
           { id: "sk-1", code: "4.A.2.b.2", name: "Developing Promotional Copy & Multimodal Assets (O*NET DWA)", imp: 4.3, lvl: 4.8, weight: 0.24, v: 80, r: 62, driver: "Direct multimodal generative content automation" },
           { id: "sk-2", code: "4.A.2.a.4", name: "Analyzing Consumer Attribution & Campaign Telemetry (O*NET GWA)", imp: 4.4, lvl: 4.9, weight: 0.23, v: 66, r: 72, driver: "AI marketing analytics copilot leverage" },
@@ -546,17 +673,59 @@
         ]
       },
       {
-        id: "soc-15-2051", soc: "15-2051", onet: "15-2051.00", title: "Data Scientists & Business Analytics Specialists",
+        id: "soc-15-2051", soc: "15-2051", onet: "15-2051.00", title: "Data Scientists",
         schools: ["Luddy School of Informatics, Computing, & Engineering", "Kelley School of Business", "College of Arts and Sciences"],
-        majors: ["Data Science B.S. (30.7001)", "Business Analytics B.S.B. (52.1301)", "Mathematics B.S. (27.0101)"],
+        majors: ["Data Science B.S. (30.7001)", "Business Intelligence Data Science B.S.", "Business Analytics B.S.B."],
         inEmp: 2640, inMeanWage: 102500, inWageNote: "$102,500 IN annual mean", epGrowth5Yr: 17.9,
-        courseIds: ["DSCI-D490","BUS-K353","BUS-G350","MATH-M301","GEOG-G488","CSCI-B455","ECON-E472","IU-EXP-210"],
+        courseIds: ["DSCI-D490","INFO-I422","BUS-K353","BUS-G350","MATH-M301","GEOG-G488","CSCI-B455","IU-EXP-210"],
         skills: [
           { id: "sk-1", code: "2.B.3.e", name: "Exploratory SQL/Python Data Wrangling & Plotting (O*NET DWA)", imp: 4.7, lvl: 5.5, weight: 0.26, v: 77, r: 79, driver: "Automated code-interpreter & SQL synthesis" },
           { id: "sk-2", code: "2.A.1.e", name: "Baseline Predictive Model Fitting & Feature Tuning (O*NET Skill)", imp: 4.6, lvl: 5.4, weight: 0.22, v: 66, r: 83, driver: "AutoML & LLM pipeline code generation" },
           { id: "sk-3", code: "2.A.2.b", name: "Causal Identification & Experimental Design under Bias (O*NET Skill)", imp: 4.6, lvl: 5.5, weight: 0.22, v: 32, r: 94, driver: "Requires structural domain assumptions" },
           { id: "sk-4", code: "2.B.4.e", name: "Foundation Model Fine-Tuning, RAG & Evaluation (O*NET DWA)", imp: 4.5, lvl: 5.3, weight: 0.18, v: 30, r: 95, driver: "Direct frontier AI engineering leadership" },
           { id: "sk-5", code: "4.A.4.a.2", name: "Executive Decision Framing & Uncertainty Governance (O*NET GWA)", imp: 4.2, lvl: 4.8, weight: 0.12, v: 24, r: 91, driver: "Strategic risk translation" }
+        ]
+      },
+      {
+        id: "soc-17-2199", soc: "17-2199.08", onet: "17-2199.08", title: "Robotics & Autonomous Systems Engineers (17-2199.08 / 17-2141)",
+        schools: ["Luddy School of Informatics, Computing, & Engineering"],
+        majors: ["Robotics B.S. (14.4201)", "Computer Science B.S. (11.0701)"],
+        inEmp: 6420, inMeanWage: 96800, inWageNote: "$96,800 IN annual mean", epGrowth5Yr: 5.6,
+        courseIds: ["ENGR-E312","ENGR-E433","CSCI-B455","MATH-M371","GEOG-G485","BUS-K315","SPEA-E418","NLJ-CLOUD9"],
+        skills: [
+          { id: "sk-1", code: "2.B.3.e", name: "Routine PLC / Microcontroller Code & Simulation Scripting (O*NET DWA)", imp: 4.5, lvl: 5.1, weight: 0.22, v: 69, r: 78, driver: "AI code synthesis for embedded C++/ROS templates" },
+          { id: "sk-2", code: "2.B.3.b", name: "Sensor Fusion, SLAM & Computer Vision Perception (O*NET Skill)", imp: 4.7, lvl: 5.5, weight: 0.24, v: 46, r: 90, driver: "Multimodal physical-world perception complementarity" },
+          { id: "sk-3", code: "2.B.3.c", name: " electromechanical Actuator Design & Hardware Prototyping (O*NET GWA)", imp: 4.6, lvl: 5.4, weight: 0.22, v: 21, r: 92, driver: "Physical hardware bench testing & mechatronics" },
+          { id: "sk-4", code: "2.B.4.e", name: "Real-Time Control Theory, Kinematics & Safety Verification (O*NET Skill)", imp: 4.6, lvl: 5.5, weight: 0.18, v: 28, r: 94, driver: "Hard real-time physical safety & stability guarantees" },
+          { id: "sk-5", code: "4.A.3.b.4", name: "Human-Robot Interaction (HRI) & Factory Floor Commissioning (O*NET DWA)", imp: 4.2, lvl: 4.8, weight: 0.14, v: 19, r: 91, driver: "On-site physical environment calibration" }
+        ]
+      },
+      {
+        id: "soc-15-1212", soc: "15-1212", onet: "15-1212.00", title: "Information Security Analysts & Cyber Policy Specialists",
+        schools: ["Luddy School of Informatics, Computing, & Engineering", "Kelley School of Business", "College of Arts and Sciences"],
+        majors: ["Cybersecurity B.S. (11.1003)", "Information Systems B.S.B. (52.1201)", "Criminology & Criminal Justice B.A."],
+        inEmp: 2840, inMeanWage: 104200, inWageNote: "$104,200 IN annual mean", epGrowth5Yr: 16.4,
+        courseIds: ["INFO-I430","CSCI-C437","CJUS-P314","SPEA-V450","BUS-S400","BUS-A437","MATH-M391","NLJ-CLOUD9"],
+        skills: [
+          { id: "sk-1", code: "4.A.3.a.2", name: "Routine SIEM Log Triage & Vulnerability Compliance Reporting (O*NET DWA)", imp: 4.5, lvl: 5.0, weight: 0.24, v: 74, r: 76, driver: "Automated AI SOC log summarization & alert filtering" },
+          { id: "sk-2", code: "2.B.3.k", name: "Penetration Testing, Exploit Analysis & Patch Verification (O*NET Skill)", imp: 4.7, lvl: 5.5, weight: 0.22, v: 52, r: 88, driver: "High offensive/defensive AI co-pilot leverage" },
+          { id: "sk-3", code: "2.B.4.e", name: "Zero-Trust Cloud Architecture & Cryptographic Hardening (O*NET Skill)", imp: 4.6, lvl: 5.4, weight: 0.22, v: 31, r: 93, driver: "Structural enterprise security architecture" },
+          { id: "sk-4", code: "4.A.2.b.1", name: "Adversarial AI Red-Teaming & Incident Crisis Response (O*NET DWA)", imp: 4.5, lvl: 5.3, weight: 0.18, v: 24, r: 94, driver: "High-stakes live breach containment" },
+          { id: "sk-5", code: "4.A.1.b.3", name: "Cross-Border Cyber Law, Privacy & National Security Policy (O*NET GWA)", imp: 4.2, lvl: 4.8, weight: 0.14, v: 26, r: 90, driver: "International regulatory & legal accountability" }
+        ]
+      },
+      {
+        id: "soc-15-2051-bi", soc: "15-2051.01", onet: "15-2051.01", title: "Business Intelligence Analysts & Decision Architects",
+        schools: ["Luddy School of Informatics, Computing, & Engineering", "Kelley School of Business"],
+        majors: ["Business Intelligence Data Science B.S. (30.7001)", "Business Analytics B.S.B. (52.1301)", "Information Systems B.S.B."],
+        inEmp: 4120, inMeanWage: 94600, inWageNote: "$94,600 IN annual mean", epGrowth5Yr: 11.8,
+        courseIds: ["INFO-I422","DSCI-D490","BUS-K353","BUS-K327","BUS-G350","BUS-S355","ECON-E472","IU-EXP-210"],
+        skills: [
+          { id: "sk-1", code: "4.A.3.a.2", name: "Routine SQL KPI Reporting & Standard Tableau/PowerBI Dashboards (O*NET DWA)", imp: 4.6, lvl: 5.2, weight: 0.26, v: 80, r: 74, driver: "Text-to-SQL & automated BI chart generation" },
+          { id: "sk-2", code: "4.A.2.a.4", name: "Enterprise Data Warehouse Modeling & ETL Pipeline Governance (O*NET DWA)", imp: 4.5, lvl: 5.1, weight: 0.22, v: 62, r: 82, driver: "AI-augmented schema & semantic-layer engineering" },
+          { id: "sk-3", code: "2.A.2.b", name: "Causal Revenue Attribution & Pricing Experimentation (O*NET Skill)", imp: 4.4, lvl: 5.0, weight: 0.20, v: 40, r: 89, driver: "Counterfactual business experiment design" },
+          { id: "sk-4", code: "2.B.4.g", name: "Decision-Support Agent Orchestration & KPI Ontology Design (O*NET Skill)", imp: 4.3, lvl: 4.9, weight: 0.18, v: 36, r: 90, driver: "Governing enterprise AI truth layers" },
+          { id: "sk-5", code: "4.A.4.a.6", name: "Executive Boardroom Storytelling & Strategic Alignment (O*NET GWA)", imp: 4.2, lvl: 4.8, weight: 0.14, v: 27, r: 90, driver: "High-trust executive decision advising" }
         ]
       },
       {
@@ -576,7 +745,7 @@
       {
         id: "soc-19-3011", soc: "19-3011", onet: "19-3011.00", title: "Economists",
         schools: ["College of Arts and Sciences", "Kelley School of Business", "O'Neill School of Public & Environmental Affairs"],
-        majors: ["Economics B.A./B.S. (45.0601)", "Business Analytics B.S.B.", "Public Policy B.S.P.A."],
+        majors: ["Economics B.A./B.S. (45.0601)", "Business Analytics B.S.B.", "Public Affairs B.S.P.A."],
         inEmp: 210, inMeanWage: 96400, inWageNote: "$96,400 IN annual mean", epGrowth5Yr: 2.7,
         courseIds: ["ECON-E472","BUS-G350","MATH-M301","DSCI-D490","SPEA-V450","BUS-J285","GEOG-G488","IU-EXP-210"],
         skills: [
@@ -615,8 +784,8 @@
       },
       {
         id: "soc-33-3021", soc: "33-3021", onet: "33-3021.00", title: "Detectives, Criminal Investigators & Intelligence Analysts",
-        schools: ["College of Arts and Sciences", "O'Neill School of Public & Environmental Affairs"],
-        majors: ["Criminology & Criminal Justice B.A. (43.0104)", "Public Management & Policy B.S.P.A."],
+        schools: ["College of Arts and Sciences", "O'Neill School of Public & Environmental Affairs", "Luddy School of Informatics, Computing, & Engineering"],
+        majors: ["Criminology & Criminal Justice B.A. (43.0104)", "Cybersecurity B.S. (11.1003)", "Public Management & Policy B.S.P.A."],
         inEmp: 2140, inMeanWage: 76400, inWageNote: "$76,400 IN annual mean", epGrowth5Yr: 2.3,
         courseIds: ["CJUS-P299","CJUS-P200","CJUS-P314","CSCI-C437","SPEA-V450","GEOG-G485","INFO-I427","BUS-A437"],
         skills: [
@@ -644,7 +813,7 @@
       {
         id: "soc-11-1021", soc: "11-1021", onet: "11-1021.00", title: "General and Operations Managers",
         schools: ["O'Neill School of Public & Environmental Affairs", "Kelley School of Business"],
-        majors: ["Management B.S.B. (52.0201)", "Public Management & Policy B.S.P.A. (44.0401)"],
+        majors: ["Management B.S.B. (52.0201)", "Public Management & Policy B.S.P.A. (44.0401)", "Public Affairs B.S.P.A."],
         inEmp: 54120, inMeanWage: 129530, inWageNote: "$62.28/hr ($129,530/yr) IN OEWS verified", epGrowth5Yr: 2.9,
         courseIds: ["BUS-Z447","BUS-J285","SPEA-V450","ONEILL-PBFM","BUS-K315","INFO-I427","ECON-E472","IU-EXP-210"],
         skills: [
@@ -653,6 +822,34 @@
           { id: "sk-3", code: "2.B.4.g", name: "Program Performance Evaluation & Resource Allocation (O*NET Skill)", imp: 4.4, lvl: 4.8, weight: 0.20, v: 42, r: 82, driver: "Strategic operational trade-offs" },
           { id: "sk-4", code: "2.B.1.d", name: "Multi-Stakeholder Negotiation & Coalition Building (O*NET Skill)", imp: 4.5, lvl: 5.1, weight: 0.18, v: 21, r: 90, driver: "High interpersonal leadership & conflict resolution" },
           { id: "sk-5", code: "2.B.5.d", name: "Management of Personnel & Public Accountability (O*NET Skill)", imp: 4.6, lvl: 5.2, weight: 0.16, v: 26, r: 88, driver: "Direct human supervision & statutory governance" }
+        ]
+      },
+      {
+        id: "soc-19-3094", soc: "19-3094", onet: "19-3094.00", title: "Public Policy Analysts & Legislative Affairs Specialists",
+        schools: ["O'Neill School of Public & Environmental Affairs", "College of Arts and Sciences"],
+        majors: ["Public Affairs B.S.P.A. (44.0501)", "Public Management & Policy B.S.P.A. (44.0401)", "Economics B.A./B.S."],
+        inEmp: 1950, inMeanWage: 84900, inWageNote: "$84,900 IN annual mean", epGrowth5Yr: 3.8,
+        courseIds: ["SPEA-V370","SPEA-V326","SPEA-V450","ONEILL-PBFM","ECON-E472","CJUS-P314","BUS-G350","INFO-I427"],
+        skills: [
+          { id: "sk-1", code: "2.A.1.b", name: "Legislative Bill Tracking, Statutory Synthesis & Memo Drafting (O*NET DWA)", imp: 4.6, lvl: 5.1, weight: 0.24, v: 76, r: 66, driver: "LLM legislative & regulatory text summarization" },
+          { id: "sk-2", code: "4.A.2.a.4", name: "Fiscal Impact & Cost-Benefit Econometric Modeling (O*NET DWA)", imp: 4.5, lvl: 5.0, weight: 0.22, v: 58, r: 78, driver: "AI-augmented policy simulation & microsimulation" },
+          { id: "sk-3", code: "2.A.2.a", name: "Program Evaluation & Causal Policy Impact Assessment (O*NET Skill)", imp: 4.4, lvl: 4.9, weight: 0.20, v: 40, r: 85, driver: "Counterfactual policy design & equity auditing" },
+          { id: "sk-4", code: "4.A.4.a.6", name: "Bipartisan Coalition Building & Stakeholder Deliberation (O*NET GWA)", imp: 4.5, lvl: 5.0, weight: 0.18, v: 20, r: 91, driver: "High-trust political & civic negotiation" },
+          { id: "sk-5", code: "2.B.4.h", name: "Public Ethics, Algorithmic Governance & Democratic Accountability (O*NET Skill)", imp: 4.3, lvl: 4.8, weight: 0.16, v: 24, r: 89, driver: "Constitutional & public-interest oversight" }
+        ]
+      },
+      {
+        id: "soc-11-9151-arts", soc: "11-9151", onet: "11-9151.00", title: "Arts, Cultural & Nonprofit Program Directors (11-9151 / 27-2012)",
+        schools: ["O'Neill School of Public & Environmental Affairs", "Kelley School of Business"],
+        majors: ["Arts Management B.S.A.M. (50.1002)", "Marketing B.S.B. (52.1401)"],
+        inEmp: 2460, inMeanWage: 72800, inWageNote: "$72,800 IN annual mean", epGrowth5Yr: 4.4,
+        courseIds: ["SPEA-A354","SPEA-A439","SPEA-V326","ONEILL-PBFM","BUS-M455","BUS-Z447","ENG-W415","INFO-I427"],
+        skills: [
+          { id: "sk-1", code: "4.A.3.a.2", name: "Grant Proposal Drafting, Ticketing Copy & Donor Newsletters (O*NET DWA)", imp: 4.4, lvl: 4.8, weight: 0.24, v: 78, r: 64, driver: "Generative AI copywriting & grant template drafting" },
+          { id: "sk-2", code: "4.A.2.a.4", name: "Audience Segmentation, Patron CRM & Box-Office Analytics (O*NET DWA)", imp: 4.3, lvl: 4.7, weight: 0.22, v: 62, r: 76, driver: "AI-assisted patron churn & dynamic pricing models" },
+          { id: "sk-3", code: "2.B.5.b", name: "Nonprofit Endowment, Financial & Venue Operations Mgmt (O*NET Skill)", imp: 4.3, lvl: 4.7, weight: 0.20, v: 46, r: 81, driver: "Fiduciary & physical venue production management" },
+          { id: "sk-4", code: "2.B.1.c", name: "Major-Gift Philanthropy, Patron Stewardship & Board Relations (O*NET Skill)", imp: 4.6, lvl: 5.2, weight: 0.18, v: 18, r: 92, driver: "Deep personal relationship trust & donor cultivation" },
+          { id: "sk-5", code: "4.A.2.b.2", name: "Artistic Curation, Cultural Programming & Artist Negotiation (O*NET GWA)", imp: 4.5, lvl: 5.0, weight: 0.16, v: 22, r: 90, driver: "Human aesthetic taste & community cultural identity" }
         ]
       },
       {
@@ -684,7 +881,7 @@
       }
     ];
 
-    // 18 IUB Degree Programs with 5-Year (2030) Forecast Scores & 5-Year Wage Cohorts (y1, y3, y5)
+    // 23 IUB Degree Programs (6 Kelley, 6 Luddy, 6 Arts & Sciences, 5 O'Neill)
     const PROGRAMS = [
       {
         id: "kelley-acct", name: "Accounting B.S.B.", cip: "52.0301", school: "Kelley School of Business", shortSchool: "Kelley Business",
@@ -867,6 +1064,66 @@
         ]
       },
       {
+        id: "luddy-rob", name: "Robotics B.S.", cip: "14.4201", school: "Luddy School of Informatics, Computing, & Engineering", shortSchool: "Luddy Computing",
+        schoolUrl: "https://luddy.iu.edu/academics/undergraduate/bs-robotics.html",
+        grads: 140, inStateRet: 0.58, wages: { y1: 81500, y3: 93400, y5: 105600 },
+        socs: "17-2199.08 Robotics Engineers ($96,800 IN mean); 17-2141 Mechatronics Engineers",
+        courseIds: ["ENGR-E312","ENGR-E433","CSCI-B455","MATH-M371","GEOG-G485","BUS-K315","SPEA-E418","NLJ-CLOUD9"],
+        naicsFlows: [
+          { sector: "31-33 Advanced Manufacturing, Automotive & Aerospace Robotics", share: 0.52, topSoc: "17-2199.08 Robotics & Autonomous Engineers" },
+          { sector: "54 Autonomous Systems R&D & Defense Engineering", share: 0.30, topSoc: "15-1252 Embedded & Robotics Software Engineers" },
+          { sector: "62/32 Medical Devices & Surgical Automation", share: 0.18, topSoc: "17-2031 Bioinstrumentation & Robotics Engineers" }
+        ],
+        scores: { composite: { v2025: 38.6, r2025: 88.7, v2030: 37.3, r2030: 90.4 }, eloundou_e2: { v2025: 43.5, r2025: 91.0, v2030: 42.1, r2030: 92.5 }, anthropic: { v2025: 36.4, r2025: 89.8, v2030: 35.2, r2030: 91.4 }, felten: { v2025: 35.9, r2025: 85.3, v2030: 34.6, r2030: 87.3 } },
+        skills: [
+          { id: "s1", name: "Routine PLC / Microcontroller Code & Simulation Scripting", weight: 0.22, v: 69, r: 78, driver: "AI code synthesis for embedded C++/ROS templates" },
+          { id: "s2", name: "Sensor Fusion, SLAM & Computer Vision Perception", weight: 0.24, v: 46, r: 90, driver: "Multimodal physical-world perception complementarity" },
+          { id: "s3", name: "Electromechanical Actuator Design & Hardware Prototyping", weight: 0.22, v: 21, r: 92, driver: "Physical hardware bench testing & mechatronics" },
+          { id: "s4", name: "Real-Time Control Theory, Kinematics & Safety Verification", weight: 0.18, v: 28, r: 94, driver: "Hard real-time physical safety & stability guarantees" },
+          { id: "s5", name: "Human-Robot Interaction (HRI) & Physical Commissioning", weight: 0.14, v: 19, r: 91, driver: "On-site physical environment calibration" }
+        ]
+      },
+      {
+        id: "luddy-cyber", name: "Cybersecurity B.S.", cip: "11.1003", school: "Luddy School of Informatics, Computing, & Engineering", shortSchool: "Luddy Computing",
+        schoolUrl: "https://luddy.iu.edu/academics/undergraduate/bs-cyber-security-global-policy.html",
+        grads: 230, inStateRet: 0.57, wages: { y1: 79800, y3: 92400, y5: 104200 },
+        socs: "15-1212 Information Security Analysts ($104,200 IN mean); 15-1241 Network Architects",
+        courseIds: ["INFO-I430","CSCI-C437","CJUS-P314","SPEA-V450","BUS-S400","BUS-A437","MATH-M391","NLJ-CLOUD9"],
+        naicsFlows: [
+          { sector: "54 Cybersecurity Consulting, Threat Intel & Cloud SecOps", share: 0.46, topSoc: "15-1212 Information Security Analysts" },
+          { sector: "52 Financial Services, Banking & Critical Infrastructure Defense", share: 0.30, topSoc: "15-1212 Cyber Risk & Compliance Architects" },
+          { sector: "92 National Security, Defense (NSWC Crane) & Cyber Policy", share: 0.24, topSoc: "33-3021 Cyber Threat & Intelligence Analysts" }
+        ],
+        scores: { composite: { v2025: 43.2, r2025: 87.6, v2030: 41.6, r2030: 89.5 }, eloundou_e2: { v2025: 48.8, r2025: 90.2, v2030: 47.0, r2030: 91.8 }, anthropic: { v2025: 40.8, r2025: 89.1, v2030: 39.3, r2030: 90.9 }, felten: { v2025: 40.0, r2025: 83.5, v2030: 38.5, r2030: 85.8 } },
+        skills: [
+          { id: "s1", name: "Routine SIEM Log Triage & Vulnerability Compliance Reporting", weight: 0.24, v: 74, r: 76, driver: "Automated AI SOC log summarization & alert filtering" },
+          { id: "s2", name: "Penetration Testing, Exploit Analysis & Patch Verification", weight: 0.22, v: 52, r: 88, driver: "High offensive/defensive AI co-pilot leverage" },
+          { id: "s3", name: "Zero-Trust Cloud Architecture & Cryptographic Hardening", weight: 0.22, v: 31, r: 93, driver: "Structural enterprise security architecture" },
+          { id: "s4", name: "Adversarial AI Red-Teaming & Incident Crisis Response", weight: 0.18, v: 24, r: 94, driver: "High-stakes live breach containment" },
+          { id: "s5", name: "Cross-Border Cyber Law, Privacy & National Security Policy", weight: 0.14, v: 26, r: 90, driver: "International regulatory & legal accountability" }
+        ]
+      },
+      {
+        id: "luddy-bids", name: "Business Intelligence Data Science B.S.", cip: "30.7001", school: "Luddy School of Informatics, Computing, & Engineering", shortSchool: "Luddy Computing",
+        schoolUrl: "https://luddy.iu.edu/academics/undergraduate/index.html",
+        grads: 185, inStateRet: 0.55, wages: { y1: 78600, y3: 90200, y5: 102400 },
+        socs: "15-2051.01 Business Intelligence Analysts ($94,600 IN mean); 15-2051 Data Scientists",
+        courseIds: ["INFO-I422","DSCI-D490","BUS-K353","BUS-K327","BUS-G350","BUS-S355","ECON-E472","IU-EXP-210"],
+        naicsFlows: [
+          { sector: "54 Enterprise BI Architecture, Data Engineering & Analytics", share: 0.44, topSoc: "15-2051.01 Business Intelligence Analysts" },
+          { sector: "52/51 FinTech, SaaS & Digital Platform Telemetry", share: 0.32, topSoc: "15-2051 Decision & Product Data Scientists" },
+          { sector: "31/62 Life Sciences, Healthcare & Supply Chain BI", share: 0.24, topSoc: "15-1211 Enterprise Analytics Architects" }
+        ],
+        scores: { composite: { v2025: 52.8, r2025: 84.1, v2030: 51.4, r2030: 85.9 }, eloundou_e2: { v2025: 58.6, r2025: 87.2, v2030: 57.0, r2030: 88.8 }, anthropic: { v2025: 50.4, r2025: 85.8, v2030: 49.0, r2030: 87.5 }, felten: { v2025: 49.4, r2025: 79.3, v2030: 48.2, r2030: 81.4 } },
+        skills: [
+          { id: "s1", name: "Routine SQL KPI Reporting & Standard BI Dashboards", weight: 0.26, v: 80, r: 74, driver: "Text-to-SQL & automated BI chart generation" },
+          { id: "s2", name: "Enterprise Data Warehouse Modeling & ETL Governance", weight: 0.22, v: 62, r: 82, driver: "AI-augmented schema & semantic-layer engineering" },
+          { id: "s3", name: "Causal Revenue Attribution & Pricing Experimentation", weight: 0.20, v: 40, r: 89, driver: "Counterfactual business experiment design" },
+          { id: "s4", name: "Decision-Support Agent Orchestration & KPI Ontology Design", weight: 0.18, v: 36, r: 90, driver: "Governing enterprise AI truth layers" },
+          { id: "s5", name: "Executive Boardroom Storytelling & Strategic Alignment", weight: 0.14, v: 27, r: 90, driver: "High-trust executive decision advising" }
+        ]
+      },
+      {
         id: "cas-econ", name: "Economics B.A. / B.S.", cip: "45.0601", school: "College of Arts and Sciences", shortSchool: "Arts + Sciences",
         schoolUrl: "https://college.indiana.edu/research-creative-activity/index.html",
         grads: 310, inStateRet: 0.53, wages: { y1: 63500, y3: 74200, y5: 84600 },
@@ -988,7 +1245,7 @@
       },
       {
         id: "oneill-pmp", name: "Public Management & Policy B.S.P.A.", cip: "44.0401", school: "O'Neill School of Public & Environmental Affairs", shortSchool: "O'Neill Public Affairs",
-        schoolUrl: "https://oneill.indiana.edu/undergraduate/degrees-majors/index.html",
+        schoolUrl: "https://oneill.indiana.edu/undergraduate/degrees-majors/public-management.html",
         grads: 380, inStateRet: 0.66, wages: { y1: 56400, y3: 68200, y5: 79400 },
         socs: "11-1021 General & Operations Managers ($129,530 IN mean); 13-1111 Analysts",
         courseIds: ["SPEA-V450","ONEILL-PBFM","BUS-Z447","BUS-G350","ECON-E472","CJUS-P314","INFO-I427","IU-EXP-210"],
@@ -1004,6 +1261,46 @@
           { id: "s3", name: "Public Program Evaluation & Cost-Benefit Modeling", weight: 0.20, v: 42, r: 82, driver: "Causal policy impact evaluation" },
           { id: "s4", name: "Multi-Stakeholder Coalition Building & Civic Negotiation", weight: 0.18, v: 21, r: 90, driver: "Political consensus & public deliberation" },
           { id: "s5", name: "Public Procurement Governance & Algorithmic Accountability", weight: 0.16, v: 26, r: 88, driver: "Statutory oversight & public trust" }
+        ]
+      },
+      {
+        id: "oneill-pa", name: "Public Affairs B.S.P.A.", cip: "44.0501", school: "O'Neill School of Public & Environmental Affairs", shortSchool: "O'Neill Public Affairs",
+        schoolUrl: "https://oneill.indiana.edu/undergraduate/degrees-majors/bspa.html",
+        grads: 310, inStateRet: 0.64, wages: { y1: 57800, y3: 70400, y5: 82600 },
+        socs: "19-3094 Public Policy Analysts ($84,900 IN mean); 11-1021 Operations Managers",
+        courseIds: ["SPEA-V370","SPEA-V326","SPEA-V450","ONEILL-PBFM","ECON-E472","CJUS-P314","BUS-G350","INFO-I427"],
+        naicsFlows: [
+          { sector: "92 Executive, Legislative & Regulatory Policy Agencies", share: 0.45, topSoc: "19-3094 Policy & Legislative Analysts" },
+          { sector: "54 Public Policy Research, Think Tanks & Civic Consulting", share: 0.33, topSoc: "13-1111 Public Policy Consultants" },
+          { sector: "81 Civic Foundations, Advocacy & International NGOs", share: 0.22, topSoc: "11-9151 Public Interest Program Directors" }
+        ],
+        scores: { composite: { v2025: 45.6, r2025: 80.5, v2030: 44.5, r2030: 82.1 }, eloundou_e2: { v2025: 51.0, r2025: 83.2, v2030: 49.8, r2030: 84.7 }, anthropic: { v2025: 43.2, r2025: 81.9, v2030: 42.1, r2030: 83.4 }, felten: { v2025: 42.6, r2025: 76.4, v2030: 41.6, r2030: 78.2 } },
+        skills: [
+          { id: "s1", name: "Legislative Bill Tracking, Statutory Synthesis & Memo Drafting", weight: 0.24, v: 76, r: 66, driver: "LLM legislative & regulatory text summarization" },
+          { id: "s2", name: "Fiscal Impact & Cost-Benefit Econometric Modeling", weight: 0.22, v: 58, r: 78, driver: "AI-augmented policy simulation & microsimulation" },
+          { id: "s3", name: "Program Evaluation & Causal Policy Impact Assessment", weight: 0.20, v: 40, r: 85, driver: "Counterfactual policy design & equity auditing" },
+          { id: "s4", name: "Bipartisan Coalition Building & Stakeholder Deliberation", weight: 0.18, v: 20, r: 91, driver: "High-trust political & civic negotiation" },
+          { id: "s5", name: "Public Ethics, Algorithmic Governance & Democratic Accountability", weight: 0.16, v: 24, r: 89, driver: "Constitutional & public-interest oversight" }
+        ]
+      },
+      {
+        id: "oneill-arts", name: "Arts Management B.S.A.M.", cip: "50.1002", school: "O'Neill School of Public & Environmental Affairs", shortSchool: "O'Neill Public Affairs",
+        schoolUrl: "https://oneill.indiana.edu/undergraduate/degrees-majors/arts-management.html",
+        grads: 175, inStateRet: 0.58, wages: { y1: 49400, y3: 60200, y5: 72800 },
+        socs: "11-9151 Cultural & Nonprofit Program Directors ($72,800 IN mean); 27-2012 Producers",
+        courseIds: ["SPEA-A354","SPEA-A439","SPEA-V326","ONEILL-PBFM","BUS-M455","BUS-Z447","ENG-W415","INFO-I427"],
+        naicsFlows: [
+          { sector: "71 Performing Arts Companies, Museums & Cultural Institutions", share: 0.50, topSoc: "11-9151 Arts & Cultural Program Directors" },
+          { sector: "81 Philanthropic Foundations, Endowments & Arts Councils", share: 0.28, topSoc: "13-1131 Fundraisers & Major-Gift Officers" },
+          { sector: "51/54 Creative Talent Agencies, Live Events & Media Production", share: 0.22, topSoc: "27-2012 Producers & Creative Managers" }
+        ],
+        scores: { composite: { v2025: 47.2, r2025: 79.3, v2030: 46.0, r2030: 81.1 }, eloundou_e2: { v2025: 52.8, r2025: 82.0, v2030: 51.4, r2030: 83.6 }, anthropic: { v2025: 44.8, r2025: 80.7, v2030: 43.7, r2030: 82.4 }, felten: { v2025: 44.0, r2025: 75.2, v2030: 42.9, r2030: 77.3 } },
+        skills: [
+          { id: "s1", name: "Grant Proposal Drafting, Ticketing Copy & Donor Newsletters", weight: 0.24, v: 78, r: 64, driver: "Generative AI copywriting & grant template drafting" },
+          { id: "s2", name: "Audience Segmentation, Patron CRM & Box-Office Analytics", weight: 0.22, v: 62, r: 76, driver: "AI-assisted patron churn & dynamic pricing models" },
+          { id: "s3", name: "Nonprofit Endowment, Financial & Venue Operations Mgmt", weight: 0.20, v: 46, r: 81, driver: "Fiduciary & physical venue production management" },
+          { id: "s4", name: "Major-Gift Philanthropy, Patron Stewardship & Board Relations", weight: 0.18, v: 18, r: 92, driver: "Deep personal relationship trust & donor cultivation" },
+          { id: "s5", name: "Artistic Curation, Cultural Programming & Artist Negotiation", weight: 0.16, v: 22, r: 90, driver: "Human aesthetic taste & community cultural identity" }
         ]
       },
       {
@@ -1058,7 +1355,233 @@
       { soc: "51-0000", title: "Production & Advanced Manufacturing Occupations", wage: "$23.10/hr mean", payrollB: 28.4, v: 38.2, r: 68.5, lift: "+9.2 R", pathway: "Next Level Jobs Smart Manufacturing Robotics & Digital Twin Grant" }
     ];
 
-    // Default tab is now "portfolio" (1. Provost & Deans Portfolio Matrix)
+    // Complete 22 Two-Digit BLS Major Occupational Groups (SOC 11-0000 through 53-0000)
+    const INDIANA_ALL_MAJOR_GROUPS = [
+      { soc: "11-0000", shortLabel: "11- Management", title: "Management Occupations (Gen Mgrs $129,530/yr mean)", wage: "$56.74/hr mean ($118,010/yr)", payrollB: 31.2, v: 41.5, r: 79.8, lift: "+9.6 R", pathway: "Kelley / O'Neill Executive AI Strategy & Organizational Change" },
+      { soc: "13-0000", shortLabel: "13- Business & Financial", title: "Business & Financial Operations Occupations", wage: "$37.58/hr mean ($78,170/yr)", payrollB: 16.8, v: 62.8, r: 66.4, lift: "+12.8 R", pathway: "Kelley Executive AI Finance & Continuous Audit Micro-Credentials" },
+      { soc: "15-0000", shortLabel: "15- Computer & Math", title: "Computer & Mathematical Occupations", wage: "$46.90/hr mean ($97,550/yr)", payrollB: 12.2, v: 54.6, r: 85.2, lift: "+11.5 R", pathway: "Luddy Agentic Software Engineering & Kelley IS AI Solutions Certificates" },
+      { soc: "17-0000", shortLabel: "17- Architecture & Eng.", title: "Architecture & Engineering Occupations", wage: "$43.80/hr mean ($91,100/yr)", payrollB: 7.4, v: 39.4, r: 84.8, lift: "+9.4 R", pathway: "Luddy Intelligent Systems, Robotics & Digital Twin Engineering Cert" },
+      { soc: "19-0000", shortLabel: "19- Life, Phys & Soc Sci", title: "Life, Physical, & Social Science Occupations", wage: "$36.20/hr mean ($75,300/yr)", payrollB: 2.9, v: 37.8, r: 81.9, lift: "+9.1 R", pathway: "College of Arts + Sciences & O'Neill Bioinformatics & Spatial AI Badge" },
+      { soc: "21-0000", shortLabel: "21- Community & Social", title: "Community & Social Service Occupations", wage: "$25.40/hr mean ($52,830/yr)", payrollB: 3.1, v: 33.6, r: 76.2, lift: "+8.4 R", pathway: "O'Neill & IU School of Social Work Case-Management Copilot Training" },
+      { soc: "23-0000", shortLabel: "23- Legal", title: "Legal Occupations", wage: "$51.20/hr mean ($106,500/yr)", payrollB: 2.6, v: 61.4, r: 74.5, lift: "+11.9 R", pathway: "IU Maurer School of Law & O'Neill Legal NLP Discovery & AI Governance" },
+      { soc: "25-0000", shortLabel: "25- Education & Library", title: "Educational Instruction & Library Occupations", wage: "$28.65/hr mean ($59,590/yr)", payrollB: 10.4, v: 42.8, r: 78.6, lift: "+10.2 R", pathway: "IU School of Education & IU Expand Adaptive AI Pedagogy Certificate" },
+      { soc: "27-0000", shortLabel: "27- Arts, Design & Media", title: "Arts, Design, Entertainment, Sports, & Media Occupations", wage: "$27.90/hr mean ($58,030/yr)", payrollB: 2.4, v: 58.9, r: 71.2, lift: "+11.1 R", pathway: "O'Neill Arts Management, Eskenazi Design & Media School Generative Studio" },
+      { soc: "29-0000", shortLabel: "29- Healthcare Tech", title: "Healthcare Practitioners & Technical Occupations", wage: "$44.15/hr mean ($91,830/yr)", payrollB: 26.9, v: 29.4, r: 83.6, lift: "+8.9 R", pathway: "IU Health / O'Neill Clinical AI Diagnostics & Ambient EHR Governance" },
+      { soc: "31-0000", shortLabel: "31- Healthcare Support", title: "Healthcare Support Occupations", wage: "$17.95/hr mean ($37,340/yr)", payrollB: 4.8, v: 26.8, r: 69.4, lift: "+7.8 R", pathway: "Next Level Jobs Allied Health Telemetry & Patient Workflow Badge" },
+      { soc: "33-0000", shortLabel: "33- Protective Service", title: "Protective Service Occupations", wage: "$25.80/hr mean ($53,660/yr)", payrollB: 3.9, v: 31.2, r: 74.8, lift: "+8.2 R", pathway: "College Criminal Justice & Luddy Cyber-Forensics & Public Safety AI" },
+      { soc: "35-0000", shortLabel: "35- Food Prep & Serving", title: "Food Preparation & Serving Related Occupations", wage: "$14.85/hr mean ($30,890/yr)", payrollB: 8.6, v: 34.5, r: 55.2, lift: "+6.8 R", pathway: "IU Expand Hospitality Operations, Inventory Forecasting & Service Tech" },
+      { soc: "37-0000", shortLabel: "37- Building & Grounds", title: "Building & Grounds Cleaning & Maintenance Occupations", wage: "$17.20/hr mean ($35,780/yr)", payrollB: 3.4, v: 24.2, r: 58.0, lift: "+6.2 R", pathway: "Next Level Jobs Smart Facilities Management & Automated Building Systems" },
+      { soc: "39-0000", shortLabel: "39- Personal Care", title: "Personal Care & Service Occupations", wage: "$16.40/hr mean ($34,110/yr)", payrollB: 2.2, v: 28.6, r: 61.5, lift: "+6.9 R", pathway: "IU Expand Small-Business Client Scheduling & Digital Service Badge" },
+      { soc: "41-0000", shortLabel: "41- Sales & Related", title: "Sales & Related Occupations (incl. 9,400 Sales Mgrs)", wage: "$22.40/hr mean ($46,590/yr)", payrollB: 18.5, v: 57.1, r: 62.0, lift: "+10.4 R", pathway: "Kelley Consultative Enterprise Sales & AI CRM Analytics Badge" },
+      { soc: "43-0000", shortLabel: "43- Office & Admin", title: "Office & Administrative Support Occupations", wage: "$20.85/hr mean ($43,370/yr)", payrollB: 21.4, v: 74.2, r: 46.5, lift: "+14.2 R", pathway: "IU Expand AI Administrative Copilot + Next Level Jobs Operations Cert" },
+      { soc: "45-0000", shortLabel: "45- Farming & Forestry", title: "Farming, Fishing, & Forestry Occupations", wage: "$20.10/hr mean ($41,810/yr)", payrollB: 0.6, v: 27.4, r: 64.8, lift: "+7.5 R", pathway: "College Geography & O'Neill Precision Ag-Tech & Remote Sensing Cert" },
+      { soc: "47-0000", shortLabel: "47- Construction", title: "Construction & Extraction Occupations", wage: "$29.45/hr mean ($61,260/yr)", payrollB: 9.2, v: 21.8, r: 67.2, lift: "+7.1 R", pathway: "Next Level Jobs BIM Estimating, Drone Site Surveying & Safety Tech" },
+      { soc: "49-0000", shortLabel: "49- Install & Repair", title: "Installation, Maintenance, & Repair Occupations", wage: "$27.60/hr mean ($57,410/yr)", payrollB: 8.9, v: 23.6, r: 72.4, lift: "+8.3 R", pathway: "Next Level Jobs Predictive Maintenance IoT & Mechatronic Diagnostics" },
+      { soc: "51-0000", shortLabel: "51- Production & Mfg", title: "Production & Advanced Manufacturing Occupations", wage: "$23.10/hr mean ($48,050/yr)", payrollB: 28.4, v: 38.2, r: 68.5, lift: "+9.2 R", pathway: "Next Level Jobs Smart Manufacturing Robotics & Digital Twin Grant" },
+      { soc: "53-0000", shortLabel: "53- Transportation", title: "Transportation & Material Moving Occupations", wage: "$21.75/hr mean ($45,240/yr)", payrollB: 16.4, v: 41.8, r: 61.2, lift: "+8.6 R", pathway: "Next Level Jobs Supply Chain Logistics, Fleet Telemetry & Warehouse Automation" }
+    ];
+
+    // 15 Indiana Metropolitan Statistical Areas (MSAs) from BLS OEWS State & Metro Estimates
+    const INDIANA_MSAS = [
+      {
+        id: "msa-indy", name: "Indianapolis-Carmel-Anderson, IN MSA", shortName: "Indianapolis-Carmel",
+        cbsa: "26900", counties: "Marion, Hamilton, Hendricks, Johnson, Madison, Hancock, Morgan, Boone, Shelby, Putnam, Brown",
+        x: 228, y: 278, r: 22, labelPos: "right",
+        poly: "185,235 275,235 282,318 180,318",
+        totalEmp: 1142800, meanWage: "$29.45/hr ($61,260/yr)",
+        blsUrl: "https://www.bls.gov/oes/2023/may/oes_26900.htm",
+        top3: [
+          { soc: "43-0000", title: "Office & Administrative Support", emp: 158400, share: "13.9%", v: 74.2, r: 46.5 },
+          { soc: "53-0000", title: "Transportation & Material Moving", emp: 141200, share: "12.4%", v: 41.8, r: 61.2 },
+          { soc: "29-0000", title: "Healthcare Practitioners & Technical", emp: 94600, share: "8.3%", v: 29.4, r: 83.6 }
+        ]
+      },
+      {
+        id: "msa-gary", name: "Chicago-Naperville-Elgin, IL-IN-WI (Gary, IN Metro Div)", shortName: "Gary / NW Indiana",
+        cbsa: "23844", counties: "Lake, Porter, Jasper, Newton Counties (NW Indiana)",
+        x: 108, y: 74, r: 16, labelPos: "bottom",
+        poly: "78,48 142,48 142,128 78,128",
+        totalEmp: 278400, meanWage: "$26.80/hr ($55,740/yr)",
+        blsUrl: "https://www.bls.gov/oes/2023/may/oessrcma.htm",
+        top3: [
+          { soc: "53-0000", title: "Transportation & Material Moving", emp: 38900, share: "14.0%", v: 41.8, r: 61.2 },
+          { soc: "51-0000", title: "Production & Primary Metals Mfg", emp: 35400, share: "12.7%", v: 38.2, r: 68.5 },
+          { soc: "43-0000", title: "Office & Administrative Support", emp: 31200, share: "11.2%", v: 74.2, r: 46.5 }
+        ]
+      },
+      {
+        id: "msa-ftwayne", name: "Fort Wayne, IN MSA", shortName: "Fort Wayne",
+        cbsa: "23060", counties: "Allen, Whitley, Wells Counties",
+        x: 325, y: 128, r: 15, labelPos: "left",
+        poly: "288,96 362,96 362,164 288,164",
+        totalEmp: 228900, meanWage: "$26.40/hr ($54,910/yr)",
+        blsUrl: "https://www.bls.gov/oes/2023/may/oessrcma.htm",
+        top3: [
+          { soc: "51-0000", title: "Production & Advanced Manufacturing", emp: 36800, share: "16.1%", v: 38.2, r: 68.5 },
+          { soc: "43-0000", title: "Office & Administrative Support", emp: 27900, share: "12.2%", v: 74.2, r: 46.5 },
+          { soc: "29-0000", title: "Healthcare Practitioners & Technical", emp: 21400, share: "9.3%", v: 29.4, r: 83.6 }
+        ]
+      },
+      {
+        id: "msa-evansville", name: "Evansville, IN-KY MSA", shortName: "Evansville",
+        cbsa: "21780", counties: "Vanderburgh, Warrick, Posey, Gibson Counties",
+        x: 98, y: 496, r: 14, labelPos: "right",
+        poly: "62,462 142,462 142,524 62,524",
+        totalEmp: 154600, meanWage: "$25.95/hr ($53,980/yr)",
+        blsUrl: "https://www.bls.gov/oes/2023/may/oessrcma.htm",
+        top3: [
+          { soc: "51-0000", title: "Production & Plastics/Chemical Mfg", emp: 24200, share: "15.7%", v: 38.2, r: 68.5 },
+          { soc: "43-0000", title: "Office & Administrative Support", emp: 18900, share: "12.2%", v: 74.2, r: 46.5 },
+          { soc: "29-0000", title: "Healthcare Practitioners & Technical", emp: 15800, share: "10.2%", v: 29.4, r: 83.6 }
+        ]
+      },
+      {
+        id: "msa-southbend", name: "South Bend-Mishawaka, IN-MI MSA", shortName: "South Bend-Mishawaka",
+        cbsa: "43780", counties: "St. Joseph County",
+        x: 214, y: 50, r: 14, labelPos: "bottom",
+        poly: "185,35 242,35 242,84 185,84",
+        totalEmp: 136800, meanWage: "$26.15/hr ($54,390/yr)",
+        blsUrl: "https://www.bls.gov/oes/2023/may/oessrcma.htm",
+        top3: [
+          { soc: "43-0000", title: "Office & Administrative Support", emp: 17400, share: "12.7%", v: 74.2, r: 46.5 },
+          { soc: "51-0000", title: "Production & Manufacturing", emp: 16200, share: "11.8%", v: 38.2, r: 68.5 },
+          { soc: "25-0000", title: "Educational Instruction & Library", emp: 13900, share: "10.2%", v: 42.8, r: 78.6 }
+        ]
+      },
+      {
+        id: "msa-elkhart", name: "Elkhart-Goshen, IN MSA", shortName: "Elkhart-Goshen",
+        cbsa: "21140", counties: "Elkhart County",
+        x: 266, y: 54, r: 14, labelPos: "bottom",
+        poly: "242,35 294,35 294,86 242,86",
+        totalEmp: 134200, meanWage: "$27.40/hr ($56,990/yr)",
+        blsUrl: "https://www.bls.gov/oes/2023/may/oessrcma.htm",
+        top3: [
+          { soc: "51-0000", title: "Production & RV/Transport Equipment Mfg", emp: 50700, share: "37.8%", v: 38.2, r: 68.5 },
+          { soc: "53-0000", title: "Transportation & Material Moving", emp: 13800, share: "10.3%", v: 41.8, r: 61.2 },
+          { soc: "43-0000", title: "Office & Administrative Support", emp: 12100, share: "9.0%", v: 74.2, r: 46.5 }
+        ]
+      },
+      {
+        id: "msa-louisville", name: "Louisville/Jefferson County, KY-IN MSA (Southern IN)", shortName: "Louisville (Southern IN)",
+        cbsa: "31140", counties: "Clark, Floyd, Harrison, Scott, Washington Counties",
+        x: 264, y: 462, r: 13, labelPos: "left",
+        poly: "222,426 302,426 292,486 222,486",
+        totalEmp: 118400, meanWage: "$25.60/hr ($53,250/yr)",
+        blsUrl: "https://www.bls.gov/oes/2023/may/oessrcma.htm",
+        top3: [
+          { soc: "53-0000", title: "Transportation, Logistics & Warehousing", emp: 21900, share: "18.5%", v: 41.8, r: 61.2 },
+          { soc: "51-0000", title: "Production & Manufacturing", emp: 16400, share: "13.9%", v: 38.2, r: 68.5 },
+          { soc: "43-0000", title: "Office & Administrative Support", emp: 14100, share: "11.9%", v: 74.2, r: 46.5 }
+        ]
+      },
+      {
+        id: "msa-lafayette", name: "Lafayette-West Lafayette, IN MSA", shortName: "Lafayette-W. Lafayette",
+        cbsa: "29200", counties: "Tippecanoe, Benton, Carroll, Warren Counties",
+        x: 146, y: 196, r: 13, labelPos: "left",
+        poly: "104,162 182,162 182,226 104,226",
+        totalEmp: 104500, meanWage: "$26.90/hr ($55,950/yr)",
+        blsUrl: "https://www.bls.gov/oes/2023/may/oessrcma.htm",
+        top3: [
+          { soc: "51-0000", title: "Production & Advanced Auto/Aero Mfg", emp: 18600, share: "17.8%", v: 38.2, r: 68.5 },
+          { soc: "25-0000", title: "Educational Instruction & Library", emp: 14900, share: "14.3%", v: 42.8, r: 78.6 },
+          { soc: "43-0000", title: "Office & Administrative Support", emp: 11200, share: "10.7%", v: 74.2, r: 46.5 }
+        ]
+      },
+      {
+        id: "msa-bloomington", name: "Bloomington, IN MSA (Home of IUB)", shortName: "Bloomington ★ (IUB)",
+        cbsa: "14020", counties: "Monroe & Owen Counties",
+        x: 188, y: 362, r: 13, labelPos: "left",
+        poly: "152,332 222,332 222,392 152,392",
+        totalEmp: 78400, meanWage: "$25.85/hr ($53,770/yr)",
+        blsUrl: "https://www.bls.gov/oes/2023/may/oessrcma.htm",
+        top3: [
+          { soc: "25-0000", title: "Educational Instruction & Library (IUB)", emp: 13400, share: "17.1%", v: 42.8, r: 78.6 },
+          { soc: "43-0000", title: "Office & Administrative Support", emp: 9600, share: "12.2%", v: 74.2, r: 46.5 },
+          { soc: "51-0000", title: "Production & Life-Sciences Med-Device Mfg", emp: 8900, share: "11.4%", v: 38.2, r: 68.5 }
+        ]
+      },
+      {
+        id: "msa-terrehaute", name: "Terre Haute, IN MSA", shortName: "Terre Haute",
+        cbsa: "45460", counties: "Vigo, Clay, Sullivan, Vermillion Counties",
+        x: 102, y: 318, r: 11.5, labelPos: "right",
+        poly: "76,286 144,286 144,352 76,352",
+        totalEmp: 66200, meanWage: "$23.90/hr ($49,710/yr)",
+        blsUrl: "https://www.bls.gov/oes/2023/may/oessrcma.htm",
+        top3: [
+          { soc: "51-0000", title: "Production & Industrial Manufacturing", emp: 10400, share: "15.7%", v: 38.2, r: 68.5 },
+          { soc: "43-0000", title: "Office & Administrative Support", emp: 7900, share: "11.9%", v: 74.2, r: 46.5 },
+          { soc: "29-0000", title: "Healthcare Practitioners & Technical", emp: 6800, share: "10.3%", v: 29.4, r: 83.6 }
+        ]
+      },
+      {
+        id: "msa-columbus", name: "Columbus, IN MSA", shortName: "Columbus",
+        cbsa: "18020", counties: "Bartholomew County",
+        x: 256, y: 364, r: 11.5, labelPos: "right",
+        poly: "226,336 288,336 288,392 226,392",
+        totalEmp: 52800, meanWage: "$30.80/hr ($64,060/yr)",
+        blsUrl: "https://www.bls.gov/oes/2023/may/oessrcma.htm",
+        top3: [
+          { soc: "51-0000", title: "Production & Powertrain/Engine Mfg", emp: 12900, share: "24.4%", v: 38.2, r: 68.5 },
+          { soc: "17-0000", title: "Architecture & Engineering (R&D Hub)", emp: 5800, share: "11.0%", v: 39.4, r: 84.8 },
+          { soc: "43-0000", title: "Office & Administrative Support", emp: 5200, share: "9.8%", v: 74.2, r: 46.5 }
+        ]
+      },
+      {
+        id: "msa-muncie", name: "Muncie, IN MSA", shortName: "Muncie",
+        cbsa: "34620", counties: "Delaware County",
+        x: 308, y: 224, r: 11, labelPos: "right",
+        poly: "278,196 346,196 346,252 278,252",
+        totalEmp: 48600, meanWage: "$23.65/hr ($49,190/yr)",
+        blsUrl: "https://www.bls.gov/oes/2023/may/oessrcma.htm",
+        top3: [
+          { soc: "43-0000", title: "Office & Administrative Support", emp: 6400, share: "13.2%", v: 74.2, r: 46.5 },
+          { soc: "29-0000", title: "Healthcare Practitioners & Technical", emp: 5900, share: "12.1%", v: 29.4, r: 83.6 },
+          { soc: "25-0000", title: "Educational Instruction & Library", emp: 5400, share: "11.1%", v: 42.8, r: 78.6 }
+        ]
+      },
+      {
+        id: "msa-michigancity", name: "Michigan City-La Porte, IN MSA", shortName: "Michigan City-La Porte",
+        cbsa: "33140", counties: "LaPorte County",
+        x: 162, y: 58, r: 10.5, labelPos: "bottom",
+        poly: "142,38 185,38 185,90 142,90",
+        totalEmp: 41900, meanWage: "$23.80/hr ($49,500/yr)",
+        blsUrl: "https://www.bls.gov/oes/2023/may/oessrcma.htm",
+        top3: [
+          { soc: "51-0000", title: "Production & Fabricated Metal Mfg", emp: 7900, share: "18.9%", v: 38.2, r: 68.5 },
+          { soc: "53-0000", title: "Transportation & Material Moving", emp: 5100, share: "12.2%", v: 41.8, r: 61.2 },
+          { soc: "43-0000", title: "Office & Administrative Support", emp: 4500, share: "10.7%", v: 74.2, r: 46.5 }
+        ]
+      },
+      {
+        id: "msa-kokomo", name: "Kokomo, IN MSA", shortName: "Kokomo",
+        cbsa: "29020", counties: "Howard County",
+        x: 222, y: 192, r: 10.5, labelPos: "right",
+        poly: "192,166 254,166 254,218 192,218",
+        totalEmp: 37800, meanWage: "$26.50/hr ($55,120/yr)",
+        blsUrl: "https://www.bls.gov/oes/2023/may/oessrcma.htm",
+        top3: [
+          { soc: "51-0000", title: "Production & EV Battery/Automotive Mfg", emp: 10800, share: "28.6%", v: 38.2, r: 68.5 },
+          { soc: "43-0000", title: "Office & Administrative Support", emp: 3900, share: "10.3%", v: 74.2, r: 46.5 },
+          { soc: "35-0000", title: "Food Preparation & Serving Related", emp: 3600, share: "9.5%", v: 34.5, r: 55.2 }
+        ]
+      },
+      {
+        id: "msa-cincinnati", name: "Cincinnati, OH-KY-IN MSA (SE Indiana Counties)", shortName: "Cincinnati (SE Indiana)",
+        cbsa: "17140", counties: "Dearborn, Ohio, Union Counties (SE Indiana)",
+        x: 344, y: 378, r: 10.5, labelPos: "left",
+        poly: "312,348 364,348 364,412 312,412",
+        totalEmp: 29400, meanWage: "$25.10/hr ($52,210/yr)",
+        blsUrl: "https://www.bls.gov/oes/2023/may/oessrcma.htm",
+        top3: [
+          { soc: "51-0000", title: "Production & Manufacturing", emp: 4600, share: "15.6%", v: 38.2, r: 68.5 },
+          { soc: "53-0000", title: "Transportation & Material Moving", emp: 3800, share: "12.9%", v: 41.8, r: 61.2 },
+          { soc: "43-0000", title: "Office & Administrative Support", emp: 3400, share: "11.6%", v: 74.2, r: 46.5 }
+        ]
+      }
+    ];
+
+    let activeMsaId = "msa-bloomington";
+
     let currentTab = "portfolio";
     let selectedJobId = "soc-13-2011";
     let activeJobInterventions = new Set(["BUS-A437", "BUS-S355"]);
@@ -1071,6 +1594,7 @@
     let skillChartInstance = null;
     let cohortChartInstance = null;
     let indianaChartInstance = null;
+    let indianaAllGroupsChartInstance = null;
 
     function resolveCourses(courseIds, homeUnitLabel) {
       return courseIds.map(cid => {
@@ -1132,6 +1656,39 @@
       const r = horizon === "2025" ? m.r2025 : m.r2030;
       const vDelta = +(m.v2030 - m.v2025).toFixed(1);
       return { v, r, vDelta };
+    }
+
+    function getMajorBlsGrowth(prog) {
+      const primarySoc = prog.socs.split(" ")[0];
+      const matchedJob = JOBS.find(j => j.soc === primarySoc) || JOBS.find(j => prog.socs.includes(j.soc));
+      return matchedJob ? matchedJob.epGrowth5Yr : 4.0;
+    }
+
+    function getJobBlsShift(job) {
+      const matchedProg = PROGRAMS.find(p => p.socs.split(" ")[0] === job.soc) || PROGRAMS.find(p => p.socs.includes(job.soc));
+      return matchedProg ? getProgramMetrics(matchedProg).vDelta : -1.0;
+    }
+
+    function getColumnMedian(arr) {
+      if (!arr.length) return 0;
+      const sorted = [...arr].sort((a, b) => a - b);
+      const mid = Math.floor(sorted.length / 2);
+      return sorted.length % 2 !== 0 ? sorted[mid] : +((sorted[mid - 1] + sorted[mid]) / 2).toFixed(2);
+    }
+
+    function getGrowthBadge(val, medianVal) {
+      // Higher 5-Yr BLS Growth is better than median (Green), near median (Amber), worse than median (Red)
+      if (val > medianVal + 0.2) return "bg-emerald-100 text-emerald-800 border-emerald-200";
+      if (val < medianVal - 0.25) return "bg-red-100 text-red-800 border-red-200";
+      return "bg-amber-100 text-amber-800 border-amber-200";
+    }
+
+    function getShiftBadge(val, medianVal) {
+      // More negative 5-Yr BLS Shift (larger drop in Vulnerability by 2030) is better than median (Green),
+      // at median (Amber), while smaller reduction is worse than median (Red)
+      if (val < medianVal - 0.05) return "bg-emerald-100 text-emerald-800 border-emerald-200";
+      if (val > medianVal + 0.05) return "bg-red-100 text-red-800 border-red-200";
+      return "bg-amber-100 text-amber-800 border-amber-200";
     }
 
     function getFilteredPrograms() {
@@ -1394,14 +1951,20 @@
         }
       });
 
+      const jobGrowthMed = getColumnMedian(JOBS.map(j => j.epGrowth5Yr));
+      const jobShiftMed = getColumnMedian(JOBS.map(j => getJobBlsShift(j)));
+
       document.getElementById("allJobsSummaryTableBody").innerHTML = jobs.map(j => {
         const calc = getAdjustedJobSkills(j, false);
+        const jobVShift = getJobBlsShift(j);
         const isSelected = j.id === selectedJobId;
         const vBadge = calc.jobBaseV >= 65
           ? "bg-red-100 text-red-800 border-red-200"
           : calc.jobBaseV >= 50
           ? "bg-amber-100 text-amber-800 border-amber-200"
           : "bg-emerald-100 text-emerald-800 border-emerald-200";
+        const growthBadge = getGrowthBadge(j.epGrowth5Yr, jobGrowthMed);
+        const shiftBadge = getShiftBadge(jobVShift, jobShiftMed);
 
         const skillsPills = calc.rows.map(sk => {
           const pillColor = sk.baseV >= 70 ? "bg-red-50 text-red-800 border-red-200" : sk.baseV >= 50 ? "bg-amber-50 text-amber-800 border-amber-200" : "bg-emerald-50 text-emerald-800 border-emerald-200";
@@ -1425,9 +1988,10 @@
             <td class="py-3 px-3 max-w-md">${skillsPills}</td>
             <td class="py-3 px-2 text-right font-semibold">${j.inEmp.toLocaleString()}</td>
             <td class="py-3 px-2 text-right font-bold text-slate-800">$${j.inMeanWage.toLocaleString()}</td>
-            <td class="py-3 px-2 text-center font-semibold text-emerald-700">+${j.epGrowth5Yr}%</td>
+            <td class="py-3 px-2 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${growthBadge}">+${j.epGrowth5Yr}%</span></td>
             <td class="py-3 px-2 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${vBadge}">${calc.jobBaseV.toFixed(1)}</span></td>
             <td class="py-3 px-2 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">${calc.jobBaseR.toFixed(1)}</span></td>
+            <td class="py-3 px-2 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${shiftBadge}">${jobVShift} pts</span></td>
             <td class="py-3 px-4 text-right whitespace-nowrap">
               <button onclick="inspectJob('${j.id}')" class="${isSelected ? 'bg-slate-800 text-white' : 'bg-red-800 hover:bg-red-900 text-white'} font-semibold px-3 py-1.5 rounded-lg text-[11px] transition shadow-sm">
                 ${isSelected ? 'Viewing Above ✓' : 'Inspect Skills ↑'}
@@ -1478,10 +2042,16 @@
         `;
       }).join("");
 
+      const majorGrowthMed = getColumnMedian(PROGRAMS.map(p => getMajorBlsGrowth(p)));
+      const majorShiftMed = getColumnMedian(PROGRAMS.map(p => getProgramMetrics(p).vDelta));
+
       document.getElementById("majorTableBody").innerHTML = progs.map(p => {
         const { v, r, vDelta } = getProgramMetrics(p);
+        const blsGrowth = getMajorBlsGrowth(p);
         const color = SCHOOL_COLORS[p.school];
         const vBadge = v >= 65 ? "bg-red-100 text-red-800 border-red-200" : v >= 50 ? "bg-amber-100 text-amber-800 border-amber-200" : "bg-emerald-100 text-emerald-800 border-emerald-200";
+        const growthBadge = getGrowthBadge(blsGrowth, majorGrowthMed);
+        const shiftBadge = getShiftBadge(vDelta, majorShiftMed);
         return `
           <tr class="hover:bg-slate-50 transition">
             <td class="py-3 px-4 font-bold text-slate-900">
@@ -1492,9 +2062,10 @@
             <td class="py-3 px-3 text-slate-600 max-w-xs">${p.socs}</td>
             <td class="py-3 px-3 text-right font-semibold">${p.grads}</td>
             <td class="py-3 px-3 text-right font-bold text-slate-800">$${p.wages.y5.toLocaleString()}</td>
+            <td class="py-3 px-3 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${growthBadge}">+${blsGrowth}%</span></td>
             <td class="py-3 px-3 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${vBadge}">${v.toFixed(1)}</span></td>
             <td class="py-3 px-3 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">${r.toFixed(1)}</span></td>
-            <td class="py-3 px-3 text-center font-semibold text-emerald-700">${vDelta} pts</td>
+            <td class="py-3 px-3 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${shiftBadge}">${vDelta} pts</span></td>
             <td class="py-3 px-4 text-right">
               <button onclick="launchSimulatorForMajor('${p.id}')" class="bg-red-800 hover:bg-red-900 text-white font-semibold px-3 py-1.5 rounded-lg text-[11px] transition shadow-sm">Simulate Degree Defense →</button>
             </td>
@@ -1732,6 +2303,216 @@
           scales: { y: { min: 0, max: 100, title: { display: true, text: "Exposure / Resilience Score (0–100)" } } }
         }
       });
+
+      // Render All 22 Two-Digit Major Occupational Groups (SOC 11-0000 through 53-0000)
+      const allVMed = getColumnMedian(INDIANA_ALL_MAJOR_GROUPS.map(g => g.v));
+      document.getElementById("indianaAllGroupsTableBody").innerHTML = INDIANA_ALL_MAJOR_GROUPS.map(g => {
+        const vBadge = g.v >= 55 ? "bg-red-100 text-red-800 border-red-200" : g.v >= allVMed - 3 ? "bg-amber-100 text-amber-800 border-amber-200" : "bg-emerald-100 text-emerald-800 border-emerald-200";
+        return `
+          <tr class="hover:bg-slate-50">
+            <td class="py-2.5 px-3 font-bold text-slate-900">${g.title}<div class="text-[10px] font-normal text-slate-500">SOC ${g.soc} • Est. Payroll $${g.payrollB}B • AI Augmented Resilience: ${g.r}</div></td>
+            <td class="py-2.5 px-2 text-right font-medium text-slate-700">${g.wage}</td>
+            <td class="py-2.5 px-2 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${vBadge}">${g.v}</span></td>
+            <td class="py-2.5 px-2 text-center font-bold text-emerald-700">${g.lift}</td>
+            <td class="py-2.5 px-3 text-[11px] text-slate-600">${g.pathway}</td>
+          </tr>
+        `;
+      }).join("");
+
+      const ctxAll = document.getElementById("indianaAllGroupsChart").getContext("2d");
+      if (indianaAllGroupsChartInstance) indianaAllGroupsChartInstance.destroy();
+
+      indianaAllGroupsChartInstance = new Chart(ctxAll, {
+        type: "bar",
+        data: {
+          labels: INDIANA_ALL_MAJOR_GROUPS.map(g => g.shortLabel),
+          datasets: [
+            { label: "Substitution Vulnerability", data: INDIANA_ALL_MAJOR_GROUPS.map(g => g.v), backgroundColor: "#dc2626", borderRadius: 3 },
+            { label: "AI Augmented Resilience", data: INDIANA_ALL_MAJOR_GROUPS.map(g => g.r), backgroundColor: "#059669", borderRadius: 3 }
+          ]
+        },
+        options: {
+          indexAxis: "y",
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: { min: 0, max: 100, title: { display: true, text: "Score (0–100 Scale)" } },
+            y: { ticks: { font: { size: 10 } } }
+          },
+          plugins: {
+            legend: { position: "top", labels: { boxWidth: 12, font: { size: 11 } } }
+          }
+        }
+      });
+
+      renderIndianaMsaMap();
+    }
+
+    function buildMsaTop3Html(msa, isDark = false) {
+      return msa.top3.map((occ, idx) => {
+        const vBadge = occ.v >= 55
+          ? (isDark ? "bg-red-500/25 text-red-200 border-red-400/40" : "bg-red-100 text-red-800 border-red-200")
+          : occ.v >= 39
+          ? (isDark ? "bg-amber-500/25 text-amber-200 border-amber-400/40" : "bg-amber-100 text-amber-800 border-amber-200")
+          : (isDark ? "bg-emerald-500/25 text-emerald-200 border-emerald-400/40" : "bg-emerald-100 text-emerald-800 border-emerald-200");
+        const rBadge = isDark
+          ? "bg-emerald-500/25 text-emerald-200 border-emerald-400/40"
+          : "bg-emerald-50 text-emerald-800 border-emerald-200";
+        return `
+          <div class="${isDark ? 'bg-slate-900/90 border-slate-700' : 'bg-white border-slate-200'} p-2.5 rounded-xl border">
+            <div class="flex items-center justify-between gap-2">
+              <div class="font-bold ${isDark ? 'text-white' : 'text-slate-900'} text-[11px]">
+                #${idx + 1} • SOC ${occ.soc}: ${occ.title}
+              </div>
+              <span class="text-[10px] font-mono ${isDark ? 'text-slate-300' : 'text-slate-500'} whitespace-nowrap">${occ.emp.toLocaleString()} jobs (${occ.share})</span>
+            </div>
+            <div class="mt-1.5 flex items-center justify-between gap-2 text-[11px]">
+              <div class="flex items-center gap-1.5">
+                <span class="px-2 py-0.5 rounded-full font-bold border text-[10px] ${vBadge}">Vuln (V): ${occ.v.toFixed(1)}</span>
+                <span class="px-2 py-0.5 rounded-full font-bold border text-[10px] ${rBadge}">Resil (R): ${occ.r.toFixed(1)}</span>
+              </div>
+              <span class="text-[10px] font-semibold ${occ.r - occ.v >= 20 ? (isDark ? 'text-emerald-300' : 'text-emerald-700') : (isDark ? 'text-amber-300' : 'text-amber-700')}">Net: ${occ.r >= occ.v ? '+' : ''}${(occ.r - occ.v).toFixed(1)}</span>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function handleMsaHover(msaId, evt) {
+      activeMsaId = msaId;
+      const msa = INDIANA_MSAS.find(m => m.id === msaId) || INDIANA_MSAS[0];
+      updateMsaSpotlightAndSelection(msa);
+
+      const tooltip = document.getElementById("msaHoverTooltip");
+      const wrapper = document.getElementById("indianaMsaMapWrapper");
+      if (tooltip && wrapper && evt) {
+        tooltip.innerHTML = `
+          <div class="flex items-start justify-between gap-2 pb-2 mb-2 border-b border-slate-700">
+            <div>
+              <div class="text-[10px] uppercase tracking-wider text-amber-400 font-bold">CBSA ${msa.cbsa} • ${msa.counties}</div>
+              <div class="font-extrabold text-sm text-white">${msa.name}</div>
+            </div>
+            <span class="px-2 py-0.5 rounded bg-white/10 text-[10px] font-mono text-slate-200 whitespace-nowrap">${msa.totalEmp.toLocaleString()} Emp</span>
+          </div>
+          <div class="text-[11px] text-slate-300 mb-2"><strong>BLS Mean Wage:</strong> ${msa.meanWage}</div>
+          <div class="text-[10px] uppercase tracking-wider text-red-300 font-bold mb-1.5">Top 3 Largest Two-Digit Occupations (SOC):</div>
+          <div class="space-y-1.5">${buildMsaTop3Html(msa, true)}</div>
+        `;
+        tooltip.classList.remove("hidden");
+        const rect = wrapper.getBoundingClientRect();
+        const relX = evt.clientX - rect.left;
+        const relY = evt.clientY - rect.top;
+        const leftPos = relX > rect.width * 0.52 ? Math.max(8, relX - 330) : Math.min(rect.width - 325, relX + 16);
+        const topPos = Math.max(8, Math.min(rect.height - 290, relY - 30));
+        tooltip.style.left = leftPos + "px";
+        tooltip.style.top = topPos + "px";
+      }
+    }
+
+    function hideMsaTooltip() {
+      const tooltip = document.getElementById("msaHoverTooltip");
+      if (tooltip) tooltip.classList.add("hidden");
+    }
+
+    function selectMsaCard(msaId) {
+      activeMsaId = msaId;
+      const msa = INDIANA_MSAS.find(m => m.id === msaId) || INDIANA_MSAS[0];
+      updateMsaSpotlightAndSelection(msa);
+    }
+
+    function updateMsaSpotlightAndSelection(msa) {
+      const spotlight = document.getElementById("msaSpotlightCard");
+      if (spotlight) {
+        const avgV = (msa.top3.reduce((s, o) => s + o.v, 0) / 3).toFixed(1);
+        const avgR = (msa.top3.reduce((s, o) => s + o.r, 0) / 3).toFixed(1);
+        spotlight.innerHTML = `
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pb-3 mb-3 border-b border-slate-200">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded bg-red-800 text-white text-[10px] font-bold uppercase">CBSA ${msa.cbsa}</span>
+                <span class="text-[11px] text-slate-500 font-medium">${msa.counties}</span>
+              </div>
+              <h4 class="text-sm font-extrabold text-slate-900 mt-1">${msa.name}</h4>
+            </div>
+            <div class="text-right">
+              <div class="text-xs font-extrabold text-slate-900">${msa.totalEmp.toLocaleString()} Total Jobs</div>
+              <div class="text-[11px] text-slate-600">${msa.meanWage}</div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between text-xs mb-2">
+            <span class="font-bold text-slate-800">Three Largest Two-Digit Occupations (BLS OEWS):</span>
+            <span class="text-[11px] text-slate-600">Top-3 Avg: <strong class="text-red-700">V = ${avgV}</strong> • <strong class="text-emerald-700">R = ${avgR}</strong></span>
+          </div>
+          <div class="space-y-2">${buildMsaTop3Html(msa, false)}</div>
+        `;
+      }
+
+      INDIANA_MSAS.forEach(m => {
+        const isAct = m.id === msa.id;
+        const polyEl = document.getElementById("poly-" + m.id);
+        const circleEl = document.getElementById("node-" + m.id);
+        const cardEl = document.getElementById("card-" + m.id);
+        if (polyEl) {
+          polyEl.setAttribute("fill-opacity", isAct ? "0.35" : "0.14");
+          polyEl.setAttribute("stroke-width", isAct ? "2" : "1");
+        }
+        if (circleEl) {
+          circleEl.setAttribute("stroke-width", isAct ? "3.5" : "1.8");
+          circleEl.setAttribute("stroke", isAct ? "#ffffff" : "#f8fafc");
+        }
+        if (cardEl) {
+          cardEl.className = `cursor-pointer p-2.5 rounded-xl border transition text-xs ${
+            isAct ? "border-red-700 bg-red-50/50 shadow-sm" : "border-slate-200 bg-white hover:border-slate-300"
+          }`;
+        }
+      });
+    }
+
+    function renderIndianaMsaMap() {
+      const polyLayer = document.getElementById("indianaMsaPolygonsLayer");
+      const nodeLayer = document.getElementById("indianaMsaNodesLayer");
+      const dirGrid = document.getElementById("msaDirectoryGrid");
+      if (!polyLayer || !nodeLayer || !dirGrid) return;
+
+      polyLayer.innerHTML = INDIANA_MSAS.map(m => {
+        const top1V = m.top3[0].v;
+        const fillCol = top1V >= 55 ? "#ef4444" : top1V >= 40 ? "#f59e0b" : "#10b981";
+        return `<polygon id="poly-${m.id}" points="${m.poly}" fill="${fillCol}" fill-opacity="0.14" stroke="${fillCol}" stroke-width="1" stroke-dasharray="2,2" class="cursor-pointer transition"
+          onmouseenter="handleMsaHover('${m.id}', event)" onmousemove="handleMsaHover('${m.id}', event)" onmouseleave="hideMsaTooltip()" onclick="selectMsaCard('${m.id}')" />`;
+      }).join("");
+
+      nodeLayer.innerHTML = INDIANA_MSAS.map(m => {
+        const avgV = m.top3.reduce((s, o) => s + o.v, 0) / 3;
+        const avgR = m.top3.reduce((s, o) => s + o.r, 0) / 3;
+        const fillCol = avgV >= 52 ? "#ef4444" : avgR - avgV >= 22 ? "#10b981" : "#f59e0b";
+        const dx = m.labelPos === "left" ? -(m.r + 5) : m.labelPos === "right" ? (m.r + 5) : 0;
+        const dy = m.labelPos === "bottom" ? (m.r + 11) : 3;
+        const anchor = m.labelPos === "left" ? "end" : m.labelPos === "right" ? "start" : "middle";
+        return `
+          <g class="cursor-pointer" onmouseenter="handleMsaHover('${m.id}', event)" onmousemove="handleMsaHover('${m.id}', event)" onmouseleave="hideMsaTooltip()" onclick="selectMsaCard('${m.id}')">
+            <circle id="node-${m.id}" cx="${m.x}" cy="${m.y}" r="${m.r}" fill="${fillCol}" fill-opacity="0.88" stroke="#f8fafc" stroke-width="1.8" filter="url(#msaGlow)" />
+            <text x="${m.x}" y="${m.y + 3}" text-anchor="middle" fill="#0f172a" font-size="8.5" font-weight="900">${m.top3[0].soc.slice(0,2)}</text>
+            <text x="${m.x + dx}" y="${m.y + dy}" text-anchor="${anchor}" fill="#f8fafc" font-size="9.5" font-weight="700" style="paint-order: stroke; stroke: #0f172a; stroke-width: 3px; stroke-linecap: round; stroke-linejoin: round;">${m.shortName}</text>
+          </g>
+        `;
+      }).join("");
+
+      dirGrid.innerHTML = INDIANA_MSAS.map(m => `
+        <div id="card-${m.id}" onmouseenter="selectMsaCard('${m.id}')" onclick="selectMsaCard('${m.id}')" class="cursor-pointer p-2.5 rounded-xl border border-slate-200 bg-white hover:border-slate-300 transition text-xs">
+          <div class="flex items-center justify-between gap-1">
+            <span class="font-bold text-slate-900 truncate">${m.shortName}</span>
+            <span class="text-[10px] font-mono text-slate-500">${(m.totalEmp / 1000).toFixed(1)}k</span>
+          </div>
+          <div class="mt-1 text-[10px] text-slate-600 truncate">Top: <strong>${m.top3.map(t => t.soc.slice(0, 3)).join(", ")}</strong></div>
+          <div class="mt-1 flex items-center justify-between text-[10px]">
+            <span class="text-red-700 font-semibold">#1 V: ${m.top3[0].v}</span>
+            <span class="text-emerald-700 font-semibold">#1 R: ${m.top3[0].r}</span>
+          </div>
+        </div>
+      `).join("");
+
+      const currentMsa = INDIANA_MSAS.find(m => m.id === activeMsaId) || INDIANA_MSAS[0];
+      updateMsaSpotlightAndSelection(currentMsa);
     }
 
     function renderAll() {
