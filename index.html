@@ -19,7 +19,7 @@
 
   <!-- Top Executive Banner -->
   <header class="iu-header-gradient text-white shadow-lg">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-8 py-4 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
       <div class="flex items-center gap-4">
         <div class="w-12 h-12 rounded-lg bg-white/15 border border-white/30 flex items-center justify-center font-black text-2xl tracking-tighter">IU</div>
         <div>
@@ -75,7 +75,7 @@
 
   <!-- Navigation Tabs -->
   <nav class="bg-white border-b border-slate-200 sticky top-0 z-20 shadow-sm">
-    <div class="max-w-7xl mx-auto px-6 flex overflow-x-auto">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-8 flex overflow-x-auto">
       <button onclick="switchTab('portfolio')" id="tab-portfolio" class="tab-btn active px-4 py-3.5 text-sm font-medium text-slate-600 hover:text-slate-900 whitespace-nowrap transition">
         1. Provost &amp; Deans Portfolio Matrix (Reqs 5, 6, 7)
       </button>
@@ -95,23 +95,25 @@
   </nav>
 
   <!-- Main Content Container -->
-  <main class="max-w-7xl mx-auto px-6 py-6 flex-1 w-full space-y-6">
+  <main class="max-w-[1600px] mx-auto px-6 lg:px-8 py-6 flex-1 w-full space-y-6">
 
     <!-- Top KPI Strip -->
     <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="kpiStrip"></section>
 
     <!-- TAB 1: PROVOST & DEANS PORTFOLIO MATRIX -->
     <section id="view-portfolio" class="space-y-6">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <div class="lg:col-span-7 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        <div class="lg:col-span-6 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
           <div class="flex items-start justify-between mb-3">
             <div>
-              <h2 class="text-base font-bold text-slate-900">IUB Academic Portfolio: Substitution Vulnerability vs. Human+AI Skills</h2>
-              <p class="text-xs text-slate-500">Bubble = <strong>Baseline Human Skills &amp; Substitution Vulnerability (100 − Risk, Higher = Better)</strong> | Upward Arrow (↑) = <strong>AI Augmented Skills (Post-Toggle Score)</strong></p>
+              <h2 class="text-base font-bold text-slate-900">IUB Academic Portfolio: Substitution Vulnerability vs. Human+AI Skills (4-Quadrant Matrix)</h2>
+              <p class="text-xs text-slate-500">Bubble = <strong>Baseline + AI Augmented Skills (Human+AI Total) &amp; Substitution Vulnerability</strong> | Arrow (↑) = <strong>Lift from Baseline Human Skills</strong> | Quadrant Breaks at <strong>Median Subst. Vuln (X) &amp; Median Baseline Human Skills (Y)</strong></p>
             </div>
-            <span id="horizonBadgePortfolio" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-red-50 text-red-800 border border-red-200">2025 Baseline</span>
+            <span id="horizonBadgePortfolio" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-red-50 text-red-800 border border-red-200 whitespace-nowrap">2025 Baseline</span>
           </div>
-          <div class="relative flex-1 min-h-[395px]"><canvas id="portfolioBubbleChart"></canvas></div>
+          <div class="relative mx-auto w-full max-w-[540px] aspect-square flex items-center justify-center">
+            <canvas id="portfolioBubbleChart"></canvas>
+          </div>
           <div class="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] bg-slate-50 p-2.5 rounded-xl border border-slate-200">
             <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-red-700 mr-1.5"></span><strong>Kelley Business (6)</strong></div>
             <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-blue-600 mr-1.5"></span><strong>Luddy Computing (6)</strong></div>
@@ -120,10 +122,10 @@
           </div>
         </div>
 
-        <div class="lg:col-span-5 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+        <div class="lg:col-span-6 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
           <h2 class="text-base font-bold text-slate-900 mb-1">School-Level Hierarchical Rollup (Req 6)</h2>
           <p class="text-xs text-slate-500 mb-4">Aggregated across majors using <span id="weightModeLabel" class="font-semibold text-slate-700">Graduate Headcount</span> weights (Substitution Vulnerability + Additive Human &amp; AI Augmented Skills).</p>
-          <div id="schoolRollupCards" class="space-y-3 flex-1 overflow-y-auto custom-scroll"></div>
+          <div id="schoolRollupCards" class="space-y-3.5 flex-1 overflow-y-auto custom-scroll"></div>
         </div>
       </div>
 
@@ -131,28 +133,28 @@
         <div class="px-6 py-4 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <div>
             <h3 class="text-base font-bold text-slate-900">IUB Degree Programs &amp; Mapped Occupational Exposure Scorecard (23 Majors)</h3>
-            <p class="text-xs text-slate-500">Higher <strong>Substitution Vulnerability (100 − Risk)</strong> &amp; <strong>Human+AI Skills (Baseline Human Skills + AI Augmented Lift)</strong> = Better. Click <strong>"Simulate Degree Defense →"</strong> to adjust courses.</p>
+            <p class="text-xs text-slate-500">Higher <strong>Substitution Vulnerability (100 − Risk)</strong> &amp; <strong>Human+AI Skills (Baseline Human Skills + AI Augmented Lift)</strong> = Better. Click <strong>"Simulate Defense →"</strong> to adjust courses.</p>
           </div>
           <div class="text-xs text-slate-500">
             Data Spine: <a href="https://www.hoosierdata.in.gov/infographics/iu-workforce-outcomes.asp" target="_blank" class="text-red-700 underline font-medium">IU Workforce Outcomes</a> + <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" class="text-red-700 underline font-medium">Indiana OEWS</a>
           </div>
         </div>
-        <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse text-xs">
+        <div>
+          <table class="w-full table-fixed text-left border-collapse text-xs">
             <thead>
-              <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 uppercase tracking-wider text-[11px]">
-                <th class="py-3 px-4">Program / Major (CIP)</th>
-                <th class="py-3 px-3">IUB School</th>
-                <th class="py-3 px-3">Primary Mapped Occupations (SOC)</th>
-                <th class="py-3 px-2 text-right">Grad Cohort</th>
-                <th class="py-3 px-2 text-right">5-Yr IN Median Wage</th>
-                <th class="py-3 px-2 text-center">5-Yr BLS Growth</th>
-                <th class="py-3 px-2 text-center">Substitution Vulnerability</th>
-                <th class="py-3 px-2 text-center">Human Skills (Base)</th>
-                <th class="py-3 px-2 text-center">AI Augmented (+Lift)</th>
-                <th class="py-3 px-2 text-center">Human+AI Skills (Total)</th>
-                <th class="py-3 px-2 text-center">5-Yr BLS Shift (2030)</th>
-                <th class="py-3 px-4 text-right">Action</th>
+              <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 uppercase tracking-tight text-[10px] leading-tight">
+                <th class="py-2.5 px-3 w-[15%]">Program / Major (CIP)</th>
+                <th class="py-2.5 px-1.5 w-[8%]">IUB School</th>
+                <th class="py-2.5 px-2 w-[18%]">Primary Mapped Occupations (SOC)</th>
+                <th class="py-2.5 px-1 text-right w-[5%]">Grad<br>Cohort</th>
+                <th class="py-2.5 px-1.5 text-right w-[7%]">5-Yr IN<br>Med Wage</th>
+                <th class="py-2.5 px-1 text-center w-[6.5%]">5-Yr BLS<br>Growth</th>
+                <th class="py-2.5 px-1 text-center w-[8.5%]">Substitution<br>Vulnerability</th>
+                <th class="py-2.5 px-1 text-center w-[7.5%]">Human Skills<br>(Base)</th>
+                <th class="py-2.5 px-1 text-center w-[7.5%]">AI Augmented<br>(+Lift)</th>
+                <th class="py-2.5 px-1 text-center w-[8%]">Human+AI<br>Skills (Total)</th>
+                <th class="py-2.5 px-1 text-center w-[6.5%]">5-Yr BLS<br>Shift (2030)</th>
+                <th class="py-2.5 px-2 text-center w-[7.5%]">Action</th>
               </tr>
             </thead>
             <tbody id="majorTableBody" class="divide-y divide-slate-200"></tbody>
@@ -186,7 +188,7 @@
             </div>
             <a href="https://www.onetcenter.org/database.html" target="_blank" class="text-xs text-red-700 underline font-medium whitespace-nowrap">O*NET 29.0 ↗</a>
           </div>
-          <div class="h-[280px] my-2"><canvas id="jobSkillBarChart"></canvas></div>
+          <div class="h-[380px] my-2"><canvas id="jobSkillBarChart"></canvas></div>
           <div class="mt-3 overflow-x-auto">
             <table class="w-full text-left border-collapse text-xs">
               <thead>
@@ -281,7 +283,7 @@
             </div>
             <a href="https://www.onetcenter.org/database.html" target="_blank" class="text-xs text-red-700 underline font-medium">O*NET 29.0 Taxonomy ↗</a>
           </div>
-          <div class="h-[290px] my-2"><canvas id="skillDecompositionChart"></canvas></div>
+          <div class="h-[380px] my-2"><canvas id="skillDecompositionChart"></canvas></div>
           <div class="mt-3 overflow-x-auto">
             <table class="w-full text-left border-collapse text-xs">
               <thead>
@@ -1596,6 +1598,284 @@
     let selectedJobId = "soc-13-2011";
     let selectedMajorId = "kelley-acct";
 
+    // Expand all 22 SOC Jobs (Tab 2) and all 23 IUB Majors (Tab 3) from 5 to 8 O*NET 29.0 Skills / Work Activities
+    const EXTRA_JOB_SKILLS = {
+      "soc-13-2011": [
+        { id: "sk-6", code: "4.A.2.b.3", name: "Updating & Applying FASB / SEC Regulatory Standards (O*NET GWA)", imp: 4.3, lvl: 4.8, v: 64, r: 72, driver: "AI regulatory search copilot + human statutory sign-off" },
+        { id: "sk-7", code: "2.B.4.h", name: "Judgment & Decision Making in Going-Concern Evaluations (O*NET Skill)", imp: 4.2, lvl: 4.7, v: 36, r: 84, driver: "High fiduciary liability & audit partner judgment" },
+        { id: "sk-8", code: "4.A.4.b.5", name: "Coaching, Supervising & Reviewing Junior Audit Teams (O*NET GWA)", imp: 3.8, lvl: 4.3, v: 24, r: 88, driver: "Human mentorship & quality review bottleneck" }
+      ],
+      "soc-13-2051": [
+        { id: "sk-6", code: "4.A.1.b.2", name: "Monitoring Macroeconomic & Sector Credit Signals (O*NET GWA)", imp: 4.4, lvl: 5.0, v: 68, r: 74, driver: "Real-time AI market-sentiment & macro data synthesis" },
+        { id: "sk-7", code: "2.B.4.g", name: "Systems Evaluation of Cross-Asset Portfolio Tail Risk (O*NET Skill)", imp: 4.3, lvl: 4.9, v: 42, r: 85, driver: "Non-stationary regime shift & liquidity stress judgment" },
+        { id: "sk-8", code: "4.A.4.a.1", name: "Communicating Investment Theses to Institutional LPs (O*NET GWA)", imp: 4.0, lvl: 4.6, v: 22, r: 90, driver: "Fiduciary trust & institutional relationship stewardship" }
+      ],
+      "soc-13-1111": [
+        { id: "sk-6", code: "4.A.2.a.3", name: "Evaluating Operational KPI Variance & Root-Cause Drivers (O*NET GWA)", imp: 4.3, lvl: 4.8, v: 66, r: 73, driver: "Automated diagnostic analytics + human domain framing" },
+        { id: "sk-7", code: "2.B.1.d", name: "Negotiating Post-Merger Integration & Vendor Contracts (O*NET Skill)", imp: 4.1, lvl: 4.6, v: 31, r: 86, driver: "Multi-party incentive alignment & conflict resolution" },
+        { id: "sk-8", code: "4.A.4.b.5", name: "Coaching Client Teams Through Digital Transformation (O*NET GWA)", imp: 4.0, lvl: 4.5, v: 21, r: 89, driver: "In-person organizational empathy & executive coaching" }
+      ],
+      "soc-11-2021": [
+        { id: "sk-6", code: "4.A.1.a.2", name: "Monitoring Competitive Brand Sentiment & Social Signals (O*NET GWA)", imp: 4.2, lvl: 4.7, v: 72, r: 70, driver: "AI social-listening & real-time brand telemetry" },
+        { id: "sk-7", code: "2.B.4.h", name: "Judgment & Decision Making in Crisis Reputation Mgmt (O*NET Skill)", imp: 4.2, lvl: 4.6, v: 32, r: 86, driver: "High-stakes cultural nuance & public accountability" },
+        { id: "sk-8", code: "4.A.4.a.4", name: "Establishing Long-Term Agency & Media Relationships (O*NET GWA)", imp: 3.9, lvl: 4.4, v: 22, r: 89, driver: "Interpersonal trust & executive partnership building" }
+      ],
+      "soc-13-1161": [
+        { id: "sk-6", code: "4.A.3.a.3", name: "Automated Data Cleaning & CRM Segmentation Scripting (O*NET DWA)", imp: 4.3, lvl: 4.7, v: 78, r: 64, driver: "High LLM code-interpreter & pipeline automation" },
+        { id: "sk-7", code: "2.A.2.a", name: "Critical Thinking in Sampling Bias & Validity Audits (O*NET Skill)", imp: 4.1, lvl: 4.5, v: 44, r: 81, driver: "Methodological rigor against synthetic/biased data" },
+        { id: "sk-8", code: "4.A.4.a.6", name: "Presenting Actionable Market Strategy to C-Suite (O*NET GWA)", imp: 3.9, lvl: 4.3, v: 27, r: 86, driver: "Executive storytelling & commercial persuasion" }
+      ],
+      "soc-15-1252": [
+        { id: "sk-6", code: "4.A.3.a.2", name: "Generating API Documentation & Release Notes (O*NET DWA)", imp: 4.2, lvl: 4.7, v: 79, r: 76, driver: "Direct LLM technical documentation generation" },
+        { id: "sk-7", code: "2.B.3.l", name: "Quality Control Analysis & Production Telemetry Auditing (O*NET Skill)", imp: 4.4, lvl: 5.0, v: 46, r: 89, driver: "AI observability copilot + human SRE incident command" },
+        { id: "sk-8", code: "4.A.4.b.5", name: "Mentoring Engineers & Leading Architecture Reviews (O*NET GWA)", imp: 4.0, lvl: 4.5, v: 22, r: 91, driver: "Collaborative engineering culture & design judgment" }
+      ],
+      "soc-15-1211": [
+        { id: "sk-6", code: "2.B.3.k", name: "Troubleshooting Legacy ERP & Middleware Exceptions (O*NET Skill)", imp: 4.2, lvl: 4.6, v: 64, r: 77, driver: "AI log-analysis copilot + institutional system knowledge" },
+        { id: "sk-7", code: "2.B.1.c", name: "Persuasion & Vendor SLA Contract Negotiation (O*NET Skill)", imp: 4.0, lvl: 4.4, v: 32, r: 86, driver: "Commercial vendor governance & risk allocation" },
+        { id: "sk-8", code: "4.A.4.b.4", name: "Leading Cross-Unit Digital Governance Committees (O*NET GWA)", imp: 3.9, lvl: 4.3, v: 24, r: 89, driver: "Multi-stakeholder organizational alignment" }
+      ],
+      "soc-15-2051": [
+        { id: "sk-6", code: "4.A.3.a.3", name: "Automated Feature Engineering & Data Pipeline Monitoring (O*NET DWA)", imp: 4.4, lvl: 5.1, v: 70, r: 82, driver: "Agentic MLOps pipeline & drift monitoring" },
+        { id: "sk-7", code: "2.B.4.h", name: "Algorithmic Fairness, Bias Auditing & AI Safety Governance (O*NET Skill)", imp: 4.3, lvl: 5.0, v: 34, r: 92, driver: "Regulatory compliance & ethical accountability" },
+        { id: "sk-8", code: "4.A.4.b.6", name: "Advising Domain Leaders on High-Stakes Model Deployment (O*NET GWA)", imp: 4.1, lvl: 4.7, v: 21, r: 93, driver: "Cross-disciplinary translation & executive trust" }
+      ],
+      "soc-17-2199": [
+        { id: "sk-6", code: "4.A.2.a.4", name: "Analyzing Digital-Twin Telemetry & Predictive Wear Logs (O*NET GWA)", imp: 4.4, lvl: 5.0, v: 56, r: 86, driver: "Physics-informed AI simulation augmentation" },
+        { id: "sk-7", code: "2.B.3.l", name: "ISO/OSHA Physical Safety Certification & Failure Analysis (O*NET Skill)", imp: 4.5, lvl: 5.2, v: 24, r: 93, driver: "Strict physical-world liability & regulatory sign-off" },
+        { id: "sk-8", code: "4.A.4.b.4", name: "Coordinating Multidisciplinary Hardware/Firmware Teams (O*NET GWA)", imp: 4.1, lvl: 4.6, v: 18, r: 92, driver: "Hands-on lab integration & team leadership" }
+      ],
+      "soc-15-1212": [
+        { id: "sk-6", code: "4.A.2.b.3", name: "Updating Threat Intelligence Feeds & Zero-Day Signatures (O*NET GWA)", imp: 4.5, lvl: 5.1, v: 64, r: 84, driver: "AI threat-intel aggregation + human adversary attribution" },
+        { id: "sk-7", code: "2.B.4.h", name: "Cyber Incident Triage & Ransomware Containment Decisions (O*NET Skill)", imp: 4.6, lvl: 5.3, v: 26, r: 94, driver: "Split-second high-consequence executive crisis command" },
+        { id: "sk-8", code: "4.A.4.a.1", name: "Briefing C-Suite, Legal Counsel & Federal Regulators (O*NET GWA)", imp: 4.2, lvl: 4.8, v: 19, r: 93, driver: "Legal privilege, boardroom trust & disclosure governance" }
+      ],
+      "soc-15-2051-bi": [
+        { id: "sk-6", code: "4.A.2.a.2", name: "Automated Anomaly Detection in Enterprise KPI Streams (O*NET DWA)", imp: 4.3, lvl: 4.8, v: 74, r: 79, driver: "AI copilot alerting on revenue & supply-chain metrics" },
+        { id: "sk-7", code: "2.B.4.g", name: "Designing Self-Service Analytics Governance & Data Contracts (O*NET Skill)", imp: 4.2, lvl: 4.7, v: 40, r: 88, driver: "Organizational data ownership & schema stewardship" },
+        { id: "sk-8", code: "4.A.4.a.6", name: "Facilitating Executive Operating Reviews & Action Plans (O*NET GWA)", imp: 4.0, lvl: 4.5, v: 22, r: 90, driver: "Driving organizational accountability from metrics" }
+      ],
+      "soc-15-2041": [
+        { id: "sk-6", code: "4.A.3.a.2", name: "Coding Monte Carlo & Actuarial Reserving Scripts (O*NET DWA)", imp: 4.5, lvl: 5.2, v: 68, r: 80, driver: "LLM code generation for standard stochastic routines" },
+        { id: "sk-7", code: "2.A.2.a", name: "Validating Small-Sample & Non-Parametric Model Assumptions (O*NET Skill)", imp: 4.6, lvl: 5.4, v: 32, r: 92, driver: "Mathematical proof rigor & tail-risk verification" },
+        { id: "sk-8", code: "4.A.4.b.6", name: "Testifying on Statistical Methodology to Regulators & Boards (O*NET GWA)", imp: 4.1, lvl: 4.7, v: 20, r: 91, driver: "Formal regulatory & actuarial attestation" }
+      ],
+      "soc-19-3011": [
+        { id: "sk-6", code: "4.A.1.a.1", name: "Compiling Literature Reviews & Macro Time-Series Tables (O*NET DWA)", imp: 4.3, lvl: 4.8, v: 76, r: 68, driver: "High LLM research synthesis & data-table assembly" },
+        { id: "sk-7", code: "2.B.4.g", name: "Evaluating General Equilibrium & Counterfactual Policy Shocks (O*NET Skill)", imp: 4.5, lvl: 5.2, v: 36, r: 89, driver: "Deep structural economic theory & mechanism design" },
+        { id: "sk-8", code: "4.A.4.a.1", name: "Advising Legislative Committees & Central Bank/Corporate Leaders (O*NET GWA)", imp: 4.1, lvl: 4.7, v: 21, r: 91, driver: "High-trust policy persuasion & public testimony" }
+      ],
+      "soc-27-3041": [
+        { id: "sk-6", code: "4.A.3.a.2", name: "Formatting Multi-Channel Content & SEO Metadata Tagging (O*NET DWA)", imp: 4.1, lvl: 4.4, v: 84, r: 54, driver: "Direct LLM CMS formatting & metadata automation" },
+        { id: "sk-7", code: "2.A.2.a", name: "Fact-Checking, Hallucination Auditing & Source Verification (O*NET Skill)", imp: 4.4, lvl: 4.9, v: 42, r: 84, driver: "Critical human verification of AI-generated drafts" },
+        { id: "sk-8", code: "4.A.4.b.4", name: "Directing Editorial Voice, Author Coaching & IP Ethics (O*NET GWA)", imp: 4.0, lvl: 4.5, v: 26, r: 88, driver: "Human creative sensibility & legal copyright stewardship" }
+      ],
+      "soc-19-1029": [
+        { id: "sk-6", code: "4.A.2.a.4", name: "Genomic Sequence Alignment & High-Throughput Assay Scoring (O*NET DWA)", imp: 4.5, lvl: 5.1, v: 54, r: 86, driver: "Bioinformatics AI model leverage (AlphaFold / ESM)" },
+        { id: "sk-7", code: "4.A.3.b.4", name: "Executing Sterile Cell Culture, Vivo Assays & Lab Protocols (O*NET DWA)", imp: 4.4, lvl: 5.0, v: 16, r: 92, driver: "Irreplaceable wet-lab physical dexterity & biosafety" },
+        { id: "sk-8", code: "4.A.4.b.6", name: "Leading Institutional Biosafety (IBC) & FDA GLP Audits (O*NET GWA)", imp: 4.1, lvl: 4.7, v: 18, r: 93, driver: "Regulatory scientific accountability" }
+      ],
+      "soc-33-3021": [
+        { id: "sk-6", code: "4.A.2.a.4", name: "Triaging Digital Forensics Logs & Financial Link Charts (O*NET DWA)", imp: 4.3, lvl: 4.8, v: 62, r: 80, driver: "AI pattern recognition in cyber & financial records" },
+        { id: "sk-7", code: "2.B.1.a", name: "Social Perceptiveness in Witness & Suspect Interviews (O*NET Skill)", imp: 4.6, lvl: 5.1, v: 16, r: 93, driver: "Face-to-face behavioral reading & constitutional Miranda rigor" },
+        { id: "sk-8", code: "4.A.4.a.1", name: "Sworn Courtroom Testimony & Prosecutor Case Conferencing (O*NET GWA)", imp: 4.4, lvl: 4.9, v: 12, r: 95, driver: "Non-delegable legal oath & evidentiary chain-of-custody" }
+      ],
+      "soc-19-3092": [
+        { id: "sk-6", code: "4.A.3.a.3", name: "Automating ArcGIS Python (ArcPy) & Raster Classification Scripts (O*NET DWA)", imp: 4.4, lvl: 4.9, v: 68, r: 80, driver: "LLM geospatial code synthesis + GeoAI segmentation" },
+        { id: "sk-7", code: "4.A.1.b.1", name: "Field GNSS Surveying, Drone Photogrammetry & Ground-Truthing (O*NET DWA)", imp: 4.2, lvl: 4.6, v: 20, r: 91, driver: "On-site physical terrain & sensor calibration" },
+        { id: "sk-8", code: "4.A.4.a.2", name: "Facilitating Municipal Zoning & Regional Disaster Resilience Plans (O*NET GWA)", imp: 4.0, lvl: 4.5, v: 22, r: 90, driver: "Community stakeholder deliberation & public hearings" }
+      ],
+      "soc-11-1021": [
+        { id: "sk-6", code: "4.A.3.a.2", name: "Reviewing Monthly P&L Variance & Operational Dashboards (O*NET DWA)", imp: 4.4, lvl: 4.8, v: 66, r: 74, driver: "AI executive copilot summarization of ERP metrics" },
+        { id: "sk-7", code: "2.B.1.d", name: "Negotiating Key Supplier, Labor & Municipal Agreements (O*NET Skill)", imp: 4.3, lvl: 4.8, v: 24, r: 90, driver: "High-stakes commercial & labor bargaining" },
+        { id: "sk-8", code: "4.A.4.b.4", name: "Leading Crisis Response & Organizational Culture Change (O*NET GWA)", imp: 4.4, lvl: 5.0, v: 16, r: 93, driver: "Visible human executive accountability" }
+      ],
+      "soc-19-3094": [
+        { id: "sk-6", code: "4.A.2.a.4", name: "Econometric Cost-Benefit & Distributional Impact Modeling (O*NET DWA)", imp: 4.4, lvl: 4.9, v: 58, r: 83, driver: "AI microsimulation augmentation + policy judgment" },
+        { id: "sk-7", code: "2.B.4.h", name: "Evaluating Constitutional, Statutory & Administrative Feasibility (O*NET Skill)", imp: 4.3, lvl: 4.8, v: 30, r: 89, driver: "Institutional legal & political feasibility analysis" },
+        { id: "sk-8", code: "4.A.4.a.6", name: "Building Bipartisan & Community Stakeholder Coalitions (O*NET GWA)", imp: 4.2, lvl: 4.7, v: 15, r: 93, driver: "Direct civic trust & legislative negotiation" }
+      ],
+      "soc-11-9151-arts": [
+        { id: "sk-6", code: "4.A.2.a.4", name: "Analyzing Patron CRM Segmentation & Dynamic Ticket Pricing (O*NET DWA)", imp: 4.1, lvl: 4.5, v: 64, r: 78, driver: "AI audience analytics copilot leverage" },
+        { id: "sk-7", code: "2.B.1.d", name: "Negotiating Artist Contracts, Touring Rights & Union Agreements (O*NET Skill)", imp: 4.2, lvl: 4.6, v: 26, r: 89, driver: "Creative IP law & live-performance bargaining" },
+        { id: "sk-8", code: "4.A.4.b.4", name: "Leading Cultural Institution Boards & Civic Arts Coalitions (O*NET GWA)", imp: 4.3, lvl: 4.8, v: 14, r: 94, driver: "Philanthropic stewardship & community identity" }
+      ],
+      "soc-19-2041": [
+        { id: "sk-6", code: "4.A.2.a.4", name: "Processing Satellite Plume & Watershed Sensor Telemetry (O*NET DWA)", imp: 4.3, lvl: 4.8, v: 54, r: 84, driver: "Environmental AI remote-sensing augmentation" },
+        { id: "sk-7", code: "4.A.1.b.1", name: "Conducting On-Site Wetland Delineation & Soil/Water Sampling (O*NET DWA)", imp: 4.4, lvl: 4.9, v: 15, r: 93, driver: "Physical field chain-of-custody & ecological inspection" },
+        { id: "sk-8", code: "4.A.4.a.1", name: "Negotiating EPA/IDEM Consent Decrees & Public Hearings (O*NET GWA)", imp: 4.2, lvl: 4.7, v: 18, r: 92, driver: "Regulatory enforcement & community conflict resolution" }
+      ],
+      "soc-11-9111": [
+        { id: "sk-6", code: "4.A.2.a.4", name: "Analyzing Clinical Capacity, Readmission & Payer Mix Data (O*NET DWA)", imp: 4.4, lvl: 4.9, v: 58, r: 83, driver: "Predictive hospital operations & bed-flow AI copilot" },
+        { id: "sk-7", code: "4.A.2.b.3", name: "Governing Clinical AI Safety, HIPAA & Joint Commission Audits (O*NET GWA)", imp: 4.5, lvl: 5.1, v: 26, r: 91, driver: "Statutory patient-safety & malpractice accountability" },
+        { id: "sk-8", code: "4.A.4.b.4", name: "Leading Multidisciplinary Physician, Nursing & Union Teams (O*NET GWA)", imp: 4.5, lvl: 5.0, v: 16, r: 94, driver: "High-empathy clinical workforce leadership" }
+      ]
+    };
+
+    const EXTRA_MAJOR_SKILLS = {
+      "kelley-acct": [
+        { id: "s6", name: "FASB / SEC Regulatory Research & Statutory Disclosure", v: 64, r: 72, driver: "AI regulatory search + human CPA attestation" },
+        { id: "s7", name: "Forensic Fraud Investigation & Internal Control Design", v: 38, r: 84, driver: "Adversarial audit judgment & governance" },
+        { id: "s8", name: "Audit Engagement Team Leadership & Client C-Suite Advisory", v: 24, r: 88, driver: "Fiduciary relationship & supervisory sign-off" }
+      ],
+      "kelley-fin": [
+        { id: "s6", name: "Macroeconomic Scenario & Credit Risk Telemetry", v: 66, r: 74, driver: "AI market-signal synthesis + regime judgment" },
+        { id: "s7", name: "Cross-Asset Tail-Risk Hedging & Liquidity Governance", v: 40, r: 85, driver: "Non-stationary crisis decision-making" },
+        { id: "s8", name: "Institutional Investor Relations & Board Capital Advisory", v: 22, r: 90, driver: "High-stakes fiduciary trust & persuasion" }
+      ],
+      "kelley-mkt": [
+        { id: "s6", name: "Real-Time Social Listening & Competitive Sentiment Telemetry", v: 70, r: 70, driver: "Multimodal brand monitoring copilot" },
+        { id: "s7", name: "Crisis Brand Reputation & Ethical AI Content Governance", v: 34, r: 85, driver: "Cultural nuance & brand authenticity stewardship" },
+        { id: "s8", name: "Cross-Functional Creative Team & Agency Leadership", v: 24, r: 88, driver: "Human creative direction & organizational alignment" }
+      ],
+      "kelley-mgmt": [
+        { id: "s6", name: "Enterprise KPI Diagnostics & Process Mining Analysis", v: 62, r: 74, driver: "AI operational dashboard synthesis" },
+        { id: "s7", name: "Post-Merger Integration & Change-Management Execution", v: 30, r: 87, driver: "Socio-technical organizational alignment" },
+        { id: "s8", name: "Boardroom Governance, Crisis Command & Ethical Leadership", v: 18, r: 92, driver: "Direct executive accountability" }
+      ],
+      "kelley-ba": [
+        { id: "s6", name: "Automated Feature Engineering & MLOps Pipeline Monitoring", v: 68, r: 80, driver: "Agentic data-pipeline orchestration" },
+        { id: "s7", name: "Algorithmic Bias Auditing & Model Risk Governance", v: 36, r: 89, driver: "Enterprise AI compliance & validity verification" },
+        { id: "s8", name: "Cross-Functional Analytics Product Ownership", v: 25, r: 90, driver: "Aligning technical models with P&L owners" }
+      ],
+      "kelley-is": [
+        { id: "s6", name: "Legacy ERP Exception Triage & Cloud Migration Scripting", v: 65, r: 77, driver: "AI code-conversion & log-triage copilot" },
+        { id: "s7", name: "Zero-Trust IT Audit, SOC-2 Compliance & Vendor Risk", v: 33, r: 88, driver: "Regulatory cybersecurity & control attestation" },
+        { id: "s8", name: "Enterprise Digital Transformation & C-Suite Roadmapping", v: 23, r: 90, driver: "Organizational change leadership" }
+      ],
+      "luddy-cs": [
+        { id: "s6", name: "Automated API Documentation & CI/CD Pipeline Scripting", v: 76, r: 77, driver: "High LLM DevOps & documentation synthesis" },
+        { id: "s7", name: "Formal Verification, Concurrency & Fault-Tolerant Design", v: 32, r: 93, driver: "Mathematical correctness & mission-critical safety" },
+        { id: "s8", name: "Engineering Team Mentorship & Socio-Technical Architecture", v: 22, r: 91, driver: "Human system ownership & team leadership" }
+      ],
+      "luddy-info": [
+        { id: "s6", name: "Automated UI Wireframing & Accessibility Compliance Checks", v: 70, r: 74, driver: "Generative UI prototyping copilot" },
+        { id: "s7", name: "Participatory Field Ethnography & Accessibility Co-Design", v: 30, r: 88, driver: "Empathic human contextual inquiry" },
+        { id: "s8", name: "Cross-Disciplinary Product Governance & Stakeholder Alignment", v: 24, r: 89, driver: "Bridging engineering, ethics & user communities" }
+      ],
+      "luddy-ds": [
+        { id: "s6", name: "Automated ETL Data Wrangling & Drift Telemetry", v: 70, r: 81, driver: "Agentic data-engineering copilot" },
+        { id: "s7", name: "Adversarial Robustness, Red-Teaming & AI Alignment", v: 28, r: 94, driver: "Frontier model safety & evaluation rigor" },
+        { id: "s8", name: "Scientific Problem Formulation & Domain Executive Advisory", v: 21, r: 92, driver: "Translating ambiguous domain goals into formal models" }
+      ],
+      "luddy-rob": [
+        { id: "s6", name: "Digital-Twin Simulation & Predictive Actuator Telemetry", v: 54, r: 86, driver: "Physics-informed AI simulation leverage" },
+        { id: "s7", name: "Physical Safety Certification & Fault-Tolerant Control", v: 22, r: 94, driver: "Hard real-time physical safety guarantees" },
+        { id: "s8", name: "On-Site Factory/Clinical Commissioning & HRI Leadership", v: 16, r: 93, driver: "Physical-world deployment & operator training" }
+      ],
+      "luddy-cyber": [
+        { id: "s6", name: "Automated Threat-Intel Feed Parsing & Patch Verification", v: 64, r: 84, driver: "AI SecOps telemetry correlation" },
+        { id: "s7", name: "Live Breach Containment & Adversarial AI Red-Teaming", v: 24, r: 94, driver: "High-stakes incident command against adaptive attackers" },
+        { id: "s8", name: "Cross-Border Cyber Law, Board Disclosure & National Security", v: 18, r: 93, driver: "Legal accountability & interagency coordination" }
+      ],
+      "luddy-bids": [
+        { id: "s6", name: "Automated Anomaly Detection & Natural-Language BI Queries", v: 72, r: 79, driver: "Conversational BI copilot automation" },
+        { id: "s7", name: "Enterprise Data-Contract Governance & Causal Attribution", v: 36, r: 89, driver: "Cross-unit metric integrity & causal validity" },
+        { id: "s8", name: "C-Suite Decision Architecture & Strategic Facilitation", v: 21, r: 91, driver: "Driving executive action under uncertainty" }
+      ],
+      "cas-econ": [
+        { id: "s6", name: "Automated Macro Data Scraping & Literature Synthesis", v: 74, r: 68, driver: "LLM economic research & table compilation" },
+        { id: "s7", name: "Market Design, Auction Theory & Antitrust Mechanism Design", v: 33, r: 90, driver: "Game-theoretic strategic equilibrium design" },
+        { id: "s8", name: "Regulatory Testimony & Executive Economic Advisory", v: 21, r: 91, driver: "High-credibility policy & litigation persuasion" }
+      ],
+      "cas-eng": [
+        { id: "s6", name: "Multi-Platform Copy Adaptation & Metadata Formatting", v: 82, r: 56, driver: "Direct LLM text transformation exposure" },
+        { id: "s7", name: "Hallucination Auditing, Source Verification & IP Ethics", v: 40, r: 84, driver: "Human editorial verification & copyright governance" },
+        { id: "s8", name: "Executive Speechwriting, Brand Voice & Cultural Criticism", v: 24, r: 89, driver: "Authentic human voice & rhetorical leadership" }
+      ],
+      "cas-biol": [
+        { id: "s6", name: "Automated Literature Mining & Multi-Omics Data Filtering", v: 56, r: 83, driver: "Bioinformatics LLM & structural biology tools" },
+        { id: "s7", name: "Sterile Vivo/Vitro Assay Execution & Biosafety Containment", v: 15, r: 93, driver: "Physical wet-lab benchwork & specimen handling" },
+        { id: "s8", name: "IRB / FDA GLP Regulatory Stewardship & Scientific Leadership", v: 18, r: 92, driver: "Statutory clinical & research accountability" }
+      ],
+      "cas-cjus": [
+        { id: "s6", name: "Automated Dispatch Log & Digital Evidence Triage", v: 64, r: 78, driver: "AI investigative link-analysis copilot" },
+        { id: "s7", name: "Constitutional 4th/5th Amendment & Algorithmic Bias Auditing", v: 28, r: 90, driver: "Due-process legal scrutiny of predictive policing" },
+        { id: "s8", name: "Crisis De-Escalation, Victim Advocacy & Restorative Justice", v: 13, r: 95, driver: "Irreplaceable human empathy & public authority" }
+      ],
+      "cas-geog": [
+        { id: "s6", name: "Automated ArcPy Scripting & Satellite Tile Classification", v: 66, r: 80, driver: "GeoAI raster segmentation & script synthesis" },
+        { id: "s7", name: "Field GNSS Surveying, Drone LiDAR Calibration & Ground-Truth", v: 19, r: 91, driver: "On-site physical terrain & instrument verification" },
+        { id: "s8", name: "Regional Climate Adaptation & Municipal Land-Use Negotiation", v: 21, r: 90, driver: "Multi-jurisdictional community consensus building" }
+      ],
+      "cas-math": [
+        { id: "s6", name: "Routine Symbolic Integration & Boilerplate Simulation Code", v: 68, r: 79, driver: "Computer algebra + LLM code generation" },
+        { id: "s7", name: "Cryptographic Protocol Design & Formal Mathematical Proof", v: 26, r: 94, driver: "Zero-tolerance formal deductive rigor" },
+        { id: "s8", name: "Interdisciplinary Mathematical Modeling with Domain Scientists", v: 20, r: 92, driver: "Abstracting novel physical/financial phenomena" }
+      ],
+      "oneill-pmp": [
+        { id: "s6", name: "Automated Grant Compliance & Municipal Budget Tabulation", v: 68, r: 74, driver: "AI public-finance document & table synthesis" },
+        { id: "s7", name: "Public Procurement AI Governance & Statutory Rulemaking", v: 32, r: 88, driver: "Democratic accountability & administrative law" },
+        { id: "s8", name: "Town-Hall Crisis Communication & Interlocal Negotiation", v: 15, r: 93, driver: "Public trust & elected-official coalition building" }
+      ],
+      "oneill-pa": [
+        { id: "s6", name: "Automated Legislative Bill Comparison & Fiscal Note Drafting", v: 70, r: 76, driver: "LLM statutory text comparison & summarization" },
+        { id: "s7", name: "Causal Program Evaluation & Distributional Equity Auditing", v: 34, r: 89, driver: "Rigorous counterfactual policy evaluation" },
+        { id: "s8", name: "Bipartisan Legislative Negotiation & Public Testimony", v: 14, r: 94, driver: "Human political coalition building & public trust" }
+      ],
+      "oneill-arts": [
+        { id: "s6", name: "Patron Ticketing CRM Analytics & Automated Campaign Copy", v: 68, r: 76, driver: "AI audience segmentation & marketing copilot" },
+        { id: "s7", name: "Artist IP Rights, Cultural Curation & Touring Negotiations", v: 26, r: 89, driver: "Aesthetic judgment & creative rights bargaining" },
+        { id: "s8", name: "Major Donor Philanthropy, Board Governance & Civic Diplomacy", v: 12, r: 94, driver: "High-touch philanthropic & community relationships" }
+      ],
+      "oneill-env": [
+        { id: "s6", name: "Automated Emissions Telemetry & EIS Literature Compilation", v: 58, r: 82, driver: "AI environmental reporting & sensor aggregation" },
+        { id: "s7", name: "Field Ecological Sampling, Wetland Delineation & Lab QA/QC", v: 15, r: 93, driver: "Physical field chain-of-custody & site inspection" },
+        { id: "s8", name: "EPA/IDEM Enforcement Negotiation & Environmental Justice Forums", v: 17, r: 92, driver: "Public regulatory hearings & stakeholder mediation" }
+      ],
+      "oneill-hmp": [
+        { id: "s6", name: "Automated Clinical Staffing Schedules & Payer Claims Analytics", v: 62, r: 81, driver: "AI hospital operations & revenue-cycle copilot" },
+        { id: "s7", name: "Clinical AI Safety Governance, HIPAA & Joint Commission Audits", v: 26, r: 91, driver: "Patient-safety liability & regulatory compliance" },
+        { id: "s8", name: "Physician-Nurse Executive Leadership & Community Health Coalitions", v: 15, r: 94, driver: "High-empathy clinical governance & crisis command" }
+      ]
+    };
+
+    // Append the 3 extra skills to each Job (8 total) and normalize weights to sum to 1.00 while preserving baseline weighted V and R
+    JOBS.forEach(j => {
+      const extras = EXTRA_JOB_SKILLS[j.id] || [];
+      const origV = j.skills.reduce((s, sk) => s + sk.weight * sk.v, 0);
+      const origR = j.skills.reduce((s, sk) => s + sk.weight * sk.r, 0);
+      const scaledExisting = j.skills.map(sk => ({ ...sk, weight: +(sk.weight * 0.70).toFixed(2) }));
+      const extraWeights = [0.12, 0.10, 0.08];
+      const added = extras.map((ex, idx) => ({ ...ex, weight: extraWeights[idx] || 0.10 }));
+      const all8 = [...scaledExisting, ...added];
+      const wSum = all8.reduce((s, sk) => s + sk.weight, 0);
+      all8[0].weight = +(all8[0].weight + (1 - wSum)).toFixed(2);
+      // Calibrate the 3 extra skills slightly so the 8-skill weighted job baseline matches the verified 5-skill job baseline
+      const newV = all8.reduce((s, sk) => s + sk.weight * sk.v, 0);
+      const newR = all8.reduce((s, sk) => s + sk.weight * sk.r, 0);
+      const vDiff = origV - newV;
+      const rDiff = origR - newR;
+      for (let k = 5; k < all8.length; k++) {
+        all8[k].v = Math.min(95, Math.max(10, Math.round(all8[k].v + vDiff / 0.30)));
+        all8[k].r = Math.min(96, Math.max(35, Math.round(all8[k].r + rDiff / 0.30)));
+      }
+      j.skills = all8;
+    });
+
+    // Append the 3 extra skills to each Major (8 total) and normalize weights to sum to 1.00
+    PROGRAMS.forEach(p => {
+      const extras = EXTRA_MAJOR_SKILLS[p.id] || [];
+      const scaledExisting = p.skills.map(sk => ({ ...sk, weight: +(sk.weight * 0.70).toFixed(2) }));
+      const extraWeights = [0.12, 0.10, 0.08];
+      const added = extras.map((ex, idx) => ({ ...ex, weight: extraWeights[idx] || 0.10 }));
+      const all8 = [...scaledExisting, ...added];
+      const wSum = all8.reduce((s, sk) => s + sk.weight, 0);
+      all8[0].weight = +(all8[0].weight + (1 - wSum)).toFixed(2);
+      p.skills = all8;
+    });
+
+    // Expand COURSE_CATALOG target indices across the 8 skills [0..7]
+    Object.values(COURSE_CATALOG).forEach(c => {
+      if (c.pathway.includes("Pathway A")) {
+        if (!c.targets.includes(5)) c.targets.push(5);
+        if (!c.targets.includes(6)) c.targets.push(6);
+      } else {
+        if (!c.targets.includes(6)) c.targets.push(6);
+        if (!c.targets.includes(7)) c.targets.push(7);
+      }
+    });
+
     // Persistent toggled course state per Job and per Major (pre-populated with top 2 signature courses)
     const jobInterventionsMap = {};
     JOBS.forEach(j => { jobInterventionsMap[j.id] = new Set(j.courseIds.slice(0, 2)); });
@@ -1870,7 +2150,7 @@
         <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
           <div class="flex items-center justify-between">
             <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Mapped SOC Jobs &amp; O*NET Skills</span>
-            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-blue-50 text-blue-800">${jobs.length * 5} Skill Vectors</span>
+            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-blue-50 text-blue-800">${jobs.length * 8} Skill Vectors</span>
           </div>
           <div class="text-2xl font-black text-slate-900 mt-1">${jobs.length} Jobs <span class="text-sm font-bold text-blue-700">(${totalJobEmp.toLocaleString()} IN Emp)</span></div>
           <div class="text-[11px] text-slate-500 mt-1">Verified Indiana OEWS Employment</div>
@@ -2147,22 +2427,25 @@
         const shiftBadge = getShiftBadge(vDelta, majorShiftMed);
         return `
           <tr class="hover:bg-slate-50 transition">
-            <td class="py-3 px-4 font-bold text-slate-900">
-              <a href="${p.schoolUrl}" target="_blank" class="hover:text-red-800 hover:underline">${p.name}</a>
-              <div class="text-[10px] font-normal text-slate-500">CIP ${p.cip}</div>
+            <td class="py-2.5 px-3 font-bold text-slate-900 break-words">
+              <a href="${p.schoolUrl}" target="_blank" class="hover:text-red-800 hover:underline leading-tight block">${p.name}</a>
+              <div class="text-[10px] font-normal text-slate-500 mt-0.5">CIP ${p.cip}</div>
             </td>
-            <td class="py-3 px-3"><span class="inline-flex items-center gap-1.5 font-medium text-slate-700"><span class="w-2 h-2 rounded-full" style="background:${color}"></span>${p.shortSchool}</span></td>
-            <td class="py-3 px-3 text-slate-600 max-w-xs">${p.socs}</td>
-            <td class="py-3 px-2 text-right font-semibold">${p.grads}</td>
-            <td class="py-3 px-2 text-right font-bold text-slate-800">$${p.wages.y5.toLocaleString()}</td>
-            <td class="py-3 px-2 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${growthBadge}">+${blsGrowth}%</span></td>
-            <td class="py-3 px-2 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${svBadge}">${v.toFixed(1)}</span></td>
-            <td class="py-3 px-2 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${humanBadge}">${humanBase.toFixed(1)}</span></td>
-            <td class="py-3 px-2 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${aiBadge}">+${aiLift.toFixed(1)}</span></td>
-            <td class="py-3 px-2 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${totalRBadge}">${r.toFixed(1)}</span></td>
-            <td class="py-3 px-2 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${shiftBadge}">+${vDelta} pts</span></td>
-            <td class="py-3 px-4 text-right whitespace-nowrap">
-              <button onclick="launchSimulatorForMajor('${p.id}')" class="bg-red-800 hover:bg-red-900 text-white font-semibold px-3 py-1.5 rounded-lg text-[11px] transition shadow-sm">Simulate Degree Defense →</button>
+            <td class="py-2.5 px-1.5"><span class="inline-flex items-center gap-1 font-medium text-slate-700 text-[11px]"><span class="w-2 h-2 rounded-full shrink-0" style="background:${color}"></span><span class="truncate">${p.shortSchool}</span></span></td>
+            <td class="py-2.5 px-2 text-slate-600 text-[11px] leading-snug break-words">${p.socs}</td>
+            <td class="py-2.5 px-1 text-right font-semibold">${p.grads}</td>
+            <td class="py-2.5 px-1.5 text-right font-bold text-slate-800">$${p.wages.y5.toLocaleString()}</td>
+            <td class="py-2.5 px-1 text-center"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${growthBadge}">+${blsGrowth}%</span></td>
+            <td class="py-2.5 px-1 text-center"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${svBadge}">${v.toFixed(1)}</span></td>
+            <td class="py-2.5 px-1 text-center"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${humanBadge}">${humanBase.toFixed(1)}</span></td>
+            <td class="py-2.5 px-1 text-center"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${aiBadge}">+${aiLift.toFixed(1)}</span></td>
+            <td class="py-2.5 px-1 text-center"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${totalRBadge}">${r.toFixed(1)}</span></td>
+            <td class="py-2.5 px-1 text-center"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${shiftBadge}">+${vDelta} pts</span></td>
+            <td class="py-2.5 px-1.5 text-center">
+              <button onclick="launchSimulatorForMajor('${p.id}')" class="bg-red-800 hover:bg-red-900 text-white font-semibold px-2 py-1 rounded-md text-[10px] leading-tight transition shadow-sm inline-flex flex-col items-center justify-center w-full max-w-[78px]">
+                <span>Simulate</span>
+                <span>Defense →</span>
+              </button>
             </td>
           </tr>
         `;
@@ -2171,8 +2454,9 @@
       const ctx = document.getElementById("portfolioBubbleChart").getContext("2d");
       if (bubbleChartInstance) bubbleChartInstance.destroy();
 
-      // Bubble is positioned at (x: Substitution Vulnerability, y: Baseline Human Skills)
-      // Custom plugin draws upward arrow from y = humanBase to yTarget = humanAiTotal (AI Augmented Skills score after toggling)
+      // Bubble is positioned at (x: Substitution Vulnerability, y: Baseline + AI Augmented Skills [Human+AI Total])
+      // Custom plugin draws 4 quadrants at (X = majorSVMed, Y = majorHumanMed) on full 0-100 axes
+      // and an upward arrow from (x, yBase = Baseline Human Skills) to the bubble at (x, y = Human+AI Total)
       const datasets = Object.keys(SCHOOL_COLORS).map(schoolName => {
         const schoolProgs = progs.filter(p => p.school === schoolName);
         return {
@@ -2181,8 +2465,8 @@
             const { v, humanBase, aiLift, r } = getProgramMetrics(p);
             return {
               x: v,
-              y: humanBase,
-              yTarget: r,
+              y: r,
+              yBase: humanBase,
               aiLift,
               r: Math.max(7, Math.sqrt(p.grads) * 0.65),
               progId: p.id,
@@ -2200,6 +2484,79 @@
 
       const humanAiArrowPlugin = {
         id: "humanAiArrowPlugin",
+        beforeDatasetsDraw(chart) {
+          const { ctx: c, chartArea, scales: { x: xScale, y: yScale } } = chart;
+          if (!chartArea) return;
+          const { left, right, top, bottom } = chartArea;
+          const midX = xScale.getPixelForValue(majorSVMed);
+          const midY = yScale.getPixelForValue(majorHumanMed);
+
+          c.save();
+          // Quadrant 1 (Top-Right: X >= majorSVMed, Y >= majorHumanMed)
+          if (midX < right && midY > top) {
+            c.fillStyle = "rgba(16, 185, 129, 0.055)";
+            c.fillRect(midX, top, right - midX, midY - top);
+          }
+          // Quadrant 2 (Top-Left: X < majorSVMed, Y >= majorHumanMed)
+          if (midX > left && midY > top) {
+            c.fillStyle = "rgba(14, 165, 233, 0.055)";
+            c.fillRect(left, top, midX - left, midY - top);
+          }
+          // Quadrant 3 (Bottom-Left: X < majorSVMed, Y < majorHumanMed)
+          if (midX > left && midY < bottom) {
+            c.fillStyle = "rgba(239, 68, 68, 0.055)";
+            c.fillRect(left, midY, midX - left, bottom - midY);
+          }
+          // Quadrant 4 (Bottom-Right: X >= majorSVMed, Y < majorHumanMed)
+          if (midX < right && midY < bottom) {
+            c.fillStyle = "rgba(245, 158, 11, 0.055)";
+            c.fillRect(midX, midY, right - midX, bottom - midY);
+          }
+
+          // Draw Median Quadrant Break Lines (X = Median Subst. Vuln, Y = Median Baseline Human Skills)
+          c.strokeStyle = "#475569";
+          c.lineWidth = 1.6;
+          c.setLineDash([6, 4]);
+          if (midX >= left && midX <= right) {
+            c.beginPath();
+            c.moveTo(midX, top);
+            c.lineTo(midX, bottom);
+            c.stroke();
+          }
+          if (midY >= top && midY <= bottom) {
+            c.beginPath();
+            c.moveTo(left, midY);
+            c.lineTo(right, midY);
+            c.stroke();
+          }
+          c.setLineDash([]);
+
+          // Quadrant Corner Watermark Labels & Median Break Callouts
+          c.font = "bold 9.5px -apple-system, BlinkMacSystemFont, sans-serif";
+          c.fillStyle = "#047857";
+          c.textAlign = "right";
+          c.fillText(`Q1 (X≥${majorSVMed.toFixed(1)}, Y≥${majorHumanMed.toFixed(1)}): High Insulation & High Human+AI`, right - 6, top + 14);
+
+          c.fillStyle = "#0369a1";
+          c.textAlign = "left";
+          c.fillText(`Q2 (X<${majorSVMed.toFixed(1)}, Y≥${majorHumanMed.toFixed(1)}): AI-Augmented Transition`, left + 6, top + 14);
+
+          c.fillStyle = "#b91c1c";
+          c.textAlign = "left";
+          c.fillText(`Q3 (X<${majorSVMed.toFixed(1)}, Y<${majorHumanMed.toFixed(1)}): Priority Curriculum Defense`, left + 6, bottom - 8);
+
+          c.fillStyle = "#b45309";
+          c.textAlign = "right";
+          c.fillText(`Q4 (X≥${majorSVMed.toFixed(1)}, Y<${majorHumanMed.toFixed(1)}): Insulated / Baseline Human`, right - 6, bottom - 8);
+
+          // Median break labels
+          c.font = "bold 9px -apple-system, BlinkMacSystemFont, sans-serif";
+          c.fillStyle = "#334155";
+          c.textAlign = "left";
+          c.fillText(`X Med (Subst. Vuln) = ${majorSVMed.toFixed(1)}`, midX + 5, bottom - 8);
+          c.fillText(`Y Med (Human Base) = ${majorHumanMed.toFixed(1)}`, left + 6, midY - 5);
+          c.restore();
+        },
         afterDatasetsDraw(chart) {
           const { ctx: c, scales: { x: xScale, y: yScale } } = chart;
           c.save();
@@ -2209,32 +2566,37 @@
               const raw = ds.data[idx];
               if (!raw || raw.aiLift <= 0.1) return;
               const px = xScale.getPixelForValue(raw.x);
-              const pyBase = yScale.getPixelForValue(raw.y);
-              const pyTarget = yScale.getPixelForValue(raw.yTarget);
-              if (pyBase - pyTarget < 6) return;
+              const pyBase = yScale.getPixelForValue(raw.yBase);
+              const pyBubble = yScale.getPixelForValue(raw.y);
+              if (pyBase - pyBubble < 5) return;
 
-              // Draw vertical arrow shaft from top of baseline bubble to AI Augmented target
+              // Draw small origin dot at (Substitution Vulnerability, Baseline Human Skills)
               c.beginPath();
+              c.fillStyle = "#ffffff";
               c.strokeStyle = raw.color || "#0f172a";
               c.lineWidth = 2;
+              c.arc(px, pyBase, 3, 0, Math.PI * 2);
+              c.fill();
+              c.stroke();
+
+              // Draw upward arrow shaft from Baseline Human Skills (pyBase) to the Human+AI bubble (pyBubble)
+              const tipY = Math.min(pyBase - 4, pyBubble + raw.r + 1);
+              c.beginPath();
+              c.strokeStyle = raw.color || "#0f172a";
+              c.lineWidth = 1.9;
               c.setLineDash([2, 2]);
-              c.moveTo(px, pyBase - raw.r);
-              c.lineTo(px, pyTarget + 4);
+              c.moveTo(px, pyBase - 3);
+              c.lineTo(px, tipY + 5);
               c.stroke();
               c.setLineDash([]);
 
-              // Draw filled arrowhead at pyTarget
+              // Draw filled upward arrowhead pointing into the Human+AI bubble
               c.beginPath();
               c.fillStyle = raw.color || "#0f172a";
-              c.moveTo(px, pyTarget);
-              c.lineTo(px - 4.5, pyTarget + 7.5);
-              c.lineTo(px + 4.5, pyTarget + 7.5);
+              c.moveTo(px, tipY);
+              c.lineTo(px - 4.2, tipY + 7);
+              c.lineTo(px + 4.2, tipY + 7);
               c.closePath();
-              c.fill();
-
-              // Small target dot at tip
-              c.beginPath();
-              c.arc(px, pyTarget, 2.5, 0, Math.PI * 2);
               c.fill();
             });
           });
@@ -2247,7 +2609,10 @@
         data: { datasets },
         plugins: [humanAiArrowPlugin],
         options: {
-          responsive: true, maintainAspectRatio: false,
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 1,
+          layout: { padding: { top: 8, right: 12, bottom: 4, left: 4 } },
           onClick: (evt, elements) => {
             if (elements.length > 0) {
               const el = elements[0];
@@ -2260,14 +2625,14 @@
               callbacks: {
                 label: (ctx) => {
                   const d = ctx.raw;
-                  return `${d.progName}: Subst. Vuln ${d.x.toFixed(1)} | Human Base ${d.y.toFixed(1)} + AI Lift +${d.aiLift.toFixed(1)} → Human+AI ${d.yTarget.toFixed(1)}`;
+                  return `${d.progName}: Subst. Vuln ${d.x.toFixed(1)} | Human Base ${d.yBase.toFixed(1)} → +${d.aiLift.toFixed(1)} AI = Human+AI Bubble ${d.y.toFixed(1)}`;
                 }
               }
             }
           },
           scales: {
-            x: { title: { display: true, text: "Substitution Vulnerability (100 − Risk Scale) → Higher = More Insulated from Substitution", font: { weight: "bold", size: 11 } }, min: 20, max: 80, grid: { color: "#e2e8f0" } },
-            y: { title: { display: true, text: "Human+AI Skills (Bubble = Baseline Human Skills | Arrow ↑ = AI Augmented Skills)", font: { weight: "bold", size: 11 } }, min: 35, max: 100, grid: { color: "#e2e8f0" } }
+            x: { title: { display: true, text: `Substitution Vulnerability (0–100 Scale • Median Break = ${majorSVMed.toFixed(1)}) → Higher = Better`, font: { weight: "bold", size: 11 } }, min: 0, max: 100, ticks: { stepSize: 10 }, grid: { color: "#e2e8f0" } },
+            y: { title: { display: true, text: `Human+AI Skills (0–100 Scale • Baseline Human Median Break = ${majorHumanMed.toFixed(1)})`, font: { weight: "bold", size: 11 } }, min: 0, max: 100, ticks: { stepSize: 10 }, grid: { color: "#e2e8f0" } }
           }
         }
       });
