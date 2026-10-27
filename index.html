@@ -102,38 +102,43 @@
 
     <!-- TAB 1: PROVOST & DEANS PORTFOLIO MATRIX -->
     <section id="view-portfolio" class="space-y-6">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-        <div class="lg:col-span-6 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
-          <div class="flex items-start justify-between mb-3">
-            <div>
-              <h2 class="text-base font-bold text-slate-900">IUB Academic Portfolio: Substitution Vulnerability vs. Human+AI Skills (4-Quadrant Matrix)</h2>
-              <p class="text-xs text-slate-500">Bubble = <strong>Baseline + AI Augmented Skills (Human+AI Total) &amp; Substitution Vulnerability</strong> | Arrow (↑) = <strong>Lift from Baseline Human Skills</strong> | Quadrant Breaks at <strong>Median Subst. Vuln (X) &amp; Median Baseline Human Skills (Y)</strong></p>
-            </div>
-            <span id="horizonBadgePortfolio" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-red-50 text-red-800 border border-red-200 whitespace-nowrap">2025 Baseline</span>
+      <!-- Full-Width 1:1 Square 4-Quadrant Portfolio Figure (Placed Above School-Level Hierarchy) -->
+      <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
+          <div>
+            <h2 class="text-base font-bold text-slate-900">IUB Academic Portfolio: Substitution Vulnerability vs. Human+AI Skills (4-Quadrant Matrix)</h2>
+            <p class="text-xs text-slate-500">Bubble = <strong>Baseline + AI-Augmented (X, Y) Total</strong> | Arrow (↗) = <strong>Shift from Baseline (X₀, Y₀) to Baseline + AI-Augmented (X, Y)</strong> | Quadrant Breaks at <strong>X = 60 &amp; Y = 60</strong> (1:1 Square)</p>
           </div>
-          <div class="relative mx-auto w-full max-w-[540px] aspect-square flex items-center justify-center">
-            <canvas id="portfolioBubbleChart"></canvas>
-          </div>
-          <div class="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-            <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-red-700 mr-1.5"></span><strong>Kelley Business (6)</strong></div>
-            <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-blue-600 mr-1.5"></span><strong>Luddy Computing (6)</strong></div>
-            <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-amber-600 mr-1.5"></span><strong>Arts + Sciences (6)</strong></div>
-            <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-600 mr-1.5"></span><strong>O'Neill Public Affairs (5)</strong></div>
-          </div>
+          <span id="horizonBadgePortfolio" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-red-50 text-red-800 border border-red-200 whitespace-nowrap self-start">2025 Baseline</span>
         </div>
+        <div class="relative mx-auto w-full max-w-[1140px] aspect-square flex items-center justify-center">
+          <canvas id="portfolioBubbleChart"></canvas>
+        </div>
+        <div class="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs bg-slate-50 p-3 rounded-xl border border-slate-200">
+          <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-red-700 mr-1.5"></span><strong>Kelley Business (6)</strong></div>
+          <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-blue-600 mr-1.5"></span><strong>Luddy Computing (6)</strong></div>
+          <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-amber-600 mr-1.5"></span><strong>Arts + Sciences (6)</strong></div>
+          <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-600 mr-1.5"></span><strong>O'Neill Public Affairs (5)</strong></div>
+        </div>
+      </div>
 
-        <div class="lg:col-span-6 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
-          <h2 class="text-base font-bold text-slate-900 mb-1">School-Level Hierarchical Rollup (Req 6)</h2>
-          <p class="text-xs text-slate-500 mb-4">Aggregated across majors using <span id="weightModeLabel" class="font-semibold text-slate-700">Graduate Headcount</span> weights (Substitution Vulnerability + Additive Human &amp; AI Augmented Skills).</p>
-          <div id="schoolRollupCards" class="space-y-3.5 flex-1 overflow-y-auto custom-scroll"></div>
+      <!-- Full-Width School-Level Hierarchical Rollup (Placed Below the Figure) -->
+      <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
+          <div>
+            <h2 class="text-base font-bold text-slate-900">School-Level Hierarchical Rollup (Req 6)</h2>
+            <p class="text-xs text-slate-500">Aggregated across majors using <span id="weightModeLabel" class="font-semibold text-slate-700">Graduate Headcount</span> weights (Dual Additive Model: Baseline + AI-Augmented = Total for both Substitution Vulnerability &amp; Human+AI Skills).</p>
+          </div>
+          <span class="text-xs text-slate-500 font-medium">4 Flagship IUB Schools • 23 Undergraduate Majors</span>
         </div>
+        <div id="schoolRollupCards" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
       </div>
 
       <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
         <div class="px-6 py-4 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <div>
             <h3 class="text-base font-bold text-slate-900">IUB Degree Programs &amp; Mapped Occupational Exposure Scorecard (23 Majors)</h3>
-            <p class="text-xs text-slate-500">Higher <strong>Substitution Vulnerability (100 − Risk)</strong> &amp; <strong>Human+AI Skills (Baseline Human Skills + AI Augmented Lift)</strong> = Better. Click <strong>"Simulate Defense →"</strong> to adjust courses.</p>
+            <p class="text-xs text-slate-500">Both <strong>Substitution Vulnerability (X)</strong> &amp; <strong>Human+AI Skills (Y)</strong> show <strong>Baseline + AI-Augmented (+Lift) = Total</strong> (Higher = Better). Click <strong>"Simulate Defense →"</strong> to adjust courses.</p>
           </div>
           <div class="text-xs text-slate-500">
             Data Spine: <a href="https://www.hoosierdata.in.gov/infographics/iu-workforce-outcomes.asp" target="_blank" class="text-red-700 underline font-medium">IU Workforce Outcomes</a> + <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" class="text-red-700 underline font-medium">Indiana OEWS</a>
@@ -143,18 +148,20 @@
           <table class="w-full table-fixed text-left border-collapse text-xs">
             <thead>
               <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 uppercase tracking-tight text-[10px] leading-tight">
-                <th class="py-2.5 px-3 w-[15%]">Program / Major (CIP)</th>
-                <th class="py-2.5 px-1.5 w-[8%]">IUB School</th>
-                <th class="py-2.5 px-2 w-[18%]">Primary Mapped Occupations (SOC)</th>
-                <th class="py-2.5 px-1 text-right w-[5%]">Grad<br>Cohort</th>
-                <th class="py-2.5 px-1.5 text-right w-[7%]">5-Yr IN<br>Med Wage</th>
-                <th class="py-2.5 px-1 text-center w-[6.5%]">5-Yr BLS<br>Growth</th>
-                <th class="py-2.5 px-1 text-center w-[8.5%]">Substitution<br>Vulnerability</th>
-                <th class="py-2.5 px-1 text-center w-[7.5%]">Human Skills<br>(Base)</th>
-                <th class="py-2.5 px-1 text-center w-[7.5%]">AI Augmented<br>(+Lift)</th>
-                <th class="py-2.5 px-1 text-center w-[8%]">Human+AI<br>Skills (Total)</th>
-                <th class="py-2.5 px-1 text-center w-[6.5%]">5-Yr BLS<br>Shift (2030)</th>
-                <th class="py-2.5 px-2 text-center w-[7.5%]">Action</th>
+                <th class="py-2.5 px-2.5 w-[13%]">Program / Major (CIP)</th>
+                <th class="py-2.5 px-1 w-[7%]">IUB School</th>
+                <th class="py-2.5 px-1.5 w-[14%]">Primary Mapped Occupations (SOC)</th>
+                <th class="py-2.5 px-1 text-right w-[4.5%]">Grad<br>Cohort</th>
+                <th class="py-2.5 px-1 text-right w-[6%]">5-Yr IN<br>Med Wage</th>
+                <th class="py-2.5 px-1 text-center w-[5.5%]">5-Yr BLS<br>Growth</th>
+                <th class="py-2.5 px-1 text-center w-[6.2%]">Subst. Vuln<br>(Base)</th>
+                <th class="py-2.5 px-1 text-center w-[6.2%]">Subst. Vuln<br>(+AI Aug)</th>
+                <th class="py-2.5 px-1 text-center w-[6.6%]">Subst. Vuln<br>(Total X)</th>
+                <th class="py-2.5 px-1 text-center w-[6.2%]">Human Skills<br>(Base)</th>
+                <th class="py-2.5 px-1 text-center w-[6.2%]">Human+AI<br>(+AI Aug)</th>
+                <th class="py-2.5 px-1 text-center w-[6.6%]">Human+AI<br>(Total Y)</th>
+                <th class="py-2.5 px-1 text-center w-[5.5%]">5-Yr BLS<br>Shift (2030)</th>
+                <th class="py-2.5 px-1.5 text-center w-[6.5%]">Action</th>
               </tr>
             </thead>
             <tbody id="majorTableBody" class="divide-y divide-slate-200"></tbody>
@@ -176,7 +183,7 @@
             <select id="jobSelectDropdown" onchange="changeSelectedJob()" class="bg-slate-100 border border-slate-300 text-slate-900 font-bold text-sm rounded-xl px-3.5 py-2 focus:outline-none focus:ring-2 focus:ring-red-700"></select>
           </div>
         </div>
-        <div id="jobDetailBanner" class="flex flex-wrap items-center gap-4 bg-slate-50 px-4 py-3 rounded-xl border border-slate-200"></div>
+        <div id="jobDetailBanner" class="flex flex-wrap items-center gap-3 bg-slate-50 px-4 py-3 rounded-xl border border-slate-200"></div>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -192,15 +199,17 @@
           <div class="mt-3 overflow-x-auto">
             <table class="w-full text-left border-collapse text-xs">
               <thead>
-                <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 text-[11px] uppercase">
-                  <th class="py-2 px-3">O*NET Skill / Work Activity (Element ID)</th>
-                  <th class="py-2 px-2 text-center">Imp / Lvl</th>
-                  <th class="py-2 px-2 text-right">Weight w(o,s)</th>
-                  <th class="py-2 px-2 text-center">Substitution Vulnerability</th>
-                  <th class="py-2 px-2 text-center">Human Skills (Base)</th>
-                  <th class="py-2 px-2 text-center">AI Augmented (+Lift)</th>
-                  <th class="py-2 px-2 text-center">Human+AI Skills (Total)</th>
-                  <th class="py-2 px-3">AI Exposure Mechanism</th>
+                <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 text-[10px] uppercase leading-tight">
+                  <th class="py-2 px-2.5">O*NET Skill / Work Activity (Element ID)</th>
+                  <th class="py-2 px-1.5 text-center">Imp / Lvl</th>
+                  <th class="py-2 px-1.5 text-right">Weight<br>w(o,s)</th>
+                  <th class="py-2 px-1.5 text-center">Subst. Vuln<br>(Base)</th>
+                  <th class="py-2 px-1.5 text-center">Subst. Vuln<br>(+AI Aug)</th>
+                  <th class="py-2 px-1.5 text-center">Subst. Vuln<br>(Total X)</th>
+                  <th class="py-2 px-1.5 text-center">Human Skills<br>(Base)</th>
+                  <th class="py-2 px-1.5 text-center">Human+AI<br>(+AI Aug)</th>
+                  <th class="py-2 px-1.5 text-center">Human+AI<br>(Total Y)</th>
+                  <th class="py-2 px-2">AI Exposure Mechanism</th>
                 </tr>
               </thead>
               <tbody id="jobSkillTableBody" class="divide-y divide-slate-100"></tbody>
@@ -216,13 +225,13 @@
               <button onclick="resetJobInterventions()" class="text-xs text-slate-500 hover:text-red-700 underline">Reset Defenses</button>
             </div>
             <p class="text-xs text-slate-500 mb-3">
-              Toggling courses increases <strong>Substitution Vulnerability (100 − Risk)</strong> and adds <strong>AI Augmented Skills (+Lift)</strong> on top of <strong>Baseline Human Skills</strong>.
+              Toggling courses adds <strong>AI-Augmented Substitution Vulnerability (+Lift)</strong> on top of <strong>Baseline Substitution Vulnerability</strong> and <strong>AI-Augmented Skills (+Lift)</strong> on top of <strong>Baseline Human Skills</strong>.
             </p>
             <div id="selectedJobMetaBox" class="p-3 rounded-xl bg-slate-50 border border-slate-200 mb-3 text-xs space-y-1"></div>
             <div id="jobInterventionList" class="space-y-2 max-h-[380px] overflow-y-auto custom-scroll pr-1"></div>
           </div>
           <div class="p-3 rounded-xl bg-amber-50/70 border border-amber-200 text-[11px] text-amber-900">
-            <strong>Additive Skill Model:</strong> <code>Human+AI Skills = Baseline Human Skills + AI Augmented Lift (from toggled courses)</code>. Substitution Vulnerability is scaled as <code>100 − Automation Risk</code> (higher = better).
+            <strong>Dual Additive Model (X &amp; Y):</strong> Both <code>Substitution Vulnerability = Base + AI-Augmented Lift</code> and <code>Human+AI Skills = Base + AI-Augmented Lift</code> (0–100 scale, higher = better).
           </div>
         </div>
       </div>
@@ -240,19 +249,21 @@
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse text-xs">
             <thead>
-              <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 uppercase tracking-wider text-[11px]">
-                <th class="py-3 px-4">Occupation Title (SOC / O*NET)</th>
-                <th class="py-3 px-3">Mapped IUB Schools &amp; Majors</th>
-                <th class="py-3 px-3">Associated O*NET Skills (Subst. Vuln | Human+AI)</th>
-                <th class="py-3 px-2 text-right">IN Emp</th>
-                <th class="py-3 px-2 text-right">IN Mean Wage</th>
-                <th class="py-3 px-2 text-center">5-Yr BLS Growth</th>
-                <th class="py-3 px-2 text-center">Substitution Vulnerability</th>
-                <th class="py-3 px-2 text-center">Human Skills (Base)</th>
-                <th class="py-3 px-2 text-center">AI Augmented (+Lift)</th>
-                <th class="py-3 px-2 text-center">Human+AI Skills (Total)</th>
-                <th class="py-3 px-2 text-center">5-Yr BLS Shift (2030)</th>
-                <th class="py-3 px-4 text-right">Action</th>
+              <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 uppercase tracking-tight text-[10px] leading-tight">
+                <th class="py-3 px-3">Occupation Title (SOC / O*NET)</th>
+                <th class="py-3 px-2.5">Mapped IUB Schools &amp; Majors</th>
+                <th class="py-3 px-2.5">Associated O*NET Skills (Subst. Vuln | Human+AI)</th>
+                <th class="py-3 px-1.5 text-right">IN Emp</th>
+                <th class="py-3 px-1.5 text-right">IN Mean<br>Wage</th>
+                <th class="py-3 px-1.5 text-center">5-Yr BLS<br>Growth</th>
+                <th class="py-3 px-1.5 text-center">Subst. Vuln<br>(Base)</th>
+                <th class="py-3 px-1.5 text-center">Subst. Vuln<br>(+AI Aug)</th>
+                <th class="py-3 px-1.5 text-center">Subst. Vuln<br>(Total X)</th>
+                <th class="py-3 px-1.5 text-center">Human Skills<br>(Base)</th>
+                <th class="py-3 px-1.5 text-center">Human+AI<br>(+AI Aug)</th>
+                <th class="py-3 px-1.5 text-center">Human+AI<br>(Total Y)</th>
+                <th class="py-3 px-1.5 text-center">5-Yr BLS<br>Shift (2030)</th>
+                <th class="py-3 px-3 text-right">Action</th>
               </tr>
             </thead>
             <tbody id="allJobsSummaryTableBody" class="divide-y divide-slate-200"></tbody>
@@ -271,7 +282,7 @@
             <select id="simMajorSelect" onchange="changeSimMajor()" class="bg-slate-100 border border-slate-300 text-slate-900 font-bold text-sm rounded-xl px-3.5 py-2 focus:outline-none focus:ring-2 focus:ring-red-700"></select>
           </div>
         </div>
-        <div id="simImpactBanner" class="flex flex-wrap items-center gap-4 bg-slate-50 px-4 py-3 rounded-xl border border-slate-200"></div>
+        <div id="simImpactBanner" class="flex flex-wrap items-center gap-3 bg-slate-50 px-4 py-3 rounded-xl border border-slate-200"></div>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -279,7 +290,7 @@
           <div class="flex items-center justify-between mb-2">
             <div>
               <h3 class="text-base font-bold text-slate-900">Degree-Weighted O*NET Skill Decomposition (Req 6)</h3>
-              <p class="text-xs text-slate-500">Shows <strong>Substitution Vulnerability (100 − Risk)</strong> and additive <strong>Human Skills (Baseline) + AI Augmented Skills (Toggled Lift) = Human+AI Skills</strong>.</p>
+              <p class="text-xs text-slate-500">Shows additive <strong>Baseline + AI-Augmented = Total</strong> for both <strong>Substitution Vulnerability (X)</strong> and <strong>Human+AI Skills (Y)</strong>.</p>
             </div>
             <a href="https://www.onetcenter.org/database.html" target="_blank" class="text-xs text-red-700 underline font-medium">O*NET 29.0 Taxonomy ↗</a>
           </div>
@@ -287,17 +298,20 @@
           <div class="mt-3 overflow-x-auto">
             <table class="w-full text-left border-collapse text-xs">
               <thead>
-                <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 text-[11px] uppercase">
-                  <th class="py-2 px-3">O*NET Skill / Work Activity</th>
-                  <th class="py-2 px-2 text-right">Major Weight</th>
-                  <th class="py-2 px-2 text-center">Substitution Vulnerability</th>
-                  <th class="py-2 px-2 text-center">Human Skills (Base)</th>
-                  <th class="py-2 px-2 text-center">AI Augmented (+Lift)</th>
-                  <th class="py-2 px-2 text-center">Human+AI Skills (Total)</th>
-                  <th class="py-2 px-3">Primary Exposure Driver</th>
+                <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 text-[10px] uppercase leading-tight">
+                  <th class="py-2 px-2.5">O*NET Skill / Work Activity</th>
+                  <th class="py-2 px-1.5 text-right">Major<br>Weight</th>
+                  <th class="py-2 px-1.5 text-center">Subst. Vuln<br>(Base)</th>
+                  <th class="py-2 px-1.5 text-center">Subst. Vuln<br>(+AI Aug)</th>
+                  <th class="py-2 px-1.5 text-center">Subst. Vuln<br>(Total X)</th>
+                  <th class="py-2 px-1.5 text-center">Human Skills<br>(Base)</th>
+                  <th class="py-2 px-1.5 text-center">Human+AI<br>(+AI Aug)</th>
+                  <th class="py-2 px-1.5 text-center">Human+AI<br>(Total Y)</th>
+                  <th class="py-2 px-2">Primary Exposure Driver</th>
                 </tr>
               </thead>
               <tbody id="skillTableBody" class="divide-y divide-slate-100"></tbody>
+              <tfoot id="skillTableFooter" class="bg-slate-100 font-bold text-slate-900 border-t-2 border-slate-300"></tfoot>
             </table>
           </div>
         </div>
@@ -308,7 +322,7 @@
             <button onclick="resetInterventions()" class="text-xs text-slate-500 hover:text-red-700 underline">Reset All</button>
           </div>
           <p class="text-xs text-slate-500 mb-3">
-            Check or uncheck courses below to see how toggled interventions boost <strong>AI Augmented Skills</strong> on top of the pre-course <strong>Human Skills</strong> baseline (also updates the Tab 1 Bubble Chart arrow).
+            Check or uncheck courses below to boost both <strong>AI-Augmented Substitution Vulnerability (+ΔX)</strong> and <strong>AI-Augmented Skills (+ΔY)</strong> on top of their pre-course baselines (also updates the Tab 1 diagonal arrow ↗).
           </p>
           <div id="interventionList" class="space-y-2.5 max-h-[430px] overflow-y-auto custom-scroll pr-1"></div>
         </div>
@@ -1900,8 +1914,9 @@
       });
     }
 
-    // Reversed Substitution Vulnerability (100 - old V, higher = better)
-    // Additive Human+AI Skills = Baseline Human Skills (pre-course) + AI Augmented Skills (toggled lift)
+    // Dual Additive Model:
+    // 1. Substitution Vulnerability (X-Axis, 100 - Risk, higher = better) = Baseline Substitution Vulnerability (baseSV) + AI-Augmented Substitution Vulnerability (svLift) = Total Substitution Vulnerability (defSV)
+    // 2. Human+AI Skills (Y-Axis, higher = better) = Baseline Human Skills (humanBase) + AI-Augmented Skills (aiLift) = Total Human+AI Skills (humanAiTotal)
     function getAdjustedJobSkills(job) {
       const model = document.getElementById("globalModel").value;
       const delta = MODEL_DELTAS[model] || { v: 0, r: 0 };
@@ -1909,7 +1924,7 @@
       const activeSet = jobInterventionsMap[job.id] || new Set();
       const selectedInts = courses.filter(c => activeSet.has(c.id));
 
-      let wBaseSV = 0, wDefSV = 0, wHumanBase = 0, wAiLift = 0, wHumanAiTotal = 0;
+      let wBaseSV = 0, wSvLift = 0, wDefSV = 0, wHumanBase = 0, wAiLift = 0, wHumanAiTotal = 0;
 
       const rows = job.skills.map((sk, idx) => {
         const rawOldV = Math.min(95, Math.max(8, +(sk.v + delta.v).toFixed(1)));
@@ -1924,21 +1939,24 @@
           }
         });
 
-        const defSV = Math.min(96, +(baseSV + svBoost).toFixed(1));
+        const svLift = Math.min(+(96 - baseSV).toFixed(1), +svBoost.toFixed(1));
+        const defSV = +(baseSV + svLift).toFixed(1);
         const aiLift = Math.min(+(98 - humanBase).toFixed(1), +rBoost.toFixed(1));
         const humanAiTotal = +(humanBase + aiLift).toFixed(1);
 
         wBaseSV += sk.weight * baseSV;
+        wSvLift += sk.weight * svLift;
         wDefSV += sk.weight * defSV;
         wHumanBase += sk.weight * humanBase;
         wAiLift += sk.weight * aiLift;
         wHumanAiTotal += sk.weight * humanAiTotal;
 
-        return { ...sk, baseSV, defSV, humanBase, aiLift, humanAiTotal };
+        return { ...sk, baseSV, svLift, defSV, humanBase, aiLift, humanAiTotal };
       });
 
       const jobBaseSV = +wBaseSV.toFixed(1);
-      const jobDefSV = +wDefSV.toFixed(1);
+      const jobSvLift = +wSvLift.toFixed(1);
+      const jobDefSV = +(jobBaseSV + jobSvLift).toFixed(1);
       const jobHumanBase = +wHumanBase.toFixed(1);
       const jobAiLift = +wAiLift.toFixed(1);
       const jobHumanAiTotal = +(jobHumanBase + jobAiLift).toFixed(1);
@@ -1948,6 +1966,7 @@
         courses,
         selectedInts,
         jobBaseSV,
+        jobSvLift,
         jobDefSV,
         jobHumanBase,
         jobAiLift,
@@ -1965,13 +1984,13 @@
       const model = document.getElementById("globalModel").value;
       const m = prog.scores[model];
 
-      // Reversed Substitution Vulnerability: 100 - old V (higher = better)
+      // X-Axis: Baseline Substitution Vulnerability (100 - old V, higher = better) + AI-Augmented Substitution Vulnerability (svLift) = Total Substitution Vulnerability (defSV)
       const sv2025 = +(100 - m.v2025).toFixed(1);
       const sv2030 = +(100 - m.v2030).toFixed(1);
       const baseSV = horizon === "2025" ? sv2025 : sv2030;
-      const vDelta = +(sv2030 - sv2025).toFixed(1); // Positive shift = improvement by 2030
+      const vDelta = +(sv2030 - sv2025).toFixed(1);
 
-      // Pre-course Baseline Human Skills + Toggled AI Augmented Skills = Total Human+AI Skills
+      // Y-Axis: Baseline Human Skills (humanBase) + AI-Augmented Skills (aiLift) = Total Human+AI Skills (humanAiTotal)
       const rawR = horizon === "2025" ? m.r2025 : m.r2030;
       const humanBase = Math.min(82, Math.max(30, +(rawR - 12).toFixed(1)));
 
@@ -1982,12 +2001,15 @@
       const rawVBoost = selectedInts.reduce((acc, i) => acc + i.vDrop, 0);
       const rawRLift = selectedInts.reduce((acc, i) => acc + i.rLift, 0);
 
-      const defSV = Math.min(96, +(baseSV + rawVBoost).toFixed(1));
+      const svLift = Math.min(+(96 - baseSV).toFixed(1), +rawVBoost.toFixed(1));
+      const defSV = +(baseSV + svLift).toFixed(1);
       const aiLift = Math.min(+(98 - humanBase).toFixed(1), +rawRLift.toFixed(1));
       const humanAiTotal = +(humanBase + aiLift).toFixed(1);
 
       return {
         v: baseSV,
+        baseSV,
+        svLift,
         defSV,
         humanBase,
         aiLift,
@@ -2030,7 +2052,6 @@
     }
 
     function getShiftBadge(val, medianVal) {
-      // On reversed Substitution Vulnerability scale (100 - old V), a higher positive shift (+pts) is better than median
       if (val > medianVal + 0.05) return "bg-emerald-100 text-emerald-800 border-emerald-200";
       if (val < medianVal - 0.05) return "bg-red-100 text-red-800 border-red-200";
       return "bg-amber-100 text-amber-800 border-amber-200";
@@ -2110,12 +2131,14 @@
       const horizon = document.getElementById("globalHorizon").value;
       const horizonLabel = horizon === "2025" ? "2025 Baseline" : "5-Yr Forecast (2030)";
 
-      let totalWeight = 0, weightedSV = 0, weightedHuman = 0, weightedAiLift = 0, weightedTotalR = 0, totalGrads = 0, weightedRet = 0;
+      let totalWeight = 0, weightedBaseSV = 0, weightedSvLift = 0, weightedDefSV = 0, weightedHuman = 0, weightedAiLift = 0, weightedTotalR = 0, totalGrads = 0, weightedRet = 0;
       progs.forEach(p => {
-        const { v, humanBase, aiLift, r } = getProgramMetrics(p);
+        const { baseSV, svLift, defSV, humanBase, aiLift, r } = getProgramMetrics(p);
         const w = weightMode === "headcount" ? p.grads : (p.grads * p.wages.y5);
         totalWeight += w;
-        weightedSV += w * v;
+        weightedBaseSV += w * baseSV;
+        weightedSvLift += w * svLift;
+        weightedDefSV += w * defSV;
         weightedHuman += w * humanBase;
         weightedAiLift += w * aiLift;
         weightedTotalR += w * r;
@@ -2123,7 +2146,9 @@
         weightedRet += p.grads * p.inStateRet;
       });
 
-      const avgSV = (weightedSV / totalWeight).toFixed(1);
+      const avgBaseSV = (weightedBaseSV / totalWeight).toFixed(1);
+      const avgSvLift = (weightedSvLift / totalWeight).toFixed(1);
+      const avgDefSV = (weightedDefSV / totalWeight).toFixed(1);
       const avgHuman = (weightedHuman / totalWeight).toFixed(1);
       const avgAiLift = (weightedAiLift / totalWeight).toFixed(1);
       const avgTotalR = (weightedTotalR / totalWeight).toFixed(1);
@@ -2134,18 +2159,18 @@
         <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
           <div class="flex items-center justify-between">
             <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Portfolio Substitution Vulnerability</span>
-            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-sky-50 text-sky-800">${horizonLabel}</span>
+            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-sky-50 text-sky-800">Base ${avgBaseSV} + AI +${avgSvLift}</span>
           </div>
-          <div class="text-2xl font-black text-sky-800 mt-1">${avgSV} <span class="text-xs font-normal text-slate-500">/ 100 (Higher = Better)</span></div>
-          <div class="text-[11px] text-slate-500 mt-1">100 − Risk Scale • ${weightMode === "headcount" ? "Headcount" : "Wage-Bill"} Wtd</div>
+          <div class="text-2xl font-black text-sky-800 mt-1">${avgDefSV} <span class="text-xs font-normal text-slate-500">/ 100 Total (${horizonLabel})</span></div>
+          <div class="text-[11px] text-slate-500 mt-1">Baseline (${avgBaseSV}) + AI-Augmented (+${avgSvLift})</div>
         </div>
         <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
           <div class="flex items-center justify-between">
             <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Portfolio Human+AI Skills</span>
-            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-emerald-50 text-emerald-800">Human ${avgHuman} + AI +${avgAiLift}</span>
+            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-emerald-50 text-emerald-800">Base ${avgHuman} + AI +${avgAiLift}</span>
           </div>
           <div class="text-2xl font-black text-emerald-700 mt-1">${avgTotalR} <span class="text-xs font-normal text-slate-500">/ 100 Total</span></div>
-          <div class="text-[11px] text-slate-500 mt-1">Baseline Human (${avgHuman}) + AI Augmented (+${avgAiLift})</div>
+          <div class="text-[11px] text-slate-500 mt-1">Baseline Human (${avgHuman}) + AI-Augmented (+${avgAiLift})</div>
         </div>
         <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
           <div class="flex items-center justify-between">
@@ -2176,7 +2201,7 @@
       ).join("");
 
       const job = JOBS.find(j => j.id === selectedJobId) || jobs[0];
-      const { rows, courses, selectedInts, jobBaseSV, jobDefSV, jobHumanBase, jobAiLift, jobHumanAiTotal } = getAdjustedJobSkills(job);
+      const { rows, courses, selectedInts, jobBaseSV, jobSvLift, jobDefSV, jobHumanBase, jobAiLift, jobHumanAiTotal } = getAdjustedJobSkills(job);
       const activeSet = jobInterventionsMap[job.id] || new Set();
 
       document.getElementById("selectedJobHeading").textContent =
@@ -2185,61 +2210,68 @@
         `Mapped to ${job.majors.join(" • ")} | Indiana OEWS: ${job.inEmp.toLocaleString()} employed (${job.inWageNote})`;
 
       document.getElementById("jobDetailBanner").innerHTML = `
-        <div class="text-center px-2.5">
-          <div class="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">Substitution Vulnerability</div>
-          <div class="text-lg font-black">
-            <span class="${selectedInts.length ? 'line-through text-slate-400 mr-1' : 'text-sky-700'}">${jobBaseSV.toFixed(1)}</span>
-            ${selectedInts.length ? `<span class="text-sky-700">${jobDefSV.toFixed(1)}</span><span class="text-xs font-bold text-emerald-600 ml-1">(+${(jobDefSV - jobBaseSV).toFixed(1)})</span>` : ''}
-          </div>
+        <div class="text-center px-2">
+          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">Subst. Vuln (Base)</div>
+          <div class="text-base font-black text-sky-900">${jobBaseSV.toFixed(1)}</div>
         </div>
-        <div class="h-8 w-px bg-slate-200"></div>
-        <div class="text-center px-2.5">
-          <div class="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">Human Skills (Base)</div>
-          <div class="text-lg font-black text-emerald-800">${jobHumanBase.toFixed(1)}</div>
+        <div class="text-center px-2">
+          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">Subst. Vuln (+AI Aug)</div>
+          <div class="text-base font-black text-sky-600">+${jobSvLift.toFixed(1)}</div>
         </div>
-        <div class="h-8 w-px bg-slate-200"></div>
-        <div class="text-center px-2.5">
-          <div class="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">AI Augmented (+Lift)</div>
-          <div class="text-lg font-black text-teal-600">+${jobAiLift.toFixed(1)}</div>
+        <div class="text-center px-2 bg-sky-50 rounded-lg py-1 border border-sky-200">
+          <div class="text-[9px] uppercase tracking-wider text-sky-800 font-bold">Subst. Vuln (Total X)</div>
+          <div class="text-base font-black text-sky-700">${jobDefSV.toFixed(1)}</div>
         </div>
-        <div class="h-8 w-px bg-slate-200"></div>
-        <div class="text-center px-2.5">
-          <div class="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">Human+AI Skills (Total)</div>
-          <div class="text-lg font-black text-blue-700">${jobHumanAiTotal.toFixed(1)}</div>
+        <div class="h-8 w-px bg-slate-300"></div>
+        <div class="text-center px-2">
+          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">Human Skills (Base)</div>
+          <div class="text-base font-black text-emerald-800">${jobHumanBase.toFixed(1)}</div>
+        </div>
+        <div class="text-center px-2">
+          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">Human+AI (+AI Aug)</div>
+          <div class="text-base font-black text-teal-600">+${jobAiLift.toFixed(1)}</div>
+        </div>
+        <div class="text-center px-2 bg-emerald-50 rounded-lg py-1 border border-emerald-200">
+          <div class="text-[9px] uppercase tracking-wider text-emerald-800 font-bold">Human+AI (Total Y)</div>
+          <div class="text-base font-black text-emerald-700">${jobHumanAiTotal.toFixed(1)}</div>
         </div>
       `;
 
       const skSVMed = getColumnMedian(rows.map(r => r.defSV));
+      const skRMed = getColumnMedian(rows.map(r => r.humanAiTotal));
       document.getElementById("jobSkillTableBody").innerHTML = rows.map(sk => {
         const svBadge = getHigherBetterBadge(sk.defSV, skSVMed, 3.0);
+        const rBadge = getHigherBetterBadge(sk.humanAiTotal, skRMed, 3.0);
         return `
           <tr class="hover:bg-slate-50">
-            <td class="py-2.5 px-3">
+            <td class="py-2 px-2.5">
               <div class="font-semibold text-slate-900">${sk.name}</div>
               <div class="text-[10px] text-slate-500 font-mono">O*NET Element ${sk.code}</div>
             </td>
-            <td class="py-2.5 px-2 text-center font-mono text-[11px] text-slate-600">${sk.imp.toFixed(1)} / ${sk.lvl.toFixed(1)}</td>
-            <td class="py-2.5 px-2 text-right font-mono font-bold text-slate-800">${(sk.weight * 100).toFixed(0)}%</td>
-            <td class="py-2.5 px-2 text-center">
-              <span class="px-2 py-0.5 rounded-full text-xs font-bold border ${svBadge}">${sk.baseSV.toFixed(1)} → ${sk.defSV.toFixed(1)}</span>
-            </td>
-            <td class="py-2.5 px-2 text-center font-bold text-emerald-800">${sk.humanBase.toFixed(1)}</td>
-            <td class="py-2.5 px-2 text-center font-bold text-teal-700">+${sk.aiLift.toFixed(1)}</td>
-            <td class="py-2.5 px-2 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold bg-blue-50 text-blue-800 border border-blue-200">${sk.humanAiTotal.toFixed(1)}</span></td>
-            <td class="py-2.5 px-3 text-[11px] text-slate-500">${sk.driver}</td>
+            <td class="py-2 px-1.5 text-center font-mono text-[11px] text-slate-600">${sk.imp.toFixed(1)} / ${sk.lvl.toFixed(1)}</td>
+            <td class="py-2 px-1.5 text-right font-mono font-bold text-slate-800">${(sk.weight * 100).toFixed(0)}%</td>
+            <td class="py-2 px-1.5 text-center font-bold text-sky-900">${sk.baseSV.toFixed(1)}</td>
+            <td class="py-2 px-1.5 text-center font-bold text-sky-600">+${sk.svLift.toFixed(1)}</td>
+            <td class="py-2 px-1.5 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${svBadge}">${sk.defSV.toFixed(1)}</span></td>
+            <td class="py-2 px-1.5 text-center font-bold text-emerald-800">${sk.humanBase.toFixed(1)}</td>
+            <td class="py-2 px-1.5 text-center font-bold text-teal-700">+${sk.aiLift.toFixed(1)}</td>
+            <td class="py-2 px-1.5 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${rBadge}">${sk.humanAiTotal.toFixed(1)}</span></td>
+            <td class="py-2 px-2 text-[11px] text-slate-500">${sk.driver}</td>
           </tr>
         `;
       }).join("");
 
       document.getElementById("jobSkillTableFooter").innerHTML = `
         <tr>
-          <td class="py-2.5 px-3" colspan="2">Weighted Occupation Score (∑ w(o,s) × Score)</td>
-          <td class="py-2.5 px-2 text-right font-mono">100%</td>
-          <td class="py-2.5 px-2 text-center text-sky-800">${jobBaseSV.toFixed(1)} → ${jobDefSV.toFixed(1)}</td>
-          <td class="py-2.5 px-2 text-center text-emerald-800">${jobHumanBase.toFixed(1)}</td>
-          <td class="py-2.5 px-2 text-center text-teal-700">+${jobAiLift.toFixed(1)}</td>
-          <td class="py-2.5 px-2 text-center text-blue-800">${jobHumanAiTotal.toFixed(1)}</td>
-          <td class="py-2.5 px-3 text-[11px] font-normal text-slate-600">Human (${jobHumanBase.toFixed(1)}) + AI (+${jobAiLift.toFixed(1)}) = ${jobHumanAiTotal.toFixed(1)}</td>
+          <td class="py-2.5 px-2.5" colspan="2">Weighted Occupation Score (∑ w(o,s) × Score)</td>
+          <td class="py-2.5 px-1.5 text-right font-mono">100%</td>
+          <td class="py-2.5 px-1.5 text-center text-sky-900">${jobBaseSV.toFixed(1)}</td>
+          <td class="py-2.5 px-1.5 text-center text-sky-600">+${jobSvLift.toFixed(1)}</td>
+          <td class="py-2.5 px-1.5 text-center text-sky-800">${jobDefSV.toFixed(1)}</td>
+          <td class="py-2.5 px-1.5 text-center text-emerald-800">${jobHumanBase.toFixed(1)}</td>
+          <td class="py-2.5 px-1.5 text-center text-teal-700">+${jobAiLift.toFixed(1)}</td>
+          <td class="py-2.5 px-1.5 text-center text-emerald-900">${jobHumanAiTotal.toFixed(1)}</td>
+          <td class="py-2.5 px-2 text-[10px] font-normal text-slate-600">SV: ${jobBaseSV.toFixed(1)}+${jobSvLift.toFixed(1)}=${jobDefSV.toFixed(1)} | H+AI: ${jobHumanBase.toFixed(1)}+${jobAiLift.toFixed(1)}=${jobHumanAiTotal.toFixed(1)}</td>
         </tr>
       `;
 
@@ -2294,15 +2326,16 @@
         data: {
           labels: rows.map(s => `[${(s.weight * 100).toFixed(0)}%] ` + (s.name.length > 30 ? s.name.slice(0, 30) + "…" : s.name)),
           datasets: [
-            { label: "Substitution Vulnerability (100 − Risk)", data: rows.map(s => s.defSV), backgroundColor: "#0284c7", borderRadius: 3, stack: "sv_stack" },
-            { label: "Human Skills (Pre-Course Baseline)", data: rows.map(s => s.humanBase), backgroundColor: "#059669", borderRadius: 3, stack: "human_ai" },
-            { label: "AI Augmented Skills (Toggled Lift)", data: rows.map(s => s.aiLift), backgroundColor: "#34d399", borderRadius: 3, stack: "human_ai" }
+            { label: "Subst. Vuln (Base)", data: rows.map(s => s.baseSV), backgroundColor: "#0284c7", borderRadius: 3, stack: "sv_stack" },
+            { label: "Subst. Vuln (+AI Aug)", data: rows.map(s => s.svLift), backgroundColor: "#38bdf8", borderRadius: 3, stack: "sv_stack" },
+            { label: "Human Skills (Base)", data: rows.map(s => s.humanBase), backgroundColor: "#059669", borderRadius: 3, stack: "human_ai" },
+            { label: "Human+AI (+AI Aug)", data: rows.map(s => s.aiLift), backgroundColor: "#34d399", borderRadius: 3, stack: "human_ai" }
           ]
         },
         options: {
           indexAxis: "y", responsive: true, maintainAspectRatio: false,
           scales: {
-            x: { stacked: true, min: 0, max: 100, title: { display: true, text: "Score (0–100 Scale • Higher = Better | Human + AI Stacked = Human+AI Skills)" } },
+            x: { stacked: true, min: 0, max: 100, title: { display: true, text: "Score (0–100 Scale • Higher = Better | Both Subst. Vuln & Human+AI Show Base + AI-Augmented Lift)" } },
             y: { stacked: true }
           },
           plugins: { legend: { position: "top", labels: { boxWidth: 12, font: { size: 11 } } } }
@@ -2311,6 +2344,8 @@
 
       const allJobCalcs = jobs.map(j => ({ j, calc: getAdjustedJobSkills(j), shift: getJobBlsShift(j) }));
       const jobGrowthMed = getColumnMedian(JOBS.map(j => j.epGrowth5Yr));
+      const jobBaseSVMed = getColumnMedian(allJobCalcs.map(x => x.calc.jobBaseSV));
+      const jobSvLiftMed = getColumnMedian(allJobCalcs.map(x => x.calc.jobSvLift));
       const jobSVMed = getColumnMedian(allJobCalcs.map(x => x.calc.jobDefSV));
       const jobHumanMed = getColumnMedian(allJobCalcs.map(x => x.calc.jobHumanBase));
       const jobAiLiftMed = getColumnMedian(allJobCalcs.map(x => x.calc.jobAiLift));
@@ -2320,6 +2355,8 @@
       document.getElementById("allJobsSummaryTableBody").innerHTML = allJobCalcs.map(({ j, calc, shift }) => {
         const isSelected = j.id === selectedJobId;
         const growthBadge = getGrowthBadge(j.epGrowth5Yr, jobGrowthMed);
+        const baseSvBadge = getHigherBetterBadge(calc.jobBaseSV, jobBaseSVMed, 1.5);
+        const svLiftBadge = getHigherBetterBadge(calc.jobSvLift, jobSvLiftMed, 0.8);
         const svBadge = getHigherBetterBadge(calc.jobDefSV, jobSVMed, 1.5);
         const humanBadge = getHigherBetterBadge(calc.jobHumanBase, jobHumanMed, 1.5);
         const aiBadge = getHigherBetterBadge(calc.jobAiLift, jobAiLiftMed, 0.8);
@@ -2331,30 +2368,32 @@
           const shortName = sk.name.replace(/\s*\(O\*NET.*\)/, "");
           return `<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded border text-[10px] mr-1 mb-1 ${pillColor}">
             <span class="font-semibold">${shortName}</span>
-            <span class="font-mono opacity-80">(${(sk.weight*100).toFixed(0)}% | SV:${sk.defSV.toFixed(0)} | H:${sk.humanBase.toFixed(0)}+AI:${sk.aiLift.toFixed(0)}=${sk.humanAiTotal.toFixed(0)})</span>
+            <span class="font-mono opacity-80">(${(sk.weight*100).toFixed(0)}% | SV:${sk.baseSV.toFixed(0)}+${sk.svLift.toFixed(0)}=${sk.defSV.toFixed(0)} | H+AI:${sk.humanBase.toFixed(0)}+${sk.aiLift.toFixed(0)}=${sk.humanAiTotal.toFixed(0)})</span>
           </div>`;
         }).join("");
 
         return `
           <tr class="${isSelected ? 'bg-red-50/40' : 'hover:bg-slate-50'} transition align-top">
-            <td class="py-3 px-4">
+            <td class="py-3 px-3">
               <div class="font-bold text-slate-900">${j.title}</div>
               <div class="text-[10px] font-mono text-slate-500">SOC ${j.soc} • O*NET ${j.onet}</div>
             </td>
-            <td class="py-3 px-3">
+            <td class="py-3 px-2.5">
               <div class="font-semibold text-slate-800 text-[11px]">${j.schools.map(s => s.split(" ")[0]).join(", ")}</div>
               <div class="text-[10px] text-slate-500">${j.majors.join(", ")}</div>
             </td>
-            <td class="py-3 px-3 max-w-md">${skillsPills}</td>
-            <td class="py-3 px-2 text-right font-semibold">${j.inEmp.toLocaleString()}</td>
-            <td class="py-3 px-2 text-right font-bold text-slate-800">$${j.inMeanWage.toLocaleString()}</td>
-            <td class="py-3 px-2 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${growthBadge}">+${j.epGrowth5Yr}%</span></td>
-            <td class="py-3 px-2 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${svBadge}">${calc.jobDefSV.toFixed(1)}</span></td>
-            <td class="py-3 px-2 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${humanBadge}">${calc.jobHumanBase.toFixed(1)}</span></td>
-            <td class="py-3 px-2 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${aiBadge}">+${calc.jobAiLift.toFixed(1)}</span></td>
-            <td class="py-3 px-2 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${totalRBadge}">${calc.jobHumanAiTotal.toFixed(1)}</span></td>
-            <td class="py-3 px-2 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${shiftBadge}">+${shift} pts</span></td>
-            <td class="py-3 px-4 text-right whitespace-nowrap">
+            <td class="py-3 px-2.5 max-w-md">${skillsPills}</td>
+            <td class="py-3 px-1.5 text-right font-semibold">${j.inEmp.toLocaleString()}</td>
+            <td class="py-3 px-1.5 text-right font-bold text-slate-800">$${j.inMeanWage.toLocaleString()}</td>
+            <td class="py-3 px-1.5 text-center"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${growthBadge}">+${j.epGrowth5Yr}%</span></td>
+            <td class="py-3 px-1.5 text-center"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${baseSvBadge}">${calc.jobBaseSV.toFixed(1)}</span></td>
+            <td class="py-3 px-1.5 text-center"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${svLiftBadge}">+${calc.jobSvLift.toFixed(1)}</span></td>
+            <td class="py-3 px-1.5 text-center"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${svBadge}">${calc.jobDefSV.toFixed(1)}</span></td>
+            <td class="py-3 px-1.5 text-center"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${humanBadge}">${calc.jobHumanBase.toFixed(1)}</span></td>
+            <td class="py-3 px-1.5 text-center"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${aiBadge}">+${calc.jobAiLift.toFixed(1)}</span></td>
+            <td class="py-3 px-1.5 text-center"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${totalRBadge}">${calc.jobHumanAiTotal.toFixed(1)}</span></td>
+            <td class="py-3 px-1.5 text-center"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${shiftBadge}">+${shift} pts</span></td>
+            <td class="py-3 px-3 text-right whitespace-nowrap">
               <button onclick="inspectJob('${j.id}')" class="${isSelected ? 'bg-slate-800 text-white' : 'bg-red-800 hover:bg-red-900 text-white'} font-semibold px-3 py-1.5 rounded-lg text-[11px] transition shadow-sm">
                 ${isSelected ? 'Viewing Above ✓' : 'Inspect Skills ↑'}
               </button>
@@ -2375,13 +2414,23 @@
       const schools = [...new Set(PROGRAMS.map(p => p.school))];
       document.getElementById("schoolRollupCards").innerHTML = schools.map(schoolName => {
         const sProgs = PROGRAMS.filter(p => p.school === schoolName);
-        let tw = 0, wv = 0, wh = 0, wai = 0, wr = 0, grads = 0, wageSum = 0;
+        let tw = 0, wBaseSV = 0, wSvLift = 0, wDefSV = 0, wh = 0, wai = 0, wr = 0, grads = 0, wageSum = 0;
         sProgs.forEach(p => {
-          const { v, humanBase, aiLift, r } = getProgramMetrics(p);
+          const { baseSV, svLift, defSV, humanBase, aiLift, r } = getProgramMetrics(p);
           const w = weightMode === "headcount" ? p.grads : p.grads * p.wages.y5;
-          tw += w; wv += w * v; wh += w * humanBase; wai += w * aiLift; wr += w * r; grads += p.grads; wageSum += p.grads * p.wages.y5;
+          tw += w;
+          wBaseSV += w * baseSV;
+          wSvLift += w * svLift;
+          wDefSV += w * defSV;
+          wh += w * humanBase;
+          wai += w * aiLift;
+          wr += w * r;
+          grads += p.grads;
+          wageSum += p.grads * p.wages.y5;
         });
-        const sv = (wv / tw).toFixed(1);
+        const sBaseSV = (wBaseSV / tw).toFixed(1);
+        const sSvLift = (wSvLift / tw).toFixed(1);
+        const sDefSV = (wDefSV / tw).toFixed(1);
         const sh = (wh / tw).toFixed(1);
         const sai = (wai / tw).toFixed(1);
         const sr = (wr / tw).toFixed(1);
@@ -2397,11 +2446,13 @@
               </div>
               <span class="text-[11px] text-slate-500 font-medium">${grads.toLocaleString()} grads • $${(avgWage/1000).toFixed(1)}k 5-yr med</span>
             </div>
-            <div class="grid grid-cols-4 gap-1.5 mt-2.5 text-center">
-              <div class="bg-white p-2 rounded-lg border border-slate-200/80"><div class="text-[9px] text-slate-500 uppercase">Subst. Vuln</div><div class="text-sm font-extrabold text-sky-700">${sv}</div></div>
-              <div class="bg-white p-2 rounded-lg border border-slate-200/80"><div class="text-[9px] text-slate-500 uppercase">Human Base</div><div class="text-sm font-extrabold text-emerald-800">${sh}</div></div>
-              <div class="bg-white p-2 rounded-lg border border-slate-200/80"><div class="text-[9px] text-slate-500 uppercase">AI Augmented</div><div class="text-sm font-extrabold text-teal-600">+${sai}</div></div>
-              <div class="bg-white p-2 rounded-lg border border-slate-200/80"><div class="text-[9px] text-slate-500 uppercase">Human+AI Total</div><div class="text-sm font-extrabold text-blue-700">${sr}</div></div>
+            <div class="grid grid-cols-6 gap-1.5 mt-2.5 text-center">
+              <div class="bg-white p-1.5 rounded-lg border border-slate-200/80"><div class="text-[9px] text-slate-500 uppercase">SV Base</div><div class="text-xs font-extrabold text-sky-900">${sBaseSV}</div></div>
+              <div class="bg-white p-1.5 rounded-lg border border-slate-200/80"><div class="text-[9px] text-slate-500 uppercase">SV +AI Aug</div><div class="text-xs font-extrabold text-sky-600">+${sSvLift}</div></div>
+              <div class="bg-sky-50/70 p-1.5 rounded-lg border border-sky-200"><div class="text-[9px] text-sky-800 font-bold uppercase">SV Total (X)</div><div class="text-xs font-extrabold text-sky-700">${sDefSV}</div></div>
+              <div class="bg-white p-1.5 rounded-lg border border-slate-200/80"><div class="text-[9px] text-slate-500 uppercase">Human Base</div><div class="text-xs font-extrabold text-emerald-800">${sh}</div></div>
+              <div class="bg-white p-1.5 rounded-lg border border-slate-200/80"><div class="text-[9px] text-slate-500 uppercase">H+AI +Aug</div><div class="text-xs font-extrabold text-teal-600">+${sai}</div></div>
+              <div class="bg-emerald-50/70 p-1.5 rounded-lg border border-emerald-200"><div class="text-[9px] text-emerald-800 font-bold uppercase">H+AI Total (Y)</div><div class="text-xs font-extrabold text-emerald-700">${sr}</div></div>
             </div>
           </div>
         `;
@@ -2409,40 +2460,46 @@
 
       const allMajorMetrics = PROGRAMS.map(p => ({ p, m: getProgramMetrics(p), growth: getMajorBlsGrowth(p) }));
       const majorGrowthMed = getColumnMedian(allMajorMetrics.map(x => x.growth));
-      const majorSVMed = getColumnMedian(allMajorMetrics.map(x => x.m.v));
+      const majorBaseSVMed = getColumnMedian(allMajorMetrics.map(x => x.m.baseSV));
+      const majorSvLiftMed = getColumnMedian(allMajorMetrics.map(x => x.m.svLift));
+      const majorDefSVMed = getColumnMedian(allMajorMetrics.map(x => x.m.defSV));
       const majorHumanMed = getColumnMedian(allMajorMetrics.map(x => x.m.humanBase));
       const majorAiMed = getColumnMedian(allMajorMetrics.map(x => x.m.aiLift));
       const majorTotalRMed = getColumnMedian(allMajorMetrics.map(x => x.m.r));
       const majorShiftMed = getColumnMedian(allMajorMetrics.map(x => x.m.vDelta));
 
       document.getElementById("majorTableBody").innerHTML = progs.map(p => {
-        const { v, humanBase, aiLift, r, vDelta } = getProgramMetrics(p);
+        const { baseSV, svLift, defSV, humanBase, aiLift, r, vDelta } = getProgramMetrics(p);
         const blsGrowth = getMajorBlsGrowth(p);
         const color = SCHOOL_COLORS[p.school];
         const growthBadge = getGrowthBadge(blsGrowth, majorGrowthMed);
-        const svBadge = getHigherBetterBadge(v, majorSVMed, 1.5);
+        const baseSvBadge = getHigherBetterBadge(baseSV, majorBaseSVMed, 1.5);
+        const svLiftBadge = getHigherBetterBadge(svLift, majorSvLiftMed, 0.8);
+        const defSvBadge = getHigherBetterBadge(defSV, majorDefSVMed, 1.5);
         const humanBadge = getHigherBetterBadge(humanBase, majorHumanMed, 1.5);
         const aiBadge = getHigherBetterBadge(aiLift, majorAiMed, 0.8);
         const totalRBadge = getHigherBetterBadge(r, majorTotalRMed, 1.5);
         const shiftBadge = getShiftBadge(vDelta, majorShiftMed);
         return `
           <tr class="hover:bg-slate-50 transition">
-            <td class="py-2.5 px-3 font-bold text-slate-900 break-words">
+            <td class="py-2.5 px-2.5 font-bold text-slate-900 break-words">
               <a href="${p.schoolUrl}" target="_blank" class="hover:text-red-800 hover:underline leading-tight block">${p.name}</a>
               <div class="text-[10px] font-normal text-slate-500 mt-0.5">CIP ${p.cip}</div>
             </td>
-            <td class="py-2.5 px-1.5"><span class="inline-flex items-center gap-1 font-medium text-slate-700 text-[11px]"><span class="w-2 h-2 rounded-full shrink-0" style="background:${color}"></span><span class="truncate">${p.shortSchool}</span></span></td>
-            <td class="py-2.5 px-2 text-slate-600 text-[11px] leading-snug break-words">${p.socs}</td>
+            <td class="py-2.5 px-1"><span class="inline-flex items-center gap-1 font-medium text-slate-700 text-[11px]"><span class="w-2 h-2 rounded-full shrink-0" style="background:${color}"></span><span class="truncate">${p.shortSchool}</span></span></td>
+            <td class="py-2.5 px-1.5 text-slate-600 text-[10.5px] leading-snug break-words">${p.socs}</td>
             <td class="py-2.5 px-1 text-right font-semibold">${p.grads}</td>
-            <td class="py-2.5 px-1.5 text-right font-bold text-slate-800">$${p.wages.y5.toLocaleString()}</td>
-            <td class="py-2.5 px-1 text-center"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${growthBadge}">+${blsGrowth}%</span></td>
-            <td class="py-2.5 px-1 text-center"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${svBadge}">${v.toFixed(1)}</span></td>
-            <td class="py-2.5 px-1 text-center"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${humanBadge}">${humanBase.toFixed(1)}</span></td>
-            <td class="py-2.5 px-1 text-center"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${aiBadge}">+${aiLift.toFixed(1)}</span></td>
-            <td class="py-2.5 px-1 text-center"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${totalRBadge}">${r.toFixed(1)}</span></td>
-            <td class="py-2.5 px-1 text-center"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${shiftBadge}">+${vDelta} pts</span></td>
-            <td class="py-2.5 px-1.5 text-center">
-              <button onclick="launchSimulatorForMajor('${p.id}')" class="bg-red-800 hover:bg-red-900 text-white font-semibold px-2 py-1 rounded-md text-[10px] leading-tight transition shadow-sm inline-flex flex-col items-center justify-center w-full max-w-[78px]">
+            <td class="py-2.5 px-1 text-right font-bold text-slate-800">$${p.wages.y5.toLocaleString()}</td>
+            <td class="py-2.5 px-1 text-center"><span class="px-1.5 py-0.5 rounded-full text-[10.5px] font-bold border ${growthBadge}">+${blsGrowth}%</span></td>
+            <td class="py-2.5 px-1 text-center"><span class="px-1.5 py-0.5 rounded-full text-[10.5px] font-bold border ${baseSvBadge}">${baseSV.toFixed(1)}</span></td>
+            <td class="py-2.5 px-1 text-center"><span class="px-1.5 py-0.5 rounded-full text-[10.5px] font-bold border ${svLiftBadge}">+${svLift.toFixed(1)}</span></td>
+            <td class="py-2.5 px-1 text-center"><span class="px-1.5 py-0.5 rounded-full text-[10.5px] font-bold border ${defSvBadge}">${defSV.toFixed(1)}</span></td>
+            <td class="py-2.5 px-1 text-center"><span class="px-1.5 py-0.5 rounded-full text-[10.5px] font-bold border ${humanBadge}">${humanBase.toFixed(1)}</span></td>
+            <td class="py-2.5 px-1 text-center"><span class="px-1.5 py-0.5 rounded-full text-[10.5px] font-bold border ${aiBadge}">+${aiLift.toFixed(1)}</span></td>
+            <td class="py-2.5 px-1 text-center"><span class="px-1.5 py-0.5 rounded-full text-[10.5px] font-bold border ${totalRBadge}">${r.toFixed(1)}</span></td>
+            <td class="py-2.5 px-1 text-center"><span class="px-1.5 py-0.5 rounded-full text-[10.5px] font-bold border ${shiftBadge}">+${vDelta} pts</span></td>
+            <td class="py-2.5 px-1 text-center">
+              <button onclick="launchSimulatorForMajor('${p.id}')" class="bg-red-800 hover:bg-red-900 text-white font-semibold px-1.5 py-1 rounded-md text-[9.5px] leading-tight transition shadow-sm inline-flex flex-col items-center justify-center w-full max-w-[72px]">
                 <span>Simulate</span>
                 <span>Defense →</span>
               </button>
@@ -2454,19 +2511,20 @@
       const ctx = document.getElementById("portfolioBubbleChart").getContext("2d");
       if (bubbleChartInstance) bubbleChartInstance.destroy();
 
-      // Bubble is positioned at (x: Substitution Vulnerability, y: Baseline + AI Augmented Skills [Human+AI Total])
-      // Custom plugin draws 4 quadrants at (X = majorSVMed, Y = majorHumanMed) on full 0-100 axes
-      // and an upward arrow from (x, yBase = Baseline Human Skills) to the bubble at (x, y = Human+AI Total)
+      // Bubble is positioned at (x: defSV = Baseline + AI-Augmented Substitution Vulnerability, y: r = Baseline + AI-Augmented Human+AI Skills)
+      // Arrow originates from (xBase: baseSV, yBase: humanBase) and points diagonally to the bubble at (x: defSV, y: r)
       const datasets = Object.keys(SCHOOL_COLORS).map(schoolName => {
         const schoolProgs = progs.filter(p => p.school === schoolName);
         return {
           label: schoolName,
           data: schoolProgs.map(p => {
-            const { v, humanBase, aiLift, r } = getProgramMetrics(p);
+            const { baseSV, svLift, defSV, humanBase, aiLift, r } = getProgramMetrics(p);
             return {
-              x: v,
+              x: defSV,
               y: r,
+              xBase: baseSV,
               yBase: humanBase,
+              svLift,
               aiLift,
               r: Math.max(7, Math.sqrt(p.grads) * 0.65),
               progId: p.id,
@@ -2488,32 +2546,33 @@
           const { ctx: c, chartArea, scales: { x: xScale, y: yScale } } = chart;
           if (!chartArea) return;
           const { left, right, top, bottom } = chartArea;
-          const midX = xScale.getPixelForValue(majorSVMed);
-          const midY = yScale.getPixelForValue(majorHumanMed);
+          const breakVal = 60;
+          const midX = xScale.getPixelForValue(breakVal);
+          const midY = yScale.getPixelForValue(breakVal);
 
           c.save();
-          // Quadrant 1 (Top-Right: X >= majorSVMed, Y >= majorHumanMed)
+          // Quadrant 1 (Top-Right: X >= 60, Y >= 60)
           if (midX < right && midY > top) {
             c.fillStyle = "rgba(16, 185, 129, 0.055)";
             c.fillRect(midX, top, right - midX, midY - top);
           }
-          // Quadrant 2 (Top-Left: X < majorSVMed, Y >= majorHumanMed)
+          // Quadrant 2 (Top-Left: X < 60, Y >= 60)
           if (midX > left && midY > top) {
             c.fillStyle = "rgba(14, 165, 233, 0.055)";
             c.fillRect(left, top, midX - left, midY - top);
           }
-          // Quadrant 3 (Bottom-Left: X < majorSVMed, Y < majorHumanMed)
+          // Quadrant 3 (Bottom-Left: X < 60, Y < 60)
           if (midX > left && midY < bottom) {
             c.fillStyle = "rgba(239, 68, 68, 0.055)";
             c.fillRect(left, midY, midX - left, bottom - midY);
           }
-          // Quadrant 4 (Bottom-Right: X >= majorSVMed, Y < majorHumanMed)
+          // Quadrant 4 (Bottom-Right: X >= 60, Y < 60)
           if (midX < right && midY < bottom) {
             c.fillStyle = "rgba(245, 158, 11, 0.055)";
             c.fillRect(midX, midY, right - midX, bottom - midY);
           }
 
-          // Draw Median Quadrant Break Lines (X = Median Subst. Vuln, Y = Median Baseline Human Skills)
+          // Draw Quadrant Break Lines at X = 60 and Y = 60
           c.strokeStyle = "#475569";
           c.lineWidth = 1.6;
           c.setLineDash([6, 4]);
@@ -2531,30 +2590,30 @@
           }
           c.setLineDash([]);
 
-          // Quadrant Corner Watermark Labels & Median Break Callouts
-          c.font = "bold 9.5px -apple-system, BlinkMacSystemFont, sans-serif";
+          // Quadrant Corner Watermark Labels (+2pt larger, criteria removed)
+          c.font = "bold 12.7px -apple-system, BlinkMacSystemFont, sans-serif";
           c.fillStyle = "#047857";
           c.textAlign = "right";
-          c.fillText(`Q1 (X≥${majorSVMed.toFixed(1)}, Y≥${majorHumanMed.toFixed(1)}): High Insulation & High Human+AI`, right - 6, top + 14);
+          c.fillText("High Insulation & High Human+AI", right - 10, top + 18);
 
           c.fillStyle = "#0369a1";
           c.textAlign = "left";
-          c.fillText(`Q2 (X<${majorSVMed.toFixed(1)}, Y≥${majorHumanMed.toFixed(1)}): AI-Augmented Transition`, left + 6, top + 14);
+          c.fillText("AI-Augmented Transition", left + 10, top + 18);
 
           c.fillStyle = "#b91c1c";
           c.textAlign = "left";
-          c.fillText(`Q3 (X<${majorSVMed.toFixed(1)}, Y<${majorHumanMed.toFixed(1)}): Priority Curriculum Defense`, left + 6, bottom - 8);
+          c.fillText("Priority Curriculum Defense", left + 10, bottom - 10);
 
           c.fillStyle = "#b45309";
           c.textAlign = "right";
-          c.fillText(`Q4 (X≥${majorSVMed.toFixed(1)}, Y<${majorHumanMed.toFixed(1)}): Insulated / Baseline Human`, right - 6, bottom - 8);
+          c.fillText("Insulated / Baseline Human", right - 10, bottom - 10);
 
-          // Median break labels
-          c.font = "bold 9px -apple-system, BlinkMacSystemFont, sans-serif";
+          // Break labels at X = 60 and Y = 60
+          c.font = "bold 11.5px -apple-system, BlinkMacSystemFont, sans-serif";
           c.fillStyle = "#334155";
           c.textAlign = "left";
-          c.fillText(`X Med (Subst. Vuln) = ${majorSVMed.toFixed(1)}`, midX + 5, bottom - 8);
-          c.fillText(`Y Med (Human Base) = ${majorHumanMed.toFixed(1)}`, left + 6, midY - 5);
+          c.fillText("X Break = 60", midX + 6, bottom - 10);
+          c.fillText("Y Break = 60", left + 10, midY - 7);
           c.restore();
         },
         afterDatasetsDraw(chart) {
@@ -2564,38 +2623,57 @@
             const meta = chart.getDatasetMeta(dsIdx);
             meta.data.forEach((elem, idx) => {
               const raw = ds.data[idx];
-              if (!raw || raw.aiLift <= 0.1) return;
-              const px = xScale.getPixelForValue(raw.x);
+              if (!raw || (raw.aiLift <= 0.1 && raw.svLift <= 0.1)) return;
+              const pxBase = xScale.getPixelForValue(raw.xBase);
               const pyBase = yScale.getPixelForValue(raw.yBase);
+              const pxBubble = xScale.getPixelForValue(raw.x);
               const pyBubble = yScale.getPixelForValue(raw.y);
-              if (pyBase - pyBubble < 5) return;
 
-              // Draw small origin dot at (Substitution Vulnerability, Baseline Human Skills)
+              const dx = pxBubble - pxBase;
+              const dy = pyBubble - pyBase;
+              const dist = Math.hypot(dx, dy);
+              if (dist < 5) return;
+
+              const ux = dx / dist;
+              const uy = dy / dist;
+
+              // Draw small origin dot at Baseline (xBase, yBase)
               c.beginPath();
               c.fillStyle = "#ffffff";
               c.strokeStyle = raw.color || "#0f172a";
               c.lineWidth = 2;
-              c.arc(px, pyBase, 3, 0, Math.PI * 2);
+              c.arc(pxBase, pyBase, 3.2, 0, Math.PI * 2);
               c.fill();
               c.stroke();
 
-              // Draw upward arrow shaft from Baseline Human Skills (pyBase) to the Human+AI bubble (pyBubble)
-              const tipY = Math.min(pyBase - 4, pyBubble + raw.r + 1);
+              // Tip of arrow stops at the outer edge of the bubble (or at least 4px from origin)
+              const stopDist = Math.max(4, dist - raw.r - 2);
+              const tipX = pxBase + ux * stopDist;
+              const tipY = pyBase + uy * stopDist;
+
+              // Draw dashed arrow shaft from Baseline (pxBase, pyBase) to tip
               c.beginPath();
               c.strokeStyle = raw.color || "#0f172a";
               c.lineWidth = 1.9;
-              c.setLineDash([2, 2]);
-              c.moveTo(px, pyBase - 3);
-              c.lineTo(px, tipY + 5);
+              c.setLineDash([3, 2]);
+              c.moveTo(pxBase + ux * 3.2, pyBase + uy * 3.2);
+              c.lineTo(tipX - ux * 5, tipY - uy * 5);
               c.stroke();
               c.setLineDash([]);
 
-              // Draw filled upward arrowhead pointing into the Human+AI bubble
+              // Draw filled arrowhead aligned with vector (ux, uy) pointing into the Baseline+AI-Augmented bubble
+              const headLen = 7.5;
+              const headHalfWidth = 4.2;
+              const pxPerp = -uy;
+              const pyPerp = ux;
+              const baseHeadX = tipX - ux * headLen;
+              const baseHeadY = tipY - uy * headLen;
+
               c.beginPath();
               c.fillStyle = raw.color || "#0f172a";
-              c.moveTo(px, tipY);
-              c.lineTo(px - 4.2, tipY + 7);
-              c.lineTo(px + 4.2, tipY + 7);
+              c.moveTo(tipX, tipY);
+              c.lineTo(baseHeadX + pxPerp * headHalfWidth, baseHeadY + pyPerp * headHalfWidth);
+              c.lineTo(baseHeadX - pxPerp * headHalfWidth, baseHeadY - pyPerp * headHalfWidth);
               c.closePath();
               c.fill();
             });
@@ -2625,14 +2703,14 @@
               callbacks: {
                 label: (ctx) => {
                   const d = ctx.raw;
-                  return `${d.progName}: Subst. Vuln ${d.x.toFixed(1)} | Human Base ${d.yBase.toFixed(1)} → +${d.aiLift.toFixed(1)} AI = Human+AI Bubble ${d.y.toFixed(1)}`;
+                  return `${d.progName}: Subst. Vuln (X) ${d.xBase.toFixed(1)} + ${d.svLift.toFixed(1)} = ${d.x.toFixed(1)} | Human+AI (Y) ${d.yBase.toFixed(1)} + ${d.aiLift.toFixed(1)} = ${d.y.toFixed(1)}`;
                 }
               }
             }
           },
           scales: {
-            x: { title: { display: true, text: `Substitution Vulnerability (0–100 Scale • Median Break = ${majorSVMed.toFixed(1)}) → Higher = Better`, font: { weight: "bold", size: 11 } }, min: 0, max: 100, ticks: { stepSize: 10 }, grid: { color: "#e2e8f0" } },
-            y: { title: { display: true, text: `Human+AI Skills (0–100 Scale • Baseline Human Median Break = ${majorHumanMed.toFixed(1)})`, font: { weight: "bold", size: 11 } }, min: 0, max: 100, ticks: { stepSize: 10 }, grid: { color: "#e2e8f0" } }
+            x: { title: { display: true, text: "Substitution Vulnerability (X = Baseline + AI-Augmented • Break = 60) → Higher = Better", font: { weight: "bold", size: 11.5 } }, min: 0, max: 100, ticks: { stepSize: 10 }, grid: { color: "#e2e8f0" } },
+            y: { title: { display: true, text: "Human+AI Skills (Y = Baseline + AI-Augmented • Break = 60 | Arrow: Base (X₀,Y₀) → Bubble (X,Y))", font: { weight: "bold", size: 11.5 } }, min: 0, max: 100, ticks: { stepSize: 10 }, grid: { color: "#e2e8f0" } }
           }
         }
       });
@@ -2646,9 +2724,10 @@
 
       const prog = PROGRAMS.find(p => p.id === selectedMajorId) || PROGRAMS[0];
       const metrics = getProgramMetrics(prog);
-      const { v: baseSV, defSV, humanBase, aiLift, r: humanAiTotal, courses, selectedInts } = metrics;
+      const { baseSV, svLift, defSV, humanBase, aiLift, r: humanAiTotal, courses, selectedInts } = metrics;
       const activeSet = majorInterventionsMap[prog.id] || new Set();
 
+      let wSkBaseSV = 0, wSkSvLift = 0, wSkDefSV = 0, wSkHumanBase = 0, wSkAiLift = 0, wSkHumanAiTotal = 0;
       const skillRows = prog.skills.map((sk, idx) => {
         const skBaseSV = +(100 - sk.v).toFixed(1);
         const skHumanBase = Math.min(82, Math.max(25, +(sk.r - 12).toFixed(1)));
@@ -2659,52 +2738,85 @@
             rBoost += intItem.rLift * 1.3;
           }
         });
-        const skDefSV = Math.min(96, +(skBaseSV + svBoost).toFixed(1));
+        const skSvLift = Math.min(+(96 - skBaseSV).toFixed(1), +svBoost.toFixed(1));
+        const skDefSV = +(skBaseSV + skSvLift).toFixed(1);
         const skAiLift = Math.min(+(98 - skHumanBase).toFixed(1), +rBoost.toFixed(1));
         const skHumanAiTotal = +(skHumanBase + skAiLift).toFixed(1);
-        return { ...sk, skBaseSV, skDefSV, skHumanBase, skAiLift, skHumanAiTotal };
+
+        wSkBaseSV += sk.weight * skBaseSV;
+        wSkSvLift += sk.weight * skSvLift;
+        wSkDefSV += sk.weight * skDefSV;
+        wSkHumanBase += sk.weight * skHumanBase;
+        wSkAiLift += sk.weight * skAiLift;
+        wSkHumanAiTotal += sk.weight * skHumanAiTotal;
+
+        return { ...sk, skBaseSV, skSvLift, skDefSV, skHumanBase, skAiLift, skHumanAiTotal };
       });
 
       document.getElementById("simImpactBanner").innerHTML = `
-        <div class="text-center px-2.5">
-          <div class="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">Substitution Vulnerability</div>
-          <div class="text-lg font-black">
-            <span class="${selectedInts.length ? 'line-through text-slate-400 mr-1' : 'text-sky-700'}">${baseSV.toFixed(1)}</span>
-            ${selectedInts.length ? `<span class="text-sky-700">${defSV.toFixed(1)}</span><span class="text-xs font-bold text-emerald-600 ml-1">(+${(defSV - baseSV).toFixed(1)})</span>` : ''}
-          </div>
+        <div class="text-center px-2">
+          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">Subst. Vuln (Base X₀)</div>
+          <div class="text-base font-black text-sky-900">${baseSV.toFixed(1)}</div>
         </div>
-        <div class="h-8 w-px bg-slate-200"></div>
-        <div class="text-center px-2.5">
-          <div class="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">Human Skills (Pre-Course Base)</div>
-          <div class="text-lg font-black text-emerald-800">${humanBase.toFixed(1)}</div>
+        <div class="text-center px-2">
+          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">Subst. Vuln (+AI Aug)</div>
+          <div class="text-base font-black text-sky-600">+${svLift.toFixed(1)}</div>
         </div>
-        <div class="h-8 w-px bg-slate-200"></div>
-        <div class="text-center px-2.5">
-          <div class="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">AI Augmented (+Toggled Lift)</div>
-          <div class="text-lg font-black text-teal-600">+${aiLift.toFixed(1)}</div>
+        <div class="text-center px-2 bg-sky-50 rounded-lg py-1 border border-sky-200">
+          <div class="text-[9px] uppercase tracking-wider text-sky-800 font-bold">Subst. Vuln (Total X)</div>
+          <div class="text-base font-black text-sky-700">${defSV.toFixed(1)}</div>
         </div>
-        <div class="h-8 w-px bg-slate-200"></div>
-        <div class="text-center px-2.5">
-          <div class="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">Human+AI Skills (Post-Toggle)</div>
-          <div class="text-lg font-black text-blue-700">${humanAiTotal.toFixed(1)}</div>
+        <div class="h-8 w-px bg-slate-300"></div>
+        <div class="text-center px-2">
+          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">Human Skills (Base Y₀)</div>
+          <div class="text-base font-black text-emerald-800">${humanBase.toFixed(1)}</div>
+        </div>
+        <div class="text-center px-2">
+          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">Human+AI (+AI Aug)</div>
+          <div class="text-base font-black text-teal-600">+${aiLift.toFixed(1)}</div>
+        </div>
+        <div class="text-center px-2 bg-emerald-50 rounded-lg py-1 border border-emerald-200">
+          <div class="text-[9px] uppercase tracking-wider text-emerald-800 font-bold">Human+AI (Total Y)</div>
+          <div class="text-base font-black text-emerald-700">${humanAiTotal.toFixed(1)}</div>
         </div>
       `;
 
       const skSVMed = getColumnMedian(skillRows.map(s => s.skDefSV));
+      const skRMed = getColumnMedian(skillRows.map(s => s.skHumanAiTotal));
       document.getElementById("skillTableBody").innerHTML = skillRows.map(sk => {
         const svBadge = getHigherBetterBadge(sk.skDefSV, skSVMed, 3.0);
+        const rBadge = getHigherBetterBadge(sk.skHumanAiTotal, skRMed, 3.0);
         return `
           <tr class="hover:bg-slate-50">
-            <td class="py-2.5 px-3 font-semibold text-slate-800">${sk.name}</td>
-            <td class="py-2.5 px-2 text-right font-mono">${(sk.weight * 100).toFixed(0)}%</td>
-            <td class="py-2.5 px-2 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${svBadge}">${sk.skBaseSV.toFixed(1)} → ${sk.skDefSV.toFixed(1)}</span></td>
-            <td class="py-2.5 px-2 text-center font-bold text-emerald-800">${sk.skHumanBase.toFixed(1)}</td>
-            <td class="py-2.5 px-2 text-center font-bold text-teal-700">+${sk.skAiLift.toFixed(1)}</td>
-            <td class="py-2.5 px-2 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold bg-blue-50 text-blue-800 border border-blue-200">${sk.skHumanAiTotal.toFixed(1)}</span></td>
-            <td class="py-2.5 px-3 text-[11px] text-slate-500">${sk.driver}</td>
+            <td class="py-2 px-2.5 font-semibold text-slate-800">${sk.name}</td>
+            <td class="py-2 px-1.5 text-right font-mono">${(sk.weight * 100).toFixed(0)}%</td>
+            <td class="py-2 px-1.5 text-center font-bold text-sky-900">${sk.skBaseSV.toFixed(1)}</td>
+            <td class="py-2 px-1.5 text-center font-bold text-sky-600">+${sk.skSvLift.toFixed(1)}</td>
+            <td class="py-2 px-1.5 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${svBadge}">${sk.skDefSV.toFixed(1)}</span></td>
+            <td class="py-2 px-1.5 text-center font-bold text-emerald-800">${sk.skHumanBase.toFixed(1)}</td>
+            <td class="py-2 px-1.5 text-center font-bold text-teal-700">+${sk.skAiLift.toFixed(1)}</td>
+            <td class="py-2 px-1.5 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${rBadge}">${sk.skHumanAiTotal.toFixed(1)}</span></td>
+            <td class="py-2 px-2 text-[11px] text-slate-500">${sk.driver}</td>
           </tr>
         `;
       }).join("");
+
+      const footerEl = document.getElementById("skillTableFooter");
+      if (footerEl) {
+        footerEl.innerHTML = `
+          <tr>
+            <td class="py-2.5 px-2.5">Degree-Weighted Skill Total (∑ w × Score)</td>
+            <td class="py-2.5 px-1.5 text-right font-mono">100%</td>
+            <td class="py-2.5 px-1.5 text-center text-sky-900">${wSkBaseSV.toFixed(1)}</td>
+            <td class="py-2.5 px-1.5 text-center text-sky-600">+${wSkSvLift.toFixed(1)}</td>
+            <td class="py-2.5 px-1.5 text-center text-sky-800">${wSkDefSV.toFixed(1)}</td>
+            <td class="py-2.5 px-1.5 text-center text-emerald-800">${wSkHumanBase.toFixed(1)}</td>
+            <td class="py-2.5 px-1.5 text-center text-teal-700">+${wSkAiLift.toFixed(1)}</td>
+            <td class="py-2.5 px-1.5 text-center text-emerald-900">${wSkHumanAiTotal.toFixed(1)}</td>
+            <td class="py-2.5 px-2 text-[10px] font-normal text-slate-600">SV: ${wSkBaseSV.toFixed(1)}+${wSkSvLift.toFixed(1)}=${wSkDefSV.toFixed(1)} | H+AI: ${wSkHumanBase.toFixed(1)}+${wSkAiLift.toFixed(1)}=${wSkHumanAiTotal.toFixed(1)}</td>
+          </tr>
+        `;
+      }
 
       document.getElementById("interventionList").innerHTML = courses.map(item => {
         const checked = activeSet.has(item.id);
@@ -2743,15 +2855,16 @@
         data: {
           labels: skillRows.map(s => s.name.length > 32 ? s.name.slice(0, 32) + "…" : s.name),
           datasets: [
-            { label: "Substitution Vulnerability (Defended)", data: skillRows.map(s => s.skDefSV), backgroundColor: "#0284c7", borderRadius: 3, stack: "sv_stack" },
-            { label: "Human Skills (Pre-Course Baseline)", data: skillRows.map(s => s.skHumanBase), backgroundColor: "#059669", borderRadius: 3, stack: "human_ai" },
-            { label: "AI Augmented Skills (Toggled Lift)", data: skillRows.map(s => s.skAiLift), backgroundColor: "#34d399", borderRadius: 3, stack: "human_ai" }
+            { label: "Subst. Vuln (Base)", data: skillRows.map(s => s.skBaseSV), backgroundColor: "#0284c7", borderRadius: 3, stack: "sv_stack" },
+            { label: "Subst. Vuln (+AI Aug)", data: skillRows.map(s => s.skSvLift), backgroundColor: "#38bdf8", borderRadius: 3, stack: "sv_stack" },
+            { label: "Human Skills (Base)", data: skillRows.map(s => s.skHumanBase), backgroundColor: "#059669", borderRadius: 3, stack: "human_ai" },
+            { label: "Human+AI (+AI Aug)", data: skillRows.map(s => s.skAiLift), backgroundColor: "#34d399", borderRadius: 3, stack: "human_ai" }
           ]
         },
         options: {
           indexAxis: "y", responsive: true, maintainAspectRatio: false,
           scales: {
-            x: { stacked: true, min: 0, max: 100, title: { display: true, text: "Score (0–100 Scale • Higher = Better | Human + AI Stacked = Human+AI Skills)" } },
+            x: { stacked: true, min: 0, max: 100, title: { display: true, text: "Score (0–100 Scale • Higher = Better | Both Subst. Vuln & Human+AI Show Base + AI-Augmented Lift)" } },
             y: { stacked: true }
           },
           plugins: { legend: { position: "top", labels: { boxWidth: 12, font: { size: 11 } } } }
