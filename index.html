@@ -107,7 +107,7 @@
         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
           <div>
             <h2 class="text-base font-bold text-slate-900">IUB Academic Portfolio: Substitution Vulnerability vs. Human+AI Skills (4-Quadrant Matrix)</h2>
-            <p class="text-xs text-slate-500">Bubble = <strong>Baseline + AI-Augmented (X, Y) Total</strong> | Arrow (↗) = <strong>Shift from Baseline (X₀, Y₀) to Baseline + AI-Augmented (X, Y)</strong> | Quadrant Breaks at <strong>X = 60 &amp; Y = 60</strong> (1:1 Square)</p>
+            <p class="text-xs text-slate-500">Bubble = <strong>Baseline (X₀, Y₀)</strong> | Arrow (↗) = <strong>Trajectory Toward Baseline + AI-Augmented (X, Y)</strong> | Quadrant Breaks at <strong>X = 60 &amp; Y = 60</strong> (1:1 Square)</p>
           </div>
           <span id="horizonBadgePortfolio" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-red-50 text-red-800 border border-red-200 whitespace-nowrap self-start">2025 Baseline</span>
         </div>
@@ -388,26 +388,33 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <div class="lg:col-span-6 bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
-          <h3 class="text-base font-bold text-slate-900 mb-1">Indiana Major Occupational Groups: Substitution Vulnerability vs. Human+AI Skills</h3>
-          <p class="text-xs text-slate-500 mb-3">Shows <strong>Substitution Vulnerability (100 − Risk)</strong> and additive <strong>Human Skills (Baseline) + AI Augmented Skills</strong> across top Indiana groups.</p>
-          <div class="h-[350px]"><canvas id="indianaStateChart"></canvas></div>
+      <!-- Stacked Section 1: Top 7 High-Priority Indiana Occupational Groups Figure (Matching 1026px Width) -->
+      <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+        <div class="w-full max-w-[1026px] mx-auto">
+          <h3 class="text-base font-bold text-slate-900 mb-1">Indiana Major Occupational Groups (Top 7): Substitution Vulnerability vs. Human+AI Skills</h3>
+          <p class="text-xs text-slate-500 mb-3">Shows dual additive <strong>Substitution Vulnerability (Base + AI-Augmented = Total X)</strong> and <strong>Human+AI Skills (Base + AI-Augmented = Total Y)</strong> across high-priority Indiana occupational groups.</p>
+          <div class="relative w-full h-[420px]"><canvas id="indianaStateChart"></canvas></div>
         </div>
-        <div class="lg:col-span-6 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
-          <h3 class="text-base font-bold text-slate-900 mb-1">High-Priority Indiana Occupational Reskilling Opportunities</h3>
-          <p class="text-xs text-slate-500 mb-3">Separates <strong>Human Skills (Baseline)</strong> and <strong>AI Augmented Skills (+Lift)</strong> summing to total <strong>Human+AI Skills</strong>.</p>
-          <div class="overflow-x-auto flex-1">
+      </div>
+
+      <!-- Stacked Section 1 Table: High-Priority Indiana Occupational Reskilling Opportunities (Matching 1026px Width) -->
+      <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+        <div class="w-full max-w-[1026px] mx-auto">
+          <h3 class="text-base font-bold text-slate-900 mb-1">High-Priority Indiana Occupational Reskilling Opportunities (Top 7 Groups)</h3>
+          <p class="text-xs text-slate-500 mb-3">Separates <strong>Baseline</strong> and <strong>AI-Augmented (+Lift)</strong> components for both <strong>Substitution Vulnerability (X)</strong> and <strong>Human+AI Skills (Y)</strong>.</p>
+          <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse text-xs">
               <thead>
-                <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 text-[11px] uppercase">
-                  <th class="py-2.5 px-3">Indiana Occupation / Group (SOC)</th>
-                  <th class="py-2.5 px-2 text-right">IN Wage</th>
-                  <th class="py-2.5 px-2 text-center">Substitution Vulnerability</th>
-                  <th class="py-2.5 px-2 text-center">Human Skills</th>
-                  <th class="py-2.5 px-2 text-center">AI Augmented</th>
-                  <th class="py-2.5 px-2 text-center">Human+AI Skills</th>
-                  <th class="py-2.5 px-3">Statewide Upskilling Pathway (IU + DWD)</th>
+                <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 text-[10px] uppercase leading-tight">
+                  <th class="py-2.5 px-2.5">Indiana Occupation / Group (SOC)</th>
+                  <th class="py-2.5 px-1.5 text-right">IN Wage</th>
+                  <th class="py-2.5 px-1.5 text-center">Subst. Vuln<br>(Base)</th>
+                  <th class="py-2.5 px-1.5 text-center">Subst. Vuln<br>(+AI Aug)</th>
+                  <th class="py-2.5 px-1.5 text-center">Subst. Vuln<br>(Total X)</th>
+                  <th class="py-2.5 px-1.5 text-center">Human Skills<br>(Base)</th>
+                  <th class="py-2.5 px-1.5 text-center">Human+AI<br>(+AI Aug)</th>
+                  <th class="py-2.5 px-1.5 text-center">Human+AI<br>(Total Y)</th>
+                  <th class="py-2.5 px-2.5">Statewide Upskilling Pathway (IU + DWD)</th>
                 </tr>
               </thead>
               <tbody id="indianaTableBody" class="divide-y divide-slate-200"></tbody>
@@ -416,27 +423,33 @@
         </div>
       </div>
 
-      <!-- Complete 22 Two-Digit Major Occupational Groups (SOC 11-0000 through 53-0000) -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <div class="lg:col-span-6 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+      <!-- Stacked Section 2 Figure: Complete 22 Two-Digit Major Occupational Groups (SOC 11-0000 through 53-0000, Matching 1026px Width) -->
+      <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+        <div class="w-full max-w-[1026px] mx-auto">
           <h3 class="text-base font-bold text-slate-900 mb-1">All 22 Two-Digit Major Occupational Groups (11- through 53-): Substitution Vulnerability vs. Human+AI Skills</h3>
-          <p class="text-xs text-slate-500 mb-3">Plots <strong>Substitution Vulnerability (100 − Risk)</strong> alongside stacked <strong>Human Skills (Baseline) + AI Augmented Skills = Human+AI Skills</strong>.</p>
-          <div class="h-[680px] flex-1"><canvas id="indianaAllGroupsChart"></canvas></div>
+          <p class="text-xs text-slate-500 mb-3">Plots stacked <strong>Substitution Vulnerability (Base + AI-Augmented = Total X)</strong> alongside stacked <strong>Human+AI Skills (Base + AI-Augmented = Total Y)</strong> across all 22 BLS two-digit groups.</p>
+          <div class="relative w-full h-[680px]"><canvas id="indianaAllGroupsChart"></canvas></div>
         </div>
-        <div class="lg:col-span-6 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+      </div>
+
+      <!-- Stacked Section 2 Table: All 22 Two-Digit Major Occupational Groups Summary (Matching 1026px Width) -->
+      <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+        <div class="w-full max-w-[1026px] mx-auto">
           <h3 class="text-base font-bold text-slate-900 mb-1">All Two-Digit Major Occupational Groups Summary (SOC 11-0000 through 53-0000)</h3>
-          <p class="text-xs text-slate-500 mb-3">Comprehensive statewide table showing Substitution Vulnerability, Baseline Human Skills, AI Augmented Lift, and Total Human+AI Skills.</p>
-          <div class="overflow-x-auto flex-1 max-h-[680px] overflow-y-auto custom-scroll">
+          <p class="text-xs text-slate-500 mb-3">Comprehensive statewide table showing dual additive <strong>Baseline + AI-Augmented = Total</strong> scores for both Substitution Vulnerability (X) and Human+AI Skills (Y).</p>
+          <div class="overflow-x-auto max-h-[760px] overflow-y-auto custom-scroll">
             <table class="w-full text-left border-collapse text-xs">
               <thead class="sticky top-0 z-10">
-                <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 text-[11px] uppercase">
-                  <th class="py-2.5 px-3">Indiana Occupation / Group (SOC)</th>
-                  <th class="py-2.5 px-2 text-right">IN Wage</th>
-                  <th class="py-2.5 px-2 text-center">Substitution Vulnerability</th>
-                  <th class="py-2.5 px-2 text-center">Human Skills</th>
-                  <th class="py-2.5 px-2 text-center">AI Augmented</th>
-                  <th class="py-2.5 px-2 text-center">Human+AI Skills</th>
-                  <th class="py-2.5 px-3">Statewide Upskilling Pathway (IU + DWD)</th>
+                <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 text-[10px] uppercase leading-tight">
+                  <th class="py-2.5 px-2.5">Indiana Occupation / Group (SOC)</th>
+                  <th class="py-2.5 px-1.5 text-right">IN Wage</th>
+                  <th class="py-2.5 px-1.5 text-center">Subst. Vuln<br>(Base)</th>
+                  <th class="py-2.5 px-1.5 text-center">Subst. Vuln<br>(+AI Aug)</th>
+                  <th class="py-2.5 px-1.5 text-center">Subst. Vuln<br>(Total X)</th>
+                  <th class="py-2.5 px-1.5 text-center">Human Skills<br>(Base)</th>
+                  <th class="py-2.5 px-1.5 text-center">Human+AI<br>(+AI Aug)</th>
+                  <th class="py-2.5 px-1.5 text-center">Human+AI<br>(Total Y)</th>
+                  <th class="py-2.5 px-2.5">Statewide Upskilling Pathway (IU + DWD)</th>
                 </tr>
               </thead>
               <tbody id="indianaAllGroupsTableBody" class="divide-y divide-slate-200"></tbody>
@@ -445,33 +458,33 @@
         </div>
       </div>
 
-      <!-- Interactive Map of Indiana's 15 Metropolitan Statistical Areas (MSAs) -->
+      <!-- Stacked Section 3: Interactive Map of Indiana's 15 Metropolitan Statistical Areas (MSAs) + Stacked Directory Below (Matching 1026px Width) -->
       <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2 pb-4 border-b border-slate-200">
-          <div>
-            <span class="text-[11px] font-bold uppercase tracking-wider text-red-700">Regional Labor Market Geography • BLS OEWS Metropolitan Statistical Areas</span>
-            <h3 class="text-base font-bold text-slate-900 mt-0.5">Interactive Map of Indiana’s 15 Metropolitan Statistical Areas (MSAs): Top 3 Two-Digit Occupations by MSA</h3>
-            <p class="text-xs text-slate-500">Hover over any of the <strong>15 Indiana MSAs</strong> on the map (or in the regional cards on the right) to inspect its <strong>three largest two-digit major occupational groups</strong>, their <strong>Substitution Vulnerability (100 − Risk)</strong>, and their <strong>Human+AI Skills (Baseline Human Skills + AI Augmented Skills)</strong>.</p>
+        <div class="w-full max-w-[1026px] mx-auto">
+          <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2 pb-4 border-b border-slate-200">
+            <div>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-red-700">Regional Labor Market Geography • BLS OEWS Metropolitan Statistical Areas</span>
+              <h3 class="text-base font-bold text-slate-900 mt-0.5">Interactive Map of Indiana’s 15 Metropolitan Statistical Areas (MSAs): Top 3 Two-Digit Occupations by MSA</h3>
+              <p class="text-xs text-slate-500">Hover over any of the <strong>15 Indiana MSAs</strong> on the map (or click any regional card below) to inspect its <strong>three largest two-digit major occupational groups</strong>, their additive <strong>Substitution Vulnerability (Base + AI-Augmented = Total X)</strong>, and their additive <strong>Human+AI Skills (Base + AI-Augmented = Total Y)</strong>.</p>
+            </div>
+            <div class="flex items-center gap-3 text-xs">
+              <a href="https://www.bls.gov/oes/2023/may/oessrcma.htm" target="_blank" class="text-red-700 underline font-semibold whitespace-nowrap">BLS OEWS Metro Data ↗</a>
+              <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" class="text-red-700 underline font-semibold whitespace-nowrap">Indiana State OEWS ↗</a>
+            </div>
           </div>
-          <div class="flex items-center gap-3 text-xs">
-            <a href="https://www.bls.gov/oes/2023/may/oessrcma.htm" target="_blank" class="text-red-700 underline font-semibold whitespace-nowrap">BLS OEWS Metro Data ↗</a>
-            <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" class="text-red-700 underline font-semibold whitespace-nowrap">Indiana State OEWS ↗</a>
-          </div>
-        </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-5 items-start">
-          <!-- Left: Interactive SVG Map of Indiana with Floating Mouseover Tooltip -->
-          <div class="lg:col-span-6 relative bg-slate-900 rounded-2xl p-4 border border-slate-800 shadow-inner flex flex-col items-center">
-            <div class="w-full flex items-center justify-between text-[11px] text-slate-300 mb-2 px-1">
-              <span><strong>15 BLS OEWS MSAs</strong> • Hover node for Top 3 Two-Digit SOCs</span>
-              <div class="flex items-center gap-2">
-                <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-red-500 inline-block"></span>Higher V</span>
-                <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span>Balanced</span>
-                <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span>Higher R</span>
+          <!-- Stacked Top: Interactive SVG Map of Indiana -->
+          <div class="mt-5 relative bg-slate-900 rounded-2xl p-5 border border-slate-800 shadow-inner flex flex-col items-center">
+            <div class="w-full flex flex-wrap items-center justify-between text-xs text-slate-300 mb-3 px-2 gap-2">
+              <span><strong>15 BLS OEWS MSAs</strong> • Hover or click any MSA node for Top 3 Two-Digit SOCs (Base + AI-Augmented Splits)</span>
+              <div class="flex items-center gap-3">
+                <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-red-500 inline-block"></span>Lower Base SV (&lt;45)</span>
+                <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span>Moderate Base SV (45–55)</span>
+                <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span>Higher Base SV (&gt;55)</span>
               </div>
             </div>
 
-            <div id="indianaMsaMapWrapper" class="relative w-full max-w-[440px] select-none">
+            <div id="indianaMsaMapWrapper" class="relative w-full max-w-[620px] select-none">
               <svg id="indianaMsaSvg" viewBox="0 0 420 560" class="w-full h-auto drop-shadow-md">
                 <defs>
                   <linearGradient id="inStateGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -493,15 +506,10 @@
 
                 <!-- Subtle Regional Grid & Major Interstate Corridors (I-65, I-69, I-70, I-74, I-80/90) -->
                 <g stroke="#334155" stroke-width="1" stroke-dasharray="3,3" fill="none">
-                  <!-- I-80/90 Toll Road -->
                   <path d="M 85,54 Q 210,50 360,48" />
-                  <!-- I-65 Corridor (NW IN to Lafayette to Indy to Columbus to Louisville) -->
                   <path d="M 108,68 L 148,196 L 228,278 L 254,362 L 268,462" />
-                  <!-- I-69 Corridor (NE IN to Fort Wayne to Muncie to Indy to Bloomington to Evansville) -->
                   <path d="M 340,42 L 325,128 L 306,226 L 228,278 L 192,358 L 98,496" />
-                  <!-- I-70 Corridor (Terre Haute to Indy to Richmond) -->
                   <path d="M 78,318 L 106,318 L 228,278 L 363,272" />
-                  <!-- I-74 Corridor (Covington to Indy to Cincinnati) -->
                   <path d="M 78,225 L 228,278 L 352,378" />
                 </g>
 
@@ -511,25 +519,25 @@
               </svg>
 
               <!-- Floating Mouseover Tooltip -->
-              <div id="msaHoverTooltip" class="hidden pointer-events-none absolute z-30 w-80 bg-slate-950/95 text-white p-3.5 rounded-xl border border-red-500/60 shadow-2xl text-xs backdrop-blur-md"></div>
+              <div id="msaHoverTooltip" class="hidden pointer-events-none absolute z-30 w-96 bg-slate-950/95 text-white p-3.5 rounded-xl border border-red-500/60 shadow-2xl text-xs backdrop-blur-md"></div>
             </div>
 
-            <div class="w-full mt-2 pt-2 border-t border-slate-800 flex items-center justify-between text-[10px] text-slate-400 px-1">
+            <div class="w-full mt-3 pt-2 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400 px-2">
               <span>Bubble radius = Log(MSA Total Employment)</span>
               <span>★ Bloomington MSA = Home of IU Bloomington</span>
             </div>
           </div>
 
-          <!-- Right: Active MSA Spotlight Card + Interactive 15-MSA Directory Grid -->
-          <div class="lg:col-span-6 flex flex-col space-y-4">
-            <div id="msaSpotlightCard" class="p-4 rounded-2xl bg-slate-50 border-2 border-red-800/30 shadow-sm"></div>
+          <!-- Stacked Bottom: Active MSA Spotlight Card + Interactive 15-MSA Directory Grid -->
+          <div class="mt-6 space-y-5">
+            <div id="msaSpotlightCard" class="p-5 rounded-2xl bg-slate-50 border-2 border-red-800/30 shadow-sm"></div>
 
             <div>
-              <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center justify-between mb-2.5">
                 <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700">All 15 Indiana MSAs — Hover or Click Any MSA to Inspect Top 3 Two-Digit Occupations</h4>
                 <span class="text-[11px] text-slate-500">Sorted by MSA Employment</span>
               </div>
-              <div id="msaDirectoryGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-[385px] overflow-y-auto custom-scroll pr-1"></div>
+              <div id="msaDirectoryGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 max-h-[520px] overflow-y-auto custom-scroll pr-1"></div>
             </div>
           </div>
         </div>
@@ -567,54 +575,57 @@
     };
 
     // CENTRALIZED CROSS-SCHOOL & CREDENTIAL CATALOG (8 options per Job and Major)
+    // Differentiated Course Vector Profiles:
+    // - Pathway A (Within-Skill AI Augmentation): Y-dominant (steep Human+AI Skills lift rLift, moderate-to-low structural vDrop)
+    // - Pathway B (Skill-Mix & Governance Pivot): X-dominant (strong rightward Substitution Vulnerability insulation vDrop, moderate-to-low rLift)
     const COURSE_CATALOG = {
-      "BUS-A437": { code: "BUS-A 437", title: "AI-Assisted Continuous Auditing & Forensic Analytics", unit: "Kelley Business", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.5, rLift: 6.8, targets: [0,1,2], url: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/index.html" },
-      "BUS-A424": { code: "BUS-A 424", title: "Strategic Advisory, M&A Due Diligence & Fiduciary Ethics", unit: "Kelley Business", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 4.5, rLift: 5.9, targets: [3,4], url: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/index.html" },
-      "BUS-F421": { code: "BUS-F 421", title: "Algorithmic Financial Modeling & LLM Market Agents", unit: "Kelley Business", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.4, rLift: 6.5, targets: [0,1,2], url: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/index.html" },
-      "BUS-F494": { code: "BUS-F 494", title: "Complex Deal Structuring, Private Credit & Negotiation Lab", unit: "Kelley Business", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 4.6, rLift: 5.8, targets: [2,3,4], url: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/index.html" },
-      "BUS-M455": { code: "BUS-M 455", title: "Generative AI Brand Studio & Causal Marketing Analytics", unit: "Kelley Business", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.6, rLift: 6.6, targets: [0,1,2], url: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/index.html" },
-      "KELLEY-PM": { code: "KELLEY-PM", title: "Kelley Certificate in Product Management (15 Cr)", unit: "Kelley Business", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 4.8, rLift: 6.1, targets: [2,3,4], url: "https://eskenazi.indiana.edu/graduate/mdl.html" },
-      "BUS-J285": { code: "BUS-J 285", title: "Competitive Strategy & Industry Analysis (3 Cr)", unit: "Kelley Business", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 4.9, rLift: 6.0, targets: [0,1,2], url: "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=MGMTBSB" },
-      "BUS-Z447": { code: "BUS-Z 447", title: "Leadership, Teamwork and Diversity (3 Cr)", unit: "Kelley Business", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 4.4, rLift: 6.2, targets: [2,3,4], url: "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=MGMTBSB" },
-      "BUS-Z305": { code: "BUS-Z 305/306", title: "Talent Management Workshop & People Analytics (3 Cr)", unit: "Kelley Business", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 4.1, rLift: 5.5, targets: [1,3,4], url: "https://kelley.iu.edu/undergraduate/academics/workshops/talent-management.html" },
-      "BUS-K353": { code: "BUS-K 353", title: "Business Analytics and Modeling (3 Cr)", unit: "Kelley Business", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.3, rLift: 6.4, targets: [0,1,3], url: "https://kelley.iu.edu/faculty-research/courses/course.html?ID=BUS-K353-397" },
-      "BUS-G350": { code: "BUS-G 350", title: "Business Econometrics & Causal Strategy (3 Cr)", unit: "Kelley Business", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 4.8, rLift: 6.0, targets: [1,2,4], url: "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=BANLYBSB" },
-      "BUS-K327": { code: "BUS-K 327", title: "Modeling Business Data & Data Programming (BUS-S 364)", unit: "Kelley Business", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 4.7, rLift: 5.8, targets: [0,1,2], url: "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=BANLYBSB" },
-      "BUS-S355": { code: "BUS-S 355", title: "Digital Solutions with AI (3 Cr)", unit: "Kelley Business", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.8, rLift: 6.9, targets: [0,1,2], url: "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=INFOSYSBSB&year=2022-2023" },
-      "BUS-S400": { code: "BUS-S 400", title: "Integration of Systems and the Business (3 Cr)", unit: "Kelley Business", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 4.9, rLift: 6.1, targets: [2,3,4], url: "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=INFOSYSBSB&year=2022-2023" },
-      "BUS-K315": { code: "BUS-K 315", title: "Business Process Management & Digital Tech (BUS-S 302)", unit: "Kelley Business", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 4.5, rLift: 5.6, targets: [0,2,3], url: "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=INFOSYSBSB&year=2024-2025" },
-      "CSCI-B455": { code: "CSCI-B 455", title: "Agentic AI Systems Architecture & Formal Verification", unit: "Luddy Computing", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.7, rLift: 6.4, targets: [0,1,2], url: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html" },
-      "CSCI-C437": { code: "CSCI-C 437", title: "Cybersecurity, Digital Forensics & Adversarial AI Defense", unit: "Luddy Computing", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 4.8, rLift: 6.0, targets: [2,3], url: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html" },
-      "INFO-I427": { code: "INFO-I 427", title: "Human-Centered AI Interaction & Workflow Design", unit: "Luddy Computing", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.1, rLift: 6.3, targets: [0,1,2], url: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html" },
-      "INFO-I308": { code: "INFO-I 308", title: "Information Representation & Knowledge Graph Design", unit: "Luddy Computing", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 4.6, rLift: 5.7, targets: [0,2,3], url: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html" },
-      "DSCI-D490": { code: "DSCI-D 490", title: "Causal Inference, LLMOps & Experimental Decision Systems", unit: "Luddy Computing", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.4, rLift: 6.5, targets: [0,1,2,3], url: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html" },
-      "LUDDY-DSC": { code: "LUDDY-DS-CERT", title: "Luddy Online Certificate in Applied Data Science (12 Cr)", unit: "Luddy Computing", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 4.9, rLift: 6.2, targets: [1,2,3], url: "https://eskenazi.indiana.edu/graduate/mdl.html" },
-      "ENGR-E312": { code: "ENGR-E 312", title: "Robotics, Cyber-Physical Systems & Sensor Fusion", unit: "Luddy Computing", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.5, rLift: 6.8, targets: [0,1,2], url: "https://luddy.iu.edu/academics/undergraduate/bs-robotics.html" },
-      "ENGR-E433": { code: "ENGR-E 433", title: "Autonomous Kinematics, Control Theory & Embedded AI", unit: "Luddy Computing", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 5.0, rLift: 6.5, targets: [2,3,4], url: "https://luddy.iu.edu/academics/undergraduate/bs-robotics.html" },
-      "INFO-I430": { code: "INFO-I 430", title: "Security for Networked Systems & Zero-Trust Architecture", unit: "Luddy Computing", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.6, rLift: 6.7, targets: [0,1,2], url: "https://luddy.iu.edu/academics/undergraduate/bs-cyber-security-global-policy.html" },
-      "INFO-I422": { code: "INFO-I 422", title: "Data Visualization, BI Architecture & Executive Dashboards", unit: "Luddy Computing", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.3, rLift: 6.4, targets: [0,1,2], url: "https://luddy.iu.edu/academics/undergraduate/index.html" },
-      "ECON-E472": { code: "ECON-E 472", title: "Computational Econometrics & AI Counterfactual Simulation", unit: "Arts + Sciences", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.2, rLift: 6.4, targets: [0,1,2], url: "https://college.indiana.edu/research-creative-activity/index.html" },
-      "ENG-W415": { code: "ENG-W 415", title: "Editorial AI Governance, Fact Auditing & Content Architecture", unit: "Arts + Sciences", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 6.2, rLift: 7.4, targets: [0,1,2,3], url: "https://college.indiana.edu/research-creative-activity/index.html" },
-      "BIOL-L410": { code: "BIOL-L 410", title: "Computational Genomics, AlphaFold Bio & Lab Automation", unit: "Arts + Sciences", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 4.8, rLift: 6.6, targets: [1,2], url: "https://college.indiana.edu/research-creative-activity/index.html" },
-      "CJUS-P299": { code: "CJUS-P 299", title: "Research Applications & Crime Analytics in Criminal Justice", unit: "Arts + Sciences", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.3, rLift: 6.5, targets: [0,1,2], url: "https://bulletin.college.indiana.edu/programs/4235/CJUSBA/" },
-      "CJUS-P200": { code: "CJUS-P 200", title: "Theories of Crime, Deviance & Algorithmic Risk Assessment", unit: "Arts + Sciences", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 4.6, rLift: 5.9, targets: [2,3,4], url: "https://bulletin.college.indiana.edu/programs/4245/CJUSMIN/?&program=CJUSMIN" },
-      "CJUS-P314": { code: "CJUS-P 314", title: "Constitutional Law, Due Process & Digital Evidence Auditing", unit: "Arts + Sciences", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 4.9, rLift: 6.3, targets: [0,3,4], url: "https://bulletin.college.indiana.edu/programs/4235/CJUSBA/" },
-      "GEOG-G485": { code: "GEOG-G 485", title: "Geospatial Programming in Python & Google Earth Engine", unit: "Arts + Sciences", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.8, rLift: 7.1, targets: [0,1,2], url: "https://bulletin.college.indiana.edu/programs/4225/GISRSMIN" },
-      "GEOG-G488": { code: "GEOG-G 488", title: "Applied Spatial Statistics & Big Data in Python (GEOG-G 489)", unit: "Arts + Sciences", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.2, rLift: 6.5, targets: [1,2,4], url: "https://bulletin.college.indiana.edu/programs/4225/GEOGISRCON?&program=GEOGISRCON" },
-      "GEOG-G350": { code: "GEOG-G 350", title: "Field Methods in Physical Geography & Ground-Truthing", unit: "Arts + Sciences", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 4.4, rLift: 5.8, targets: [2,3,4], url: "https://bulletin.college.indiana.edu/programs/4225/GEOGCLECON/" },
-      "MATH-M301": { code: "MATH-M 301", title: "Linear Algebra & High-Dimensional Matrix Applications", unit: "Arts + Sciences", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.0, rLift: 6.3, targets: [0,1,2], url: "https://bulletin.college.indiana.edu/programs/4255/MATHBS1" },
-      "MATH-M371": { code: "MATH-M 371", title: "Elementary Computational Methods & PDEs (MATH-M 442)", unit: "Arts + Sciences", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.4, rLift: 6.7, targets: [0,1,2], url: "https://bulletin.college.indiana.edu/programs/4195/MATHBA/" },
-      "MATH-M391": { code: "MATH-M 391", title: "Formal Mathematical Reasoning, Logic & Proof Verification", unit: "Arts + Sciences", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 4.8, rLift: 6.5, targets: [2,3,4], url: "https://bulletin.college.indiana.edu/programs/4195/MATHBA/" },
-      "SPEA-V450": { code: "SPEA-V 450", title: "AI Governance, Public Procurement & Civic Negotiation", unit: "O'Neill Public Affairs", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 4.9, rLift: 6.2, targets: [0,3,4], url: "https://oneill.indiana.edu/undergraduate/course-advising/courses/v450.html" },
-      "SPEA-V370": { code: "SPEA-V 370", title: "Research Methods & Statistical Modeling in Public Affairs", unit: "O'Neill Public Affairs", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.1, rLift: 6.4, targets: [0,1,2], url: "https://oneill.indiana.edu/undergraduate/degrees-majors/bspa.html" },
-      "SPEA-V326": { code: "SPEA-V 326", title: "Communication & Stakeholder Leadership for Gov & Nonprofits", unit: "O'Neill Public Affairs", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 4.5, rLift: 5.9, targets: [2,3,4], url: "https://oneill.indiana.edu/undergraduate/degrees-majors/public-management.html" },
-      "SPEA-A354": { code: "SPEA-A 354", title: "Arts Marketing Fundamentals & Audience AI Analytics", unit: "O'Neill Public Affairs", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.4, rLift: 6.6, targets: [0,1,2], url: "https://oneill.indiana.edu/undergraduate/degrees-majors/arts-management.html" },
-      "SPEA-A439": { code: "SPEA-A 439", title: "Fund Development, Philanthropy & Cultural Stewardship (SPEA-A 401)", unit: "O'Neill Public Affairs", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 4.8, rLift: 6.3, targets: [2,3,4], url: "https://oneill.indiana.edu/undergraduate/degrees-majors/arts-management.html" },
-      "SPEA-E418": { code: "SPEA-E 418", title: "Geospatial AI Remote Sensing & NEPA Regulatory Compliance", unit: "O'Neill Public Affairs", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 4.8, rLift: 6.1, targets: [1,2,3], url: "https://oneill.indiana.edu/undergraduate/degrees-majors/index.html" },
-      "SPEA-H452": { code: "SPEA-H 452", title: "Clinical AI Workflow Governance & Healthcare Operations", unit: "O'Neill Public Affairs", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.1, rLift: 6.4, targets: [0,1,2], url: "https://oneill.indiana.edu/undergraduate/degrees-majors/index.html" },
-      "ONEILL-PBFM": { code: "ONEILL-PBFM", title: "O'Neill Certificate in Public Budgeting & Financial Mgmt (15 Cr)", unit: "O'Neill Public Affairs", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 4.5, rLift: 5.8, targets: [1,2,4], url: "https://eskenazi.indiana.edu/graduate/mdl.html" },
-      "IU-EXP-210": { code: "IU-EXP-210", title: "Enterprise AI Copilot, Prompt Auditing & Governance Badge", unit: "IU Expand Non-Credit", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 4.2, rLift: 5.4, targets: [0,1], url: "https://iuonline.iu.edu/program-support/quality-matters/quality-checklist.html" },
-      "NLJ-CLOUD9": { code: "NLJ-CLOUD-9", title: "Indiana Next Level Jobs Cloud, Robotics & AI SecOps Grant", unit: "Indiana Next Level Jobs", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 4.3, rLift: 5.5, targets: [1,2,3], url: "https://www.in.gov/dwd/nextleveljobs/workforce-ready-grant/" }
+      "BUS-A437": { code: "BUS-A 437", title: "AI-Assisted Continuous Auditing & Forensic Analytics", unit: "Kelley Business", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 6.4, rLift: 6.2, targets: [0,1,2], url: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/index.html" },
+      "BUS-A424": { code: "BUS-A 424", title: "Strategic Advisory, M&A Due Diligence & Fiduciary Ethics", unit: "Kelley Business", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 9.2, rLift: 2.8, targets: [0,1,3,4], url: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/index.html" },
+      "BUS-F421": { code: "BUS-F 421", title: "Algorithmic Financial Modeling & LLM Market Agents", unit: "Kelley Business", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 4.6, rLift: 7.8, targets: [0,1,2], url: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/index.html" },
+      "BUS-F494": { code: "BUS-F 494", title: "Complex Deal Structuring, Private Credit & Negotiation Lab", unit: "Kelley Business", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 8.1, rLift: 3.9, targets: [1,2,3,4], url: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/index.html" },
+      "BUS-M455": { code: "BUS-M 455", title: "Generative AI Brand Studio & Causal Marketing Analytics", unit: "Kelley Business", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 4.8, rLift: 7.9, targets: [0,1,2], url: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/index.html" },
+      "KELLEY-PM": { code: "KELLEY-PM", title: "Kelley Certificate in Product Management (15 Cr)", unit: "Kelley Business", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 7.6, rLift: 4.3, targets: [1,2,3,4], url: "https://eskenazi.indiana.edu/graduate/mdl.html" },
+      "BUS-J285": { code: "BUS-J 285", title: "Competitive Strategy & Industry Analysis (3 Cr)", unit: "Kelley Business", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.8, rLift: 5.4, targets: [0,1,2], url: "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=MGMTBSB" },
+      "BUS-Z447": { code: "BUS-Z 447", title: "Leadership, Teamwork and Diversity (3 Cr)", unit: "Kelley Business", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 8.8, rLift: 2.7, targets: [0,2,3,4], url: "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=MGMTBSB" },
+      "BUS-Z305": { code: "BUS-Z 305/306", title: "Talent Management Workshop & People Analytics (3 Cr)", unit: "Kelley Business", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 8.3, rLift: 3.1, targets: [0,1,3,4], url: "https://kelley.iu.edu/undergraduate/academics/workshops/talent-management.html" },
+      "BUS-K353": { code: "BUS-K 353", title: "Business Analytics and Modeling (3 Cr)", unit: "Kelley Business", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 3.1, rLift: 8.7, targets: [0,1,3], url: "https://kelley.iu.edu/faculty-research/courses/course.html?ID=BUS-K353-397" },
+      "BUS-G350": { code: "BUS-G 350", title: "Business Econometrics & Causal Strategy (3 Cr)", unit: "Kelley Business", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 7.2, rLift: 4.5, targets: [0,1,2,4], url: "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=BANLYBSB" },
+      "BUS-K327": { code: "BUS-K 327", title: "Modeling Business Data & Data Programming (BUS-S 364)", unit: "Kelley Business", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 2.8, rLift: 8.6, targets: [0,1,2], url: "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=BANLYBSB" },
+      "BUS-S355": { code: "BUS-S 355", title: "Digital Solutions with AI (3 Cr)", unit: "Kelley Business", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 4.5, rLift: 8.1, targets: [0,1,2], url: "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=INFOSYSBSB&year=2022-2023" },
+      "BUS-S400": { code: "BUS-S 400", title: "Integration of Systems and the Business (3 Cr)", unit: "Kelley Business", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 7.7, rLift: 4.1, targets: [1,2,3,4], url: "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=INFOSYSBSB&year=2022-2023" },
+      "BUS-K315": { code: "BUS-K 315", title: "Business Process Management & Digital Tech (BUS-S 302)", unit: "Kelley Business", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 4.9, rLift: 6.3, targets: [0,2,3], url: "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=INFOSYSBSB&year=2024-2025" },
+      "CSCI-B455": { code: "CSCI-B 455", title: "Agentic AI Systems Architecture & Formal Verification", unit: "Luddy Computing", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 2.4, rLift: 9.4, targets: [0,1,2,3], url: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html" },
+      "CSCI-C437": { code: "CSCI-C 437", title: "Cybersecurity, Digital Forensics & Adversarial AI Defense", unit: "Luddy Computing", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 7.4, rLift: 4.4, targets: [0,2,3,4], url: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html" },
+      "INFO-I427": { code: "INFO-I 427", title: "Human-Centered AI Interaction & Workflow Design", unit: "Luddy Computing", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 4.2, rLift: 7.8, targets: [0,1,2], url: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html" },
+      "INFO-I308": { code: "INFO-I 308", title: "Information Representation & Knowledge Graph Design", unit: "Luddy Computing", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 6.9, rLift: 4.2, targets: [0,1,2,3], url: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html" },
+      "DSCI-D490": { code: "DSCI-D 490", title: "Causal Inference, LLMOps & Experimental Decision Systems", unit: "Luddy Computing", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 2.6, rLift: 9.2, targets: [0,1,2,3], url: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html" },
+      "LUDDY-DSC": { code: "LUDDY-DS-CERT", title: "Luddy Online Certificate in Applied Data Science (12 Cr)", unit: "Luddy Computing", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 5.3, rLift: 6.9, targets: [1,2,3], url: "https://eskenazi.indiana.edu/graduate/mdl.html" },
+      "ENGR-E312": { code: "ENGR-E 312", title: "Robotics, Cyber-Physical Systems & Sensor Fusion", unit: "Luddy Computing", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 2.2, rLift: 9.1, targets: [0,1,2], url: "https://luddy.iu.edu/academics/undergraduate/bs-robotics.html" },
+      "ENGR-E433": { code: "ENGR-E 433", title: "Autonomous Kinematics, Control Theory & Embedded AI", unit: "Luddy Computing", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 5.9, rLift: 5.5, targets: [2,3,4], url: "https://luddy.iu.edu/academics/undergraduate/bs-robotics.html" },
+      "INFO-I430": { code: "INFO-I 430", title: "Security for Networked Systems & Zero-Trust Architecture", unit: "Luddy Computing", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.3, rLift: 7.4, targets: [0,1,2], url: "https://luddy.iu.edu/academics/undergraduate/bs-cyber-security-global-policy.html" },
+      "INFO-I422": { code: "INFO-I 422", title: "Data Visualization, BI Architecture & Executive Dashboards", unit: "Luddy Computing", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 2.9, rLift: 8.8, targets: [0,1,2], url: "https://luddy.iu.edu/academics/undergraduate/index.html" },
+      "ECON-E472": { code: "ECON-E 472", title: "Computational Econometrics & AI Counterfactual Simulation", unit: "Arts + Sciences", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 4.5, rLift: 7.6, targets: [0,1,2], url: "https://college.indiana.edu/research-creative-activity/index.html" },
+      "ENG-W415": { code: "ENG-W 415", title: "Editorial AI Governance, Fact Auditing & Content Architecture", unit: "Arts + Sciences", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 6.8, rLift: 7.1, targets: [0,1,2,3], url: "https://college.indiana.edu/research-creative-activity/index.html" },
+      "BIOL-L410": { code: "BIOL-L 410", title: "Computational Genomics, AlphaFold Bio & Lab Automation", unit: "Arts + Sciences", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 2.1, rLift: 9.1, targets: [0,1,2], url: "https://college.indiana.edu/research-creative-activity/index.html" },
+      "CJUS-P299": { code: "CJUS-P 299", title: "Research Applications & Crime Analytics in Criminal Justice", unit: "Arts + Sciences", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 5.9, rLift: 5.1, targets: [0,1,2], url: "https://bulletin.college.indiana.edu/programs/4235/CJUSBA/" },
+      "CJUS-P200": { code: "CJUS-P 200", title: "Theories of Crime, Deviance & Algorithmic Risk Assessment", unit: "Arts + Sciences", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 8.5, rLift: 2.7, targets: [0,2,3,4], url: "https://bulletin.college.indiana.edu/programs/4245/CJUSMIN/?&program=CJUSMIN" },
+      "CJUS-P314": { code: "CJUS-P 314", title: "Constitutional Law, Due Process & Digital Evidence Auditing", unit: "Arts + Sciences", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 9.1, rLift: 2.6, targets: [0,1,3,4], url: "https://bulletin.college.indiana.edu/programs/4235/CJUSBA/" },
+      "GEOG-G485": { code: "GEOG-G 485", title: "Geospatial Programming in Python & Google Earth Engine", unit: "Arts + Sciences", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 2.7, rLift: 9.0, targets: [0,1,2], url: "https://bulletin.college.indiana.edu/programs/4225/GISRSMIN" },
+      "GEOG-G488": { code: "GEOG-G 488", title: "Applied Spatial Statistics & Big Data in Python (GEOG-G 489)", unit: "Arts + Sciences", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 2.5, rLift: 8.7, targets: [1,2,4], url: "https://bulletin.college.indiana.edu/programs/4225/GEOGISRCON?&program=GEOGISRCON" },
+      "GEOG-G350": { code: "GEOG-G 350", title: "Field Methods in Physical Geography & Ground-Truthing", unit: "Arts + Sciences", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 8.4, rLift: 3.0, targets: [1,2,3,4], url: "https://bulletin.college.indiana.edu/programs/4225/GEOGCLECON/" },
+      "MATH-M301": { code: "MATH-M 301", title: "Linear Algebra & High-Dimensional Matrix Applications", unit: "Arts + Sciences", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 2.3, rLift: 8.6, targets: [0,1,2], url: "https://bulletin.college.indiana.edu/programs/4255/MATHBS1" },
+      "MATH-M371": { code: "MATH-M 371", title: "Elementary Computational Methods & PDEs (MATH-M 442)", unit: "Arts + Sciences", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 2.6, rLift: 8.9, targets: [0,1,2], url: "https://bulletin.college.indiana.edu/programs/4195/MATHBA/" },
+      "MATH-M391": { code: "MATH-M 391", title: "Formal Mathematical Reasoning, Logic & Proof Verification", unit: "Arts + Sciences", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 7.2, rLift: 4.3, targets: [1,2,3,4], url: "https://bulletin.college.indiana.edu/programs/4195/MATHBA/" },
+      "SPEA-V450": { code: "SPEA-V 450", title: "AI Governance, Public Procurement & Civic Negotiation", unit: "O'Neill Public Affairs", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 8.9, rLift: 2.8, targets: [0,1,3,4], url: "https://oneill.indiana.edu/undergraduate/course-advising/courses/v450.html" },
+      "SPEA-V370": { code: "SPEA-V 370", title: "Research Methods & Statistical Modeling in Public Affairs", unit: "O'Neill Public Affairs", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 4.4, rLift: 6.9, targets: [0,1,2], url: "https://oneill.indiana.edu/undergraduate/degrees-majors/bspa.html" },
+      "SPEA-V326": { code: "SPEA-V 326", title: "Communication & Stakeholder Leadership for Gov & Nonprofits", unit: "O'Neill Public Affairs", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 8.6, rLift: 2.7, targets: [0,2,3,4], url: "https://oneill.indiana.edu/undergraduate/degrees-majors/public-management.html" },
+      "SPEA-A354": { code: "SPEA-A 354", title: "Arts Marketing Fundamentals & Audience AI Analytics", unit: "O'Neill Public Affairs", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 4.7, rLift: 7.0, targets: [0,1,2], url: "https://oneill.indiana.edu/undergraduate/degrees-majors/arts-management.html" },
+      "SPEA-A439": { code: "SPEA-A 439", title: "Fund Development, Philanthropy & Cultural Stewardship (SPEA-A 401)", unit: "O'Neill Public Affairs", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 8.3, rLift: 3.1, targets: [0,2,3,4], url: "https://oneill.indiana.edu/undergraduate/degrees-majors/arts-management.html" },
+      "SPEA-E418": { code: "SPEA-E 418", title: "Geospatial AI Remote Sensing & NEPA Regulatory Compliance", unit: "O'Neill Public Affairs", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 3.1, rLift: 8.0, targets: [0,1,2,3], url: "https://oneill.indiana.edu/undergraduate/degrees-majors/index.html" },
+      "SPEA-H452": { code: "SPEA-H 452", title: "Clinical AI Workflow Governance & Healthcare Operations", unit: "O'Neill Public Affairs", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 3.4, rLift: 8.2, targets: [0,1,2], url: "https://oneill.indiana.edu/undergraduate/degrees-majors/index.html" },
+      "ONEILL-PBFM": { code: "ONEILL-PBFM", title: "O'Neill Certificate in Public Budgeting & Financial Mgmt (15 Cr)", unit: "O'Neill Public Affairs", pathway: "Pathway B: Skill-Mix Pivot", vDrop: 8.0, rLift: 3.3, targets: [0,1,2,4], url: "https://eskenazi.indiana.edu/graduate/mdl.html" },
+      "IU-EXP-210": { code: "IU-EXP-210", title: "Enterprise AI Copilot, Prompt Auditing & Governance Badge", unit: "IU Expand Non-Credit", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 3.6, rLift: 6.4, targets: [0,1], url: "https://iuonline.iu.edu/program-support/quality-matters/quality-checklist.html" },
+      "NLJ-CLOUD9": { code: "NLJ-CLOUD-9", title: "Indiana Next Level Jobs Cloud, Robotics & AI SecOps Grant", unit: "Indiana Next Level Jobs", pathway: "Pathway A: Within-Skill Augmentation", vDrop: 3.2, rLift: 7.0, targets: [1,2,3], url: "https://www.in.gov/dwd/nextleveljobs/workforce-ready-grant/" }
     };
 
     // 22 Specific Occupations (SOC) with 5-Year BLS Employment Projections (epGrowth5Yr)
@@ -927,7 +938,7 @@
       {
         id: "kelley-acct", name: "Accounting B.S.B.", cip: "52.0301", school: "Kelley School of Business", shortSchool: "Kelley Business",
         schoolUrl: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/index.html",
-        grads: 540, inStateRet: 0.64, wages: { y1: 68200, y3: 75400, y5: 81570 },
+        grads: 540, inStateRet: 0.64, wages: { y1: 62600, y3: 69600, y5: 76500 },
         socs: "13-2011 Accountants & Auditors (24,490 IN emp)",
         courseIds: ["BUS-A437","BUS-A424","BUS-S355","BUS-K353","CSCI-C437","SPEA-V450","IU-EXP-210","NLJ-CLOUD9"],
         naicsFlows: [
@@ -947,7 +958,7 @@
       {
         id: "kelley-fin", name: "Finance B.S.B.", cip: "52.0801", school: "Kelley School of Business", shortSchool: "Kelley Business",
         schoolUrl: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/index.html",
-        grads: 920, inStateRet: 0.48, wages: { y1: 76500, y3: 86200, y5: 94800 },
+        grads: 920, inStateRet: 0.48, wages: { y1: 71000, y3: 78800, y5: 86600 },
         socs: "13-2051 Financial Analysts; 13-1111 Management Analysts",
         courseIds: ["BUS-F421","BUS-F494","BUS-G350","MATH-M371","ECON-E472","DSCI-D490","SPEA-V450","IU-EXP-210"],
         naicsFlows: [
@@ -967,7 +978,7 @@
       {
         id: "kelley-mkt", name: "Marketing B.S.B.", cip: "52.1401", school: "Kelley School of Business", shortSchool: "Kelley Business",
         schoolUrl: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/index.html",
-        grads: 680, inStateRet: 0.55, wages: { y1: 61400, y3: 69800, y5: 78200 },
+        grads: 680, inStateRet: 0.55, wages: { y1: 60400, y3: 67200, y5: 74000 },
         socs: "11-2021 Marketing Managers (3,380 IN emp; $63.28/hr); 13-1161 Market Research",
         courseIds: ["BUS-M455","KELLEY-PM","BUS-K353","ENG-W415","INFO-I427","ECON-E472","BUS-Z447","IU-EXP-210"],
         naicsFlows: [
@@ -987,7 +998,7 @@
       {
         id: "kelley-mgmt", name: "Management B.S.B.", cip: "52.0201", school: "Kelley School of Business", shortSchool: "Kelley Business",
         schoolUrl: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/management-major.html",
-        grads: 480, inStateRet: 0.59, wages: { y1: 63200, y3: 73800, y5: 84500 },
+        grads: 480, inStateRet: 0.59, wages: { y1: 64100, y3: 71300, y5: 78500 },
         socs: "11-1021 General & Operations Managers ($129,530 IN mean); 13-1111 Management Analysts",
         courseIds: ["BUS-J285","BUS-Z447","BUS-Z305","BUS-K315","SPEA-V450","INFO-I427","ECON-E472","IU-EXP-210"],
         naicsFlows: [
@@ -1007,7 +1018,7 @@
       {
         id: "kelley-ba", name: "Business Analytics B.S.B.", cip: "52.1301", school: "Kelley School of Business", shortSchool: "Kelley Business",
         schoolUrl: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/business-analytics-co-major.html",
-        grads: 430, inStateRet: 0.52, wages: { y1: 77800, y3: 89400, y5: 101200 },
+        grads: 430, inStateRet: 0.52, wages: { y1: 73300, y3: 81200, y5: 89000 },
         socs: "15-2051 Data Scientists ($102,500 IN mean); 13-1111 Management Analysts",
         courseIds: ["BUS-K353","BUS-G350","BUS-K327","DSCI-D490","MATH-M301","CSCI-B455","ECON-E472","GEOG-G488"],
         naicsFlows: [
@@ -1027,7 +1038,7 @@
       {
         id: "kelley-is", name: "Information Systems B.S.B.", cip: "52.1201", school: "Kelley School of Business", shortSchool: "Kelley Business",
         schoolUrl: "https://kelley.iu.edu/undergraduate/academics/bachelor-science-business/information-systems-major.html",
-        grads: 510, inStateRet: 0.56, wages: { y1: 75400, y3: 86800, y5: 97600 },
+        grads: 510, inStateRet: 0.56, wages: { y1: 71800, y3: 79600, y5: 87400 },
         socs: "15-1211 Computer Systems Analysts ($91,200 IN mean); 15-1252 Software Developers",
         courseIds: ["BUS-S355","BUS-S400","BUS-K315","CSCI-C437","INFO-I427","CSCI-B455","SPEA-V450","NLJ-CLOUD9"],
         naicsFlows: [
@@ -1047,7 +1058,7 @@
       {
         id: "luddy-cs", name: "Computer Science B.S.", cip: "11.0701", school: "Luddy School of Informatics, Computing, & Engineering", shortSchool: "Luddy Computing",
         schoolUrl: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html",
-        grads: 460, inStateRet: 0.51, wages: { y1: 86400, y3: 98600, y5: 112400 },
+        grads: 460, inStateRet: 0.51, wages: { y1: 69200, y3: 76800, y5: 84500 },
         socs: "15-1252 Software Developers; 15-1299 Computer Occupations",
         courseIds: ["CSCI-B455","CSCI-C437","DSCI-D490","MATH-M391","BUS-S355","KELLEY-PM","SPEA-V450","NLJ-CLOUD9"],
         naicsFlows: [
@@ -1067,7 +1078,7 @@
       {
         id: "luddy-info", name: "Informatics B.S.", cip: "11.0104", school: "Luddy School of Informatics, Computing, & Engineering", shortSchool: "Luddy Computing",
         schoolUrl: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html",
-        grads: 390, inStateRet: 0.62, wages: { y1: 69500, y3: 79400, y5: 88900 },
+        grads: 390, inStateRet: 0.62, wages: { y1: 56600, y3: 62800, y5: 69000 },
         socs: "15-1211 Computer Systems Analysts; 15-1255 Web & UX Designers",
         courseIds: ["INFO-I427","INFO-I308","LUDDY-DSC","BUS-S355","BUS-K315","SPEA-H452","ENG-W415","IU-EXP-210"],
         naicsFlows: [
@@ -1087,7 +1098,7 @@
       {
         id: "luddy-ds", name: "Data Science B.S.", cip: "30.7001", school: "Luddy School of Informatics, Computing, & Engineering", shortSchool: "Luddy Computing",
         schoolUrl: "https://luddy.indiana.edu/academics/undergraduate-programs/index.html",
-        grads: 210, inStateRet: 0.49, wages: { y1: 84200, y3: 96500, y5: 108800 },
+        grads: 210, inStateRet: 0.49, wages: { y1: 67200, y3: 74600, y5: 82000 },
         socs: "15-2051 Data Scientists; 15-2041 Statisticians",
         courseIds: ["DSCI-D490","CSCI-B455","MATH-M301","MATH-M371","BUS-G350","ECON-E472","GEOG-G488","BIOL-L410"],
         naicsFlows: [
@@ -1107,7 +1118,7 @@
       {
         id: "luddy-rob", name: "Robotics B.S.", cip: "14.4201", school: "Luddy School of Informatics, Computing, & Engineering", shortSchool: "Luddy Computing",
         schoolUrl: "https://luddy.iu.edu/academics/undergraduate/bs-robotics.html",
-        grads: 140, inStateRet: 0.58, wages: { y1: 81500, y3: 93400, y5: 105600 },
+        grads: 140, inStateRet: 0.58, wages: { y1: 65100, y3: 72300, y5: 79500 },
         socs: "17-2199.08 Robotics Engineers ($96,800 IN mean); 17-2141 Mechatronics Engineers",
         courseIds: ["ENGR-E312","ENGR-E433","CSCI-B455","MATH-M371","GEOG-G485","BUS-K315","SPEA-E418","NLJ-CLOUD9"],
         naicsFlows: [
@@ -1127,7 +1138,7 @@
       {
         id: "luddy-cyber", name: "Cybersecurity B.S.", cip: "11.1003", school: "Luddy School of Informatics, Computing, & Engineering", shortSchool: "Luddy Computing",
         schoolUrl: "https://luddy.iu.edu/academics/undergraduate/bs-cyber-security-global-policy.html",
-        grads: 230, inStateRet: 0.57, wages: { y1: 79800, y3: 92400, y5: 104200 },
+        grads: 230, inStateRet: 0.57, wages: { y1: 63500, y3: 70500, y5: 77500 },
         socs: "15-1212 Information Security Analysts ($104,200 IN mean); 15-1241 Network Architects",
         courseIds: ["INFO-I430","CSCI-C437","CJUS-P314","SPEA-V450","BUS-S400","BUS-A437","MATH-M391","NLJ-CLOUD9"],
         naicsFlows: [
@@ -1147,7 +1158,7 @@
       {
         id: "luddy-bids", name: "Business Intelligence Data Science B.S.", cip: "30.7001", school: "Luddy School of Informatics, Computing, & Engineering", shortSchool: "Luddy Computing",
         schoolUrl: "https://luddy.iu.edu/academics/undergraduate/index.html",
-        grads: 185, inStateRet: 0.55, wages: { y1: 78600, y3: 90200, y5: 102400 },
+        grads: 185, inStateRet: 0.55, wages: { y1: 61900, y3: 68700, y5: 75500 },
         socs: "15-2051.01 Business Intelligence Analysts ($94,600 IN mean); 15-2051 Data Scientists",
         courseIds: ["INFO-I422","DSCI-D490","BUS-K353","BUS-K327","BUS-G350","BUS-S355","ECON-E472","IU-EXP-210"],
         naicsFlows: [
@@ -1167,7 +1178,7 @@
       {
         id: "cas-econ", name: "Economics B.A. / B.S.", cip: "45.0601", school: "College of Arts and Sciences", shortSchool: "Arts + Sciences",
         schoolUrl: "https://college.indiana.edu/research-creative-activity/index.html",
-        grads: 310, inStateRet: 0.53, wages: { y1: 63500, y3: 74200, y5: 84600 },
+        grads: 310, inStateRet: 0.53, wages: { y1: 49000, y3: 54400, y5: 59800 },
         socs: "19-3011 Economists; 13-1111 Management Analysts",
         courseIds: ["ECON-E472","MATH-M301","BUS-G350","BUS-F421","DSCI-D490","SPEA-V450","ONEILL-PBFM","IU-EXP-210"],
         naicsFlows: [
@@ -1187,7 +1198,7 @@
       {
         id: "cas-eng", name: "English & Professional Writing B.A.", cip: "23.0101", school: "College of Arts and Sciences", shortSchool: "Arts + Sciences",
         schoolUrl: "https://college.indiana.edu/research-creative-activity/index.html",
-        grads: 240, inStateRet: 0.61, wages: { y1: 46800, y3: 54900, y5: 64200 },
+        grads: 240, inStateRet: 0.61, wages: { y1: 37700, y3: 41900, y5: 46000 },
         socs: "27-3041 Editors; 27-3042 Technical Writers; 11-2032 PR Managers",
         courseIds: ["ENG-W415","INFO-I308","INFO-I427","BUS-M455","KELLEY-PM","SPEA-V450","CJUS-P314","IU-EXP-210"],
         naicsFlows: [
@@ -1207,7 +1218,7 @@
       {
         id: "cas-biol", name: "Biology & Biotechnology B.S.", cip: "26.0101", school: "College of Arts and Sciences", shortSchool: "Arts + Sciences",
         schoolUrl: "https://college.indiana.edu/research-creative-activity/index.html",
-        grads: 490, inStateRet: 0.67, wages: { y1: 54200, y3: 66800, y5: 78500 },
+        grads: 490, inStateRet: 0.67, wages: { y1: 44700, y3: 49600, y5: 54500 },
         socs: "19-1029 Biological Scientists; 19-4021 Biological Technicians",
         courseIds: ["BIOL-L410","GEOG-G485","MATH-M371","DSCI-D490","SPEA-H452","SPEA-E418","BUS-K353","NLJ-CLOUD9"],
         naicsFlows: [
@@ -1227,7 +1238,7 @@
       {
         id: "cas-cjus", name: "Criminology & Criminal Justice B.A.", cip: "43.0104", school: "College of Arts and Sciences", shortSchool: "Arts + Sciences",
         schoolUrl: "https://bulletin.college.indiana.edu/programs/4235/CJUSBA/",
-        grads: 280, inStateRet: 0.69, wages: { y1: 51200, y3: 62400, y5: 74200 },
+        grads: 280, inStateRet: 0.69, wages: { y1: 41200, y3: 45700, y5: 50200 },
         socs: "33-3021 Detectives, Criminal Investigators & Intelligence Analysts ($76,400 IN mean)",
         courseIds: ["CJUS-P299","CJUS-P200","CJUS-P314","CSCI-C437","SPEA-V450","INFO-I427","BUS-A437","BUS-Z447"],
         naicsFlows: [
@@ -1247,7 +1258,7 @@
       {
         id: "cas-geog", name: "Geography B.A. / B.S.", cip: "45.0701", school: "College of Arts and Sciences", shortSchool: "Arts + Sciences",
         schoolUrl: "https://bulletin.college.indiana.edu/programs/4195/GEOGBS",
-        grads: 145, inStateRet: 0.60, wages: { y1: 55800, y3: 67400, y5: 79800 },
+        grads: 145, inStateRet: 0.60, wages: { y1: 45000, y3: 50000, y5: 54900 },
         socs: "19-3092 Geographers & GIS Spatial Scientists; 19-2041 Environmental Scientists",
         courseIds: ["GEOG-G485","GEOG-G488","GEOG-G350","SPEA-E418","DSCI-D490","CSCI-B455","BUS-K353","NLJ-CLOUD9"],
         naicsFlows: [
@@ -1267,7 +1278,7 @@
       {
         id: "cas-math", name: "Mathematics B.A. / B.S.", cip: "27.0101", school: "College of Arts and Sciences", shortSchool: "Arts + Sciences",
         schoolUrl: "https://bulletin.college.indiana.edu/programs/4255/MATHBS1",
-        grads: 225, inStateRet: 0.50, wages: { y1: 74600, y3: 88200, y5: 101400 },
+        grads: 225, inStateRet: 0.50, wages: { y1: 53000, y3: 58800, y5: 64600 },
         socs: "15-2041 Statisticians & Quantitative Mathematicians; 15-2051 Data Scientists",
         courseIds: ["MATH-M301","MATH-M371","MATH-M391","DSCI-D490","CSCI-B455","BUS-F421","BUS-G350","ECON-E472"],
         naicsFlows: [
@@ -1287,7 +1298,7 @@
       {
         id: "oneill-pmp", name: "Public Management & Policy B.S.P.A.", cip: "44.0401", school: "O'Neill School of Public & Environmental Affairs", shortSchool: "O'Neill Public Affairs",
         schoolUrl: "https://oneill.indiana.edu/undergraduate/degrees-majors/public-management.html",
-        grads: 380, inStateRet: 0.66, wages: { y1: 56400, y3: 68200, y5: 79400 },
+        grads: 380, inStateRet: 0.66, wages: { y1: 46300, y3: 51400, y5: 56500 },
         socs: "11-1021 General & Operations Managers ($129,530 IN mean); 13-1111 Analysts",
         courseIds: ["SPEA-V450","ONEILL-PBFM","BUS-Z447","BUS-G350","ECON-E472","CJUS-P314","INFO-I427","IU-EXP-210"],
         naicsFlows: [
@@ -1307,7 +1318,7 @@
       {
         id: "oneill-pa", name: "Public Affairs B.S.P.A.", cip: "44.0501", school: "O'Neill School of Public & Environmental Affairs", shortSchool: "O'Neill Public Affairs",
         schoolUrl: "https://oneill.indiana.edu/undergraduate/degrees-majors/bspa.html",
-        grads: 310, inStateRet: 0.64, wages: { y1: 57800, y3: 70400, y5: 82600 },
+        grads: 310, inStateRet: 0.64, wages: { y1: 48200, y3: 53500, y5: 58800 },
         socs: "19-3094 Public Policy Analysts ($84,900 IN mean); 11-1021 Operations Managers",
         courseIds: ["SPEA-V370","SPEA-V326","SPEA-V450","ONEILL-PBFM","ECON-E472","CJUS-P314","BUS-G350","INFO-I427"],
         naicsFlows: [
@@ -1327,7 +1338,7 @@
       {
         id: "oneill-arts", name: "Arts Management B.S.A.M.", cip: "50.1002", school: "O'Neill School of Public & Environmental Affairs", shortSchool: "O'Neill Public Affairs",
         schoolUrl: "https://oneill.indiana.edu/undergraduate/degrees-majors/arts-management.html",
-        grads: 175, inStateRet: 0.58, wages: { y1: 49400, y3: 60200, y5: 72800 },
+        grads: 175, inStateRet: 0.58, wages: { y1: 45700, y3: 50800, y5: 55800 },
         socs: "11-9151 Cultural & Nonprofit Program Directors ($72,800 IN mean); 27-2012 Producers",
         courseIds: ["SPEA-A354","SPEA-A439","SPEA-V326","ONEILL-PBFM","BUS-M455","BUS-Z447","ENG-W415","INFO-I427"],
         naicsFlows: [
@@ -1347,7 +1358,7 @@
       {
         id: "oneill-env", name: "Environmental Management B.S.E.S.", cip: "03.0103", school: "O'Neill School of Public & Environmental Affairs", shortSchool: "O'Neill Public Affairs",
         schoolUrl: "https://oneill.indiana.edu/undergraduate/degrees-majors/index.html",
-        grads: 190, inStateRet: 0.63, wages: { y1: 53800, y3: 64900, y5: 75800 },
+        grads: 190, inStateRet: 0.63, wages: { y1: 46000, y3: 51000, y5: 56100 },
         socs: "19-2041 Environmental Scientists; 11-9121 Natural Sciences Managers",
         courseIds: ["SPEA-E418","SPEA-V450","GEOG-G485","GEOG-G350","BIOL-L410","DSCI-D490","BUS-K353","NLJ-CLOUD9"],
         naicsFlows: [
@@ -1367,7 +1378,7 @@
       {
         id: "oneill-hmp", name: "Healthcare Management & Policy B.S.P.A.", cip: "51.0701", school: "O'Neill School of Public & Environmental Affairs", shortSchool: "O'Neill Public Affairs",
         schoolUrl: "https://oneill.indiana.edu/undergraduate/degrees-majors/index.html",
-        grads: 260, inStateRet: 0.71, wages: { y1: 62400, y3: 75800, y5: 89400 },
+        grads: 260, inStateRet: 0.71, wages: { y1: 51500, y3: 57200, y5: 62800 },
         socs: "11-9111 Medical & Health Services Managers",
         courseIds: ["SPEA-H452","ONEILL-PBFM","SPEA-V450","BUS-K315","BUS-Z447","INFO-I427","BIOL-L410","IU-EXP-210"],
         naicsFlows: [
@@ -1905,12 +1916,41 @@
       }
     });
 
-    // Persistent toggled course state per Job and per Major (pre-populated with top 2 signature courses)
+    // Persistent toggled course state per Job and per Major
+    // Majors are initialized with differentiated signature course combinations (Pathway A Y-dominant, Pathway B X-dominant, or Hybrid A+B)
     const jobInterventionsMap = {};
     JOBS.forEach(j => { jobInterventionsMap[j.id] = new Set(j.courseIds.slice(0, 2)); });
 
+    const DEFAULT_MAJOR_COURSES = {
+      "kelley-acct": ["BUS-A424", "SPEA-V450", "BUS-A437"],
+      "kelley-fin": ["BUS-F421", "BUS-F494"],
+      "kelley-mkt": ["BUS-M455", "KELLEY-PM"],
+      "kelley-mgmt": ["BUS-Z447", "BUS-Z305"],
+      "kelley-ba": ["BUS-K353", "BUS-K327", "DSCI-D490"],
+      "kelley-is": ["BUS-S355", "BUS-S400"],
+      "luddy-cs": ["CSCI-B455", "DSCI-D490"],
+      "luddy-info": ["INFO-I427", "INFO-I308"],
+      "luddy-ds": ["DSCI-D490", "CSCI-B455", "MATH-M301"],
+      "luddy-rob": ["ENGR-E312", "CSCI-B455"],
+      "luddy-cyber": ["INFO-I430", "CSCI-C437"],
+      "luddy-bids": ["INFO-I422", "DSCI-D490"],
+      "cas-econ": ["ECON-E472", "BUS-G350"],
+      "cas-eng": ["ENG-W415", "INFO-I308", "KELLEY-PM"],
+      "cas-biol": ["BIOL-L410", "GEOG-G485"],
+      "cas-cjus": ["CJUS-P314", "CJUS-P200"],
+      "cas-geog": ["GEOG-G485", "GEOG-G488"],
+      "cas-math": ["MATH-M371", "MATH-M301"],
+      "oneill-pmp": ["SPEA-V450", "ONEILL-PBFM"],
+      "oneill-pa": ["SPEA-V326", "SPEA-V450"],
+      "oneill-arts": ["SPEA-A439", "SPEA-V326"],
+      "oneill-env": ["SPEA-E418", "GEOG-G350"],
+      "oneill-hmp": ["SPEA-H452", "ONEILL-PBFM"]
+    };
+
     const majorInterventionsMap = {};
-    PROGRAMS.forEach(p => { majorInterventionsMap[p.id] = new Set(p.courseIds.slice(0, 2)); });
+    PROGRAMS.forEach(p => {
+      majorInterventionsMap[p.id] = new Set(DEFAULT_MAJOR_COURSES[p.id] || p.courseIds.slice(0, 2));
+    });
 
     let jobSkillChartInstance = null;
     let bubbleChartInstance = null;
@@ -1929,7 +1969,7 @@
       });
     }
 
-    // Dual Additive Model:
+    // Dual Additive Model with O*NET Skill-Weighted Headroom Scaling:
     // 1. Substitution Vulnerability (X-Axis, 100 - Risk, higher = better) = Baseline Substitution Vulnerability (baseSV) + AI-Augmented Substitution Vulnerability (svLift) = Total Substitution Vulnerability (defSV)
     // 2. Human+AI Skills (Y-Axis, higher = better) = Baseline Human Skills (humanBase) + AI-Augmented Skills (aiLift) = Total Human+AI Skills (humanAiTotal)
     function getAdjustedJobSkills(job) {
@@ -1946,11 +1986,16 @@
         const baseSV = +(100 - rawOldV).toFixed(1);
         const humanBase = Math.min(82, Math.max(25, +((sk.r + delta.r) - 12).toFixed(1)));
 
+        // Headroom scaling: lower baseSV skills have greater structural risk-reduction potential (ΔX);
+        // higher complementarity headroom scales ΔY
+        const headroomX = Math.max(0.35, 0.35 + 1.25 * ((96 - baseSV) / 70));
+        const headroomY = Math.max(0.45, 0.45 + 1.05 * ((98 - humanBase) / 55));
+
         let svBoost = 0, rBoost = 0;
         selectedInts.forEach(intItem => {
           if (intItem.targets.includes(idx)) {
-            svBoost += intItem.vDrop * 1.35;
-            rBoost += intItem.rLift * 1.25;
+            svBoost += intItem.vDrop * headroomX * 1.15;
+            rBoost += intItem.rLift * headroomY * 1.15;
           }
         });
 
@@ -1997,15 +2042,16 @@
     function getProgramMetrics(prog) {
       const horizon = document.getElementById("globalHorizon").value;
       const model = document.getElementById("globalModel").value;
+      const delta = MODEL_DELTAS[model] || { v: 0, r: 0 };
       const m = prog.scores[model];
 
-      // X-Axis: Baseline Substitution Vulnerability (100 - old V, higher = better) + AI-Augmented Substitution Vulnerability (svLift) = Total Substitution Vulnerability (defSV)
+      // X-Axis Baseline: Substitution Vulnerability (100 - old V, higher = better)
       const sv2025 = +(100 - m.v2025).toFixed(1);
       const sv2030 = +(100 - m.v2030).toFixed(1);
       const baseSV = horizon === "2025" ? sv2025 : sv2030;
       const vDelta = +(sv2030 - sv2025).toFixed(1);
 
-      // Y-Axis: Baseline Human Skills (humanBase) + AI-Augmented Skills (aiLift) = Total Human+AI Skills (humanAiTotal)
+      // Y-Axis Baseline: Human Skills (pre-course baseline)
       const rawR = horizon === "2025" ? m.r2025 : m.r2030;
       const humanBase = Math.min(82, Math.max(30, +(rawR - 12).toFixed(1)));
 
@@ -2013,12 +2059,45 @@
       const activeSet = majorInterventionsMap[prog.id] || new Set();
       const selectedInts = courses.filter(c => activeSet.has(c.id));
 
-      const rawVBoost = selectedInts.reduce((acc, i) => acc + i.vDrop, 0);
-      const rawRLift = selectedInts.reduce((acc, i) => acc + i.rLift, 0);
+      // Compute O*NET skill-level lifts weighted by skill weights w(m,s) and baseline headroom
+      const progHeadroomX = Math.max(0.32, 0.35 + 1.25 * ((96 - baseSV) / 68));
+      const progHeadroomY = Math.max(0.45, 0.48 + 1.02 * ((98 - humanBase) / 55));
 
-      const svLift = Math.min(+(96 - baseSV).toFixed(1), +rawVBoost.toFixed(1));
+      let wSkBaseSV = 0, wSkSvLift = 0, wSkDefSV = 0, wSkHumanBase = 0, wSkAiLift = 0, wSkHumanAiTotal = 0;
+      const skillRows = prog.skills.map((sk, idx) => {
+        const rawSkOldV = Math.min(95, Math.max(8, +(sk.v + delta.v).toFixed(1)));
+        const skBaseSV = +(100 - rawSkOldV).toFixed(1);
+        const skHumanBase = Math.min(82, Math.max(25, +((sk.r + delta.r) - 12).toFixed(1)));
+
+        const skHeadroomX = Math.max(0.35, 0.35 + 1.25 * ((96 - skBaseSV) / 70));
+        const skHeadroomY = Math.max(0.45, 0.45 + 1.05 * ((98 - skHumanBase) / 55));
+
+        let svBoost = 0, rBoost = 0;
+        selectedInts.forEach(intItem => {
+          if (intItem.targets.includes(idx)) {
+            svBoost += intItem.vDrop * skHeadroomX * 1.18;
+            rBoost += intItem.rLift * skHeadroomY * 1.18;
+          }
+        });
+
+        const skSvLift = Math.min(+(96 - skBaseSV).toFixed(1), +svBoost.toFixed(1));
+        const skDefSV = +(skBaseSV + skSvLift).toFixed(1);
+        const skAiLift = Math.min(+(98 - skHumanBase).toFixed(1), +rBoost.toFixed(1));
+        const skHumanAiTotal = +(skHumanBase + skAiLift).toFixed(1);
+
+        wSkBaseSV += sk.weight * skBaseSV;
+        wSkSvLift += sk.weight * skSvLift;
+        wSkDefSV += sk.weight * skDefSV;
+        wSkHumanBase += sk.weight * skHumanBase;
+        wSkAiLift += sk.weight * skAiLift;
+        wSkHumanAiTotal += sk.weight * skHumanAiTotal;
+
+        return { ...sk, skBaseSV, skSvLift, skDefSV, skHumanBase, skAiLift, skHumanAiTotal };
+      });
+
+      const svLift = Math.min(+(96 - baseSV).toFixed(1), +(wSkSvLift * progHeadroomX).toFixed(1));
       const defSV = +(baseSV + svLift).toFixed(1);
-      const aiLift = Math.min(+(98 - humanBase).toFixed(1), +rawRLift.toFixed(1));
+      const aiLift = Math.min(+(98 - humanBase).toFixed(1), +(wSkAiLift * progHeadroomY).toFixed(1));
       const humanAiTotal = +(humanBase + aiLift).toFixed(1);
 
       return {
@@ -2031,7 +2110,14 @@
         r: humanAiTotal,
         vDelta,
         selectedInts,
-        courses
+        courses,
+        skillRows,
+        wSkBaseSV,
+        wSkSvLift,
+        wSkDefSV,
+        wSkHumanBase,
+        wSkAiLift,
+        wSkHumanAiTotal
       };
     }
 
@@ -2526,8 +2612,8 @@
       const ctx = document.getElementById("portfolioBubbleChart").getContext("2d");
       if (bubbleChartInstance) bubbleChartInstance.destroy();
 
-      // Bubble is positioned at (x: defSV = Baseline + AI-Augmented Substitution Vulnerability, y: r = Baseline + AI-Augmented Human+AI Skills)
-      // Arrow originates from (xBase: baseSV, yBase: humanBase) and points diagonally to the bubble at (x: defSV, y: r)
+      // Bubble is positioned at Baseline (x: baseSV, y: humanBase)
+      // Faded arrow originates at the outer edge of the Baseline bubble (x, y) and points toward Baseline + AI-Augmented (xTarget: defSV, yTarget: r)
       const datasets = Object.keys(SCHOOL_COLORS).map(schoolName => {
         const schoolProgs = progs.filter(p => p.school === schoolName);
         return {
@@ -2535,8 +2621,10 @@
           data: schoolProgs.map(p => {
             const { baseSV, svLift, defSV, humanBase, aiLift, r } = getProgramMetrics(p);
             return {
-              x: defSV,
-              y: r,
+              x: baseSV,
+              y: humanBase,
+              xTarget: defSV,
+              yTarget: r,
               xBase: baseSV,
               yBase: humanBase,
               svLift,
@@ -2639,58 +2727,66 @@
             meta.data.forEach((elem, idx) => {
               const raw = ds.data[idx];
               if (!raw || (raw.aiLift <= 0.1 && raw.svLift <= 0.1)) return;
-              const pxBase = xScale.getPixelForValue(raw.xBase);
-              const pyBase = yScale.getPixelForValue(raw.yBase);
               const pxBubble = xScale.getPixelForValue(raw.x);
               const pyBubble = yScale.getPixelForValue(raw.y);
+              const pxTarget = xScale.getPixelForValue(raw.xTarget);
+              const pyTarget = yScale.getPixelForValue(raw.yTarget);
 
-              const dx = pxBubble - pxBase;
-              const dy = pyBubble - pyBase;
+              const dx = pxTarget - pxBubble;
+              const dy = pyTarget - pyBubble;
               const dist = Math.hypot(dx, dy);
-              if (dist < 5) return;
+              if (dist < raw.r + 4) return;
 
               const ux = dx / dist;
               const uy = dy / dist;
 
-              // Draw small origin dot at Baseline (xBase, yBase)
-              c.beginPath();
-              c.fillStyle = "#ffffff";
-              c.strokeStyle = raw.color || "#0f172a";
-              c.lineWidth = 2;
-              c.arc(pxBase, pyBase, 3.2, 0, Math.PI * 2);
-              c.fill();
-              c.stroke();
+              // Fade the school color for the connecting line and arrowhead pointing from Baseline (x, y) to Baseline+Augmented (xTarget, yTarget)
+              const baseColor = raw.color || "#0f172a";
+              const endDotRadius = 3.6;
 
-              // Tip of arrow stops at the outer edge of the bubble (or at least 4px from origin)
-              const stopDist = Math.max(4, dist - raw.r - 2);
-              const tipX = pxBase + ux * stopDist;
-              const tipY = pyBase + uy * stopDist;
+              // Start the arrow shaft just outside the Baseline bubble perimeter and stop at the edge of the endpoint dot
+              const startX = pxBubble + ux * (raw.r + 1.5);
+              const startY = pyBubble + uy * (raw.r + 1.5);
+              const tipX = pxTarget - ux * (endDotRadius + 1.0);
+              const tipY = pyTarget - uy * (endDotRadius + 1.0);
 
-              // Draw dashed arrow shaft from Baseline (pxBase, pyBase) to tip
+              // Draw faded dashed arrow shaft from Baseline bubble edge to the endpoint dot
+              c.globalAlpha = 0.35;
               c.beginPath();
-              c.strokeStyle = raw.color || "#0f172a";
-              c.lineWidth = 1.9;
+              c.strokeStyle = baseColor;
+              c.lineWidth = 1.75;
               c.setLineDash([3, 2]);
-              c.moveTo(pxBase + ux * 3.2, pyBase + uy * 3.2);
+              c.moveTo(startX, startY);
               c.lineTo(tipX - ux * 5, tipY - uy * 5);
               c.stroke();
               c.setLineDash([]);
 
-              // Draw filled arrowhead aligned with vector (ux, uy) pointing into the Baseline+AI-Augmented bubble
-              const headLen = 7.5;
-              const headHalfWidth = 4.2;
+              // Draw faded filled arrowhead pointing into the endpoint dot
+              const headLen = 7.2;
+              const headHalfWidth = 4.0;
               const pxPerp = -uy;
               const pyPerp = ux;
               const baseHeadX = tipX - ux * headLen;
               const baseHeadY = tipY - uy * headLen;
 
+              c.globalAlpha = 0.45;
               c.beginPath();
-              c.fillStyle = raw.color || "#0f172a";
+              c.fillStyle = baseColor;
               c.moveTo(tipX, tipY);
               c.lineTo(baseHeadX + pxPerp * headHalfWidth, baseHeadY + pyPerp * headHalfWidth);
               c.lineTo(baseHeadX - pxPerp * headHalfWidth, baseHeadY - pyPerp * headHalfWidth);
               c.closePath();
               c.fill();
+
+              // Draw small circle/dot at the exact Baseline+AI-Augmented (X, Y) endpoint (pxTarget, pyTarget)
+              c.globalAlpha = 0.85;
+              c.beginPath();
+              c.fillStyle = baseColor;
+              c.strokeStyle = "#ffffff";
+              c.lineWidth = 1.4;
+              c.arc(pxTarget, pyTarget, endDotRadius, 0, Math.PI * 2);
+              c.fill();
+              c.stroke();
             });
           });
           c.restore();
@@ -2718,14 +2814,15 @@
               callbacks: {
                 label: (ctx) => {
                   const d = ctx.raw;
-                  return `${d.progName}: Subst. Vuln (X) ${d.xBase.toFixed(1)} + ${d.svLift.toFixed(1)} = ${d.x.toFixed(1)} | Human+AI (Y) ${d.yBase.toFixed(1)} + ${d.aiLift.toFixed(1)} = ${d.y.toFixed(1)}`;
+                  const slope = d.svLift > 0.1 ? (d.aiLift / d.svLift).toFixed(2) : "∞";
+                  return `${d.progName}: Bubble Base (${d.x.toFixed(1)}, ${d.y.toFixed(1)}) → Arrow Augmented (${d.xTarget.toFixed(1)}, ${d.yTarget.toFixed(1)}) [+${d.svLift.toFixed(1)} X, +${d.aiLift.toFixed(1)} Y | Slope = ${slope}]`;
                 }
               }
             }
           },
           scales: {
-            x: { title: { display: true, text: "Substitution Vulnerability (X = Baseline + AI-Augmented • Break = 60) → Higher = Better", font: { weight: "bold", size: 11.5 } }, min: 0, max: 100, ticks: { stepSize: 10 }, grid: { color: "#e2e8f0" } },
-            y: { title: { display: true, text: "Human+AI Skills (Y = Baseline + AI-Augmented • Break = 60 | Arrow: Base (X₀,Y₀) → Bubble (X,Y))", font: { weight: "bold", size: 11.5 } }, min: 0, max: 100, ticks: { stepSize: 10 }, grid: { color: "#e2e8f0" } }
+            x: { title: { display: true, text: "Substitution Vulnerability (Bubble = Baseline X₀ • Arrow Tip = Baseline + AI-Augmented X • Break = 60) → Higher = Better", font: { weight: "bold", size: 11.5 } }, min: 0, max: 100, ticks: { stepSize: 10 }, grid: { color: "#e2e8f0" } },
+            y: { title: { display: true, text: "Human+AI Skills (Bubble = Baseline Y₀ • Arrow Tip = Baseline + AI-Augmented Y • Break = 60)", font: { weight: "bold", size: 11.5 } }, min: 0, max: 100, ticks: { stepSize: 10 }, grid: { color: "#e2e8f0" } }
           }
         }
       });
@@ -2739,34 +2836,8 @@
 
       const prog = PROGRAMS.find(p => p.id === selectedMajorId) || PROGRAMS[0];
       const metrics = getProgramMetrics(prog);
-      const { baseSV, svLift, defSV, humanBase, aiLift, r: humanAiTotal, courses, selectedInts } = metrics;
+      const { baseSV, svLift, defSV, humanBase, aiLift, r: humanAiTotal, courses, selectedInts, skillRows, wSkBaseSV, wSkSvLift, wSkDefSV, wSkHumanBase, wSkAiLift, wSkHumanAiTotal } = metrics;
       const activeSet = majorInterventionsMap[prog.id] || new Set();
-
-      let wSkBaseSV = 0, wSkSvLift = 0, wSkDefSV = 0, wSkHumanBase = 0, wSkAiLift = 0, wSkHumanAiTotal = 0;
-      const skillRows = prog.skills.map((sk, idx) => {
-        const skBaseSV = +(100 - sk.v).toFixed(1);
-        const skHumanBase = Math.min(82, Math.max(25, +(sk.r - 12).toFixed(1)));
-        let svBoost = 0, rBoost = 0;
-        selectedInts.forEach(intItem => {
-          if (intItem.targets.includes(idx)) {
-            svBoost += intItem.vDrop * 1.4;
-            rBoost += intItem.rLift * 1.3;
-          }
-        });
-        const skSvLift = Math.min(+(96 - skBaseSV).toFixed(1), +svBoost.toFixed(1));
-        const skDefSV = +(skBaseSV + skSvLift).toFixed(1);
-        const skAiLift = Math.min(+(98 - skHumanBase).toFixed(1), +rBoost.toFixed(1));
-        const skHumanAiTotal = +(skHumanBase + skAiLift).toFixed(1);
-
-        wSkBaseSV += sk.weight * skBaseSV;
-        wSkSvLift += sk.weight * skSvLift;
-        wSkDefSV += sk.weight * skDefSV;
-        wSkHumanBase += sk.weight * skHumanBase;
-        wSkAiLift += sk.weight * skAiLift;
-        wSkHumanAiTotal += sk.weight * skHumanAiTotal;
-
-        return { ...sk, skBaseSV, skSvLift, skDefSV, skHumanBase, skAiLift, skHumanAiTotal };
-      });
 
       document.getElementById("simImpactBanner").innerHTML = `
         <div class="text-center px-2">
@@ -2956,29 +3027,47 @@
       }).join("");
     }
 
+    // Dual Additive Group Metrics for Tab 5:
+    // - Substitution Vulnerability (X): baseSV (100 - g.v) + svLift (reskilling insulation lift) = defSV (Total X)
+    // - Human+AI Skills (Y): humanBase + aiLift = humanAiTotal (Total Y)
     function getGroupMetrics(g) {
-      const sv = +(100 - g.v).toFixed(1);
+      const baseSV = +(100 - g.v).toFixed(1);
       const aiLift = parseFloat(g.lift.replace(/[^0-9.]/g, "")) || 9.0;
+      const headroomX = Math.max(0.35, 0.40 + 1.15 * ((96 - baseSV) / 68));
+      const svLift = Math.min(+(96 - baseSV).toFixed(1), +(aiLift * 0.72 * headroomX).toFixed(1));
+      const defSV = +(baseSV + svLift).toFixed(1);
       const humanBase = +(g.r - aiLift).toFixed(1);
       const humanAiTotal = +(humanBase + aiLift).toFixed(1);
-      return { sv, humanBase, aiLift, humanAiTotal };
+      return { baseSV, svLift, defSV, sv: defSV, humanBase, aiLift, humanAiTotal };
     }
 
     function renderIndiana() {
       const top7Metrics = INDIANA_OCC_GROUPS.map(g => ({ g, m: getGroupMetrics(g) }));
-      const top7SVMed = getColumnMedian(top7Metrics.map(x => x.m.sv));
+      const top7BaseSVMed = getColumnMedian(top7Metrics.map(x => x.m.baseSV));
+      const top7SvLiftMed = getColumnMedian(top7Metrics.map(x => x.m.svLift));
+      const top7SVMed = getColumnMedian(top7Metrics.map(x => x.m.defSV));
+      const top7HumanMed = getColumnMedian(top7Metrics.map(x => x.m.humanBase));
+      const top7AiMed = getColumnMedian(top7Metrics.map(x => x.m.aiLift));
+      const top7TotalRMed = getColumnMedian(top7Metrics.map(x => x.m.humanAiTotal));
 
       document.getElementById("indianaTableBody").innerHTML = top7Metrics.map(({ g, m }) => {
-        const svBadge = getHigherBetterBadge(m.sv, top7SVMed, 2.0);
+        const baseSvBadge = getHigherBetterBadge(m.baseSV, top7BaseSVMed, 1.8);
+        const svLiftBadge = getHigherBetterBadge(m.svLift, top7SvLiftMed, 0.8);
+        const svBadge = getHigherBetterBadge(m.defSV, top7SVMed, 1.8);
+        const humanBadge = getHigherBetterBadge(m.humanBase, top7HumanMed, 1.8);
+        const aiBadge = getHigherBetterBadge(m.aiLift, top7AiMed, 0.8);
+        const totalRBadge = getHigherBetterBadge(m.humanAiTotal, top7TotalRMed, 1.8);
         return `
           <tr class="hover:bg-slate-50">
-            <td class="py-2.5 px-3 font-bold text-slate-900">${g.title}<div class="text-[10px] font-normal text-slate-500">SOC ${g.soc} • Est. Payroll $${g.payrollB}B</div></td>
-            <td class="py-2.5 px-2 text-right font-medium text-slate-700">${g.wage}</td>
-            <td class="py-2.5 px-2 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${svBadge}">${m.sv.toFixed(1)}</span></td>
-            <td class="py-2.5 px-2 text-center font-bold text-emerald-800">${m.humanBase.toFixed(1)}</td>
-            <td class="py-2.5 px-2 text-center font-bold text-teal-700">+${m.aiLift.toFixed(1)}</td>
-            <td class="py-2.5 px-2 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold bg-blue-50 text-blue-800 border border-blue-200">${m.humanAiTotal.toFixed(1)}</span></td>
-            <td class="py-2.5 px-3 text-[11px] text-slate-600">${g.pathway}</td>
+            <td class="py-2.5 px-2.5 font-bold text-slate-900">${g.title}<div class="text-[10px] font-normal text-slate-500">SOC ${g.soc} • Est. Payroll $${g.payrollB}B</div></td>
+            <td class="py-2.5 px-1.5 text-right font-medium text-slate-700">${g.wage}</td>
+            <td class="py-2.5 px-1.5 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${baseSvBadge}">${m.baseSV.toFixed(1)}</span></td>
+            <td class="py-2.5 px-1.5 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${svLiftBadge}">+${m.svLift.toFixed(1)}</span></td>
+            <td class="py-2.5 px-1.5 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${svBadge}">${m.defSV.toFixed(1)}</span></td>
+            <td class="py-2.5 px-1.5 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${humanBadge}">${m.humanBase.toFixed(1)}</span></td>
+            <td class="py-2.5 px-1.5 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${aiBadge}">+${m.aiLift.toFixed(1)}</span></td>
+            <td class="py-2.5 px-1.5 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${totalRBadge}">${m.humanAiTotal.toFixed(1)}</span></td>
+            <td class="py-2.5 px-2.5 text-[11px] text-slate-600">${g.pathway}</td>
           </tr>
         `;
       }).join("");
@@ -2991,34 +3080,51 @@
         data: {
           labels: top7Metrics.map(({ g }) => g.soc + " " + g.title.split(" ")[0]),
           datasets: [
-            { label: "Substitution Vulnerability (100 − Risk)", data: top7Metrics.map(x => x.m.sv), backgroundColor: "#0284c7", borderRadius: 4, stack: "sv_stack" },
-            { label: "Human Skills (Baseline)", data: top7Metrics.map(x => x.m.humanBase), backgroundColor: "#059669", borderRadius: 4, stack: "human_ai" },
-            { label: "AI Augmented Skills (+Lift)", data: top7Metrics.map(x => x.m.aiLift), backgroundColor: "#34d399", borderRadius: 4, stack: "human_ai" }
+            { label: "Subst. Vuln (Base)", data: top7Metrics.map(x => x.m.baseSV), backgroundColor: "#0284c7", borderRadius: 4, stack: "sv_stack" },
+            { label: "Subst. Vuln (+AI Aug)", data: top7Metrics.map(x => x.m.svLift), backgroundColor: "#38bdf8", borderRadius: 4, stack: "sv_stack" },
+            { label: "Human Skills (Base)", data: top7Metrics.map(x => x.m.humanBase), backgroundColor: "#059669", borderRadius: 4, stack: "human_ai" },
+            { label: "Human+AI (+AI Aug)", data: top7Metrics.map(x => x.m.aiLift), backgroundColor: "#34d399", borderRadius: 4, stack: "human_ai" }
           ]
         },
         options: {
           responsive: true, maintainAspectRatio: false,
           scales: {
             x: { stacked: true },
-            y: { stacked: true, min: 0, max: 100, title: { display: true, text: "Score (0–100 • Higher = Better | Human + AI Stacked)" } }
+            y: { stacked: true, min: 0, max: 100, title: { display: true, text: "Score (0–100 • Higher = Better | Both Subst. Vuln & Human+AI Show Base + AI-Augmented Lift)" } }
+          },
+          plugins: {
+            legend: { position: "top", labels: { boxWidth: 12, font: { size: 11 } } }
           }
         }
       });
 
       // Render All 22 Two-Digit Major Occupational Groups (SOC 11-0000 through 53-0000)
       const all22Metrics = INDIANA_ALL_MAJOR_GROUPS.map(g => ({ g, m: getGroupMetrics(g) }));
-      const allSVMed = getColumnMedian(all22Metrics.map(x => x.m.sv));
+      const allBaseSVMed = getColumnMedian(all22Metrics.map(x => x.m.baseSV));
+      const allSvLiftMed = getColumnMedian(all22Metrics.map(x => x.m.svLift));
+      const allSVMed = getColumnMedian(all22Metrics.map(x => x.m.defSV));
+      const allHumanMed = getColumnMedian(all22Metrics.map(x => x.m.humanBase));
+      const allAiMed = getColumnMedian(all22Metrics.map(x => x.m.aiLift));
+      const allTotalRMed = getColumnMedian(all22Metrics.map(x => x.m.humanAiTotal));
+
       document.getElementById("indianaAllGroupsTableBody").innerHTML = all22Metrics.map(({ g, m }) => {
-        const svBadge = getHigherBetterBadge(m.sv, allSVMed, 2.0);
+        const baseSvBadge = getHigherBetterBadge(m.baseSV, allBaseSVMed, 1.8);
+        const svLiftBadge = getHigherBetterBadge(m.svLift, allSvLiftMed, 0.8);
+        const svBadge = getHigherBetterBadge(m.defSV, allSVMed, 1.8);
+        const humanBadge = getHigherBetterBadge(m.humanBase, allHumanMed, 1.8);
+        const aiBadge = getHigherBetterBadge(m.aiLift, allAiMed, 0.8);
+        const totalRBadge = getHigherBetterBadge(m.humanAiTotal, allTotalRMed, 1.8);
         return `
           <tr class="hover:bg-slate-50">
-            <td class="py-2.5 px-3 font-bold text-slate-900">${g.title}<div class="text-[10px] font-normal text-slate-500">SOC ${g.soc} • Est. Payroll $${g.payrollB}B</div></td>
-            <td class="py-2.5 px-2 text-right font-medium text-slate-700">${g.wage}</td>
-            <td class="py-2.5 px-2 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${svBadge}">${m.sv.toFixed(1)}</span></td>
-            <td class="py-2.5 px-2 text-center font-bold text-emerald-800">${m.humanBase.toFixed(1)}</td>
-            <td class="py-2.5 px-2 text-center font-bold text-teal-700">+${m.aiLift.toFixed(1)}</td>
-            <td class="py-2.5 px-2 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold bg-blue-50 text-blue-800 border border-blue-200">${m.humanAiTotal.toFixed(1)}</span></td>
-            <td class="py-2.5 px-3 text-[11px] text-slate-600">${g.pathway}</td>
+            <td class="py-2.5 px-2.5 font-bold text-slate-900">${g.title}<div class="text-[10px] font-normal text-slate-500">SOC ${g.soc} • Est. Payroll $${g.payrollB}B</div></td>
+            <td class="py-2.5 px-1.5 text-right font-medium text-slate-700">${g.wage}</td>
+            <td class="py-2.5 px-1.5 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${baseSvBadge}">${m.baseSV.toFixed(1)}</span></td>
+            <td class="py-2.5 px-1.5 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${svLiftBadge}">+${m.svLift.toFixed(1)}</span></td>
+            <td class="py-2.5 px-1.5 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${svBadge}">${m.defSV.toFixed(1)}</span></td>
+            <td class="py-2.5 px-1.5 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${humanBadge}">${m.humanBase.toFixed(1)}</span></td>
+            <td class="py-2.5 px-1.5 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${aiBadge}">+${m.aiLift.toFixed(1)}</span></td>
+            <td class="py-2.5 px-1.5 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${totalRBadge}">${m.humanAiTotal.toFixed(1)}</span></td>
+            <td class="py-2.5 px-2.5 text-[11px] text-slate-600">${g.pathway}</td>
           </tr>
         `;
       }).join("");
@@ -3031,9 +3137,10 @@
         data: {
           labels: all22Metrics.map(x => x.g.shortLabel),
           datasets: [
-            { label: "Substitution Vulnerability (100 − Risk)", data: all22Metrics.map(x => x.m.sv), backgroundColor: "#0284c7", borderRadius: 3, stack: "sv_stack" },
-            { label: "Human Skills (Baseline)", data: all22Metrics.map(x => x.m.humanBase), backgroundColor: "#059669", borderRadius: 3, stack: "human_ai" },
-            { label: "AI Augmented Skills (+Lift)", data: all22Metrics.map(x => x.m.aiLift), backgroundColor: "#34d399", borderRadius: 3, stack: "human_ai" }
+            { label: "Subst. Vuln (Base)", data: all22Metrics.map(x => x.m.baseSV), backgroundColor: "#0284c7", borderRadius: 3, stack: "sv_stack" },
+            { label: "Subst. Vuln (+AI Aug)", data: all22Metrics.map(x => x.m.svLift), backgroundColor: "#38bdf8", borderRadius: 3, stack: "sv_stack" },
+            { label: "Human Skills (Base)", data: all22Metrics.map(x => x.m.humanBase), backgroundColor: "#059669", borderRadius: 3, stack: "human_ai" },
+            { label: "Human+AI (+AI Aug)", data: all22Metrics.map(x => x.m.aiLift), backgroundColor: "#34d399", borderRadius: 3, stack: "human_ai" }
           ]
         },
         options: {
@@ -3041,7 +3148,7 @@
           responsive: true,
           maintainAspectRatio: false,
           scales: {
-            x: { stacked: true, min: 0, max: 100, title: { display: true, text: "Score (0–100 Scale • Higher = Better | Human + AI Stacked = Human+AI Skills)" } },
+            x: { stacked: true, min: 0, max: 100, title: { display: true, text: "Score (0–100 Scale • Higher = Better | Both Subst. Vuln & Human+AI Show Base + AI-Augmented Lift)" } },
             y: { stacked: true, ticks: { font: { size: 10 } } }
           },
           plugins: {
@@ -3055,19 +3162,31 @@
 
     function getMsaOccMetrics(occ) {
       const matchedGroup = INDIANA_ALL_MAJOR_GROUPS.find(g => g.soc === occ.soc);
-      const sv = +(100 - occ.v).toFixed(1);
-      const aiLift = matchedGroup ? (parseFloat(matchedGroup.lift.replace(/[^0-9.]/g, "")) || 9.0) : +(occ.r * 0.15).toFixed(1);
+      if (matchedGroup) {
+        const gm = getGroupMetrics(matchedGroup);
+        const baseSV = +(100 - occ.v).toFixed(1);
+        const svLift = gm.svLift;
+        const defSV = Math.min(96, +(baseSV + svLift).toFixed(1));
+        const aiLift = gm.aiLift;
+        const humanBase = +(occ.r - aiLift).toFixed(1);
+        const humanAiTotal = +(humanBase + aiLift).toFixed(1);
+        return { baseSV, svLift, defSV, sv: defSV, humanBase, aiLift, humanAiTotal };
+      }
+      const baseSV = +(100 - occ.v).toFixed(1);
+      const aiLift = +(occ.r * 0.15).toFixed(1);
+      const svLift = +(aiLift * 0.72).toFixed(1);
+      const defSV = Math.min(96, +(baseSV + svLift).toFixed(1));
       const humanBase = +(occ.r - aiLift).toFixed(1);
       const humanAiTotal = +(humanBase + aiLift).toFixed(1);
-      return { sv, humanBase, aiLift, humanAiTotal };
+      return { baseSV, svLift, defSV, sv: defSV, humanBase, aiLift, humanAiTotal };
     }
 
     function buildMsaTop3Html(msa, isDark = false) {
       return msa.top3.map((occ, idx) => {
-        const { sv, humanBase, aiLift, humanAiTotal } = getMsaOccMetrics(occ);
-        const svBadge = sv >= 60
+        const { baseSV, svLift, defSV, humanBase, aiLift, humanAiTotal } = getMsaOccMetrics(occ);
+        const svBadge = defSV >= 65
           ? (isDark ? "bg-emerald-500/25 text-emerald-200 border-emerald-400/40" : "bg-emerald-100 text-emerald-800 border-emerald-200")
-          : sv >= 45
+          : defSV >= 50
           ? (isDark ? "bg-amber-500/25 text-amber-200 border-amber-400/40" : "bg-amber-100 text-amber-800 border-amber-200")
           : (isDark ? "bg-red-500/25 text-red-200 border-red-400/40" : "bg-red-100 text-red-800 border-red-200");
         const rBadge = isDark
@@ -3082,8 +3201,8 @@
               <span class="text-[10px] font-mono ${isDark ? 'text-slate-300' : 'text-slate-500'} whitespace-nowrap">${occ.emp.toLocaleString()} jobs (${occ.share})</span>
             </div>
             <div class="mt-1.5 flex flex-wrap items-center justify-between gap-1.5 text-[10px]">
-              <span class="px-2 py-0.5 rounded-full font-bold border ${svBadge}">Substitution Vulnerability: ${sv.toFixed(1)}</span>
-              <span class="px-2 py-0.5 rounded-full font-bold border ${rBadge}">Human+AI: ${humanAiTotal.toFixed(1)} (Human ${humanBase.toFixed(1)} + AI +${aiLift.toFixed(1)})</span>
+              <span class="px-2 py-0.5 rounded-full font-bold border ${svBadge}">Subst. Vuln: ${defSV.toFixed(1)} (Base ${baseSV.toFixed(1)} + AI +${svLift.toFixed(1)})</span>
+              <span class="px-2 py-0.5 rounded-full font-bold border ${rBadge}">Human+AI: ${humanAiTotal.toFixed(1)} (Base ${humanBase.toFixed(1)} + AI +${aiLift.toFixed(1)})</span>
             </div>
           </div>
         `;
@@ -3107,15 +3226,15 @@
             <span class="px-2 py-0.5 rounded bg-white/10 text-[10px] font-mono text-slate-200 whitespace-nowrap">${msa.totalEmp.toLocaleString()} Emp</span>
           </div>
           <div class="text-[11px] text-slate-300 mb-2"><strong>BLS Mean Wage:</strong> ${msa.meanWage}</div>
-          <div class="text-[10px] uppercase tracking-wider text-sky-300 font-bold mb-1.5">Top 3 Two-Digit Occupations (Subst. Vuln &amp; Human+AI Skills):</div>
+          <div class="text-[10px] uppercase tracking-wider text-sky-300 font-bold mb-1.5">Top 3 Two-Digit Occupations (Dual Additive Base + AI Lift):</div>
           <div class="space-y-1.5">${buildMsaTop3Html(msa, true)}</div>
         `;
         tooltip.classList.remove("hidden");
         const rect = wrapper.getBoundingClientRect();
         const relX = evt.clientX - rect.left;
         const relY = evt.clientY - rect.top;
-        const leftPos = relX > rect.width * 0.52 ? Math.max(8, relX - 330) : Math.min(rect.width - 325, relX + 16);
-        const topPos = Math.max(8, Math.min(rect.height - 300, relY - 30));
+        const leftPos = relX > rect.width * 0.52 ? Math.max(8, relX - 380) : Math.min(rect.width - 375, relX + 16);
+        const topPos = Math.max(8, Math.min(rect.height - 310, relY - 30));
         tooltip.style.left = leftPos + "px";
         tooltip.style.top = topPos + "px";
       }
@@ -3136,7 +3255,9 @@
       const spotlight = document.getElementById("msaSpotlightCard");
       if (spotlight) {
         const occMetrics = msa.top3.map(o => getMsaOccMetrics(o));
-        const avgSV = (occMetrics.reduce((s, o) => s + o.sv, 0) / 3).toFixed(1);
+        const avgBaseSV = (occMetrics.reduce((s, o) => s + o.baseSV, 0) / 3).toFixed(1);
+        const avgSvLift = (occMetrics.reduce((s, o) => s + o.svLift, 0) / 3).toFixed(1);
+        const avgDefSV = (occMetrics.reduce((s, o) => s + o.defSV, 0) / 3).toFixed(1);
         const avgHuman = (occMetrics.reduce((s, o) => s + o.humanBase, 0) / 3).toFixed(1);
         const avgAi = (occMetrics.reduce((s, o) => s + o.aiLift, 0) / 3).toFixed(1);
         const avgTotalR = (occMetrics.reduce((s, o) => s + o.humanAiTotal, 0) / 3).toFixed(1);
@@ -3156,9 +3277,9 @@
           </div>
           <div class="flex flex-wrap items-center justify-between text-xs mb-2 gap-1">
             <span class="font-bold text-slate-800">Three Largest Two-Digit Occupations (BLS OEWS):</span>
-            <span class="text-[11px] text-slate-600">Top-3 Avg: <strong class="text-sky-700">Subst. Vuln = ${avgSV}</strong> • <strong class="text-emerald-800">Human ${avgHuman}</strong> + <strong class="text-teal-700">AI +${avgAi}</strong> = <strong class="text-blue-700">${avgTotalR}</strong></span>
+            <span class="text-[11px] text-slate-600">Top-3 Avg: <strong class="text-sky-800">Subst. Vuln ${avgBaseSV} + ${avgSvLift} = ${avgDefSV}</strong> • <strong class="text-emerald-800">Human+AI ${avgHuman} + ${avgAi} = ${avgTotalR}</strong></span>
           </div>
-          <div class="space-y-2">${buildMsaTop3Html(msa, false)}</div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5">${buildMsaTop3Html(msa, false)}</div>
         `;
       }
 
@@ -3221,8 +3342,8 @@
             </div>
             <div class="mt-1 text-[10px] text-slate-600 truncate">Top: <strong>${m.top3.map(t => t.soc.slice(0, 3)).join(", ")}</strong></div>
             <div class="mt-1 flex items-center justify-between text-[10px]">
-              <span class="text-sky-700 font-semibold">#1 SV: ${top1.sv.toFixed(1)}</span>
-              <span class="text-emerald-700 font-semibold">#1 H+AI: ${top1.humanAiTotal.toFixed(1)}</span>
+              <span class="text-sky-700 font-semibold">#1 SV: ${top1.baseSV.toFixed(0)}+${top1.svLift.toFixed(0)}=${top1.defSV.toFixed(0)}</span>
+              <span class="text-emerald-700 font-semibold">#1 H+AI: ${top1.humanBase.toFixed(0)}+${top1.aiLift.toFixed(0)}=${top1.humanAiTotal.toFixed(0)}</span>
             </div>
           </div>
         `;
