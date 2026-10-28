@@ -107,7 +107,7 @@
         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
           <div>
             <h2 class="text-base font-bold text-slate-900">IUB Academic Portfolio: Substitution Vulnerability vs. Human+AI Skills (4-Quadrant Matrix)</h2>
-            <p class="text-xs text-slate-500">Bubble = <strong>Baseline (X₀, Y₀)</strong> | Arrow (↗) = <strong>Trajectory Toward Baseline + AI-Augmented (X, Y)</strong> | Quadrant Breaks at <strong>X = 60 &amp; Y = 60</strong> (1:1 Square)</p>
+            <p class="text-xs text-slate-500">Bubble = <strong>Baseline (X₀, Y₀)</strong> | Arrow (↗) = <strong>Trajectory Toward Baseline + AI-Augmented (X, Y)</strong> | Quadrant Breaks at <strong>X = 55 &amp; Y = 65</strong> (1:1 Square)</p>
           </div>
           <span id="horizonBadgePortfolio" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-red-50 text-red-800 border border-red-200 whitespace-nowrap self-start">2025 Baseline</span>
         </div>
@@ -115,10 +115,10 @@
           <canvas id="portfolioBubbleChart"></canvas>
         </div>
         <div class="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs bg-slate-50 p-3 rounded-xl border border-slate-200">
-          <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-red-700 mr-1.5"></span><strong>Kelley Business (6)</strong></div>
+          <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-600 mr-1.5"></span><strong>Kelley Business (6)</strong></div>
           <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-blue-600 mr-1.5"></span><strong>Luddy Computing (6)</strong></div>
           <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-amber-600 mr-1.5"></span><strong>Arts + Sciences (6)</strong></div>
-          <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-600 mr-1.5"></span><strong>O'Neill Public Affairs (5)</strong></div>
+          <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-red-700 mr-1.5"></span><strong>O'Neill Public Affairs (5)</strong></div>
         </div>
       </div>
 
@@ -595,10 +595,10 @@
 
   <script>
     const SCHOOL_COLORS = {
-      "Kelley School of Business": "#b91c1c",
+      "Kelley School of Business": "#059669",
       "Luddy School of Informatics, Computing, & Engineering": "#2563eb",
       "College of Arts and Sciences": "#d97706",
-      "O'Neill School of Public & Environmental Affairs": "#059669"
+      "O'Neill School of Public & Environmental Affairs": "#b91c1c"
     };
 
     const MODEL_DELTAS = {
@@ -2685,33 +2685,34 @@
           const { ctx: c, chartArea, scales: { x: xScale, y: yScale } } = chart;
           if (!chartArea) return;
           const { left, right, top, bottom } = chartArea;
-          const breakVal = 60;
-          const midX = xScale.getPixelForValue(breakVal);
-          const midY = yScale.getPixelForValue(breakVal);
+          const breakValX = 55;
+          const breakValY = 65;
+          const midX = xScale.getPixelForValue(breakValX);
+          const midY = yScale.getPixelForValue(breakValY);
 
           c.save();
-          // Quadrant 1 (Top-Right: X >= 60, Y >= 60)
+          // Quadrant 1 (Top-Right: X >= 55, Y >= 65)
           if (midX < right && midY > top) {
             c.fillStyle = "rgba(16, 185, 129, 0.055)";
             c.fillRect(midX, top, right - midX, midY - top);
           }
-          // Quadrant 2 (Top-Left: X < 60, Y >= 60)
+          // Quadrant 2 (Top-Left: X < 55, Y >= 65)
           if (midX > left && midY > top) {
             c.fillStyle = "rgba(14, 165, 233, 0.055)";
             c.fillRect(left, top, midX - left, midY - top);
           }
-          // Quadrant 3 (Bottom-Left: X < 60, Y < 60)
+          // Quadrant 3 (Bottom-Left: X < 55, Y < 65)
           if (midX > left && midY < bottom) {
             c.fillStyle = "rgba(239, 68, 68, 0.055)";
             c.fillRect(left, midY, midX - left, bottom - midY);
           }
-          // Quadrant 4 (Bottom-Right: X >= 60, Y < 60)
+          // Quadrant 4 (Bottom-Right: X >= 55, Y < 65)
           if (midX < right && midY < bottom) {
             c.fillStyle = "rgba(245, 158, 11, 0.055)";
             c.fillRect(midX, midY, right - midX, bottom - midY);
           }
 
-          // Draw Quadrant Break Lines at X = 60 and Y = 60
+          // Draw Quadrant Break Lines at X = 55 and Y = 65
           c.strokeStyle = "#475569";
           c.lineWidth = 1.6;
           c.setLineDash([6, 4]);
@@ -2729,7 +2730,7 @@
           }
           c.setLineDash([]);
 
-          // Quadrant Corner Watermark Labels (+2pt larger, criteria removed)
+          // Quadrant Corner Watermark Labels (+2pt larger, criteria & break labels removed)
           c.font = "bold 12.7px -apple-system, BlinkMacSystemFont, sans-serif";
           c.fillStyle = "#047857";
           c.textAlign = "right";
@@ -2746,17 +2747,10 @@
           c.fillStyle = "#b45309";
           c.textAlign = "right";
           c.fillText("Insulated / Baseline Human", right - 10, bottom - 10);
-
-          // Break labels at X = 60 and Y = 60
-          c.font = "bold 11.5px -apple-system, BlinkMacSystemFont, sans-serif";
-          c.fillStyle = "#334155";
-          c.textAlign = "left";
-          c.fillText("X Break = 60", midX + 6, bottom - 10);
-          c.fillText("Y Break = 60", left + 10, midY - 7);
           c.restore();
         },
         afterDatasetsDraw(chart) {
-          const { ctx: c, scales: { x: xScale, y: yScale } } = chart;
+          const { ctx: c, chartArea, scales: { x: xScale, y: yScale } } = chart;
           c.save();
           chart.data.datasets.forEach((ds, dsIdx) => {
             const meta = chart.getDatasetMeta(dsIdx);
@@ -2825,6 +2819,65 @@
               c.stroke();
             });
           });
+
+          // Draw Single-Line Legend Box in Lower-Right Quadrant (Quadrant 4: X >= 55, Y < 65)
+          if (chartArea) {
+            const { right, bottom } = chartArea;
+            const midX = xScale.getPixelForValue(55);
+            const midY = yScale.getPixelForValue(65);
+
+            const legendItems = [
+              { lead: "Bubble: ", body: "School/Degree (Mouseover for Details)" },
+              { lead: "Bubble Location: ", body: "Degree Estimated Substitutability Vulnerability & Human Skills" },
+              { lead: "Bubble Size: ", body: "Degree Estimated Annual Graduate Cohort" },
+              { lead: "Arrows: ", body: "Estimated Impact of AI on Baseline Substitutability Vulnerability & Human Skills" }
+            ];
+
+            // Auto-fit font size slightly only if needed so the widest single-line item fits cleanly inside Quadrant 4
+            const maxQuadW = Math.max(260, right - midX - 16);
+            let fontSize = 9.8;
+            let maxLineW = 0;
+            while (fontSize >= 7.8) {
+              maxLineW = 0;
+              legendItems.forEach(item => {
+                c.font = `bold ${fontSize}px -apple-system, BlinkMacSystemFont, sans-serif`;
+                const lw = c.measureText(item.lead).width;
+                c.font = `500 ${fontSize}px -apple-system, BlinkMacSystemFont, sans-serif`;
+                const bw = c.measureText(item.body).width;
+                if (lw + bw > maxLineW) maxLineW = lw + bw;
+              });
+              if (maxLineW + 20 <= maxQuadW) break;
+              fontSize = +(fontSize - 0.3).toFixed(1);
+            }
+
+            const boxW = Math.ceil(maxLineW + 20);
+            const boxH = 74;
+            const boxX = right - boxW - 8;
+            const boxY = Math.max(midY + 12, bottom - boxH - 28);
+
+            c.globalAlpha = 1.0;
+            c.fillStyle = "rgba(255, 255, 255, 0.93)";
+            c.strokeStyle = "#94a3b8";
+            c.lineWidth = 1.2;
+            c.beginPath();
+            c.roundRect(boxX, boxY, boxW, boxH, 8);
+            c.fill();
+            c.stroke();
+
+            c.textAlign = "left";
+            c.fillStyle = "#990000";
+            let textY = boxY + 16;
+            legendItems.forEach(item => {
+              c.font = `bold ${fontSize}px -apple-system, BlinkMacSystemFont, sans-serif`;
+              const leadW = c.measureText(item.lead).width;
+              c.fillText(item.lead, boxX + 10, textY);
+
+              c.font = `500 ${fontSize}px -apple-system, BlinkMacSystemFont, sans-serif`;
+              c.fillText(item.body, boxX + 10 + leadW, textY);
+              textY += 16;
+            });
+          }
+
           c.restore();
         }
       };
@@ -2857,8 +2910,8 @@
             }
           },
           scales: {
-            x: { title: { display: true, text: "Substitution Vulnerability (Bubble = Baseline X₀ • Arrow Tip = Baseline + AI-Augmented X • Break = 60) → Higher = Better", font: { weight: "bold", size: 11.5 } }, min: 0, max: 100, ticks: { stepSize: 10 }, grid: { color: "#e2e8f0" } },
-            y: { title: { display: true, text: "Human+AI Skills (Bubble = Baseline Y₀ • Arrow Tip = Baseline + AI-Augmented Y • Break = 60)", font: { weight: "bold", size: 11.5 } }, min: 0, max: 100, ticks: { stepSize: 10 }, grid: { color: "#e2e8f0" } }
+            x: { title: { display: true, text: "Substitution Vulnerability (20–90 Scale • Bubble = Baseline X₀ • Arrow Tip = Baseline + AI-Augmented X • Break = 55) → Higher = Better", font: { weight: "bold", size: 11.5 } }, min: 20, max: 90, ticks: { stepSize: 10 }, grid: { color: "#e2e8f0" } },
+            y: { title: { display: true, text: "Human+AI Skills (30–100 Scale • Bubble = Baseline Y₀ • Arrow Tip = Baseline + AI-Augmented Y • Break = 65)", font: { weight: "bold", size: 11.5 } }, min: 30, max: 100, ticks: { stepSize: 10 }, grid: { color: "#e2e8f0" } }
           }
         }
       });
