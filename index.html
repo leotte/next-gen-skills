@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IU Workforce AI Substitution Vulnerability & Human+AI Skills Platform — Executive Prototype</title>
+  <title>IU Workforce AI Resilience & Human Distinctive Platform — Executive Prototype</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <style>
@@ -27,7 +27,7 @@
             <span class="text-xs uppercase tracking-widest bg-white/20 px-2.5 py-0.5 rounded-full font-semibold">Executive Decision Support Prototype (v1.7 Vertical Slice)</span>
             <span class="text-xs text-red-100">IUB Leadership Edition</span>
           </div>
-          <h1 class="text-xl md:text-2xl font-bold tracking-tight mt-0.5">Workforce AI Substitution Vulnerability, Human+AI Skills &amp; Curriculum Defense Platform</h1>
+          <h1 class="text-xl md:text-2xl font-bold tracking-tight mt-0.5">Workforce AI Resilience, Human Distinctive &amp; Curriculum Defense Platform</h1>
           <p class="text-xs text-red-100 mt-0.5">
             Integrating <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" class="underline hover:text-white">BLS OEWS</a>, <a href="https://www.onetcenter.org/database.html" target="_blank" class="underline hover:text-white">O*NET 29.0</a>, <a href="https://www.bls.gov/emp/data.htm" target="_blank" class="underline hover:text-white">BLS 5-Year Projections</a>, <a href="https://lehd.ces.census.gov/data/pseo_experimental.html" target="_blank" class="underline hover:text-white">Census PSEO</a>, <a href="https://www.hoosierdata.in.gov/infographics/iu-workforce-outcomes.asp" target="_blank" class="underline hover:text-white">ICHE/DWD IU Workforce Outcomes</a> &amp; Multi-Index AI Benchmarks
           </p>
@@ -47,21 +47,21 @@
           </select>
         </div>
         <div>
-          <label class="block text-[10px] uppercase tracking-wider text-red-200 font-semibold mb-1">Forecast Horizon (Req 7)</label>
+          <label class="block text-[10px] uppercase tracking-wider text-red-200 font-semibold mb-1">Forecast Horizon</label>
           <select id="globalHorizon" onchange="renderAll()" class="w-full bg-white text-slate-900 font-semibold rounded-lg px-2.5 py-1.5 focus:outline-none">
             <option value="2025">Current Baseline (2025/2026)</option>
             <option value="2030">5-Year BLS Projection (2030 • Constant Skill Vector)</option>
           </select>
         </div>
         <div>
-          <label class="block text-[10px] uppercase tracking-wider text-red-200 font-semibold mb-1">Aggregation Weighting (Req 6)</label>
+          <label class="block text-[10px] uppercase tracking-wider text-red-200 font-semibold mb-1">Aggregation Weighting</label>
           <select id="globalWeighting" onchange="renderAll()" class="w-full bg-white text-slate-900 font-semibold rounded-lg px-2.5 py-1.5 focus:outline-none">
             <option value="headcount">Headcount / Employment Weighted</option>
             <option value="wagebill">Indiana Wage-Bill Weighted</option>
           </select>
         </div>
         <div>
-          <label class="block text-[10px] uppercase tracking-wider text-red-200 font-semibold mb-1">AI Scoring Index (Req 4)</label>
+          <label class="block text-[10px] uppercase tracking-wider text-red-200 font-semibold mb-1">AI Scoring Index</label>
           <select id="globalModel" onchange="renderAll()" class="w-full bg-white text-slate-900 font-semibold rounded-lg px-2.5 py-1.5 focus:outline-none">
             <option value="composite">Composite (Felten + Eloundou + Anthropic)</option>
             <option value="eloundou_e2">Eloundou et al. (2024) LLM + Tooling (E2)</option>
@@ -77,19 +77,19 @@
   <nav class="bg-white border-b border-slate-200 sticky top-0 z-20 shadow-sm">
     <div class="max-w-[1600px] mx-auto px-6 lg:px-8 flex overflow-x-auto">
       <button onclick="switchTab('portfolio')" id="tab-portfolio" class="tab-btn active px-4 py-3.5 text-sm font-medium text-slate-600 hover:text-slate-900 whitespace-nowrap transition">
-        1. Provost &amp; Deans Portfolio Matrix (Reqs 5, 6, 7)
-      </button>
-      <button onclick="switchTab('jobs')" id="tab-jobs" class="tab-btn px-4 py-3.5 text-sm font-medium text-slate-600 hover:text-slate-900 whitespace-nowrap transition">
-        2. Job-Level Skill Decomposition &amp; Exposure (Reqs 3, 4, 5)
+        1. Provost &amp; Deans Portfolio Matrix
       </button>
       <button onclick="switchTab('simulator')" id="tab-simulator" class="tab-btn px-4 py-3.5 text-sm font-medium text-slate-600 hover:text-slate-900 whitespace-nowrap transition">
-        3. Degree Skill Decomposition &amp; Defense Simulator (Reqs 6, 8)
+        2. Degree Skill Decomposition &amp; Defense Simulator
+      </button>
+      <button onclick="switchTab('jobs')" id="tab-jobs" class="tab-btn px-4 py-3.5 text-sm font-medium text-slate-600 hover:text-slate-900 whitespace-nowrap transition">
+        3. Job-Level Skill Decomposition &amp; Exposure
       </button>
       <button onclick="switchTab('pipeline')" id="tab-pipeline" class="tab-btn px-4 py-3.5 text-sm font-medium text-slate-600 hover:text-slate-900 whitespace-nowrap transition">
-        4. IU-to-Indiana Workforce Pipeline (Reqs 1, 2)
+        4. IU-to-Indiana Workforce Pipeline
       </button>
       <button onclick="switchTab('indiana')" id="tab-indiana" class="tab-btn px-4 py-3.5 text-sm font-medium text-slate-600 hover:text-slate-900 whitespace-nowrap transition">
-        5. State of Indiana Economic Impact &amp; Reskilling (Req 9)
+        5. State of Indiana Economic Impact &amp; Reskilling
       </button>
     </div>
   </nav>
@@ -106,7 +106,7 @@
       <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
           <div>
-            <h2 class="text-base font-bold text-slate-900">IUB Academic Portfolio: Substitution Vulnerability vs. Human+AI Skills (4-Quadrant Matrix)</h2>
+            <h2 class="text-base font-bold text-slate-900">IUB Academic Portfolio: AI Resilience vs. Human Distinctive (4-Quadrant Matrix)</h2>
             <p class="text-xs text-slate-500">Bubble = <strong>Baseline (X₀, Y₀)</strong> | Arrow (↗) = <strong>Trajectory Toward Baseline + AI-Augmented (X, Y)</strong> | Quadrant Breaks at <strong>X = 55 &amp; Y = 65</strong> (1:1 Square)</p>
           </div>
           <span id="horizonBadgePortfolio" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-red-50 text-red-800 border border-red-200 whitespace-nowrap self-start">2025 Baseline</span>
@@ -126,8 +126,8 @@
       <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
           <div>
-            <h2 class="text-base font-bold text-slate-900">School-Level Hierarchical Rollup (Req 6)</h2>
-            <p class="text-xs text-slate-500">Aggregated across majors using <span id="weightModeLabel" class="font-semibold text-slate-700">Graduate Headcount</span> weights (Dual Additive Model: Baseline + AI-Augmented = Total for both Substitution Vulnerability &amp; Human+AI Skills).</p>
+            <h2 class="text-base font-bold text-slate-900">School-Level Hierarchical Rollup</h2>
+            <p class="text-xs text-slate-500">Aggregated across majors using <span id="weightModeLabel" class="font-semibold text-slate-700">Graduate Headcount</span> weights (Dual Additive Model: Baseline + AI-Augmented = Total for both AI Resilience &amp; Human Distinctive).</p>
           </div>
           <span class="text-xs text-slate-500 font-medium">4 Flagship IUB Schools • 23 Undergraduate Majors</span>
         </div>
@@ -138,7 +138,7 @@
         <div class="px-6 py-4 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <div>
             <h3 class="text-base font-bold text-slate-900">IUB Degree Programs &amp; Mapped Occupational Exposure Scorecard (23 Majors)</h3>
-            <p class="text-xs text-slate-500">Both <strong>Substitution Vulnerability (X)</strong> &amp; <strong>Human+AI Skills (Y)</strong> show <strong>Baseline + AI-Augmented (+Lift) = Total</strong> (Higher = Better). Click <strong>"Simulate Defense →"</strong> to adjust courses.</p>
+            <p class="text-xs text-slate-500">Both <strong>AI Resilience (X)</strong> &amp; <strong>Human Distinctive (Y)</strong> show <strong>Baseline + AI-Augmented (+Lift) = Total</strong> (Higher = Better). Click <strong>"Simulate Defense →"</strong> to adjust courses.</p>
           </div>
           <div class="text-xs text-slate-500">
             Data Spine: <a href="https://www.hoosierdata.in.gov/infographics/iu-workforce-outcomes.asp" target="_blank" class="text-red-700 underline font-medium">IU Workforce Outcomes</a> + <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" class="text-red-700 underline font-medium">Indiana OEWS</a>
@@ -155,12 +155,12 @@
                 <th class="py-2.5 px-1 text-right w-[6%] border-t-2 border-slate-700 bg-amber-50/50 text-slate-900">5-Yr IN<br>Med Wage</th>
                 <th class="py-2.5 px-1 text-center w-[5.5%] border-t-2 border-slate-700 bg-amber-50/50 text-slate-900">5-Yr BLS<br>Growth</th>
                 <th class="py-2.5 px-1 text-center w-[5.5%] border-t-2 border-r-2 border-slate-700 bg-amber-50/50 text-slate-900">5-Yr BLS<br>Shift (2030)</th>
-                <th class="py-2.5 px-1 text-center w-[6.2%] border-t-2 border-l-2 border-slate-700 bg-sky-50/60 text-sky-950">Subst. Vuln<br>(Base)</th>
-                <th class="py-2.5 px-1 text-center w-[6.2%] border-t-2 border-slate-700 bg-sky-50/60 text-sky-950">Subst. Vuln<br>(+AI Aug)</th>
-                <th class="py-2.5 px-1 text-center w-[6.6%] border-t-2 border-r-2 border-slate-700 bg-sky-50/60 text-sky-950">Subst. Vuln<br>(Total X)</th>
-                <th class="py-2.5 px-1 text-center w-[6.2%] border-t-2 border-l-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Skills<br>(Base)</th>
-                <th class="py-2.5 px-1 text-center w-[6.2%] border-t-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human+AI<br>(+AI Aug)</th>
-                <th class="py-2.5 px-1 text-center w-[6.6%] border-t-2 border-r-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human+AI<br>(Total Y)</th>
+                <th class="py-2.5 px-1 text-center w-[6.2%] border-t-2 border-l-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Base)</th>
+                <th class="py-2.5 px-1 text-center w-[6.2%] border-t-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Incremental)</th>
+                <th class="py-2.5 px-1 text-center w-[6.6%] border-t-2 border-r-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Total X)</th>
+                <th class="py-2.5 px-1 text-center w-[6.2%] border-t-2 border-l-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Base)</th>
+                <th class="py-2.5 px-1 text-center w-[6.2%] border-t-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Incremental)</th>
+                <th class="py-2.5 px-1 text-center w-[6.6%] border-t-2 border-r-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Total Y)</th>
                 <th class="py-2.5 px-1.5 text-center w-[6.5%]">Action</th>
               </tr>
             </thead>
@@ -170,12 +170,69 @@
       </div>
     </section>
 
-    <!-- TAB 2: JOB-LEVEL SKILL DECOMPOSITION & EXPOSURE -->
+    <!-- TAB 2: DEGREE SKILL DECOMPOSITION & CURRICULUM DEFENSE SIMULATOR -->
+    <section id="view-simulator" class="hidden space-y-6">
+      <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+        <div class="flex-1">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-red-700">Degree-Level Curriculum &amp; Cross-School Credential Defense Lab</span>
+          <div class="flex flex-wrap items-center gap-3 mt-1">
+            <label for="simMajorSelect" class="text-sm font-bold text-slate-800">Select IUB Degree Program:</label>
+            <select id="simMajorSelect" onchange="changeSimMajor()" class="bg-slate-100 border border-slate-300 text-slate-900 font-bold text-sm rounded-xl px-3.5 py-2 focus:outline-none focus:ring-2 focus:ring-red-700"></select>
+          </div>
+        </div>
+        <div id="simImpactBanner" class="flex flex-wrap items-center gap-3 bg-slate-50 px-4 py-3 rounded-xl border border-slate-200"></div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-7 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+          <div class="flex items-center justify-between mb-2">
+            <div>
+              <h3 class="text-base font-bold text-slate-900">Degree-Weighted O*NET Skill Decomposition</h3>
+              <p class="text-xs text-slate-500">Shows additive <strong>Baseline + AI-Augmented = Total</strong> for both <strong>AI Resilience (X)</strong> and <strong>Human Distinctive (Y)</strong>.</p>
+            </div>
+            <a href="https://www.onetcenter.org/database.html" target="_blank" class="text-xs text-red-700 underline font-medium">O*NET 29.0 Taxonomy ↗</a>
+          </div>
+          <div class="h-[380px] my-2"><canvas id="skillDecompositionChart"></canvas></div>
+          <div class="mt-3 overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 text-[10px] uppercase leading-tight">
+                  <th class="py-2 px-2.5">O*NET Skill / Work Activity</th>
+                  <th class="py-2 px-1.5 text-right border-t-2 border-l-2 border-r-2 border-slate-700 bg-amber-50/50 text-slate-900">Major<br>Weight</th>
+                  <th class="py-2 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Base)</th>
+                  <th class="py-2 px-1.5 text-center border-t-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Incremental)</th>
+                  <th class="py-2 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Total X)</th>
+                  <th class="py-2 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Base)</th>
+                  <th class="py-2 px-1.5 text-center border-t-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Incremental)</th>
+                  <th class="py-2 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Total Y)</th>
+                  <th class="py-2 px-2">Primary Exposure Driver</th>
+                </tr>
+              </thead>
+              <tbody id="skillTableBody" class="divide-y divide-slate-100"></tbody>
+              <tfoot id="skillTableFooter" class="bg-slate-100 font-bold text-slate-900 border-t-2 border-slate-300"></tfoot>
+            </table>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+          <div class="flex items-center justify-between mb-1">
+            <h3 class="text-base font-bold text-slate-900">Defensive Educational Interventions (8 In-Major &amp; Cross-School Options)</h3>
+            <button onclick="resetInterventions()" class="text-xs text-slate-500 hover:text-red-700 underline">Reset All</button>
+          </div>
+          <p class="text-xs text-slate-500 mb-3">
+            Check or uncheck courses below to boost both <strong>AI-Augmented AI Resilience (+ΔX)</strong> and <strong>AI-Augmented Human Distinctive (+ΔY)</strong> on top of their pre-course baselines (also updates the Tab 1 diagonal arrow ↗).
+          </p>
+          <div id="interventionList" class="space-y-2.5 max-h-[430px] overflow-y-auto custom-scroll pr-1"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: JOB-LEVEL SKILL DECOMPOSITION & EXPOSURE -->
     <section id="view-jobs" class="hidden space-y-6">
       <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div class="flex-1">
           <div class="flex items-center gap-2">
-            <span class="text-[11px] font-bold uppercase tracking-wider text-red-700">BLS / O*NET Occupation-to-Skill Decomposer (Reqs 3, 4, 5, 8)</span>
+            <span class="text-[11px] font-bold uppercase tracking-wider text-red-700">BLS / O*NET Occupation-to-Skill Decomposer</span>
             <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-medium">w(o,s) = Normalized(Importance^0.5 × Level^0.5)</span>
           </div>
           <div class="flex flex-wrap items-center gap-3 mt-1.5">
@@ -203,12 +260,12 @@
                   <th class="py-2 px-2.5">O*NET Skill / Work Activity (Element ID)</th>
                   <th class="py-2 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-amber-50/50 text-slate-900">Imp / Lvl</th>
                   <th class="py-2 px-1.5 text-right border-t-2 border-r-2 border-slate-700 bg-amber-50/50 text-slate-900">Weight<br>w(o,s)</th>
-                  <th class="py-2 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-sky-50/60 text-sky-950">Subst. Vuln<br>(Base)</th>
-                  <th class="py-2 px-1.5 text-center border-t-2 border-slate-700 bg-sky-50/60 text-sky-950">Subst. Vuln<br>(+AI Aug)</th>
-                  <th class="py-2 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-sky-50/60 text-sky-950">Subst. Vuln<br>(Total X)</th>
-                  <th class="py-2 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Skills<br>(Base)</th>
-                  <th class="py-2 px-1.5 text-center border-t-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human+AI<br>(+AI Aug)</th>
-                  <th class="py-2 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human+AI<br>(Total Y)</th>
+                  <th class="py-2 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Base)</th>
+                  <th class="py-2 px-1.5 text-center border-t-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Incremental)</th>
+                  <th class="py-2 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Total X)</th>
+                  <th class="py-2 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Base)</th>
+                  <th class="py-2 px-1.5 text-center border-t-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Incremental)</th>
+                  <th class="py-2 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Total Y)</th>
                   <th class="py-2 px-2">AI Exposure Mechanism</th>
                 </tr>
               </thead>
@@ -225,13 +282,13 @@
               <button onclick="resetJobInterventions()" class="text-xs text-slate-500 hover:text-red-700 underline">Reset Defenses</button>
             </div>
             <p class="text-xs text-slate-500 mb-3">
-              Toggling courses adds <strong>AI-Augmented Substitution Vulnerability (+Lift)</strong> on top of <strong>Baseline Substitution Vulnerability</strong> and <strong>AI-Augmented Skills (+Lift)</strong> on top of <strong>Baseline Human Skills</strong>.
+              Toggling courses adds <strong>AI-Augmented AI Resilience (+Lift)</strong> on top of <strong>Baseline AI Resilience</strong> and <strong>AI-Augmented Human Distinctive (+Lift)</strong> on top of <strong>Baseline Human Distinctive</strong>.
             </p>
             <div id="selectedJobMetaBox" class="p-3 rounded-xl bg-slate-50 border border-slate-200 mb-3 text-xs space-y-1"></div>
             <div id="jobInterventionList" class="space-y-2 max-h-[380px] overflow-y-auto custom-scroll pr-1"></div>
           </div>
           <div class="p-3 rounded-xl bg-amber-50/70 border border-amber-200 text-[11px] text-amber-900">
-            <strong>Dual Additive Model (X &amp; Y):</strong> Both <code>Substitution Vulnerability = Base + AI-Augmented Lift</code> and <code>Human+AI Skills = Base + AI-Augmented Lift</code> (0–100 scale, higher = better).
+            <strong>Dual Additive Model (X &amp; Y):</strong> Both <code>AI Resilience = Base + AI-Augmented Lift</code> and <code>Human Distinctive = Base + AI-Augmented Lift</code> (0–100 scale, higher = better).
           </div>
         </div>
       </div>
@@ -252,79 +309,22 @@
               <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 uppercase tracking-tight text-[10px] leading-tight">
                 <th class="py-3 px-3">Occupation Title (SOC / O*NET)</th>
                 <th class="py-3 px-2.5">Mapped IUB Schools &amp; Majors</th>
-                <th class="py-3 px-2.5">Associated O*NET Skills (Subst. Vuln | Human+AI)</th>
+                <th class="py-3 px-2.5">Associated O*NET Skills (AI Resilience | Human Distinctive)</th>
                 <th class="py-3 px-1.5 text-right">IN Emp</th>
                 <th class="py-3 px-1.5 text-right">IN Mean<br>Wage</th>
                 <th class="py-3 px-1.5 text-center">5-Yr BLS<br>Growth</th>
-                <th class="py-3 px-1.5 text-center">Subst. Vuln<br>(Base)</th>
-                <th class="py-3 px-1.5 text-center">Subst. Vuln<br>(+AI Aug)</th>
-                <th class="py-3 px-1.5 text-center">Subst. Vuln<br>(Total X)</th>
-                <th class="py-3 px-1.5 text-center">Human Skills<br>(Base)</th>
-                <th class="py-3 px-1.5 text-center">Human+AI<br>(+AI Aug)</th>
-                <th class="py-3 px-1.5 text-center">Human+AI<br>(Total Y)</th>
+                <th class="py-3 px-1.5 text-center">AI Resilience<br>(Base)</th>
+                <th class="py-3 px-1.5 text-center">AI Resilience<br>(Incremental)</th>
+                <th class="py-3 px-1.5 text-center">AI Resilience<br>(Total X)</th>
+                <th class="py-3 px-1.5 text-center">Human Distinctive<br>(Base)</th>
+                <th class="py-3 px-1.5 text-center">Human Distinctive<br>(Incremental)</th>
+                <th class="py-3 px-1.5 text-center">Human Distinctive<br>(Total Y)</th>
                 <th class="py-3 px-1.5 text-center">5-Yr BLS<br>Shift (2030)</th>
                 <th class="py-3 px-3 text-right">Action</th>
               </tr>
             </thead>
             <tbody id="allJobsSummaryTableBody" class="divide-y divide-slate-200"></tbody>
           </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- TAB 3: DEGREE SKILL DECOMPOSITION & CURRICULUM DEFENSE SIMULATOR -->
-    <section id="view-simulator" class="hidden space-y-6">
-      <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-        <div class="flex-1">
-          <span class="text-[11px] font-bold uppercase tracking-wider text-red-700">Degree-Level Curriculum &amp; Cross-School Credential Defense Lab (Reqs 6 &amp; 8)</span>
-          <div class="flex flex-wrap items-center gap-3 mt-1">
-            <label for="simMajorSelect" class="text-sm font-bold text-slate-800">Select IUB Degree Program:</label>
-            <select id="simMajorSelect" onchange="changeSimMajor()" class="bg-slate-100 border border-slate-300 text-slate-900 font-bold text-sm rounded-xl px-3.5 py-2 focus:outline-none focus:ring-2 focus:ring-red-700"></select>
-          </div>
-        </div>
-        <div id="simImpactBanner" class="flex flex-wrap items-center gap-3 bg-slate-50 px-4 py-3 rounded-xl border border-slate-200"></div>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <div class="lg:col-span-7 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
-          <div class="flex items-center justify-between mb-2">
-            <div>
-              <h3 class="text-base font-bold text-slate-900">Degree-Weighted O*NET Skill Decomposition (Req 6)</h3>
-              <p class="text-xs text-slate-500">Shows additive <strong>Baseline + AI-Augmented = Total</strong> for both <strong>Substitution Vulnerability (X)</strong> and <strong>Human+AI Skills (Y)</strong>.</p>
-            </div>
-            <a href="https://www.onetcenter.org/database.html" target="_blank" class="text-xs text-red-700 underline font-medium">O*NET 29.0 Taxonomy ↗</a>
-          </div>
-          <div class="h-[380px] my-2"><canvas id="skillDecompositionChart"></canvas></div>
-          <div class="mt-3 overflow-x-auto">
-            <table class="w-full text-left border-collapse text-xs">
-              <thead>
-                <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 text-[10px] uppercase leading-tight">
-                  <th class="py-2 px-2.5">O*NET Skill / Work Activity</th>
-                  <th class="py-2 px-1.5 text-right border-t-2 border-l-2 border-r-2 border-slate-700 bg-amber-50/50 text-slate-900">Major<br>Weight</th>
-                  <th class="py-2 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-sky-50/60 text-sky-950">Subst. Vuln<br>(Base)</th>
-                  <th class="py-2 px-1.5 text-center border-t-2 border-slate-700 bg-sky-50/60 text-sky-950">Subst. Vuln<br>(+AI Aug)</th>
-                  <th class="py-2 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-sky-50/60 text-sky-950">Subst. Vuln<br>(Total X)</th>
-                  <th class="py-2 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Skills<br>(Base)</th>
-                  <th class="py-2 px-1.5 text-center border-t-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human+AI<br>(+AI Aug)</th>
-                  <th class="py-2 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human+AI<br>(Total Y)</th>
-                  <th class="py-2 px-2">Primary Exposure Driver</th>
-                </tr>
-              </thead>
-              <tbody id="skillTableBody" class="divide-y divide-slate-100"></tbody>
-              <tfoot id="skillTableFooter" class="bg-slate-100 font-bold text-slate-900 border-t-2 border-slate-300"></tfoot>
-            </table>
-          </div>
-        </div>
-
-        <div class="lg:col-span-5 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
-          <div class="flex items-center justify-between mb-1">
-            <h3 class="text-base font-bold text-slate-900">Defensive Educational Interventions (8 In-Major &amp; Cross-School Options)</h3>
-            <button onclick="resetInterventions()" class="text-xs text-slate-500 hover:text-red-700 underline">Reset All</button>
-          </div>
-          <p class="text-xs text-slate-500 mb-3">
-            Check or uncheck courses below to boost both <strong>AI-Augmented Substitution Vulnerability (+ΔX)</strong> and <strong>AI-Augmented Skills (+ΔY)</strong> on top of their pre-course baselines (also updates the Tab 1 diagonal arrow ↗).
-          </p>
-          <div id="interventionList" class="space-y-2.5 max-h-[430px] overflow-y-auto custom-scroll pr-1"></div>
         </div>
       </div>
     </section>
@@ -373,7 +373,7 @@
               <h3 class="text-base font-bold text-slate-900 mt-0.5">CIP × NAICS → SOC 5-Year In-State Retention &amp; AI Exposure Matrix Heatmap</h3>
               <p class="text-xs text-slate-500">Cross-tabulates all IUB majors (rows) against Indiana's 7 major 2-Digit NAICS employer sectors (columns). Each active cell displays its <strong>flow share (%)</strong>, <strong>5-Yr AI-defended retained grads</strong>, and primary <strong>6-Digit SOC occupation</strong>, beside framed <strong>5-Year In-State Match (Base → AI-Defended)</strong> and <strong>Total X / Y</strong> columns.</p>
             </div>
-            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-amber-50 text-amber-800 border border-amber-200 whitespace-nowrap self-start">Click Any Row to Simulate in Tab 3</span>
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-amber-50 text-amber-800 border border-amber-200 whitespace-nowrap self-start">Click Any Row to Simulate in Tab 2</span>
           </div>
           <div id="pipelineMatrixHeatmapContainer" class="w-full max-h-[720px] overflow-y-auto overflow-x-hidden custom-scroll border border-slate-200 rounded-xl"></div>
         </div>
@@ -384,8 +384,8 @@
         <div class="w-full max-w-[1283px] mx-auto">
           <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
             <div>
-              <h3 class="text-base font-bold text-slate-900">CIP × NAICS → SOC Probabilistic Bridge Matrix Directory (Req 2)</h3>
-              <p class="text-xs text-slate-500">Detailed degree-by-degree cards showing how IUB graduates flow from Major (CIP) into Indiana Employer Industries (2-Digit NAICS) and mapped SOC occupations over the 5-year window, including 5-Year In-State Match lift and additive Substitution Vulnerability (X) &amp; Human+AI Skills (Y).</p>
+              <h3 class="text-base font-bold text-slate-900">CIP × NAICS → SOC Probabilistic Bridge Matrix Directory</h3>
+              <p class="text-xs text-slate-500">Detailed degree-by-degree cards showing how IUB graduates flow from Major (CIP) into Indiana Employer Industries (2-Digit NAICS) and mapped SOC occupations over the 5-year window, including 5-Year In-State Match lift and additive AI Resilience (X) &amp; Human Distinctive (Y).</p>
             </div>
             <span class="text-xs text-slate-500 font-medium whitespace-nowrap">23 IUB Majors • 3 Primary NAICS→SOC Flows Each</span>
           </div>
@@ -399,7 +399,7 @@
       <div class="bg-gradient-to-r from-slate-900 to-slate-800 text-white p-6 rounded-2xl shadow-md">
         <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div>
-            <span class="text-xs uppercase tracking-widest text-amber-400 font-bold">Requirement 9: Statewide Macroeconomic &amp; Workforce Aggregation</span>
+            <span class="text-xs uppercase tracking-widest text-amber-400 font-bold">Statewide Macroeconomic &amp; Workforce Aggregation</span>
             <h2 class="text-xl font-bold mt-1">State of Indiana Workforce AI Exposure &amp; Upskilling Opportunity</h2>
             <p class="text-xs text-slate-300 mt-1 max-w-3xl">
               Anchored to <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" class="underline text-amber-300">BLS May OEWS State Occupational Employment and Wage Estimates for Indiana</a> (All-Occupations Indiana Mean Wage: $27.12/hr; Median: $21.86/hr) and <a href="https://www.in.gov/dwd/nextleveljobs/workforce-ready-grant/" target="_blank" class="underline text-amber-300">Indiana Next Level Jobs</a> + IU Expand adult reskilling pathways.
@@ -425,8 +425,8 @@
       <!-- Stacked Section 1: Top 7 High-Priority Indiana Occupational Groups Figure (Matching 1026px Width) -->
       <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
         <div class="w-full max-w-[1026px] mx-auto">
-          <h3 class="text-base font-bold text-slate-900 mb-1">Indiana Major Occupational Groups (Top 7): Substitution Vulnerability vs. Human+AI Skills</h3>
-          <p class="text-xs text-slate-500 mb-3">Shows dual additive <strong>Substitution Vulnerability (Base + AI-Augmented = Total X)</strong> and <strong>Human+AI Skills (Base + AI-Augmented = Total Y)</strong> across high-priority Indiana occupational groups.</p>
+          <h3 class="text-base font-bold text-slate-900 mb-1">Indiana Major Occupational Groups (Top 7): AI Resilience vs. Human Distinctive</h3>
+          <p class="text-xs text-slate-500 mb-3">Shows dual additive <strong>AI Resilience (Base + AI-Augmented = Total X)</strong> and <strong>Human Distinctive (Base + AI-Augmented = Total Y)</strong> across high-priority Indiana occupational groups.</p>
           <div class="relative w-full h-[420px]"><canvas id="indianaStateChart"></canvas></div>
         </div>
       </div>
@@ -435,19 +435,19 @@
       <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
         <div class="w-full max-w-[1026px] mx-auto">
           <h3 class="text-base font-bold text-slate-900 mb-1">High-Priority Indiana Occupational Reskilling Opportunities (Top 7 Groups)</h3>
-          <p class="text-xs text-slate-500 mb-3">Separates <strong>Baseline</strong> and <strong>AI-Augmented (+Lift)</strong> components for both <strong>Substitution Vulnerability (X)</strong> and <strong>Human+AI Skills (Y)</strong>.</p>
+          <p class="text-xs text-slate-500 mb-3">Separates <strong>Baseline</strong> and <strong>AI-Augmented (+Lift)</strong> components for both <strong>AI Resilience (X)</strong> and <strong>Human Distinctive (Y)</strong>.</p>
           <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse text-xs">
               <thead>
                 <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 text-[10px] uppercase leading-tight">
                   <th class="py-2.5 px-2.5">Indiana Occupation / Group (SOC)</th>
                   <th class="py-2.5 px-1.5 text-right border-t-2 border-l-2 border-r-2 border-slate-700 bg-amber-50/50 text-slate-900">IN Wage</th>
-                  <th class="py-2.5 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-sky-50/60 text-sky-950">Subst. Vuln<br>(Base)</th>
-                  <th class="py-2.5 px-1.5 text-center border-t-2 border-slate-700 bg-sky-50/60 text-sky-950">Subst. Vuln<br>(+AI Aug)</th>
-                  <th class="py-2.5 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-sky-50/60 text-sky-950">Subst. Vuln<br>(Total X)</th>
-                  <th class="py-2.5 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Skills<br>(Base)</th>
-                  <th class="py-2.5 px-1.5 text-center border-t-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human+AI<br>(+AI Aug)</th>
-                  <th class="py-2.5 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human+AI<br>(Total Y)</th>
+                  <th class="py-2.5 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Base)</th>
+                  <th class="py-2.5 px-1.5 text-center border-t-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Incremental)</th>
+                  <th class="py-2.5 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Total X)</th>
+                  <th class="py-2.5 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Base)</th>
+                  <th class="py-2.5 px-1.5 text-center border-t-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Incremental)</th>
+                  <th class="py-2.5 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Total Y)</th>
                   <th class="py-2.5 px-2.5">Statewide Upskilling Pathway (IU + DWD)</th>
                 </tr>
               </thead>
@@ -460,8 +460,8 @@
       <!-- Stacked Section 2 Figure: Complete 22 Two-Digit Major Occupational Groups (SOC 11-0000 through 53-0000, Matching 1026px Width) -->
       <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
         <div class="w-full max-w-[1026px] mx-auto">
-          <h3 class="text-base font-bold text-slate-900 mb-1">All 22 Two-Digit Major Occupational Groups (11- through 53-): Substitution Vulnerability vs. Human+AI Skills</h3>
-          <p class="text-xs text-slate-500 mb-3">Plots stacked <strong>Substitution Vulnerability (Base + AI-Augmented = Total X)</strong> alongside stacked <strong>Human+AI Skills (Base + AI-Augmented = Total Y)</strong> across all 22 BLS two-digit groups.</p>
+          <h3 class="text-base font-bold text-slate-900 mb-1">All 22 Two-Digit Major Occupational Groups (11- through 53-): AI Resilience vs. Human Distinctive</h3>
+          <p class="text-xs text-slate-500 mb-3">Plots stacked <strong>AI Resilience (Base + AI-Augmented = Total X)</strong> alongside stacked <strong>Human Distinctive (Base + AI-Augmented = Total Y)</strong> across all 22 BLS two-digit groups.</p>
           <div class="relative w-full h-[680px]"><canvas id="indianaAllGroupsChart"></canvas></div>
         </div>
       </div>
@@ -470,19 +470,19 @@
       <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
         <div class="w-full max-w-[1026px] mx-auto">
           <h3 class="text-base font-bold text-slate-900 mb-1">All Two-Digit Major Occupational Groups Summary (SOC 11-0000 through 53-0000)</h3>
-          <p class="text-xs text-slate-500 mb-3">Comprehensive statewide table showing dual additive <strong>Baseline + AI-Augmented = Total</strong> scores for both Substitution Vulnerability (X) and Human+AI Skills (Y).</p>
+          <p class="text-xs text-slate-500 mb-3">Comprehensive statewide table showing dual additive <strong>Baseline + AI-Augmented = Total</strong> scores for both AI Resilience (X) and Human Distinctive (Y).</p>
           <div class="overflow-x-auto max-h-[760px] overflow-y-auto custom-scroll">
             <table class="w-full text-left border-collapse text-xs">
               <thead class="sticky top-0 z-10">
                 <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 text-[10px] uppercase leading-tight">
                   <th class="py-2.5 px-2.5">Indiana Occupation / Group (SOC)</th>
                   <th class="py-2.5 px-1.5 text-right border-t-2 border-l-2 border-r-2 border-slate-700 bg-amber-50/50 text-slate-900">IN Wage</th>
-                  <th class="py-2.5 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-sky-50/60 text-sky-950">Subst. Vuln<br>(Base)</th>
-                  <th class="py-2.5 px-1.5 text-center border-t-2 border-slate-700 bg-sky-50/60 text-sky-950">Subst. Vuln<br>(+AI Aug)</th>
-                  <th class="py-2.5 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-sky-50/60 text-sky-950">Subst. Vuln<br>(Total X)</th>
-                  <th class="py-2.5 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Skills<br>(Base)</th>
-                  <th class="py-2.5 px-1.5 text-center border-t-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human+AI<br>(+AI Aug)</th>
-                  <th class="py-2.5 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human+AI<br>(Total Y)</th>
+                  <th class="py-2.5 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Base)</th>
+                  <th class="py-2.5 px-1.5 text-center border-t-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Incremental)</th>
+                  <th class="py-2.5 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Total X)</th>
+                  <th class="py-2.5 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Base)</th>
+                  <th class="py-2.5 px-1.5 text-center border-t-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Incremental)</th>
+                  <th class="py-2.5 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Total Y)</th>
                   <th class="py-2.5 px-2.5">Statewide Upskilling Pathway (IU + DWD)</th>
                 </tr>
               </thead>
@@ -499,7 +499,7 @@
             <div>
               <span class="text-[11px] font-bold uppercase tracking-wider text-red-700">Regional Labor Market Geography • BLS OEWS Metropolitan Statistical Areas</span>
               <h3 class="text-base font-bold text-slate-900 mt-0.5">Interactive Map of Indiana’s 15 Metropolitan Statistical Areas (MSAs): Top 3 Two-Digit Occupations by MSA</h3>
-              <p class="text-xs text-slate-500">Hover over any of the <strong>15 Indiana MSAs</strong> on the map (or click any regional card below) to inspect its <strong>three largest two-digit major occupational groups</strong>, their additive <strong>Substitution Vulnerability (Base + AI-Augmented = Total X)</strong>, and their additive <strong>Human+AI Skills (Base + AI-Augmented = Total Y)</strong>.</p>
+              <p class="text-xs text-slate-500">Hover over any of the <strong>15 Indiana MSAs</strong> on the map (or click any regional card below) to inspect its <strong>three largest two-digit major occupational groups</strong>, their additive <strong>AI Resilience (Base + AI-Augmented = Total X)</strong>, and their additive <strong>Human Distinctive (Base + AI-Augmented = Total Y)</strong>.</p>
             </div>
             <div class="flex items-center gap-3 text-xs">
               <a href="https://www.bls.gov/oes/2023/may/oessrcma.htm" target="_blank" class="text-red-700 underline font-semibold whitespace-nowrap">BLS OEWS Metro Data ↗</a>
@@ -582,7 +582,7 @@
 
   <footer class="bg-white border-t border-slate-200 mt-10 py-4 px-6 text-xs text-slate-500">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-      <div><strong>IU Workforce AI Vulnerability &amp; Resilience Platform</strong> • Built for IU President, Provost, VP for Student Success &amp; IUB Deans</div>
+      <div><strong>IU Workforce AI Resilience &amp; Human Distinctive Platform</strong> • Built for IU President, Provost, VP for Student Success &amp; IUB Deans</div>
       <div class="flex flex-wrap gap-3">
         <a href="https://www.hoosierdata.in.gov/infographics/iu-workforce-outcomes.asp" target="_blank" class="hover:text-red-700 underline">IU Workforce Outcomes</a>
         <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" class="hover:text-red-700 underline">Indiana BLS OEWS</a>
@@ -2293,19 +2293,19 @@
       document.getElementById("kpiStrip").innerHTML = `
         <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
           <div class="flex items-center justify-between">
-            <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Portfolio Substitution Vulnerability</span>
+            <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Portfolio AI Resilience</span>
             <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-sky-50 text-sky-800">Base ${avgBaseSV} + AI +${avgSvLift}</span>
           </div>
           <div class="text-2xl font-black text-sky-800 mt-1">${avgDefSV} <span class="text-xs font-normal text-slate-500">/ 100 Total (${horizonLabel})</span></div>
-          <div class="text-[11px] text-slate-500 mt-1">Baseline (${avgBaseSV}) + AI-Augmented (+${avgSvLift})</div>
+          <div class="text-[11px] text-slate-500 mt-1">Baseline AI Resilience (${avgBaseSV}) + AI-Augmented (+${avgSvLift})</div>
         </div>
         <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
           <div class="flex items-center justify-between">
-            <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Portfolio Human+AI Skills</span>
+            <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Portfolio Human Distinctive</span>
             <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-emerald-50 text-emerald-800">Base ${avgHuman} + AI +${avgAiLift}</span>
           </div>
           <div class="text-2xl font-black text-emerald-700 mt-1">${avgTotalR} <span class="text-xs font-normal text-slate-500">/ 100 Total</span></div>
-          <div class="text-[11px] text-slate-500 mt-1">Baseline Human (${avgHuman}) + AI-Augmented (+${avgAiLift})</div>
+          <div class="text-[11px] text-slate-500 mt-1">Baseline Human Distinctive (${avgHuman}) + AI-Augmented (+${avgAiLift})</div>
         </div>
         <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
           <div class="flex items-center justify-between">
@@ -2346,28 +2346,28 @@
 
       document.getElementById("jobDetailBanner").innerHTML = `
         <div class="text-center px-2">
-          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">Subst. Vuln (Base)</div>
+          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">AI Resilience (Base)</div>
           <div class="text-base font-black text-sky-900">${jobBaseSV.toFixed(1)}</div>
         </div>
         <div class="text-center px-2">
-          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">Subst. Vuln (+AI Aug)</div>
+          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">AI Resilience (Incremental)</div>
           <div class="text-base font-black text-sky-600">+${jobSvLift.toFixed(1)}</div>
         </div>
         <div class="text-center px-2 bg-sky-50 rounded-lg py-1 border border-sky-200">
-          <div class="text-[9px] uppercase tracking-wider text-sky-800 font-bold">Subst. Vuln (Total X)</div>
+          <div class="text-[9px] uppercase tracking-wider text-sky-800 font-bold">AI Resilience (Total X)</div>
           <div class="text-base font-black text-sky-700">${jobDefSV.toFixed(1)}</div>
         </div>
         <div class="h-8 w-px bg-slate-300"></div>
         <div class="text-center px-2">
-          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">Human Skills (Base)</div>
+          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">Human Distinctive (Base)</div>
           <div class="text-base font-black text-emerald-800">${jobHumanBase.toFixed(1)}</div>
         </div>
         <div class="text-center px-2">
-          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">Human+AI (+AI Aug)</div>
+          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">Human Distinctive (Incremental)</div>
           <div class="text-base font-black text-teal-600">+${jobAiLift.toFixed(1)}</div>
         </div>
         <div class="text-center px-2 bg-emerald-50 rounded-lg py-1 border border-emerald-200">
-          <div class="text-[9px] uppercase tracking-wider text-emerald-800 font-bold">Human+AI (Total Y)</div>
+          <div class="text-[9px] uppercase tracking-wider text-emerald-800 font-bold">Human Distinctive (Total Y)</div>
           <div class="text-base font-black text-emerald-700">${jobHumanAiTotal.toFixed(1)}</div>
         </div>
       `;
@@ -2407,7 +2407,7 @@
           <td class="py-2.5 px-1.5 text-center text-emerald-800 border-l-2 border-b-2 border-slate-700 bg-emerald-50/40">${jobHumanBase.toFixed(1)}</td>
           <td class="py-2.5 px-1.5 text-center text-teal-700 border-b-2 border-slate-700 bg-emerald-50/40">+${jobAiLift.toFixed(1)}</td>
           <td class="py-2.5 px-1.5 text-center text-emerald-900 border-r-2 border-b-2 border-slate-700 bg-emerald-50/40">${jobHumanAiTotal.toFixed(1)}</td>
-          <td class="py-2.5 px-2 text-[10px] font-normal text-slate-600">SV: ${jobBaseSV.toFixed(1)}+${jobSvLift.toFixed(1)}=${jobDefSV.toFixed(1)} | H+AI: ${jobHumanBase.toFixed(1)}+${jobAiLift.toFixed(1)}=${jobHumanAiTotal.toFixed(1)}</td>
+          <td class="py-2.5 px-2 text-[10px] font-normal text-slate-600">AI Res: ${jobBaseSV.toFixed(1)}+${jobSvLift.toFixed(1)}=${jobDefSV.toFixed(1)} | Human Dist: ${jobHumanBase.toFixed(1)}+${jobAiLift.toFixed(1)}=${jobHumanAiTotal.toFixed(1)}</td>
         </tr>
       `;
 
@@ -2445,8 +2445,8 @@
             <div class="mt-1 flex flex-wrap items-center justify-between gap-2 pl-5 text-[11px]">
               <span class="font-medium text-slate-600">${item.pathway}</span>
               <div class="flex items-center gap-1.5">
-                <span class="px-1.5 py-0.5 rounded bg-sky-100 text-sky-800 font-bold">+${item.vDrop} Subst. Vuln</span>
-                <span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">+${item.rLift} AI Lift</span>
+                <span class="px-1.5 py-0.5 rounded bg-sky-100 text-sky-800 font-bold">+${item.vDrop} AI Resilience</span>
+                <span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">+${item.rLift} Human Distinctive</span>
                 <a href="${item.url}" target="_blank" onclick="event.stopPropagation()" class="text-red-700 underline">Catalog ↗</a>
               </div>
             </div>
@@ -2462,16 +2462,16 @@
         data: {
           labels: rows.map(s => `[${(s.weight * 100).toFixed(0)}%] ` + (s.name.length > 30 ? s.name.slice(0, 30) + "…" : s.name)),
           datasets: [
-            { label: "Subst. Vuln (Base)", data: rows.map(s => s.baseSV), backgroundColor: "#0284c7", borderRadius: 3, stack: "sv_stack" },
-            { label: "Subst. Vuln (+AI Aug)", data: rows.map(s => s.svLift), backgroundColor: "#38bdf8", borderRadius: 3, stack: "sv_stack" },
-            { label: "Human Skills (Base)", data: rows.map(s => s.humanBase), backgroundColor: "#059669", borderRadius: 3, stack: "human_ai" },
-            { label: "Human+AI (+AI Aug)", data: rows.map(s => s.aiLift), backgroundColor: "#34d399", borderRadius: 3, stack: "human_ai" }
+            { label: "AI Resilience (Base)", data: rows.map(s => s.baseSV), backgroundColor: "#0284c7", borderRadius: 3, stack: "sv_stack" },
+            { label: "AI Resilience (Incremental)", data: rows.map(s => s.svLift), backgroundColor: "#38bdf8", borderRadius: 3, stack: "sv_stack" },
+            { label: "Human Distinctive (Base)", data: rows.map(s => s.humanBase), backgroundColor: "#059669", borderRadius: 3, stack: "human_ai" },
+            { label: "Human Distinctive (Incremental)", data: rows.map(s => s.aiLift), backgroundColor: "#34d399", borderRadius: 3, stack: "human_ai" }
           ]
         },
         options: {
           indexAxis: "y", responsive: true, maintainAspectRatio: false,
           scales: {
-            x: { stacked: true, min: 0, max: 100, title: { display: true, text: "Score (0–100 Scale • Higher = Better | Both Subst. Vuln & Human+AI Show Base + AI-Augmented Lift)" } },
+            x: { stacked: true, min: 0, max: 100, title: { display: true, text: "Score (0–100 Scale • Higher = Better | Both AI Resilience & Human Distinctive Show Base + AI-Augmented Lift)" } },
             y: { stacked: true }
           },
           plugins: { legend: { position: "top", labels: { boxWidth: 12, font: { size: 11 } } } }
@@ -2504,7 +2504,7 @@
           const shortName = sk.name.replace(/\s*\(O\*NET.*\)/, "");
           return `<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded border text-[10px] mr-1 mb-1 ${pillColor}">
             <span class="font-semibold">${shortName}</span>
-            <span class="font-mono opacity-80">(${(sk.weight*100).toFixed(0)}% | SV:${sk.baseSV.toFixed(0)}+${sk.svLift.toFixed(0)}=${sk.defSV.toFixed(0)} | H+AI:${sk.humanBase.toFixed(0)}+${sk.aiLift.toFixed(0)}=${sk.humanAiTotal.toFixed(0)})</span>
+            <span class="font-mono opacity-80">(${(sk.weight*100).toFixed(0)}% | AI Res:${sk.baseSV.toFixed(0)}+${sk.svLift.toFixed(0)}=${sk.defSV.toFixed(0)} | Human Dist:${sk.humanBase.toFixed(0)}+${sk.aiLift.toFixed(0)}=${sk.humanAiTotal.toFixed(0)})</span>
           </div>`;
         }).join("");
 
@@ -2583,12 +2583,12 @@
               <span class="text-[11px] text-slate-500 font-medium">${grads.toLocaleString()} grads • $${(avgWage/1000).toFixed(1)}k 5-yr med</span>
             </div>
             <div class="grid grid-cols-6 gap-1.5 mt-2.5 text-center">
-              <div class="bg-white p-1.5 rounded-lg border border-slate-200/80"><div class="text-[9px] text-slate-500 uppercase">SV Base</div><div class="text-xs font-extrabold text-sky-900">${sBaseSV}</div></div>
-              <div class="bg-white p-1.5 rounded-lg border border-slate-200/80"><div class="text-[9px] text-slate-500 uppercase">SV +AI Aug</div><div class="text-xs font-extrabold text-sky-600">+${sSvLift}</div></div>
-              <div class="bg-sky-50/70 p-1.5 rounded-lg border border-sky-200"><div class="text-[9px] text-sky-800 font-bold uppercase">SV Total (X)</div><div class="text-xs font-extrabold text-sky-700">${sDefSV}</div></div>
-              <div class="bg-white p-1.5 rounded-lg border border-slate-200/80"><div class="text-[9px] text-slate-500 uppercase">Human Base</div><div class="text-xs font-extrabold text-emerald-800">${sh}</div></div>
-              <div class="bg-white p-1.5 rounded-lg border border-slate-200/80"><div class="text-[9px] text-slate-500 uppercase">H+AI +Aug</div><div class="text-xs font-extrabold text-teal-600">+${sai}</div></div>
-              <div class="bg-emerald-50/70 p-1.5 rounded-lg border border-emerald-200"><div class="text-[9px] text-emerald-800 font-bold uppercase">H+AI Total (Y)</div><div class="text-xs font-extrabold text-emerald-700">${sr}</div></div>
+              <div class="bg-white p-1.5 rounded-lg border border-slate-200/80"><div class="text-[9px] text-slate-500 uppercase">AI Res Base</div><div class="text-xs font-extrabold text-sky-900">${sBaseSV}</div></div>
+              <div class="bg-white p-1.5 rounded-lg border border-slate-200/80"><div class="text-[9px] text-slate-500 uppercase">AI Res (Incremental)</div><div class="text-xs font-extrabold text-sky-600">+${sSvLift}</div></div>
+              <div class="bg-sky-50/70 p-1.5 rounded-lg border border-sky-200"><div class="text-[9px] text-sky-800 font-bold uppercase">AI Res Total (X)</div><div class="text-xs font-extrabold text-sky-700">${sDefSV}</div></div>
+              <div class="bg-white p-1.5 rounded-lg border border-slate-200/80"><div class="text-[9px] text-slate-500 uppercase">Human Dist Base</div><div class="text-xs font-extrabold text-emerald-800">${sh}</div></div>
+              <div class="bg-white p-1.5 rounded-lg border border-slate-200/80"><div class="text-[9px] text-slate-500 uppercase">Human Dist (Incremental)</div><div class="text-xs font-extrabold text-teal-600">+${sai}</div></div>
+              <div class="bg-emerald-50/70 p-1.5 rounded-lg border border-emerald-200"><div class="text-[9px] text-emerald-800 font-bold uppercase">Human Dist Total (Y)</div><div class="text-xs font-extrabold text-emerald-700">${sr}</div></div>
             </div>
           </div>
         `;
@@ -2734,7 +2734,7 @@
           c.font = "bold 12.7px -apple-system, BlinkMacSystemFont, sans-serif";
           c.fillStyle = "#047857";
           c.textAlign = "right";
-          c.fillText("High Insulation & High Human+AI", right - 10, top + 18);
+          c.fillText("High AI Resilience & High Human Distinctive", right - 10, top + 18);
 
           c.fillStyle = "#0369a1";
           c.textAlign = "left";
@@ -2746,7 +2746,7 @@
 
           c.fillStyle = "#b45309";
           c.textAlign = "right";
-          c.fillText("Insulated / Baseline Human", right - 10, bottom - 10);
+          c.fillText("AI Resilient / Baseline Human Distinctive", right - 10, bottom - 10);
           c.restore();
         },
         afterDatasetsDraw(chart) {
@@ -2828,9 +2828,9 @@
 
             const legendItems = [
               { lead: "Bubble: ", body: "School/Degree (Mouseover for Details)" },
-              { lead: "Bubble Location: ", body: "Degree Estimated Substitutability Vulnerability & Human Skills" },
+              { lead: "Bubble Location: ", body: "Degree Estimated AI Resilience & Human Distinctive" },
               { lead: "Bubble Size: ", body: "Degree Estimated Annual Graduate Cohort" },
-              { lead: "Arrows: ", body: "Estimated Impact of AI on Baseline Substitutability Vulnerability & Human Skills" }
+              { lead: "Arrows: ", body: "Estimated Impact of AI on Baseline AI Resilience & Human Distinctive" }
             ];
 
             // Auto-fit font size slightly only if needed so the widest single-line item fits cleanly inside Quadrant 4
@@ -2904,14 +2904,14 @@
                 label: (ctx) => {
                   const d = ctx.raw;
                   const slope = d.svLift > 0.1 ? (d.aiLift / d.svLift).toFixed(2) : "∞";
-                  return `${d.progName}: Bubble Base (${d.x.toFixed(1)}, ${d.y.toFixed(1)}) → Arrow Augmented (${d.xTarget.toFixed(1)}, ${d.yTarget.toFixed(1)}) [+${d.svLift.toFixed(1)} X, +${d.aiLift.toFixed(1)} Y | Slope = ${slope}]`;
+                  return `${d.progName}: Bubble Base (${d.x.toFixed(1)}, ${d.y.toFixed(1)}) → Arrow Augmented (${d.xTarget.toFixed(1)}, ${d.yTarget.toFixed(1)}) [+${d.svLift.toFixed(1)} AI Resilience, +${d.aiLift.toFixed(1)} Human Distinctive | Slope = ${slope}]`;
                 }
               }
             }
           },
           scales: {
-            x: { title: { display: true, text: "Substitution Vulnerability (20–90 Scale • Bubble = Baseline X₀ • Arrow Tip = Baseline + AI-Augmented X • Break = 55) → Higher = Better", font: { weight: "bold", size: 11.5 } }, min: 20, max: 90, ticks: { stepSize: 10 }, grid: { color: "#e2e8f0" } },
-            y: { title: { display: true, text: "Human+AI Skills (30–100 Scale • Bubble = Baseline Y₀ • Arrow Tip = Baseline + AI-Augmented Y • Break = 65)", font: { weight: "bold", size: 11.5 } }, min: 30, max: 100, ticks: { stepSize: 10 }, grid: { color: "#e2e8f0" } }
+            x: { title: { display: true, text: "AI Resilience (20–90 Scale • Bubble = Baseline X₀ • Arrow Tip = Baseline + AI-Augmented X • Break = 55) → Higher = Better", font: { weight: "bold", size: 11.5 } }, min: 20, max: 90, ticks: { stepSize: 10 }, grid: { color: "#e2e8f0" } },
+            y: { title: { display: true, text: "Human Distinctive (30–100 Scale • Bubble = Baseline Y₀ • Arrow Tip = Baseline + AI-Augmented Y • Break = 65)", font: { weight: "bold", size: 11.5 } }, min: 30, max: 100, ticks: { stepSize: 10 }, grid: { color: "#e2e8f0" } }
           }
         }
       });
@@ -2930,28 +2930,28 @@
 
       document.getElementById("simImpactBanner").innerHTML = `
         <div class="text-center px-2">
-          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">Subst. Vuln (Base X₀)</div>
+          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">AI Resilience (Base X₀)</div>
           <div class="text-base font-black text-sky-900">${baseSV.toFixed(1)}</div>
         </div>
         <div class="text-center px-2">
-          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">Subst. Vuln (+AI Aug)</div>
+          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">AI Resilience (Incremental)</div>
           <div class="text-base font-black text-sky-600">+${svLift.toFixed(1)}</div>
         </div>
         <div class="text-center px-2 bg-sky-50 rounded-lg py-1 border border-sky-200">
-          <div class="text-[9px] uppercase tracking-wider text-sky-800 font-bold">Subst. Vuln (Total X)</div>
+          <div class="text-[9px] uppercase tracking-wider text-sky-800 font-bold">AI Resilience (Total X)</div>
           <div class="text-base font-black text-sky-700">${defSV.toFixed(1)}</div>
         </div>
         <div class="h-8 w-px bg-slate-300"></div>
         <div class="text-center px-2">
-          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">Human Skills (Base Y₀)</div>
+          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">Human Distinctive (Base Y₀)</div>
           <div class="text-base font-black text-emerald-800">${humanBase.toFixed(1)}</div>
         </div>
         <div class="text-center px-2">
-          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">Human+AI (+AI Aug)</div>
+          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">Human Distinctive (Incremental)</div>
           <div class="text-base font-black text-teal-600">+${aiLift.toFixed(1)}</div>
         </div>
         <div class="text-center px-2 bg-emerald-50 rounded-lg py-1 border border-emerald-200">
-          <div class="text-[9px] uppercase tracking-wider text-emerald-800 font-bold">Human+AI (Total Y)</div>
+          <div class="text-[9px] uppercase tracking-wider text-emerald-800 font-bold">Human Distinctive (Total Y)</div>
           <div class="text-base font-black text-emerald-700">${humanAiTotal.toFixed(1)}</div>
         </div>
       `;
@@ -2988,7 +2988,7 @@
             <td class="py-2.5 px-1.5 text-center text-emerald-800 border-l-2 border-b-2 border-slate-700 bg-emerald-50/40">${wSkHumanBase.toFixed(1)}</td>
             <td class="py-2.5 px-1.5 text-center text-teal-700 border-b-2 border-slate-700 bg-emerald-50/40">+${wSkAiLift.toFixed(1)}</td>
             <td class="py-2.5 px-1.5 text-center text-emerald-900 border-r-2 border-b-2 border-slate-700 bg-emerald-50/40">${wSkHumanAiTotal.toFixed(1)}</td>
-            <td class="py-2.5 px-2 text-[10px] font-normal text-slate-600">SV: ${wSkBaseSV.toFixed(1)}+${wSkSvLift.toFixed(1)}=${wSkDefSV.toFixed(1)} | H+AI: ${wSkHumanBase.toFixed(1)}+${wSkAiLift.toFixed(1)}=${wSkHumanAiTotal.toFixed(1)}</td>
+            <td class="py-2.5 px-2 text-[10px] font-normal text-slate-600">AI Res: ${wSkBaseSV.toFixed(1)}+${wSkSvLift.toFixed(1)}=${wSkDefSV.toFixed(1)} | Human Dist: ${wSkHumanBase.toFixed(1)}+${wSkAiLift.toFixed(1)}=${wSkHumanAiTotal.toFixed(1)}</td>
           </tr>
         `;
       }
@@ -3013,8 +3013,8 @@
             <div class="mt-1.5 flex flex-wrap items-center justify-between gap-2 pl-6 text-[11px]">
               <span class="font-medium text-slate-600">${item.pathway}</span>
               <div class="flex items-center gap-2">
-                <span class="px-2 py-0.5 rounded bg-sky-100 text-sky-800 font-bold">+${item.vDrop} Subst. Vuln</span>
-                <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">+${item.rLift} AI Lift</span>
+                <span class="px-2 py-0.5 rounded bg-sky-100 text-sky-800 font-bold">+${item.vDrop} AI Resilience</span>
+                <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">+${item.rLift} Human Distinctive</span>
                 <a href="${item.url}" target="_blank" onclick="event.stopPropagation()" class="text-red-700 underline">Catalog ↗</a>
               </div>
             </div>
@@ -3030,16 +3030,16 @@
         data: {
           labels: skillRows.map(s => s.name.length > 32 ? s.name.slice(0, 32) + "…" : s.name),
           datasets: [
-            { label: "Subst. Vuln (Base)", data: skillRows.map(s => s.skBaseSV), backgroundColor: "#0284c7", borderRadius: 3, stack: "sv_stack" },
-            { label: "Subst. Vuln (+AI Aug)", data: skillRows.map(s => s.skSvLift), backgroundColor: "#38bdf8", borderRadius: 3, stack: "sv_stack" },
-            { label: "Human Skills (Base)", data: skillRows.map(s => s.skHumanBase), backgroundColor: "#059669", borderRadius: 3, stack: "human_ai" },
-            { label: "Human+AI (+AI Aug)", data: skillRows.map(s => s.skAiLift), backgroundColor: "#34d399", borderRadius: 3, stack: "human_ai" }
+            { label: "AI Resilience (Base)", data: skillRows.map(s => s.skBaseSV), backgroundColor: "#0284c7", borderRadius: 3, stack: "sv_stack" },
+            { label: "AI Resilience (Incremental)", data: skillRows.map(s => s.skSvLift), backgroundColor: "#38bdf8", borderRadius: 3, stack: "sv_stack" },
+            { label: "Human Distinctive (Base)", data: skillRows.map(s => s.skHumanBase), backgroundColor: "#059669", borderRadius: 3, stack: "human_ai" },
+            { label: "Human Distinctive (Incremental)", data: skillRows.map(s => s.skAiLift), backgroundColor: "#34d399", borderRadius: 3, stack: "human_ai" }
           ]
         },
         options: {
           indexAxis: "y", responsive: true, maintainAspectRatio: false,
           scales: {
-            x: { stacked: true, min: 0, max: 100, title: { display: true, text: "Score (0–100 Scale • Higher = Better | Both Subst. Vuln & Human+AI Show Base + AI-Augmented Lift)" } },
+            x: { stacked: true, min: 0, max: 100, title: { display: true, text: "Score (0–100 Scale • Higher = Better | Both AI Resilience & Human Distinctive Show Base + AI-Augmented Lift)" } },
             y: { stacked: true }
           },
           plugins: { legend: { position: "top", labels: { boxWidth: 12, font: { size: 11 } } } }
@@ -3271,10 +3271,10 @@
           const sVal = n.bySchool[selectedSankeySchool] || 0;
           const sLift = n.bySchoolLift[selectedSankeySchool] || 0;
           n.sub = sVal > 0
-            ? `${activeSchoolShort}: ${sVal} of ${n.val}g (+${sLift} Lift) • X:${avgSV.toFixed(0)} Y:${avgR.toFixed(0)}`
+            ? `${activeSchoolShort}: ${sVal} of ${n.val}g (+${sLift} Lift) • AI Res:${avgSV.toFixed(0)} Human Dist:${avgR.toFixed(0)}`
             : `0 ${activeSchoolShort} Grads (${n.val}g Total)`;
         } else {
-          n.sub = `${n.val} IN Grads (+${n.lift} AI Lift) • X:${avgSV.toFixed(0)} Y:${avgR.toFixed(0)}`;
+          n.sub = `${n.val} IN Grads (+${n.lift} AI Lift) • AI Res:${avgSV.toFixed(0)} Human Dist:${avgR.toFixed(0)}`;
         }
       });
 
@@ -3583,7 +3583,7 @@
                   const sec = activeSectors[items[0].dataIndex];
                   const avgSV = (sec.svSum / (sec.wSum || 1)).toFixed(1);
                   const avgR = (sec.rSum / (sec.wSum || 1)).toFixed(1);
-                  return `Total 5-Yr AI-Defended IN Grads: ${sec.baseGrads + sec.liftGrads} (+${sec.liftGrads} AI Lift) | Sector Avg X: ${avgSV} • Y: ${avgR}`;
+                  return `Total 5-Yr AI-Defended IN Grads: ${sec.baseGrads + sec.liftGrads} (+${sec.liftGrads} AI Lift) | Sector Avg AI Resilience: ${avgSV} • Human Distinctive: ${avgR}`;
                 }
               }
             }
@@ -3649,8 +3649,8 @@
                 <div class="text-[9px] font-bold text-emerald-700 whitespace-nowrap">+${(ret.retLiftRate * 100).toFixed(1)}% (+${ret.gradsY5Lift}g)</div>
               </td>
               <td class="py-1.5 px-1 text-center border-l-2 border-r-2 border-slate-700 bg-sky-50/20 ${bottomBorder}">
-                <div class="font-bold text-[10px] text-sky-800 whitespace-nowrap">X: ${ret.defSV.toFixed(1)}</div>
-                <div class="font-bold text-[10px] text-emerald-800 whitespace-nowrap">Y: ${ret.r.toFixed(1)}</div>
+                <div class="font-bold text-[9.5px] text-sky-800 whitespace-nowrap" title="AI Resilience (Total X)">AI Res: ${ret.defSV.toFixed(1)}</div>
+                <div class="font-bold text-[9.5px] text-emerald-800 whitespace-nowrap" title="Human Distinctive (Total Y)">Hum Dist: ${ret.r.toFixed(1)}</div>
               </td>
             </tr>
           `;
@@ -3663,7 +3663,7 @@
                 <th class="py-2.5 px-2 w-[15%]">IUB Program / Major (CIP)</th>
                 ${headerCols}
                 <th class="py-2 px-1 text-center w-[8.4%] border-t-2 border-l-2 border-r-2 border-slate-700 bg-amber-50/60 text-slate-900">5-Yr IN Match<br>(Base → Def)</th>
-                <th class="py-2 px-1 text-center w-[8%] border-t-2 border-l-2 border-r-2 border-slate-700 bg-sky-50/60 text-slate-900">Defended<br>Total X / Y</th>
+                <th class="py-2 px-1 text-center w-[8%] border-t-2 border-l-2 border-r-2 border-slate-700 bg-sky-50/60 text-slate-900">AI Res (X) /<br>Human Dist (Y)</th>
               </tr>
             </thead>
             <tbody>${bodyRows}</tbody>
@@ -3689,13 +3689,13 @@
               </div>
             </div>
             <div class="flex flex-wrap items-center gap-2 mb-2.5 text-[10px]">
-              <span class="px-2 py-0.5 rounded bg-sky-100 text-sky-900 font-bold">Subst. Vuln (Base): ${baseSV.toFixed(1)}</span>
-              <span class="px-2 py-0.5 rounded bg-sky-50 text-sky-700 border border-sky-200 font-bold">Subst. Vuln (+AI Aug): +${svLift.toFixed(1)}</span>
-              <span class="px-2 py-0.5 rounded bg-sky-700 text-white font-bold">Subst. Vuln (Total X): ${defSV.toFixed(1)}</span>
+              <span class="px-2 py-0.5 rounded bg-sky-100 text-sky-900 font-bold">AI Resilience (Base): ${baseSV.toFixed(1)}</span>
+              <span class="px-2 py-0.5 rounded bg-sky-50 text-sky-700 border border-sky-200 font-bold">AI Resilience (Incremental): +${svLift.toFixed(1)}</span>
+              <span class="px-2 py-0.5 rounded bg-sky-700 text-white font-bold">AI Resilience (Total X): ${defSV.toFixed(1)}</span>
               <span class="text-slate-300">|</span>
-              <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-900 font-bold">Human Skills (Base): ${humanBase.toFixed(1)}</span>
-              <span class="px-2 py-0.5 rounded bg-teal-50 text-teal-700 border border-teal-200 font-bold">Human+AI (+AI Aug): +${aiLift.toFixed(1)}</span>
-              <span class="px-2 py-0.5 rounded bg-emerald-700 text-white font-bold">Human+AI (Total Y): ${r.toFixed(1)}</span>
+              <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-900 font-bold">Human Distinctive (Base): ${humanBase.toFixed(1)}</span>
+              <span class="px-2 py-0.5 rounded bg-teal-50 text-teal-700 border border-teal-200 font-bold">Human Distinctive (Incremental): +${aiLift.toFixed(1)}</span>
+              <span class="px-2 py-0.5 rounded bg-emerald-700 text-white font-bold">Human Distinctive (Total Y): ${r.toFixed(1)}</span>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
               ${p.naicsFlows.map(f => `
@@ -3767,17 +3767,17 @@
         data: {
           labels: top7Metrics.map(({ g }) => g.soc + " " + g.title.split(" ")[0]),
           datasets: [
-            { label: "Subst. Vuln (Base)", data: top7Metrics.map(x => x.m.baseSV), backgroundColor: "#0284c7", borderRadius: 4, stack: "sv_stack" },
-            { label: "Subst. Vuln (+AI Aug)", data: top7Metrics.map(x => x.m.svLift), backgroundColor: "#38bdf8", borderRadius: 4, stack: "sv_stack" },
-            { label: "Human Skills (Base)", data: top7Metrics.map(x => x.m.humanBase), backgroundColor: "#059669", borderRadius: 4, stack: "human_ai" },
-            { label: "Human+AI (+AI Aug)", data: top7Metrics.map(x => x.m.aiLift), backgroundColor: "#34d399", borderRadius: 4, stack: "human_ai" }
+            { label: "AI Resilience (Base)", data: top7Metrics.map(x => x.m.baseSV), backgroundColor: "#0284c7", borderRadius: 4, stack: "sv_stack" },
+            { label: "AI Resilience (Incremental)", data: top7Metrics.map(x => x.m.svLift), backgroundColor: "#38bdf8", borderRadius: 4, stack: "sv_stack" },
+            { label: "Human Distinctive (Base)", data: top7Metrics.map(x => x.m.humanBase), backgroundColor: "#059669", borderRadius: 4, stack: "human_ai" },
+            { label: "Human Distinctive (Incremental)", data: top7Metrics.map(x => x.m.aiLift), backgroundColor: "#34d399", borderRadius: 4, stack: "human_ai" }
           ]
         },
         options: {
           responsive: true, maintainAspectRatio: false,
           scales: {
             x: { stacked: true },
-            y: { stacked: true, min: 0, max: 100, title: { display: true, text: "Score (0–100 • Higher = Better | Both Subst. Vuln & Human+AI Show Base + AI-Augmented Lift)" } }
+            y: { stacked: true, min: 0, max: 100, title: { display: true, text: "Score (0–100 • Higher = Better | Both AI Resilience & Human Distinctive Show Base + AI-Augmented Lift)" } }
           },
           plugins: {
             legend: { position: "top", labels: { boxWidth: 12, font: { size: 11 } } }
@@ -3825,10 +3825,10 @@
         data: {
           labels: all22Metrics.map(x => x.g.shortLabel),
           datasets: [
-            { label: "Subst. Vuln (Base)", data: all22Metrics.map(x => x.m.baseSV), backgroundColor: "#0284c7", borderRadius: 3, stack: "sv_stack" },
-            { label: "Subst. Vuln (+AI Aug)", data: all22Metrics.map(x => x.m.svLift), backgroundColor: "#38bdf8", borderRadius: 3, stack: "sv_stack" },
-            { label: "Human Skills (Base)", data: all22Metrics.map(x => x.m.humanBase), backgroundColor: "#059669", borderRadius: 3, stack: "human_ai" },
-            { label: "Human+AI (+AI Aug)", data: all22Metrics.map(x => x.m.aiLift), backgroundColor: "#34d399", borderRadius: 3, stack: "human_ai" }
+            { label: "AI Resilience (Base)", data: all22Metrics.map(x => x.m.baseSV), backgroundColor: "#0284c7", borderRadius: 3, stack: "sv_stack" },
+            { label: "AI Resilience (Incremental)", data: all22Metrics.map(x => x.m.svLift), backgroundColor: "#38bdf8", borderRadius: 3, stack: "sv_stack" },
+            { label: "Human Distinctive (Base)", data: all22Metrics.map(x => x.m.humanBase), backgroundColor: "#059669", borderRadius: 3, stack: "human_ai" },
+            { label: "Human Distinctive (Incremental)", data: all22Metrics.map(x => x.m.aiLift), backgroundColor: "#34d399", borderRadius: 3, stack: "human_ai" }
           ]
         },
         options: {
@@ -3836,7 +3836,7 @@
           responsive: true,
           maintainAspectRatio: false,
           scales: {
-            x: { stacked: true, min: 0, max: 100, title: { display: true, text: "Score (0–100 Scale • Higher = Better | Both Subst. Vuln & Human+AI Show Base + AI-Augmented Lift)" } },
+            x: { stacked: true, min: 0, max: 100, title: { display: true, text: "Score (0–100 Scale • Higher = Better | Both AI Resilience & Human Distinctive Show Base + AI-Augmented Lift)" } },
             y: { stacked: true, ticks: { font: { size: 10 } } }
           },
           plugins: {
@@ -3889,8 +3889,8 @@
               <span class="text-[10px] font-mono ${isDark ? 'text-slate-300' : 'text-slate-500'} whitespace-nowrap">${occ.emp.toLocaleString()} jobs (${occ.share})</span>
             </div>
             <div class="mt-1.5 flex flex-wrap items-center justify-between gap-1.5 text-[10px]">
-              <span class="px-2 py-0.5 rounded-full font-bold border ${svBadge}">Subst. Vuln: ${defSV.toFixed(1)} (Base ${baseSV.toFixed(1)} + AI +${svLift.toFixed(1)})</span>
-              <span class="px-2 py-0.5 rounded-full font-bold border ${rBadge}">Human+AI: ${humanAiTotal.toFixed(1)} (Base ${humanBase.toFixed(1)} + AI +${aiLift.toFixed(1)})</span>
+              <span class="px-2 py-0.5 rounded-full font-bold border ${svBadge}">AI Resilience: ${defSV.toFixed(1)} (Base ${baseSV.toFixed(1)} + AI +${svLift.toFixed(1)})</span>
+              <span class="px-2 py-0.5 rounded-full font-bold border ${rBadge}">Human Distinctive: ${humanAiTotal.toFixed(1)} (Base ${humanBase.toFixed(1)} + AI +${aiLift.toFixed(1)})</span>
             </div>
           </div>
         `;
@@ -3965,7 +3965,7 @@
           </div>
           <div class="flex flex-wrap items-center justify-between text-xs mb-2 gap-1">
             <span class="font-bold text-slate-800">Three Largest Two-Digit Occupations (BLS OEWS):</span>
-            <span class="text-[11px] text-slate-600">Top-3 Avg: <strong class="text-sky-800">Subst. Vuln ${avgBaseSV} + ${avgSvLift} = ${avgDefSV}</strong> • <strong class="text-emerald-800">Human+AI ${avgHuman} + ${avgAi} = ${avgTotalR}</strong></span>
+            <span class="text-[11px] text-slate-600">Top-3 Avg: <strong class="text-sky-800">AI Resilience ${avgBaseSV} + ${avgSvLift} = ${avgDefSV}</strong> • <strong class="text-emerald-800">Human Distinctive ${avgHuman} + ${avgAi} = ${avgTotalR}</strong></span>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5">${buildMsaTop3Html(msa, false)}</div>
         `;
@@ -4030,8 +4030,8 @@
             </div>
             <div class="mt-1 text-[10px] text-slate-600 truncate">Top: <strong>${m.top3.map(t => t.soc.slice(0, 3)).join(", ")}</strong></div>
             <div class="mt-1 flex items-center justify-between text-[10px]">
-              <span class="text-sky-700 font-semibold">#1 SV: ${top1.baseSV.toFixed(0)}+${top1.svLift.toFixed(0)}=${top1.defSV.toFixed(0)}</span>
-              <span class="text-emerald-700 font-semibold">#1 H+AI: ${top1.humanBase.toFixed(0)}+${top1.aiLift.toFixed(0)}=${top1.humanAiTotal.toFixed(0)}</span>
+              <span class="text-sky-700 font-semibold">#1 AI Res: ${top1.baseSV.toFixed(0)}+${top1.svLift.toFixed(0)}=${top1.defSV.toFixed(0)}</span>
+              <span class="text-emerald-700 font-semibold">#1 Human Dist: ${top1.humanBase.toFixed(0)}+${top1.aiLift.toFixed(0)}=${top1.humanAiTotal.toFixed(0)}</span>
             </div>
           </div>
         `;
