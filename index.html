@@ -288,7 +288,7 @@
             <div id="jobInterventionList" class="space-y-2 max-h-[380px] overflow-y-auto custom-scroll pr-1"></div>
           </div>
           <div class="p-3 rounded-xl bg-amber-50/70 border border-amber-200 text-[11px] text-amber-900">
-            <strong>Dual Additive Model (X &amp; Y):</strong> Both <code>AI Resilience = Base + AI-Augmented Lift</code> and <code>Human Distinctive = Base + AI-Augmented Lift</code> (0–100 scale, higher = better).
+            <strong>Dual Additive Model (X &amp; Y):</strong> Both <code>AI Resilience = Base + Defense Lift</code> and <code>Human Distinctive = Base + Defense Lift</code> (0–100 scale, higher = better).
           </div>
         </div>
       </div>
@@ -356,7 +356,7 @@
             <div>
               <span class="text-[11px] font-bold uppercase tracking-wider text-red-700">Visualization B (Option 3) • Statewide Sector Retention &amp; Attrition Decomposition</span>
               <h3 class="text-base font-bold text-slate-900 mt-0.5">Indiana Industry (2-Digit NAICS) 5-Year Talent Retention &amp; Automation-At-Risk Waterfall</h3>
-              <p class="text-xs text-slate-500">Decomposes each Indiana employer sector's IUB graduate pipeline into: <strong>(1) 5-Yr Baseline Retained Grads</strong>, <strong>(2) +5-Yr AI-Augmented In-State Match Gain</strong> (from toggled defense courses), and <strong>(3) Remaining Y1→Y5 Attrition Gap</strong>.</p>
+              <p class="text-xs text-slate-500">Decomposes each Indiana employer sector's IUB graduate pipeline into: <strong>(1) 5-Yr Baseline Retained Grads</strong>, <strong>(2) +5-Yr Defense Lift In-State Match Gain</strong> (from toggled defense courses), and <strong>(3) Remaining Y1→Y5 Attrition Gap</strong>.</p>
             </div>
             <span id="waterfallSummaryBadge" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-sky-50 text-sky-800 border border-sky-200 whitespace-nowrap self-start">Statewide Payroll Impact</span>
           </div>
@@ -371,7 +371,7 @@
             <div>
               <span class="text-[11px] font-bold uppercase tracking-wider text-red-700">Visualization C (Option 5) • Cross-Tabulated Boardroom Heatmap</span>
               <h3 class="text-base font-bold text-slate-900 mt-0.5">CIP × NAICS → SOC 5-Year In-State Retention &amp; AI Exposure Matrix Heatmap</h3>
-              <p class="text-xs text-slate-500">Cross-tabulates all IUB majors (rows) against Indiana's 7 major 2-Digit NAICS employer sectors (columns). Each active cell displays its <strong>flow share (%)</strong>, <strong>5-Yr AI-defended retained grads</strong>, and primary <strong>6-Digit SOC occupation</strong>, beside framed <strong>5-Year In-State Match (Base → AI-Defended)</strong> and <strong>Total X / Y</strong> columns.</p>
+              <p class="text-xs text-slate-500">Cross-tabulates all IUB majors (rows) against Indiana's 7 major 2-Digit NAICS employer sectors (columns). Each active cell displays its <strong>flow share (%)</strong>, <strong>5-Yr AI-defended retained grads</strong>, and primary <strong>6-Digit SOC occupation</strong>, beside framed <strong>5-Year In-State Match (Base → Defended-Lift)</strong> and <strong>Total X / Y</strong> columns.</p>
             </div>
             <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-amber-50 text-amber-800 border border-amber-200 whitespace-nowrap self-start">Click Any Row to Simulate in Tab 2</span>
           </div>
@@ -3273,10 +3273,10 @@
           const sVal = n.bySchool[selectedSankeySchool] || 0;
           const sLift = n.bySchoolLift[selectedSankeySchool] || 0;
           n.sub = sVal > 0
-            ? `${activeSchoolShort}: ${sVal} of ${n.val} IN Grads (+${sLift} AI Lift)`
+            ? `${activeSchoolShort}: ${sVal} of ${n.val} IN Grads (+${sLift} Defense Lift)`
             : `0 ${activeSchoolShort} Grads (${n.val} Total)`;
         } else {
-          n.sub = `${n.val} IN Grads (+${n.lift} AI Lift)`;
+          n.sub = `${n.val} IN Grads (+${n.lift} Defense Lift)`;
         }
       });
 
@@ -3292,7 +3292,7 @@
             ? `${activeSchoolShort}: ${sVal} of ${n.val}g (+${sLift} Lift) • AI Res:${avgSV.toFixed(0)} Human Dist:${avgR.toFixed(0)}`
             : `0 ${activeSchoolShort} Grads (${n.val}g Total)`;
         } else {
-          n.sub = `${n.val} IN Grads (+${n.lift} AI Lift) • AI Res:${avgSV.toFixed(0)} Human Dist:${avgR.toFixed(0)}`;
+          n.sub = `${n.val} IN Grads (+${n.lift} Defense Lift) • AI Res:${avgSV.toFixed(0)} Human Dist:${avgR.toFixed(0)}`;
         }
       });
 
@@ -3520,7 +3520,7 @@
 
       const sankeyBadge = document.getElementById("sankeySummaryBadge");
       if (sankeyBadge) {
-        sankeyBadge.textContent = `5-Yr IN Match: ${((totalBaseRet / totalCohort) * 100).toFixed(1)}% Base → ${((totalDefRet / totalCohort) * 100).toFixed(1)}% AI-Defended (+${totalLiftRet} Hoosier Grads/Yr)`;
+        sankeyBadge.textContent = `5-Yr IN Match: ${((totalBaseRet / totalCohort) * 100).toFixed(1)}% Base → ${((totalDefRet / totalCohort) * 100).toFixed(1)}% Defended-Lift (+${totalLiftRet} Hoosier Grads/Yr)`;
       }
       const wfBadge = document.getElementById("waterfallSummaryBadge");
       if (wfBadge) {
@@ -3567,7 +3567,7 @@
               stack: "naics_wf"
             },
             {
-              label: "+5-Yr AI-Augmented In-State Match Lift (Recovered via Curriculum Defense)",
+              label: "+5-Yr Defense Lift In-State Match Lift (Recovered via Curriculum Defense)",
               data: activeSectors.map(s => s.liftGrads),
               backgroundColor: "#0284c7",
               borderRadius: 4,
@@ -3589,7 +3589,7 @@
           scales: {
             x: {
               stacked: true,
-              title: { display: true, text: "Annual IUB Graduate Cohort Flowing into Indiana NAICS Sector (5-Yr Baseline Retained + AI-Defended Lift + Remaining Y1→Y5 Attrition Gap)", font: { weight: "bold", size: 11 } }
+              title: { display: true, text: "Annual IUB Graduate Cohort Flowing into Indiana NAICS Sector (5-Yr Baseline Retained + Defended Lift + Remaining Y1→Y5 Attrition Gap)", font: { weight: "bold", size: 11 } }
             },
             y: { stacked: true, ticks: { font: { weight: "bold", size: 11 } } }
           },
@@ -3601,7 +3601,7 @@
                   const sec = activeSectors[items[0].dataIndex];
                   const avgSV = (sec.svSum / (sec.wSum || 1)).toFixed(1);
                   const avgR = (sec.rSum / (sec.wSum || 1)).toFixed(1);
-                  return `Total 5-Yr AI-Defended IN Grads: ${sec.baseGrads + sec.liftGrads} (+${sec.liftGrads} AI Lift) | Sector Avg AI Resilience: ${avgSV} • Human Distinctive: ${avgR}`;
+                  return `Total 5-Yr AI-Defended IN Grads: ${sec.baseGrads + sec.liftGrads} (+${sec.liftGrads} Defense Lift) | Sector Avg AI Resilience: ${avgSV} • Human Distinctive: ${avgR}`;
                 }
               }
             }
@@ -3645,7 +3645,7 @@
               <td class="py-1.5 px-1 align-middle overflow-hidden">
                 <div class="p-1 rounded-lg border ${intensity} text-center leading-tight shadow-2xs overflow-hidden" title="NAICS ${flow.sector} → ${flow.topSoc}">
                   <div class="font-extrabold text-[10px] truncate">${(flow.share * 100).toFixed(0)}% <span class="font-normal opacity-80">(${cellGrads}g)</span></div>
-                  <div class="text-[8.5px] font-bold text-emerald-700 truncate">+${cellLift} AI Lift</div>
+                  <div class="text-[8.5px] font-bold text-emerald-700 truncate">+${cellLift} Defense Lift</div>
                   <div class="text-[8px] font-mono opacity-80 truncate">${socCode} ${socShortTitle}</div>
                 </div>
               </td>
@@ -3680,7 +3680,7 @@
               <tr class="bg-slate-100 text-slate-700 border-b border-slate-200 uppercase tracking-tight text-[9px] leading-tight">
                 <th class="py-2.5 px-2 w-[15%]">IUB Program / Major (CIP)</th>
                 ${headerCols}
-                <th class="py-2 px-1 text-center w-[8.4%] border-t-2 border-l-2 border-r-2 border-slate-700 bg-amber-50/60 text-slate-900">5-Yr IN Match<br>(Base → Def)</th>
+                <th class="py-2 px-1 text-center w-[8.4%] border-t-2 border-l-2 border-r-2 border-slate-700 bg-amber-50/60 text-slate-900">5-Yr IN Match<br>(Base → Defended-Lift)</th>
                 <th class="py-2 px-1 text-center w-[8%] border-t-2 border-l-2 border-r-2 border-slate-700 bg-sky-50/60 text-slate-900">AI Res (X) /<br>Human Dist (Y)</th>
               </tr>
             </thead>
@@ -3703,7 +3703,7 @@
               <div class="flex flex-wrap items-center gap-2.5 text-[11px]">
                 <span class="text-slate-600 font-medium">Cohort: <strong>${p.grads}</strong> grads</span>
                 <span class="text-slate-600 font-medium">5-Yr Med Wage: <strong>$${p.wages.y5.toLocaleString()}</strong></span>
-                <span class="font-semibold text-red-800 bg-red-50 px-2 py-0.5 rounded border border-red-200">5-Yr IN Match: ${(retY5Base * 100).toFixed(0)}% Base → <strong>${(retY5Def * 100).toFixed(0)}% AI-Defended (+${(retLiftRate * 100).toFixed(1)}% / +${gradsY5Lift}g)</strong></span>
+                <span class="font-semibold text-red-800 bg-red-50 px-2 py-0.5 rounded border border-red-200">5-Yr IN Match: ${(retY5Base * 100).toFixed(0)}% Base → <strong>${(retY5Def * 100).toFixed(0)}% Defended-Lift (+${(retLiftRate * 100).toFixed(1)}% / +${gradsY5Lift}g)</strong></span>
               </div>
             </div>
             <div class="flex flex-wrap items-center gap-2 mb-2.5 text-[10px]">
