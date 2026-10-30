@@ -107,7 +107,7 @@
         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
           <div>
             <h2 class="text-base font-bold text-slate-900">IUB Academic Portfolio: AI Resilience vs. Human Distinctive (4-Quadrant Matrix)</h2>
-            <p class="text-xs text-slate-500">Bubble = <strong>Baseline (X₀, Y₀)</strong> | Arrow (↗) = <strong>Trajectory Toward Baseline + AI-Augmented (X, Y)</strong> | Quadrant Breaks at <strong>X = 55 &amp; Y = 65</strong> (1:1 Square)</p>
+            <p class="text-xs text-slate-500">Bubble = <strong>Baseline (X₀, Y₀)</strong> | Arrow (↗) = <strong>Trajectory Toward Baseline + Incremental</strong> (1:1 Square)</p>
           </div>
           <span id="horizonBadgePortfolio" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-red-50 text-red-800 border border-red-200 whitespace-nowrap self-start">2025 Baseline</span>
         </div>
@@ -188,7 +188,7 @@
           <div class="flex items-center justify-between mb-2">
             <div>
               <h3 class="text-base font-bold text-slate-900">Degree-Weighted O*NET Skill Decomposition</h3>
-              <p class="text-xs text-slate-500">Shows additive <strong>Baseline + AI-Augmented = Total</strong> for both <strong>AI Resilience (X)</strong> and <strong>Human Distinctive (Y)</strong>.</p>
+              <p class="text-xs text-slate-500">Shows additive <strong>Baseline + Incremental Defense = Total</strong> for both <strong>AI Resilience (X)</strong> and <strong>Human Distinctive (Y)</strong>.</p>
             </div>
             <a href="https://www.onetcenter.org/database.html" target="_blank" class="text-xs text-red-700 underline font-medium">O*NET 29.0 Taxonomy ↗</a>
           </div>
@@ -220,7 +220,7 @@
             <button onclick="resetInterventions()" class="text-xs text-slate-500 hover:text-red-700 underline">Reset All</button>
           </div>
           <p class="text-xs text-slate-500 mb-3">
-            Check or uncheck courses below to boost both <strong>AI-Augmented AI Resilience (+ΔX)</strong> and <strong>AI-Augmented Human Distinctive (+ΔY)</strong> on top of their pre-course baselines (also updates the Tab 1 diagonal arrow ↗).
+            Check or uncheck courses below to boost both <strong>Incremental AI Resilience (+ΔX)</strong> and <strong>Incremental Human Distinctive (+ΔY)</strong> on top of their pre-course baselines (also updates the Tab 1 diagonal arrow ↗).
           </p>
           <div id="interventionList" class="space-y-2.5 max-h-[430px] overflow-y-auto custom-scroll pr-1"></div>
         </div>
@@ -282,7 +282,7 @@
               <button onclick="resetJobInterventions()" class="text-xs text-slate-500 hover:text-red-700 underline">Reset Defenses</button>
             </div>
             <p class="text-xs text-slate-500 mb-3">
-              Toggling courses adds <strong>AI-Augmented AI Resilience (+Lift)</strong> on top of <strong>Baseline AI Resilience</strong> and <strong>AI-Augmented Human Distinctive (+Lift)</strong> on top of <strong>Baseline Human Distinctive</strong>.
+              Toggling courses adds <strong>AI Resilience (+Lift)</strong> on top of <strong>Baseline AI Resilience</strong> and <strong>Human Distinctive (+Lift)</strong> on top of <strong>Baseline Human Distinctive</strong>.
             </p>
             <div id="selectedJobMetaBox" class="p-3 rounded-xl bg-slate-50 border border-slate-200 mb-3 text-xs space-y-1"></div>
             <div id="jobInterventionList" class="space-y-2 max-h-[380px] overflow-y-auto custom-scroll pr-1"></div>
@@ -426,7 +426,7 @@
       <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
         <div class="w-full max-w-[1026px] mx-auto">
           <h3 class="text-base font-bold text-slate-900 mb-1">Indiana Major Occupational Groups (Top 7): AI Resilience vs. Human Distinctive</h3>
-          <p class="text-xs text-slate-500 mb-3">Shows dual additive <strong>AI Resilience (Base + AI-Augmented = Total X)</strong> and <strong>Human Distinctive (Base + AI-Augmented = Total Y)</strong> across high-priority Indiana occupational groups.</p>
+          <p class="text-xs text-slate-500 mb-3">Shows dual additive <strong>AI Resilience (Base + Incremental = Total X)</strong> and <strong>Human Distinctive (Base + Incremental = Total Y)</strong> across high-priority Indiana occupational groups.</p>
           <div class="relative w-full h-[420px]"><canvas id="indianaStateChart"></canvas></div>
         </div>
       </div>
@@ -435,7 +435,7 @@
       <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
         <div class="w-full max-w-[1026px] mx-auto">
           <h3 class="text-base font-bold text-slate-900 mb-1">High-Priority Indiana Occupational Reskilling Opportunities (Top 7 Groups)</h3>
-          <p class="text-xs text-slate-500 mb-3">Separates <strong>Baseline</strong> and <strong>AI-Augmented (+Lift)</strong> components for both <strong>AI Resilience (X)</strong> and <strong>Human Distinctive (Y)</strong>.</p>
+          <p class="text-xs text-slate-500 mb-3">Separates <strong>Baseline</strong> and <strong>Incremental (+Lift)</strong> components for both <strong>AI Resilience (X)</strong> and <strong>Human Distinctive (Y)</strong>.</p>
           <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse text-xs">
               <thead>
@@ -461,7 +461,7 @@
       <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
         <div class="w-full max-w-[1026px] mx-auto">
           <h3 class="text-base font-bold text-slate-900 mb-1">All 22 Two-Digit Major Occupational Groups (11- through 53-): AI Resilience vs. Human Distinctive</h3>
-          <p class="text-xs text-slate-500 mb-3">Plots stacked <strong>AI Resilience (Base + AI-Augmented = Total X)</strong> alongside stacked <strong>Human Distinctive (Base + AI-Augmented = Total Y)</strong> across all 22 BLS two-digit groups.</p>
+          <p class="text-xs text-slate-500 mb-3">Plots stacked <strong>AI Resilience (Base + Incremental = Total X)</strong> alongside stacked <strong>Human Distinctive (Base + Incremental = Total Y)</strong> across all 22 BLS two-digit groups.</p>
           <div class="relative w-full h-[680px]"><canvas id="indianaAllGroupsChart"></canvas></div>
         </div>
       </div>
@@ -470,7 +470,7 @@
       <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
         <div class="w-full max-w-[1026px] mx-auto">
           <h3 class="text-base font-bold text-slate-900 mb-1">All Two-Digit Major Occupational Groups Summary (SOC 11-0000 through 53-0000)</h3>
-          <p class="text-xs text-slate-500 mb-3">Comprehensive statewide table showing dual additive <strong>Baseline + AI-Augmented = Total</strong> scores for both AI Resilience (X) and Human Distinctive (Y).</p>
+          <p class="text-xs text-slate-500 mb-3">Comprehensive statewide table showing dual additive <strong>Baseline + Incremental = Total</strong> scores for both AI Resilience (X) and Human Distinctive (Y).</p>
           <div class="overflow-x-auto max-h-[760px] overflow-y-auto custom-scroll">
             <table class="w-full text-left border-collapse text-xs">
               <thead class="sticky top-0 z-10">
@@ -499,7 +499,7 @@
             <div>
               <span class="text-[11px] font-bold uppercase tracking-wider text-red-700">Regional Labor Market Geography • BLS OEWS Metropolitan Statistical Areas</span>
               <h3 class="text-base font-bold text-slate-900 mt-0.5">Interactive Map of Indiana’s 15 Metropolitan Statistical Areas (MSAs): Top 3 Two-Digit Occupations by MSA</h3>
-              <p class="text-xs text-slate-500">Hover over any of the <strong>15 Indiana MSAs</strong> on the map (or click any regional card below) to inspect its <strong>three largest two-digit major occupational groups</strong>, their additive <strong>AI Resilience (Base + AI-Augmented = Total X)</strong>, and their additive <strong>Human Distinctive (Base + AI-Augmented = Total Y)</strong>.</p>
+              <p class="text-xs text-slate-500">Hover over any of the <strong>15 Indiana MSAs</strong> on the map (or click any regional card below) to inspect its <strong>three largest two-digit major occupational groups</strong>, their additive <strong>AI Resilience (Base + Incremental = Total X)</strong>, and their additive <strong>Human Distinctive (Base + Incremental = Total Y)</strong>.</p>
             </div>
             <div class="flex items-center gap-3 text-xs">
               <a href="https://www.bls.gov/oes/2023/may/oessrcma.htm" target="_blank" class="text-red-700 underline font-semibold whitespace-nowrap">BLS OEWS Metro Data ↗</a>
@@ -1993,13 +1993,25 @@
     let indianaChartInstance = null;
     let indianaAllGroupsChartInstance = null;
 
+    const PROPOSED_COURSE_IDS = new Set([
+      "BUS-A437", "BUS-A424", "BUS-F421", "BUS-F494", "BUS-M455",
+      "CSCI-B455", "CSCI-C437", "DSCI-D490", "ENGR-E312", "ENGR-E433",
+      "ECON-E472", "ENG-W415", "BIOL-L410",
+      "SPEA-E418", "SPEA-H452", "IU-EXP-210", "NLJ-CLOUD9"
+    ]);
+
     function resolveCourses(courseIds, homeUnitLabel) {
       return courseIds.map(cid => {
         const c = COURSE_CATALOG[cid];
         const isExternal = c.unit.includes("Expand") || c.unit.includes("Next Level");
         const isInSchool = !isExternal && homeUnitLabel && homeUnitLabel.includes(c.unit.split(" ")[0]);
         const scopeLabel = isExternal ? c.unit : (isInSchool ? `In-School (${c.unit})` : `Cross-School (${c.unit})`);
-        return { id: cid, ...c, scopeLabel, isInSchool, isExternal };
+        const isProposed = PROPOSED_COURSE_IDS.has(cid);
+        const statusLabel = isProposed ? "Proposed Course" : "Existing IU Course";
+        const statusClass = isProposed
+          ? "bg-purple-50 text-purple-800 border-purple-300"
+          : "bg-teal-50 text-teal-800 border-teal-300";
+        return { id: cid, ...c, scopeLabel, isInSchool, isExternal, isProposed, statusLabel, statusClass };
       });
     }
 
@@ -2440,7 +2452,10 @@
                 <input type="checkbox" ${checked ? 'checked' : ''} class="mt-0.5 h-3.5 w-3.5 accent-red-800 pointer-events-none" />
                 <span class="font-bold text-xs text-slate-900">${item.code}: ${item.title}</span>
               </div>
-              <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full border whitespace-nowrap ${badgeClass}">${item.scopeLabel}</span>
+              <div class="flex items-center gap-1 shrink-0">
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full border whitespace-nowrap ${item.statusClass}">${item.statusLabel}</span>
+                <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full border whitespace-nowrap ${badgeClass}">${item.scopeLabel}</span>
+              </div>
             </div>
             <div class="mt-1 flex flex-wrap items-center justify-between gap-2 pl-5 text-[11px]">
               <span class="font-medium text-slate-600">${item.pathway}</span>
@@ -2910,8 +2925,8 @@
             }
           },
           scales: {
-            x: { title: { display: true, text: "AI Resilience (20–90 Scale • Bubble = Baseline X₀ • Arrow Tip = Baseline + AI-Augmented X • Break = 55) → Higher = Better", font: { weight: "bold", size: 11.5 } }, min: 20, max: 90, ticks: { stepSize: 10 }, grid: { color: "#e2e8f0" } },
-            y: { title: { display: true, text: "Human Distinctive (30–100 Scale • Bubble = Baseline Y₀ • Arrow Tip = Baseline + AI-Augmented Y • Break = 65)", font: { weight: "bold", size: 11.5 } }, min: 30, max: 100, ticks: { stepSize: 10 }, grid: { color: "#e2e8f0" } }
+            x: { title: { display: true, text: "AI Resilience (20–90 Scale • Bubble = Baseline X₀ • Arrow Tip = Baseline + Incremental) → Higher = Better", font: { weight: "bold", size: 11.5 } }, min: 20, max: 90, ticks: { stepSize: 10 }, grid: { color: "#e2e8f0" } },
+            y: { title: { display: true, text: "Human Distinctive (30–100 Scale • Bubble = Baseline Y₀ • Arrow Tip = Baseline + Incremental)", font: { weight: "bold", size: 11.5 } }, min: 30, max: 100, ticks: { stepSize: 10 }, grid: { color: "#e2e8f0" } }
           }
         }
       });
@@ -3008,7 +3023,10 @@
                 <input type="checkbox" ${checked ? 'checked' : ''} class="mt-0.5 h-4 w-4 accent-red-800 pointer-events-none" />
                 <span class="font-bold text-xs text-slate-900">${item.code}: ${item.title}</span>
               </div>
-              <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full border whitespace-nowrap ${badgeClass}">${item.scopeLabel}</span>
+              <div class="flex items-center gap-1 shrink-0">
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full border whitespace-nowrap ${item.statusClass}">${item.statusLabel}</span>
+                <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full border whitespace-nowrap ${badgeClass}">${item.scopeLabel}</span>
+              </div>
             </div>
             <div class="mt-1.5 flex flex-wrap items-center justify-between gap-2 pl-6 text-[11px]">
               <span class="font-medium text-slate-600">${item.pathway}</span>
