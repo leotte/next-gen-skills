@@ -100,45 +100,49 @@
     <!-- Top KPI Strip -->
     <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="kpiStrip"></section>
 
+    <!-- Concise 1-Line Construct & Additive Defense Formula Reference Bar -->
+    <section class="bg-white px-4 py-2.5 rounded-xl border border-slate-200 shadow-2xs flex flex-wrap items-center justify-between gap-2 text-xs text-slate-600">
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-1">
+        <span><strong class="text-sky-900">AI Resilience (X, 0–100):</strong> Structural task insulation against autonomous AI replacement (<code class="text-[11px] bg-slate-100 px-1 rounded">100 − Task Automation Exposure</code>).</span>
+        <span><strong class="text-emerald-900">Human Distinctive (Y, 0–100):</strong> Depth of human judgment, persuasion, fiduciary sign-off &amp; AI-copilot mastery.</span>
+      </div>
+      <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-800 font-semibold text-[11px] whitespace-nowrap">Additive Model: Baseline + Incremental = Total Score (Higher = Better)</span>
+    </section>
+
     <!-- TAB 1: PROVOST & DEANS PORTFOLIO MATRIX -->
     <section id="view-portfolio" class="space-y-6">
-      <!-- Full-Width 1:1 Square 4-Quadrant Portfolio Figure (Placed Above School-Level Hierarchy) -->
+      <!-- Full-Width 1:1 Square 4-Quadrant Portfolio Figure -->
       <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
           <div>
             <h2 class="text-base font-bold text-slate-900">IUB Academic Portfolio: AI Resilience vs. Human Distinctive (4-Quadrant Matrix)</h2>
-            <p class="text-xs text-slate-500">Bubble = <strong>Baseline (X₀, Y₀)</strong> | Arrow (↗) = <strong>Trajectory Toward Baseline + Incremental</strong> (1:1 Square)</p>
+            <p class="text-xs text-slate-500">Bubble = <strong>Baseline (X₀, Y₀)</strong> | Arrow (↗) = <strong>Trajectory Toward Baseline + Incremental</strong> (1:1 Square • Click any bubble to simulate curriculum defense)</p>
           </div>
           <span id="horizonBadgePortfolio" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-red-50 text-red-800 border border-red-200 whitespace-nowrap self-start">2025 Baseline</span>
         </div>
         <div class="relative mx-auto w-full max-w-[1026px] aspect-square flex items-center justify-center">
           <canvas id="portfolioBubbleChart"></canvas>
         </div>
-        <div class="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs bg-slate-50 p-3 rounded-xl border border-slate-200">
-          <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-600 mr-1.5"></span><strong>Kelley Business (6)</strong></div>
-          <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-blue-600 mr-1.5"></span><strong>Luddy Computing (6)</strong></div>
-          <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-amber-600 mr-1.5"></span><strong>Arts + Sciences (6)</strong></div>
-          <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-red-700 mr-1.5"></span><strong>O'Neill Public Affairs (5)</strong></div>
-        </div>
       </div>
 
-      <!-- Full-Width School-Level Hierarchical Rollup (Placed Below the Figure) -->
+      <!-- Interactive School-Level Hierarchical Rollup (Also Serves as Clickable School Legend & Filter) -->
       <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
           <div>
-            <h2 class="text-base font-bold text-slate-900">School-Level Hierarchical Rollup</h2>
-            <p class="text-xs text-slate-500">Aggregated across majors using <span id="weightModeLabel" class="font-semibold text-slate-700">Graduate Headcount</span> weights (Dual Additive Model: Baseline + AI-Augmented = Total for both AI Resilience &amp; Human Distinctive).</p>
+            <h2 class="text-base font-bold text-slate-900">School-Level Hierarchical Rollup &amp; Interactive Filter</h2>
+            <p class="text-xs text-slate-500">Aggregated across majors using <span id="weightModeLabel" class="font-semibold text-slate-700">Graduate Headcount</span> weights (Dual Additive Model: <strong>Baseline + Incremental = Total</strong> for both AI Resilience &amp; Human Distinctive).</p>
           </div>
-          <span class="text-xs text-slate-500 font-medium">4 Flagship IUB Schools • 23 Undergraduate Majors</span>
+          <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 whitespace-nowrap">Click Any School Card to Filter Matrix &amp; Table</span>
         </div>
         <div id="schoolRollupCards" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
       </div>
 
+      <!-- 23-Major Scorecard Table (Streamlined 13 Columns with Framed Metric Trios) -->
       <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
         <div class="px-6 py-4 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <div>
             <h3 class="text-base font-bold text-slate-900">IUB Degree Programs &amp; Mapped Occupational Exposure Scorecard (23 Majors)</h3>
-            <p class="text-xs text-slate-500">Both <strong>AI Resilience (X)</strong> &amp; <strong>Human Distinctive (Y)</strong> show <strong>Baseline + AI-Augmented (+Lift) = Total</strong> (Higher = Better). Click <strong>"Simulate Defense →"</strong> to adjust courses.</p>
+            <p class="text-xs text-slate-500">Both <strong>AI Resilience (X)</strong> &amp; <strong>Human Distinctive (Y)</strong> show <strong>Baseline + Incremental = Total</strong> (Higher = Better). Click <strong>"Simulate Defense →"</strong> to adjust courses.</p>
           </div>
           <div class="text-xs text-slate-500">
             Data Spine: <a href="https://www.hoosierdata.in.gov/infographics/iu-workforce-outcomes.asp" target="_blank" class="text-red-700 underline font-medium">IU Workforce Outcomes</a> + <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" class="text-red-700 underline font-medium">Indiana OEWS</a>
@@ -148,19 +152,18 @@
           <table class="w-full table-fixed text-left border-collapse text-xs">
             <thead>
               <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 uppercase tracking-tight text-[10px] leading-tight">
-                <th class="py-2.5 px-2.5 w-[13%]">Program / Major (CIP)</th>
-                <th class="py-2.5 px-1 w-[7%]">IUB School</th>
-                <th class="py-2.5 px-1.5 w-[14%]">Primary Mapped Occupations (SOC)</th>
-                <th class="py-2.5 px-1 text-right w-[4.5%] border-t-2 border-l-2 border-slate-700 bg-amber-50/50 text-slate-900">Grad<br>Cohort</th>
-                <th class="py-2.5 px-1 text-right w-[6%] border-t-2 border-slate-700 bg-amber-50/50 text-slate-900">5-Yr IN<br>Med Wage</th>
-                <th class="py-2.5 px-1 text-center w-[5.5%] border-t-2 border-slate-700 bg-amber-50/50 text-slate-900">5-Yr BLS<br>Growth</th>
-                <th class="py-2.5 px-1 text-center w-[5.5%] border-t-2 border-r-2 border-slate-700 bg-amber-50/50 text-slate-900">5-Yr BLS<br>Shift (2030)</th>
-                <th class="py-2.5 px-1 text-center w-[6.2%] border-t-2 border-l-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Base)</th>
+                <th class="py-2.5 px-2.5 w-[15%]">Program / Major (CIP)</th>
+                <th class="py-2.5 px-1 w-[8%]">IUB School</th>
+                <th class="py-2.5 px-1.5 w-[16%]">Primary Mapped Occupations (SOC)</th>
+                <th class="py-2.5 px-1 text-right w-[5%] border-t-2 border-l-2 border-slate-700 bg-amber-50/50 text-slate-900">Grad<br>Cohort</th>
+                <th class="py-2.5 px-1 text-right w-[6.5%] border-t-2 border-slate-700 bg-amber-50/50 text-slate-900">5-Yr IN<br>Med Wage</th>
+                <th class="py-2.5 px-1 text-center w-[6%] border-t-2 border-r-2 border-slate-700 bg-amber-50/50 text-slate-900">5-Yr BLS<br>Growth</th>
+                <th class="py-2.5 px-1 text-center w-[6%] border-t-2 border-l-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Base)</th>
                 <th class="py-2.5 px-1 text-center w-[6.2%] border-t-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Incremental)</th>
-                <th class="py-2.5 px-1 text-center w-[6.6%] border-t-2 border-r-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Total X)</th>
-                <th class="py-2.5 px-1 text-center w-[6.2%] border-t-2 border-l-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Base)</th>
+                <th class="py-2.5 px-1 text-center w-[6.3%] border-t-2 border-r-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Total X)</th>
+                <th class="py-2.5 px-1 text-center w-[6%] border-t-2 border-l-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Base)</th>
                 <th class="py-2.5 px-1 text-center w-[6.2%] border-t-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Incremental)</th>
-                <th class="py-2.5 px-1 text-center w-[6.6%] border-t-2 border-r-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Total Y)</th>
+                <th class="py-2.5 px-1 text-center w-[6.3%] border-t-2 border-r-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Total Y)</th>
                 <th class="py-2.5 px-1.5 text-center w-[6.5%]">Action</th>
               </tr>
             </thead>
@@ -180,10 +183,10 @@
             <select id="simMajorSelect" onchange="changeSimMajor()" class="bg-slate-100 border border-slate-300 text-slate-900 font-bold text-sm rounded-xl px-3.5 py-2 focus:outline-none focus:ring-2 focus:ring-red-700"></select>
           </div>
         </div>
-        <div id="simImpactBanner" class="flex flex-wrap items-center gap-3 bg-slate-50 px-4 py-3 rounded-xl border border-slate-200"></div>
+        <div id="simImpactBanner" class="flex flex-wrap items-center gap-2.5 bg-slate-50 px-4 py-2.5 rounded-xl border border-slate-200"></div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         <div class="lg:col-span-7 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
           <div class="flex items-center justify-between mb-2">
             <div>
@@ -192,26 +195,37 @@
             </div>
             <a href="https://www.onetcenter.org/database.html" target="_blank" class="text-xs text-red-700 underline font-medium">O*NET 29.0 Taxonomy ↗</a>
           </div>
-          <div class="h-[380px] my-2"><canvas id="skillDecompositionChart"></canvas></div>
-          <div class="mt-3 overflow-x-auto">
-            <table class="w-full text-left border-collapse text-xs">
-              <thead>
-                <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 text-[10px] uppercase leading-tight">
-                  <th class="py-2 px-2.5">O*NET Skill / Work Activity</th>
-                  <th class="py-2 px-1.5 text-right border-t-2 border-l-2 border-r-2 border-slate-700 bg-amber-50/50 text-slate-900">Major<br>Weight</th>
-                  <th class="py-2 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Base)</th>
-                  <th class="py-2 px-1.5 text-center border-t-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Incremental)</th>
-                  <th class="py-2 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Total X)</th>
-                  <th class="py-2 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Base)</th>
-                  <th class="py-2 px-1.5 text-center border-t-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Incremental)</th>
-                  <th class="py-2 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Total Y)</th>
-                  <th class="py-2 px-2">Primary Exposure Driver</th>
-                </tr>
-              </thead>
-              <tbody id="skillTableBody" class="divide-y divide-slate-100"></tbody>
-              <tfoot id="skillTableFooter" class="bg-slate-100 font-bold text-slate-900 border-t-2 border-slate-300"></tfoot>
-            </table>
-          </div>
+          <div class="h-[400px] my-2"><canvas id="skillDecompositionChart"></canvas></div>
+
+          <!-- Collapsible 8-Skill Numeric Table Drawer -->
+          <details class="group mt-3 border border-slate-200 rounded-xl bg-slate-50/60 overflow-hidden">
+            <summary class="cursor-pointer select-none px-4 py-2.5 flex items-center justify-between text-xs font-bold text-slate-800 hover:bg-slate-100/80 transition">
+              <span class="flex items-center gap-2">
+                <span class="text-red-700 transition-transform group-open:rotate-90">▶</span>
+                <span>View Detailed O*NET 8-Skill Numeric Table &amp; Exposure Drivers</span>
+              </span>
+              <span id="simDrawerSummaryBadge" class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-white border border-slate-200 text-slate-700">8 Weighted O*NET Skills</span>
+            </summary>
+            <div class="p-3 bg-white border-t border-slate-200 overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs">
+                <thead>
+                  <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 text-[10px] uppercase leading-tight">
+                    <th class="py-2 px-2.5">O*NET Skill / Work Activity</th>
+                    <th class="py-2 px-1.5 text-right border-t-2 border-l-2 border-r-2 border-slate-700 bg-amber-50/50 text-slate-900">Major<br>Weight</th>
+                    <th class="py-2 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Base)</th>
+                    <th class="py-2 px-1.5 text-center border-t-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Incremental)</th>
+                    <th class="py-2 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Total X)</th>
+                    <th class="py-2 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Base)</th>
+                    <th class="py-2 px-1.5 text-center border-t-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Incremental)</th>
+                    <th class="py-2 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Total Y)</th>
+                    <th class="py-2 px-2">Primary Exposure Driver</th>
+                  </tr>
+                </thead>
+                <tbody id="skillTableBody" class="divide-y divide-slate-100"></tbody>
+                <tfoot id="skillTableFooter" class="bg-slate-100 font-bold text-slate-900 border-t-2 border-slate-300"></tfoot>
+              </table>
+            </div>
+          </details>
         </div>
 
         <div class="lg:col-span-5 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
@@ -240,10 +254,10 @@
             <select id="jobSelectDropdown" onchange="changeSelectedJob()" class="bg-slate-100 border border-slate-300 text-slate-900 font-bold text-sm rounded-xl px-3.5 py-2 focus:outline-none focus:ring-2 focus:ring-red-700"></select>
           </div>
         </div>
-        <div id="jobDetailBanner" class="flex flex-wrap items-center gap-3 bg-slate-50 px-4 py-3 rounded-xl border border-slate-200"></div>
+        <div id="jobDetailBanner" class="flex flex-wrap items-center gap-2.5 bg-slate-50 px-4 py-2.5 rounded-xl border border-slate-200"></div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         <div class="lg:col-span-7 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
           <div class="flex items-start justify-between mb-2">
             <div>
@@ -252,27 +266,38 @@
             </div>
             <a href="https://www.onetcenter.org/database.html" target="_blank" class="text-xs text-red-700 underline font-medium whitespace-nowrap">O*NET 29.0 ↗</a>
           </div>
-          <div class="h-[380px] my-2"><canvas id="jobSkillBarChart"></canvas></div>
-          <div class="mt-3 overflow-x-auto">
-            <table class="w-full text-left border-collapse text-xs">
-              <thead>
-                <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 text-[10px] uppercase leading-tight">
-                  <th class="py-2 px-2.5">O*NET Skill / Work Activity (Element ID)</th>
-                  <th class="py-2 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-amber-50/50 text-slate-900">Imp / Lvl</th>
-                  <th class="py-2 px-1.5 text-right border-t-2 border-r-2 border-slate-700 bg-amber-50/50 text-slate-900">Weight<br>w(o,s)</th>
-                  <th class="py-2 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Base)</th>
-                  <th class="py-2 px-1.5 text-center border-t-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Incremental)</th>
-                  <th class="py-2 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Total X)</th>
-                  <th class="py-2 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Base)</th>
-                  <th class="py-2 px-1.5 text-center border-t-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Incremental)</th>
-                  <th class="py-2 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Total Y)</th>
-                  <th class="py-2 px-2">AI Exposure Mechanism</th>
-                </tr>
-              </thead>
-              <tbody id="jobSkillTableBody" class="divide-y divide-slate-100"></tbody>
-              <tfoot id="jobSkillTableFooter" class="bg-slate-100 font-bold text-slate-900 border-t-2 border-slate-300"></tfoot>
-            </table>
-          </div>
+          <div class="h-[400px] my-2"><canvas id="jobSkillBarChart"></canvas></div>
+
+          <!-- Collapsible 8-Skill Numeric Table Drawer -->
+          <details class="group mt-3 border border-slate-200 rounded-xl bg-slate-50/60 overflow-hidden">
+            <summary class="cursor-pointer select-none px-4 py-2.5 flex items-center justify-between text-xs font-bold text-slate-800 hover:bg-slate-100/80 transition">
+              <span class="flex items-center gap-2">
+                <span class="text-red-700 transition-transform group-open:rotate-90">▶</span>
+                <span>View Detailed O*NET 8-Skill Numeric Table &amp; Exposure Mechanisms</span>
+              </span>
+              <span id="jobDrawerSummaryBadge" class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-white border border-slate-200 text-slate-700">8 Weighted O*NET Skills</span>
+            </summary>
+            <div class="p-3 bg-white border-t border-slate-200 overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs">
+                <thead>
+                  <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 text-[10px] uppercase leading-tight">
+                    <th class="py-2 px-2.5">O*NET Skill / Work Activity (Element ID)</th>
+                    <th class="py-2 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-amber-50/50 text-slate-900">Imp / Lvl</th>
+                    <th class="py-2 px-1.5 text-right border-t-2 border-r-2 border-slate-700 bg-amber-50/50 text-slate-900">Weight<br>w(o,s)</th>
+                    <th class="py-2 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Base)</th>
+                    <th class="py-2 px-1.5 text-center border-t-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Incremental)</th>
+                    <th class="py-2 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Total X)</th>
+                    <th class="py-2 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Base)</th>
+                    <th class="py-2 px-1.5 text-center border-t-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Incremental)</th>
+                    <th class="py-2 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Total Y)</th>
+                    <th class="py-2 px-2">AI Exposure Mechanism</th>
+                  </tr>
+                </thead>
+                <tbody id="jobSkillTableBody" class="divide-y divide-slate-100"></tbody>
+                <tfoot id="jobSkillTableFooter" class="bg-slate-100 font-bold text-slate-900 border-t-2 border-slate-300"></tfoot>
+              </table>
+            </div>
+          </details>
         </div>
 
         <div class="lg:col-span-5 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between space-y-4">
@@ -293,50 +318,53 @@
         </div>
       </div>
 
-      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-        <div class="px-6 py-4 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+      <!-- Collapsible 22-Occupation Master Summary Table with Top-2 Bottleneck Skill Pills -->
+      <details open class="group bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+        <summary class="cursor-pointer select-none px-6 py-4 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 hover:bg-slate-50/80 transition">
           <div>
-            <h3 class="text-base font-bold text-slate-900">Master Summary of Mapped Occupations (22 SOC Jobs), Associated O*NET Skills &amp; Weighted Scores</h3>
-            <p class="text-xs text-slate-500">Click <strong>"Inspect Skills ↑"</strong> on any job row to load its full O*NET decomposition and toggle its 8 cross-school defense pathways above.</p>
+            <div class="flex items-center gap-2">
+              <span class="text-red-700 text-xs transition-transform group-open:rotate-90">▶</span>
+              <h3 class="text-base font-bold text-slate-900">Master Summary of Mapped Occupations (22 SOC Jobs), Top Bottleneck Skills &amp; Weighted Scores</h3>
+            </div>
+            <p class="text-xs text-slate-500 pl-5">Shows the <strong>Top 2 Bottleneck O*NET Skills</strong> per occupation (hover over <code>+6 more skills</code> for all 8). Click <strong>"Inspect Skills ↑"</strong> on any row to load its full decomposition above.</p>
           </div>
-          <div class="text-xs text-slate-500">
-            Sources: <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" class="text-red-700 underline font-medium">BLS Indiana OEWS</a> • <a href="https://www.onetcenter.org/database.html" target="_blank" class="text-red-700 underline font-medium">O*NET 29.0</a> • <a href="https://www.bls.gov/emp/data.htm" target="_blank" class="text-red-700 underline font-medium">BLS 5-Yr EP</a>
+          <div class="text-xs text-slate-500 whitespace-nowrap">
+            Sources: <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" onclick="event.stopPropagation()" class="text-red-700 underline font-medium">BLS Indiana OEWS</a> • <a href="https://www.onetcenter.org/database.html" target="_blank" onclick="event.stopPropagation()" class="text-red-700 underline font-medium">O*NET 29.0</a>
           </div>
-        </div>
+        </summary>
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse text-xs">
             <thead>
               <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 uppercase tracking-tight text-[10px] leading-tight">
                 <th class="py-3 px-3">Occupation Title (SOC / O*NET)</th>
-                <th class="py-3 px-2.5">Mapped IUB Schools &amp; Majors</th>
-                <th class="py-3 px-2.5">Associated O*NET Skills (AI Resilience | Human Distinctive)</th>
-                <th class="py-3 px-1.5 text-right">IN Emp</th>
-                <th class="py-3 px-1.5 text-right">IN Mean<br>Wage</th>
-                <th class="py-3 px-1.5 text-center">5-Yr BLS<br>Growth</th>
-                <th class="py-3 px-1.5 text-center">AI Resilience<br>(Base)</th>
-                <th class="py-3 px-1.5 text-center">AI Resilience<br>(Incremental)</th>
-                <th class="py-3 px-1.5 text-center">AI Resilience<br>(Total X)</th>
-                <th class="py-3 px-1.5 text-center">Human Distinctive<br>(Base)</th>
-                <th class="py-3 px-1.5 text-center">Human Distinctive<br>(Incremental)</th>
-                <th class="py-3 px-1.5 text-center">Human Distinctive<br>(Total Y)</th>
-                <th class="py-3 px-1.5 text-center">5-Yr BLS<br>Shift (2030)</th>
-                <th class="py-3 px-3 text-right">Action</th>
+                <th class="py-3 px-2">Mapped IUB Schools &amp; Majors</th>
+                <th class="py-3 px-2.5">Top 2 Bottleneck O*NET Skills (Hover +6 for All 8)</th>
+                <th class="py-3 px-1.5 text-right border-t-2 border-l-2 border-slate-700 bg-amber-50/50 text-slate-900">IN Emp</th>
+                <th class="py-3 px-1.5 text-right border-t-2 border-slate-700 bg-amber-50/50 text-slate-900">IN Mean<br>Wage</th>
+                <th class="py-3 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-amber-50/50 text-slate-900">5-Yr BLS<br>Growth</th>
+                <th class="py-3 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Base)</th>
+                <th class="py-3 px-1.5 text-center border-t-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Incremental)</th>
+                <th class="py-3 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Total X)</th>
+                <th class="py-3 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Base)</th>
+                <th class="py-3 px-1.5 text-center border-t-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Incremental)</th>
+                <th class="py-3 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Total Y)</th>
+                <th class="py-3 px-2.5 text-right">Action</th>
               </tr>
             </thead>
             <tbody id="allJobsSummaryTableBody" class="divide-y divide-slate-200"></tbody>
           </table>
         </div>
-      </div>
+      </details>
     </section>
 
-    <!-- TAB 4: IU-TO-INDIANA WORKFORCE PIPELINE (LIMITED TO 5-YEAR HORIZON) -->
+    <!-- TAB 4: IU-TO-INDIANA WORKFORCE PIPELINE (3 STACKED VISUALIZATIONS) -->
     <section id="view-pipeline" class="hidden space-y-6">
-      <!-- (A) Option 1: Three-Stage Alluvial / Sankey Pipeline Flow (+25% Width: max-w-[1283px], +50% Height: 780px) -->
+      <!-- Visualization A: Three-Stage Alluvial / Sankey Pipeline Flow -->
       <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
         <div class="w-full max-w-[1283px] mx-auto">
           <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2.5">
             <div>
-              <span class="text-[11px] font-bold uppercase tracking-wider text-red-700">Visualization A (Option 1) • Interactive Multi-Stage Probabilistic Bridge Flow</span>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-red-700">Visualization A • Interactive Multi-Stage Probabilistic Bridge Flow</span>
               <h3 class="text-base font-bold text-slate-900 mt-0.5">Three-Stage Alluvial / Sankey Pipeline Flow: IUB Schools (CIP) → Indiana Industries (2-Digit NAICS) → Mapped Occupations (6-Digit SOC)</h3>
               <p class="text-xs text-slate-500"><strong>Click any IUB School node on the left of the chart (or use the school buttons below)</strong> to isolate and highlight its full 3-stage alluvial path (<code class="text-[11px] bg-slate-100 px-1 rounded">School → NAICS → SOC</code>) while fading the other schools.</p>
             </div>
@@ -349,12 +377,12 @@
         </div>
       </div>
 
-      <!-- (B) Option 3: Indiana Industry (NAICS) Talent Retention & At-Risk Waterfall (Widened to max-w-[1283px]) -->
+      <!-- Visualization B: Indiana Industry (NAICS) Talent Retention & At-Risk Waterfall -->
       <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
         <div class="w-full max-w-[1283px] mx-auto">
           <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
             <div>
-              <span class="text-[11px] font-bold uppercase tracking-wider text-red-700">Visualization B (Option 3) • Statewide Sector Retention &amp; Attrition Decomposition</span>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-red-700">Visualization B • Statewide Sector Retention &amp; Attrition Decomposition</span>
               <h3 class="text-base font-bold text-slate-900 mt-0.5">Indiana Industry (2-Digit NAICS) 5-Year Talent Retention &amp; Automation-At-Risk Waterfall</h3>
               <p class="text-xs text-slate-500">Decomposes each Indiana employer sector's IUB graduate pipeline into: <strong>(1) 5-Yr Baseline Retained Grads</strong>, <strong>(2) +5-Yr Defense Lift In-State Match Gain</strong> (from toggled defense courses), and <strong>(3) Remaining Y1→Y5 Attrition Gap</strong>.</p>
             </div>
@@ -364,43 +392,30 @@
         </div>
       </div>
 
-      <!-- (C) Option 5: CIP × NAICS → SOC Retention & Exposure Matrix Heatmap (Widened to max-w-[1283px], No Horizontal Scroll) -->
+      <!-- Visualization C: CIP × NAICS → SOC Retention & Exposure Matrix Heatmap -->
       <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
         <div class="w-full max-w-[1283px] mx-auto">
           <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
             <div>
-              <span class="text-[11px] font-bold uppercase tracking-wider text-red-700">Visualization C (Option 5) • Cross-Tabulated Boardroom Heatmap</span>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-red-700">Visualization C • Cross-Tabulated Boardroom Heatmap</span>
               <h3 class="text-base font-bold text-slate-900 mt-0.5">CIP × NAICS → SOC 5-Year In-State Retention &amp; AI Exposure Matrix Heatmap</h3>
-              <p class="text-xs text-slate-500">Cross-tabulates all IUB majors (rows) against Indiana's 7 major 2-Digit NAICS employer sectors (columns). Each active cell displays its <strong>flow share (%)</strong>, <strong>5-Yr AI-defended retained grads</strong>, and primary <strong>6-Digit SOC occupation</strong>, beside framed <strong>5-Year In-State Match (Base → Defended-Lift)</strong> and <strong>Total X / Y</strong> columns.</p>
+              <p class="text-xs text-slate-500">Cross-tabulates all IUB majors (rows) against Indiana's 7 major 2-Digit NAICS employer sectors (columns). Each active cell displays its <strong>flow share (%)</strong>, <strong>5-Yr defended retained grads</strong>, and primary <strong>6-Digit SOC occupation</strong> (hover any cell for full details), beside framed <strong>5-Year In-State Match (Base → Defended-Lift)</strong> and <strong>AI Res (X) / Human Dist (Y)</strong> columns.</p>
             </div>
             <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-amber-50 text-amber-800 border border-amber-200 whitespace-nowrap self-start">Click Any Row to Simulate in Tab 2</span>
           </div>
-          <div id="pipelineMatrixHeatmapContainer" class="w-full max-h-[720px] overflow-y-auto overflow-x-hidden custom-scroll border border-slate-200 rounded-xl"></div>
-        </div>
-      </div>
-
-      <!-- Stacked Full-Width Table / Bridge Matrix (Matching Figure Width: max-w-[1283px] & Expanded Scrollable Height) -->
-      <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
-        <div class="w-full max-w-[1283px] mx-auto">
-          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
-            <div>
-              <h3 class="text-base font-bold text-slate-900">CIP × NAICS → SOC Probabilistic Bridge Matrix Directory</h3>
-              <p class="text-xs text-slate-500">Detailed degree-by-degree cards showing how IUB graduates flow from Major (CIP) into Indiana Employer Industries (2-Digit NAICS) and mapped SOC occupations over the 5-year window, including 5-Year In-State Match lift and additive AI Resilience (X) &amp; Human Distinctive (Y).</p>
-            </div>
-            <span class="text-xs text-slate-500 font-medium whitespace-nowrap">23 IUB Majors • 3 Primary NAICS→SOC Flows Each</span>
-          </div>
-          <div id="bridgeMatrixContainer" class="space-y-3 mt-3 max-h-[780px] overflow-y-auto custom-scroll pr-2"></div>
+          <div id="pipelineMatrixHeatmapContainer" class="w-full max-h-[760px] overflow-y-auto overflow-x-hidden custom-scroll border border-slate-200 rounded-xl"></div>
         </div>
       </div>
     </section>
 
     <!-- TAB 5: STATE OF INDIANA ECONOMIC IMPACT & RESKILLING -->
     <section id="view-indiana" class="hidden space-y-6">
+      <!-- Top Macroeconomic Banner -->
       <div class="bg-gradient-to-r from-slate-900 to-slate-800 text-white p-6 rounded-2xl shadow-md">
         <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div>
             <span class="text-xs uppercase tracking-widest text-amber-400 font-bold">Statewide Macroeconomic &amp; Workforce Aggregation</span>
-            <h2 class="text-xl font-bold mt-1">State of Indiana Workforce AI Exposure &amp; Upskilling Opportunity</h2>
+            <h2 class="text-xl font-bold mt-1">State of Indiana Workforce AI Resilience, Human Distinctive &amp; Upskilling Opportunity</h2>
             <p class="text-xs text-slate-300 mt-1 max-w-3xl">
               Anchored to <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" class="underline text-amber-300">BLS May OEWS State Occupational Employment and Wage Estimates for Indiana</a> (All-Occupations Indiana Mean Wage: $27.12/hr; Median: $21.86/hr) and <a href="https://www.in.gov/dwd/nextleveljobs/workforce-ready-grant/" target="_blank" class="underline text-amber-300">Indiana Next Level Jobs</a> + IU Expand adult reskilling pathways.
             </p>
@@ -411,173 +426,177 @@
               <div class="text-lg font-extrabold text-white">$184.6B</div>
             </div>
             <div class="bg-red-500/20 px-4 py-2.5 rounded-xl border border-red-400/30">
-              <div class="text-[11px] text-red-200">Substitution-Exposed Payroll</div>
+              <div class="text-[11px] text-red-200">Low AI Resilience Payroll (&lt;55)</div>
               <div class="text-lg font-extrabold text-red-300">$48.2B</div>
             </div>
             <div class="bg-emerald-500/20 px-4 py-2.5 rounded-xl border border-emerald-400/30 col-span-2 sm:col-span-1">
-              <div class="text-[11px] text-emerald-200">Augmentation-Ready Payroll</div>
+              <div class="text-[11px] text-emerald-200">High Augmentation Payroll</div>
               <div class="text-lg font-extrabold text-emerald-300">$67.9B</div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Stacked Section 1: Top 7 High-Priority Indiana Occupational Groups Figure (Matching 1026px Width) -->
+      <!-- Unified Module 1: Indiana Major Occupational Groups (Consolidated All 22 vs. Priority Top 7 with Sort & Metric Toggles + X=55 Threshold) -->
       <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
-        <div class="w-full max-w-[1026px] mx-auto">
-          <h3 class="text-base font-bold text-slate-900 mb-1">Indiana Major Occupational Groups (Top 7): AI Resilience vs. Human Distinctive</h3>
-          <p class="text-xs text-slate-500 mb-3">Shows dual additive <strong>AI Resilience (Base + Incremental = Total X)</strong> and <strong>Human Distinctive (Base + Incremental = Total Y)</strong> across high-priority Indiana occupational groups.</p>
-          <div class="relative w-full h-[420px]"><canvas id="indianaStateChart"></canvas></div>
-        </div>
-      </div>
+        <div class="w-full max-w-[1283px] mx-auto">
+          <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-3 mb-4 pb-3 border-b border-slate-200">
+            <div>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-red-700">BLS Two-Digit SOC Statewide Occupational Analysis (SOC 11-0000 through 53-0000)</span>
+              <h3 class="text-base font-bold text-slate-900 mt-0.5" id="indianaGroupsHeading">Indiana Two-Digit Major Occupational Groups: AI Resilience vs. Human Distinctive</h3>
+              <p class="text-xs text-slate-500">Plots stacked <strong>AI Resilience (Base + Incremental = Total X)</strong> and <strong>Human Distinctive (Base + Incremental = Total Y)</strong> with a vertical priority threshold at <strong>X = 55</strong>.</p>
+            </div>
 
-      <!-- Stacked Section 1 Table: High-Priority Indiana Occupational Reskilling Opportunities (Matching 1026px Width) -->
-      <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
-        <div class="w-full max-w-[1026px] mx-auto">
-          <h3 class="text-base font-bold text-slate-900 mb-1">High-Priority Indiana Occupational Reskilling Opportunities (Top 7 Groups)</h3>
-          <p class="text-xs text-slate-500 mb-3">Separates <strong>Baseline</strong> and <strong>Incremental (+Lift)</strong> components for both <strong>AI Resilience (X)</strong> and <strong>Human Distinctive (Y)</strong>.</p>
-          <div class="overflow-x-auto">
-            <table class="w-full text-left border-collapse text-xs">
-              <thead>
-                <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 text-[10px] uppercase leading-tight">
-                  <th class="py-2.5 px-2.5">Indiana Occupation / Group (SOC)</th>
-                  <th class="py-2.5 px-1.5 text-right border-t-2 border-l-2 border-r-2 border-slate-700 bg-amber-50/50 text-slate-900">IN Wage</th>
-                  <th class="py-2.5 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Base)</th>
-                  <th class="py-2.5 px-1.5 text-center border-t-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Incremental)</th>
-                  <th class="py-2.5 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Total X)</th>
-                  <th class="py-2.5 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Base)</th>
-                  <th class="py-2.5 px-1.5 text-center border-t-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Incremental)</th>
-                  <th class="py-2.5 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Total Y)</th>
-                  <th class="py-2.5 px-2.5">Statewide Upskilling Pathway (IU + DWD)</th>
-                </tr>
-              </thead>
-              <tbody id="indianaTableBody" class="divide-y divide-slate-200"></tbody>
-            </table>
+            <!-- Interactive Scope, Sort & Metric Controls -->
+            <div class="flex flex-wrap items-center gap-2 text-xs">
+              <div class="inline-flex rounded-xl bg-slate-100 p-1 border border-slate-200">
+                <button id="btnSocScopeAll22" onclick="setIndianaSocScope('all22')" class="px-2.5 py-1 rounded-lg font-bold transition bg-red-800 text-white shadow-2xs">All 22 SOC Groups</button>
+                <button id="btnSocScopeTop7" onclick="setIndianaSocScope('top7')" class="px-2.5 py-1 rounded-lg font-bold transition text-slate-600 hover:text-slate-900">Priority Top 7 Groups</button>
+              </div>
+
+              <select id="indianaSocSort" onchange="renderIndiana()" class="bg-slate-50 border border-slate-300 text-slate-800 font-semibold rounded-xl px-2.5 py-1.5 focus:outline-none">
+                <option value="resilience_asc">Sort: Lowest AI Resilience (Priority First)</option>
+                <option value="payroll_desc">Sort: Largest Indiana Payroll ($B)</option>
+                <option value="lift_desc">Sort: Highest Incremental Lift (+Δ)</option>
+                <option value="soc_asc">Sort: SOC Code (11-0000 → 53-0000)</option>
+              </select>
+
+              <select id="indianaSocMetricView" onchange="renderIndiana()" class="bg-slate-50 border border-slate-300 text-slate-800 font-semibold rounded-xl px-2.5 py-1.5 focus:outline-none">
+                <option value="both">View: Both Metrics (AI Res + Human Dist)</option>
+                <option value="resilience">View: AI Resilience Only (Cleaner 1-Bar/Group)</option>
+                <option value="distinctive">View: Human Distinctive Only (Cleaner 1-Bar/Group)</option>
+              </select>
+            </div>
           </div>
+
+          <div id="indianaAllGroupsChartWrap" class="relative w-full h-[640px]"><canvas id="indianaAllGroupsChart"></canvas></div>
+
+          <!-- Collapsible Framed Scorecard Table for Selected SOC Scope & Sort -->
+          <details open class="group mt-5 border border-slate-200 rounded-xl bg-slate-50/60 overflow-hidden">
+            <summary class="cursor-pointer select-none px-4 py-3 flex items-center justify-between text-xs font-bold text-slate-800 hover:bg-slate-100/80 transition">
+              <span class="flex items-center gap-2">
+                <span class="text-red-700 transition-transform group-open:rotate-90">▶</span>
+                <span id="indianaTableSummaryTitle">Statewide Occupational Group Scorecard &amp; IU/DWD Reskilling Pathways (All 22 Two-Digit SOC Groups)</span>
+              </span>
+              <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-white border border-slate-200 text-slate-600">Separates Baseline &amp; Incremental (+Lift)</span>
+            </summary>
+            <div class="p-3 bg-white border-t border-slate-200 overflow-x-auto max-h-[680px] overflow-y-auto custom-scroll">
+              <table class="w-full text-left border-collapse text-xs">
+                <thead class="sticky top-0 z-10">
+                  <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 text-[10px] uppercase leading-tight">
+                    <th class="py-2.5 px-2.5">Indiana Occupation / Group (SOC)</th>
+                    <th class="py-2.5 px-1.5 text-right border-t-2 border-l-2 border-slate-700 bg-amber-50/50 text-slate-900">Est. IN<br>Payroll</th>
+                    <th class="py-2.5 px-1.5 text-right border-t-2 border-r-2 border-slate-700 bg-amber-50/50 text-slate-900">IN Mean<br>Wage</th>
+                    <th class="py-2.5 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Base)</th>
+                    <th class="py-2.5 px-1.5 text-center border-t-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Incremental)</th>
+                    <th class="py-2.5 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Total X)</th>
+                    <th class="py-2.5 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Base)</th>
+                    <th class="py-2.5 px-1.5 text-center border-t-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Incremental)</th>
+                    <th class="py-2.5 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Total Y)</th>
+                    <th class="py-2.5 px-2.5">Statewide Upskilling Pathway (IU + DWD)</th>
+                  </tr>
+                </thead>
+                <tbody id="indianaAllGroupsTableBody" class="divide-y divide-slate-200"></tbody>
+              </table>
+            </div>
+          </details>
         </div>
       </div>
 
-      <!-- Stacked Section 2 Figure: Complete 22 Two-Digit Major Occupational Groups (SOC 11-0000 through 53-0000, Matching 1026px Width) -->
-      <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
-        <div class="w-full max-w-[1026px] mx-auto">
-          <h3 class="text-base font-bold text-slate-900 mb-1">All 22 Two-Digit Major Occupational Groups (11- through 53-): AI Resilience vs. Human Distinctive</h3>
-          <p class="text-xs text-slate-500 mb-3">Plots stacked <strong>AI Resilience (Base + Incremental = Total X)</strong> alongside stacked <strong>Human Distinctive (Base + Incremental = Total Y)</strong> across all 22 BLS two-digit groups.</p>
-          <div class="relative w-full h-[680px]"><canvas id="indianaAllGroupsChart"></canvas></div>
-        </div>
-      </div>
-
-      <!-- Stacked Section 2 Table: All 22 Two-Digit Major Occupational Groups Summary (Matching 1026px Width) -->
-      <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
-        <div class="w-full max-w-[1026px] mx-auto">
-          <h3 class="text-base font-bold text-slate-900 mb-1">All Two-Digit Major Occupational Groups Summary (SOC 11-0000 through 53-0000)</h3>
-          <p class="text-xs text-slate-500 mb-3">Comprehensive statewide table showing dual additive <strong>Baseline + Incremental = Total</strong> scores for both AI Resilience (X) and Human Distinctive (Y).</p>
-          <div class="overflow-x-auto max-h-[760px] overflow-y-auto custom-scroll">
-            <table class="w-full text-left border-collapse text-xs">
-              <thead class="sticky top-0 z-10">
-                <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 text-[10px] uppercase leading-tight">
-                  <th class="py-2.5 px-2.5">Indiana Occupation / Group (SOC)</th>
-                  <th class="py-2.5 px-1.5 text-right border-t-2 border-l-2 border-r-2 border-slate-700 bg-amber-50/50 text-slate-900">IN Wage</th>
-                  <th class="py-2.5 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Base)</th>
-                  <th class="py-2.5 px-1.5 text-center border-t-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Incremental)</th>
-                  <th class="py-2.5 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Total X)</th>
-                  <th class="py-2.5 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Base)</th>
-                  <th class="py-2.5 px-1.5 text-center border-t-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Incremental)</th>
-                  <th class="py-2.5 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-emerald-50/60 text-emerald-950">Human Distinctive<br>(Total Y)</th>
-                  <th class="py-2.5 px-2.5">Statewide Upskilling Pathway (IU + DWD)</th>
-                </tr>
-              </thead>
-              <tbody id="indianaAllGroupsTableBody" class="divide-y divide-slate-200"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- Stacked Section 3: Interactive Map of Indiana's 15 Metropolitan Statistical Areas (MSAs) + Stacked Directory Below (Matching 1026px Width) -->
+      <!-- Unified Module 2: Side-by-Side Interactive Map of Indiana's 15 MSAs + Live Regional Spotlight -->
       <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-        <div class="w-full max-w-[1026px] mx-auto">
-          <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2 pb-4 border-b border-slate-200">
+        <div class="w-full max-w-[1283px] mx-auto">
+          <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 pb-4 border-b border-slate-200">
             <div>
-              <span class="text-[11px] font-bold uppercase tracking-wider text-red-700">Regional Labor Market Geography • BLS OEWS Metropolitan Statistical Areas</span>
-              <h3 class="text-base font-bold text-slate-900 mt-0.5">Interactive Map of Indiana’s 15 Metropolitan Statistical Areas (MSAs): Top 3 Two-Digit Occupations by MSA</h3>
-              <p class="text-xs text-slate-500">Hover over any of the <strong>15 Indiana MSAs</strong> on the map (or click any regional card below) to inspect its <strong>three largest two-digit major occupational groups</strong>, their additive <strong>AI Resilience (Base + Incremental = Total X)</strong>, and their additive <strong>Human Distinctive (Base + Incremental = Total Y)</strong>.</p>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-red-700">Regional Labor Market Geography • BLS OEWS Metropolitan Statistical Areas &amp; IU Campus Footprint</span>
+              <h3 class="text-base font-bold text-slate-900 mt-0.5">Interactive Map of Indiana’s 15 Metropolitan Statistical Areas (MSAs) &amp; Regional Workforce Spotlight</h3>
+              <p class="text-xs text-slate-500">Click or hover over any of the <strong>15 Indiana MSAs</strong> on the map (or select a regional card below) to inspect its <strong>employment-weighted AI Resilience (Base + Incremental = Total X)</strong>, <strong>Human Distinctive (Base + Incremental = Total Y)</strong>, and <strong>IU Campus Anchor alignment</strong> side by side.</p>
             </div>
-            <div class="flex items-center gap-3 text-xs">
-              <a href="https://www.bls.gov/oes/2023/may/oessrcma.htm" target="_blank" class="text-red-700 underline font-semibold whitespace-nowrap">BLS OEWS Metro Data ↗</a>
-              <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" class="text-red-700 underline font-semibold whitespace-nowrap">Indiana State OEWS ↗</a>
+            <div class="flex flex-wrap items-center gap-2 text-xs">
+              <label for="msaColorMode" class="font-bold text-slate-700">Color Map By:</label>
+              <select id="msaColorMode" onchange="renderIndianaMsaMap()" class="bg-slate-100 border border-slate-300 text-slate-900 font-bold rounded-xl px-2.5 py-1.5 focus:outline-none">
+                <option value="resilience">Employment-Wtd AI Resilience (Total X)</option>
+                <option value="lift">Incremental Reskilling Lift (+ΔX)</option>
+                <option value="wage">BLS Regional Mean Wage ($/hr)</option>
+              </select>
             </div>
           </div>
 
-          <!-- Stacked Top: Interactive SVG Map of Indiana -->
-          <div class="mt-5 relative bg-slate-900 rounded-2xl p-5 border border-slate-800 shadow-inner flex flex-col items-center">
-            <div class="w-full flex flex-wrap items-center justify-between text-xs text-slate-300 mb-3 px-2 gap-2">
-              <span><strong>15 BLS OEWS MSAs</strong> • Hover or click any MSA node for Top 3 Two-Digit SOCs (Base + AI-Augmented Splits)</span>
-              <div class="flex items-center gap-3">
-                <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-red-500 inline-block"></span>Lower Base SV (&lt;45)</span>
-                <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span>Moderate Base SV (45–55)</span>
-                <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span>Higher Base SV (&gt;55)</span>
+          <!-- Side-by-Side Grid: Left 50% Interactive SVG Map | Right 50% Active MSA Spotlight Panel -->
+          <div class="mt-5 grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+            <!-- Left Column: Interactive SVG Map of Indiana -->
+            <div class="lg:col-span-6 relative bg-slate-900 rounded-2xl p-4 border border-slate-800 shadow-inner flex flex-col justify-between items-center">
+              <div class="w-full flex flex-wrap items-center justify-between text-[11px] text-slate-300 mb-2 px-1 gap-2">
+                <span id="msaMapModeSubtitle"><strong>Node Score</strong> = Employment-Wtd AI Resilience (Total X)</span>
+                <div id="msaMapLegendPills" class="flex flex-wrap items-center gap-2.5"></div>
+              </div>
+
+              <div id="indianaMsaMapWrapper" class="relative w-full max-w-[500px] select-none my-auto">
+                <svg id="indianaMsaSvg" viewBox="0 0 420 560" class="w-full h-auto drop-shadow-md">
+                  <defs>
+                    <linearGradient id="inStateGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#1e293b" />
+                      <stop offset="100%" stop-color="#0f172a" />
+                    </linearGradient>
+                    <filter id="msaGlow" x="-20%" y="-20%" width="140%" height="140%">
+                      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.5" />
+                    </filter>
+                  </defs>
+
+                  <!-- Lake Michigan Water Feature (NW Corner) -->
+                  <path d="M 78,35 L 138,35 Q 118,58 95,56 L 78,48 Z" fill="#0ea5e9" fill-opacity="0.22" stroke="#38bdf8" stroke-width="1" />
+                  <text x="84" y="28" fill="#38bdf8" font-size="8" font-weight="bold" letter-spacing="0.06em">LAKE MICHIGAN</text>
+
+                  <!-- State of Indiana Accurate Geographic Boundary Polygon -->
+                  <path d="M 138,35 L 362,35 L 365,412 L 348,430 L 318,442 L 292,468 L 265,482 L 235,488 L 208,504 L 172,498 L 142,516 L 105,522 L 62,526 L 56,502 L 66,476 L 74,442 L 64,412 L 72,382 L 80,348 L 78,310 L 78,48 Q 98,58 118,52 Z"
+                        fill="url(#inStateGrad)" stroke="#64748b" stroke-width="2.2" stroke-linejoin="round" />
+
+                  <!-- Subtle Regional Grid & Major Interstate Corridors (I-65, I-69, I-70, I-74, I-80/90) -->
+                  <g stroke="#334155" stroke-width="1" stroke-dasharray="3,3" fill="none">
+                    <path d="M 85,54 Q 210,50 360,48" />
+                    <path d="M 108,68 L 148,196 L 228,278 L 254,362 L 268,462" />
+                    <path d="M 340,42 L 325,128 L 306,226 L 228,278 L 192,358 L 98,496" />
+                    <path d="M 78,318 L 106,318 L 228,278 L 363,272" />
+                    <path d="M 78,225 L 228,278 L 352,378" />
+                  </g>
+
+                  <!-- Dynamic MSA Catchment Polygons & Nodes injected by JS -->
+                  <g id="indianaMsaPolygonsLayer"></g>
+                  <g id="indianaMsaNodesLayer"></g>
+                </svg>
+
+                <!-- Floating Mouseover Tooltip -->
+                <div id="msaHoverTooltip" class="hidden pointer-events-none absolute z-30 w-80 bg-slate-950/95 text-white p-3 rounded-xl border border-red-500/60 shadow-2xl text-xs backdrop-blur-md"></div>
+              </div>
+
+              <div class="w-full mt-2 pt-2 border-t border-slate-800 flex flex-wrap items-center justify-between text-[10.5px] text-slate-400 px-1 gap-2">
+                <span>Radius = Log(MSA Total Employment)</span>
+                <span class="text-amber-300 font-semibold">★ Dashed Gold Ring = IU Flagship / Regional Campus Host MSA</span>
               </div>
             </div>
 
-            <div id="indianaMsaMapWrapper" class="relative w-full max-w-[620px] select-none">
-              <svg id="indianaMsaSvg" viewBox="0 0 420 560" class="w-full h-auto drop-shadow-md">
-                <defs>
-                  <linearGradient id="inStateGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#1e293b" />
-                    <stop offset="100%" stop-color="#0f172a" />
-                  </linearGradient>
-                  <filter id="msaGlow" x="-20%" y="-20%" width="140%" height="140%">
-                    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.5" />
-                  </filter>
-                </defs>
-
-                <!-- Lake Michigan Water Feature (NW Corner) -->
-                <path d="M 78,35 L 138,35 Q 118,58 95,56 L 78,48 Z" fill="#0ea5e9" fill-opacity="0.22" stroke="#38bdf8" stroke-width="1" />
-                <text x="84" y="28" fill="#38bdf8" font-size="8" font-weight="bold" letter-spacing="0.06em">LAKE MICHIGAN</text>
-
-                <!-- State of Indiana Accurate Geographic Boundary Polygon -->
-                <path d="M 138,35 L 362,35 L 365,412 L 348,430 L 318,442 L 292,468 L 265,482 L 235,488 L 208,504 L 172,498 L 142,516 L 105,522 L 62,526 L 56,502 L 66,476 L 74,442 L 64,412 L 72,382 L 80,348 L 78,310 L 78,48 Q 98,58 118,52 Z"
-                      fill="url(#inStateGrad)" stroke="#64748b" stroke-width="2.2" stroke-linejoin="round" />
-
-                <!-- Subtle Regional Grid & Major Interstate Corridors (I-65, I-69, I-70, I-74, I-80/90) -->
-                <g stroke="#334155" stroke-width="1" stroke-dasharray="3,3" fill="none">
-                  <path d="M 85,54 Q 210,50 360,48" />
-                  <path d="M 108,68 L 148,196 L 228,278 L 254,362 L 268,462" />
-                  <path d="M 340,42 L 325,128 L 306,226 L 228,278 L 192,358 L 98,496" />
-                  <path d="M 78,318 L 106,318 L 228,278 L 363,272" />
-                  <path d="M 78,225 L 228,278 L 352,378" />
-                </g>
-
-                <!-- Dynamic MSA Catchment Polygons & Nodes injected by JS -->
-                <g id="indianaMsaPolygonsLayer"></g>
-                <g id="indianaMsaNodesLayer"></g>
-              </svg>
-
-              <!-- Floating Mouseover Tooltip -->
-              <div id="msaHoverTooltip" class="hidden pointer-events-none absolute z-30 w-96 bg-slate-950/95 text-white p-3.5 rounded-xl border border-red-500/60 shadow-2xl text-xs backdrop-blur-md"></div>
-            </div>
-
-            <div class="w-full mt-3 pt-2 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400 px-2">
-              <span>Bubble radius = Log(MSA Total Employment)</span>
-              <span>★ Bloomington MSA = Home of IU Bloomington</span>
+            <!-- Right Column: Live Selected MSA Spotlight Panel -->
+            <div class="lg:col-span-6 flex flex-col">
+              <div id="msaSpotlightCard" class="flex-1 p-5 rounded-2xl bg-slate-50 border-2 border-red-800/30 shadow-sm flex flex-col justify-between"></div>
             </div>
           </div>
 
-          <!-- Stacked Bottom: Active MSA Spotlight Card + Interactive 15-MSA Directory Grid -->
-          <div class="mt-6 space-y-5">
-            <div id="msaSpotlightCard" class="p-5 rounded-2xl bg-slate-50 border-2 border-red-800/30 shadow-sm"></div>
-
-            <div>
-              <div class="flex items-center justify-between mb-2.5">
-                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700">All 15 Indiana MSAs — Hover or Click Any MSA to Inspect Top 3 Two-Digit Occupations</h4>
-                <span class="text-[11px] text-slate-500">Sorted by MSA Employment</span>
-              </div>
-              <div id="msaDirectoryGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 max-h-[520px] overflow-y-auto custom-scroll pr-1"></div>
+          <!-- Collapsible Quick-Select 15-MSA Directory Grid -->
+          <details open class="group mt-5 border border-slate-200 rounded-xl bg-slate-50/60 overflow-hidden">
+            <summary class="cursor-pointer select-none px-4 py-2.5 flex items-center justify-between text-xs font-bold text-slate-700 hover:bg-slate-100/80 transition">
+              <span class="flex items-center gap-2">
+                <span class="text-red-700 transition-transform group-open:rotate-90">▶</span>
+                <span>All 15 Indiana MSAs Quick-Select Directory (Click Any Region to Update Spotlight)</span>
+              </span>
+              <span class="text-[11px] font-normal text-slate-500">Sorted by Total Regional Employment</span>
+            </summary>
+            <div class="p-3 bg-white border-t border-slate-200">
+              <div id="msaDirectoryGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5"></div>
             </div>
-          </div>
+          </details>
         </div>
       </div>
     </section>
-
   </main>
 
   <footer class="bg-white border-t border-slate-200 mt-10 py-4 px-6 text-xs text-slate-500">
@@ -2271,12 +2290,78 @@
       renderKPIs();
     }
 
+    function toggleSchoolCardFilter(schoolName) {
+      const sel = document.getElementById("globalSchoolFilter");
+      if (!sel) return;
+      sel.value = (sel.value === schoolName) ? "ALL" : schoolName;
+      renderAll();
+    }
+
     function renderKPIs() {
       const progs = getFilteredPrograms();
       const jobs = getFilteredJobs();
       const weightMode = document.getElementById("globalWeighting").value;
       const horizon = document.getElementById("globalHorizon").value;
       const horizonLabel = horizon === "2025" ? "2025 Baseline" : "5-Yr Forecast (2030)";
+
+      if (currentTab === "indiana") {
+        const all22 = INDIANA_ALL_MAJOR_GROUPS.map(g => ({ g, m: getGroupMetrics(g) }));
+        let tw = 0, wBaseX = 0, wLiftX = 0, wDefX = 0, wBaseY = 0, wLiftY = 0, wDefY = 0, totalPay = 0;
+        all22.forEach(({ g, m }) => {
+          const w = g.payrollB;
+          tw += w;
+          totalPay += g.payrollB;
+          wBaseX += w * m.baseSV;
+          wLiftX += w * m.svLift;
+          wDefX += w * m.defSV;
+          wBaseY += w * m.humanBase;
+          wLiftY += w * m.aiLift;
+          wDefY += w * m.humanAiTotal;
+        });
+        const stBaseX = (wBaseX / tw).toFixed(1);
+        const stLiftX = (wLiftX / tw).toFixed(1);
+        const stDefX = (wDefX / tw).toFixed(1);
+        const stBaseY = (wBaseY / tw).toFixed(1);
+        const stLiftY = (wLiftY / tw).toFixed(1);
+        const stDefY = (wDefY / tw).toFixed(1);
+        const totalMsaEmp = INDIANA_MSAS.reduce((s, m) => s + m.totalEmp, 0);
+
+        document.getElementById("kpiStrip").innerHTML = `
+          <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Statewide AI Resilience</span>
+              <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-sky-50 text-sky-800">Base ${stBaseX} + Incr +${stLiftX}</span>
+            </div>
+            <div class="text-2xl font-black text-sky-800 mt-1">${stDefX} <span class="text-xs font-normal text-slate-500">/ 100 Total (22 SOCs)</span></div>
+            <div class="text-[11px] text-slate-500 mt-1">Baseline (${stBaseX}) + Incremental (+${stLiftX})</div>
+          </div>
+          <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Statewide Human Distinctive</span>
+              <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-emerald-50 text-emerald-800">Base ${stBaseY} + Incr +${stLiftY}</span>
+            </div>
+            <div class="text-2xl font-black text-emerald-700 mt-1">${stDefY} <span class="text-xs font-normal text-slate-500">/ 100 Total (22 SOCs)</span></div>
+            <div class="text-[11px] text-slate-500 mt-1">Baseline (${stBaseY}) + Incremental (+${stLiftY})</div>
+          </div>
+          <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Statewide Modeled Payroll</span>
+              <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-amber-50 text-amber-800">22 Major SOC Groups</span>
+            </div>
+            <div class="text-2xl font-black text-slate-900 mt-1">$184.6B <span class="text-sm font-bold text-emerald-700">($67.9B High-Aug)</span></div>
+            <div class="text-[11px] text-slate-500 mt-1">BLS Indiana OEWS Wage &amp; Payroll Spine</div>
+          </div>
+          <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Regional Metro Geography</span>
+              <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-red-50 text-red-800">15 Indiana MSAs</span>
+            </div>
+            <div class="text-2xl font-black text-slate-900 mt-1">${(totalMsaEmp / 1e6).toFixed(2)}M <span class="text-sm font-bold text-red-700">Metro Jobs</span></div>
+            <div class="text-[11px] text-slate-500 mt-1">7 MSAs Host IU Flagship / Regional Campuses</div>
+          </div>
+        `;
+        return;
+      }
 
       let totalWeight = 0, weightedBaseSV = 0, weightedSvLift = 0, weightedDefSV = 0, weightedHuman = 0, weightedAiLift = 0, weightedTotalR = 0, totalGrads = 0, weightedRet = 0;
       progs.forEach(p => {
@@ -2306,18 +2391,18 @@
         <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
           <div class="flex items-center justify-between">
             <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Portfolio AI Resilience</span>
-            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-sky-50 text-sky-800">Base ${avgBaseSV} + AI +${avgSvLift}</span>
+            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-sky-50 text-sky-800">Base ${avgBaseSV} + Incr +${avgSvLift}</span>
           </div>
           <div class="text-2xl font-black text-sky-800 mt-1">${avgDefSV} <span class="text-xs font-normal text-slate-500">/ 100 Total (${horizonLabel})</span></div>
-          <div class="text-[11px] text-slate-500 mt-1">Baseline AI Resilience (${avgBaseSV}) + AI-Augmented (+${avgSvLift})</div>
+          <div class="text-[11px] text-slate-500 mt-1">Baseline (${avgBaseSV}) + Incremental (+${avgSvLift})</div>
         </div>
         <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
           <div class="flex items-center justify-between">
             <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Portfolio Human Distinctive</span>
-            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-emerald-50 text-emerald-800">Base ${avgHuman} + AI +${avgAiLift}</span>
+            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-emerald-50 text-emerald-800">Base ${avgHuman} + Incr +${avgAiLift}</span>
           </div>
           <div class="text-2xl font-black text-emerald-700 mt-1">${avgTotalR} <span class="text-xs font-normal text-slate-500">/ 100 Total</span></div>
-          <div class="text-[11px] text-slate-500 mt-1">Baseline Human Distinctive (${avgHuman}) + AI-Augmented (+${avgAiLift})</div>
+          <div class="text-[11px] text-slate-500 mt-1">Baseline (${avgHuman}) + Incremental (+${avgAiLift})</div>
         </div>
         <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
           <div class="flex items-center justify-between">
@@ -2356,54 +2441,44 @@
       document.getElementById("selectedJobSubheading").textContent =
         `Mapped to ${job.majors.join(" • ")} | Indiana OEWS: ${job.inEmp.toLocaleString()} employed (${job.inWageNote})`;
 
+      // Compact non-redundant top summary banner
       document.getElementById("jobDetailBanner").innerHTML = `
-        <div class="text-center px-2">
-          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">AI Resilience (Base)</div>
-          <div class="text-base font-black text-sky-900">${jobBaseSV.toFixed(1)}</div>
+        <div class="px-3 py-1.5 rounded-lg bg-sky-50 border border-sky-200 text-xs">
+          <span class="text-slate-600 font-semibold">AI Resilience (X):</span>
+          <strong class="text-sky-900 ml-1">${jobBaseSV.toFixed(1)} Base + ${jobSvLift.toFixed(1)} Incr = <span class="text-sm font-black">${jobDefSV.toFixed(1)}</span></strong>
         </div>
-        <div class="text-center px-2">
-          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">AI Resilience (Incremental)</div>
-          <div class="text-base font-black text-sky-600">+${jobSvLift.toFixed(1)}</div>
-        </div>
-        <div class="text-center px-2 bg-sky-50 rounded-lg py-1 border border-sky-200">
-          <div class="text-[9px] uppercase tracking-wider text-sky-800 font-bold">AI Resilience (Total X)</div>
-          <div class="text-base font-black text-sky-700">${jobDefSV.toFixed(1)}</div>
-        </div>
-        <div class="h-8 w-px bg-slate-300"></div>
-        <div class="text-center px-2">
-          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">Human Distinctive (Base)</div>
-          <div class="text-base font-black text-emerald-800">${jobHumanBase.toFixed(1)}</div>
-        </div>
-        <div class="text-center px-2">
-          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">Human Distinctive (Incremental)</div>
-          <div class="text-base font-black text-teal-600">+${jobAiLift.toFixed(1)}</div>
-        </div>
-        <div class="text-center px-2 bg-emerald-50 rounded-lg py-1 border border-emerald-200">
-          <div class="text-[9px] uppercase tracking-wider text-emerald-800 font-bold">Human Distinctive (Total Y)</div>
-          <div class="text-base font-black text-emerald-700">${jobHumanAiTotal.toFixed(1)}</div>
+        <div class="px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-xs">
+          <span class="text-slate-600 font-semibold">Human Distinctive (Y):</span>
+          <strong class="text-emerald-900 ml-1">${jobHumanBase.toFixed(1)} Base + ${jobAiLift.toFixed(1)} Incr = <span class="text-sm font-black">${jobHumanAiTotal.toFixed(1)}</span></strong>
         </div>
       `;
 
+      const jobDrawerBadge = document.getElementById("jobDrawerSummaryBadge");
+      if (jobDrawerBadge) {
+        jobDrawerBadge.innerHTML = `Weighted Total — <strong class="text-sky-800">AI Res: ${jobDefSV.toFixed(1)}</strong> • <strong class="text-emerald-800">Human Dist: ${jobHumanAiTotal.toFixed(1)}</strong>`;
+      }
+
       const skSVMed = getColumnMedian(rows.map(r => r.defSV));
       const skRMed = getColumnMedian(rows.map(r => r.humanAiTotal));
+
       document.getElementById("jobSkillTableBody").innerHTML = rows.map(sk => {
         const svBadge = getHigherBetterBadge(sk.defSV, skSVMed, 3.0);
         const rBadge = getHigherBetterBadge(sk.humanAiTotal, skRMed, 3.0);
         return `
           <tr class="hover:bg-slate-50">
             <td class="py-2 px-2.5">
-              <div class="font-semibold text-slate-900">${sk.name}</div>
-              <div class="text-[10px] text-slate-500 font-mono">O*NET Element ${sk.code}</div>
+              <div class="font-semibold text-slate-800">${sk.name}</div>
+              <div class="text-[10px] font-mono text-slate-500">O*NET Element ${sk.code}</div>
             </td>
-            <td class="py-2 px-1.5 text-center font-mono text-[11px] text-slate-600 border-l-2 border-slate-700 bg-amber-50/15">${sk.imp.toFixed(1)} / ${sk.lvl.toFixed(1)}</td>
+            <td class="py-2 px-1.5 text-center font-mono text-slate-600 border-l-2 border-slate-700 bg-amber-50/15">${sk.imp.toFixed(1)} / ${sk.lvl.toFixed(1)}</td>
             <td class="py-2 px-1.5 text-right font-mono font-bold text-slate-800 border-r-2 border-slate-700 bg-amber-50/15">${(sk.weight * 100).toFixed(0)}%</td>
             <td class="py-2 px-1.5 text-center font-bold text-sky-900 border-l-2 border-slate-700 bg-sky-50/20">${sk.baseSV.toFixed(1)}</td>
             <td class="py-2 px-1.5 text-center font-bold text-sky-600 bg-sky-50/20">+${sk.svLift.toFixed(1)}</td>
             <td class="py-2 px-1.5 text-center border-r-2 border-slate-700 bg-sky-50/20"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${svBadge}">${sk.defSV.toFixed(1)}</span></td>
             <td class="py-2 px-1.5 text-center font-bold text-emerald-800 border-l-2 border-slate-700 bg-emerald-50/20">${sk.humanBase.toFixed(1)}</td>
-            <td class="py-2 px-1.5 text-center font-bold text-teal-700 bg-emerald-50/20">+${sk.aiLift.toFixed(1)}</td>
+            <td class="py-2 px-1.5 text-center font-bold text-teal-600 bg-emerald-50/20">+${sk.aiLift.toFixed(1)}</td>
             <td class="py-2 px-1.5 text-center border-r-2 border-slate-700 bg-emerald-50/20"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${rBadge}">${sk.humanAiTotal.toFixed(1)}</span></td>
-            <td class="py-2 px-2 text-[11px] text-slate-500">${sk.driver}</td>
+            <td class="py-2 px-2 text-slate-600">${sk.driver}</td>
           </tr>
         `;
       }).join("");
@@ -2486,14 +2561,14 @@
         options: {
           indexAxis: "y", responsive: true, maintainAspectRatio: false,
           scales: {
-            x: { stacked: true, min: 0, max: 100, title: { display: true, text: "Score (0–100 Scale • Higher = Better | Both AI Resilience & Human Distinctive Show Base + AI-Augmented Lift)" } },
+            x: { stacked: true, min: 0, max: 100, title: { display: true, text: "Score (0–100 Scale • Higher = Better | Both AI Resilience & Human Distinctive Show Base + Incremental Lift)" } },
             y: { stacked: true }
           },
           plugins: { legend: { position: "top", labels: { boxWidth: 12, font: { size: 11 } } } }
         }
       });
 
-      const allJobCalcs = jobs.map(j => ({ j, calc: getAdjustedJobSkills(j), shift: getJobBlsShift(j) }));
+      const allJobCalcs = jobs.map(j => ({ j, calc: getAdjustedJobSkills(j) }));
       const jobGrowthMed = getColumnMedian(JOBS.map(j => j.epGrowth5Yr));
       const jobBaseSVMed = getColumnMedian(allJobCalcs.map(x => x.calc.jobBaseSV));
       const jobSvLiftMed = getColumnMedian(allJobCalcs.map(x => x.calc.jobSvLift));
@@ -2501,9 +2576,8 @@
       const jobHumanMed = getColumnMedian(allJobCalcs.map(x => x.calc.jobHumanBase));
       const jobAiLiftMed = getColumnMedian(allJobCalcs.map(x => x.calc.jobAiLift));
       const jobTotalRMed = getColumnMedian(allJobCalcs.map(x => x.calc.jobHumanAiTotal));
-      const jobShiftMed = getColumnMedian(JOBS.map(j => getJobBlsShift(j)));
 
-      document.getElementById("allJobsSummaryTableBody").innerHTML = allJobCalcs.map(({ j, calc, shift }) => {
+      document.getElementById("allJobsSummaryTableBody").innerHTML = allJobCalcs.map(({ j, calc }, rowIdx) => {
         const isSelected = j.id === selectedJobId;
         const growthBadge = getGrowthBadge(j.epGrowth5Yr, jobGrowthMed);
         const baseSvBadge = getHigherBetterBadge(calc.jobBaseSV, jobBaseSVMed, 1.5);
@@ -2512,16 +2586,29 @@
         const humanBadge = getHigherBetterBadge(calc.jobHumanBase, jobHumanMed, 1.5);
         const aiBadge = getHigherBetterBadge(calc.jobAiLift, jobAiLiftMed, 0.8);
         const totalRBadge = getHigherBetterBadge(calc.jobHumanAiTotal, jobTotalRMed, 1.5);
-        const shiftBadge = getShiftBadge(shift, jobShiftMed);
+        const bottomFrameBorder = rowIdx === allJobCalcs.length - 1 ? "border-b-2 border-slate-700" : "";
 
-        const skillsPills = calc.rows.map(sk => {
+        // Sort skills by lowest AI Resilience (bottlenecks first) and display Top 2 + hover pill for remaining 6
+        const sortedBottlenecks = [...calc.rows].sort((a, b) => a.defSV - b.defSV);
+        const top2 = sortedBottlenecks.slice(0, 2);
+        const rest6 = sortedBottlenecks.slice(2);
+        const restTooltip = rest6.map(sk => {
+          const sName = sk.name.replace(/\s*\(O\*NET.*\)/, "");
+          return `• ${sName} (${(sk.weight*100).toFixed(0)}% wt | AI Res: ${sk.defSV.toFixed(0)} | Human Dist: ${sk.humanAiTotal.toFixed(0)})`;
+        }).join("\n");
+
+        const top2Pills = top2.map(sk => {
           const pillColor = sk.defSV >= 55 ? "bg-emerald-50 text-emerald-800 border-emerald-200" : sk.defSV >= 38 ? "bg-amber-50 text-amber-800 border-amber-200" : "bg-red-50 text-red-800 border-red-200";
           const shortName = sk.name.replace(/\s*\(O\*NET.*\)/, "");
           return `<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded border text-[10px] mr-1 mb-1 ${pillColor}">
             <span class="font-semibold">${shortName}</span>
-            <span class="font-mono opacity-80">(${(sk.weight*100).toFixed(0)}% | AI Res:${sk.baseSV.toFixed(0)}+${sk.svLift.toFixed(0)}=${sk.defSV.toFixed(0)} | Human Dist:${sk.humanBase.toFixed(0)}+${sk.aiLift.toFixed(0)}=${sk.humanAiTotal.toFixed(0)})</span>
+            <span class="font-mono opacity-80">(${(sk.weight*100).toFixed(0)}% | X:${sk.defSV.toFixed(0)} Y:${sk.humanAiTotal.toFixed(0)})</span>
           </div>`;
         }).join("");
+
+        const moreBadge = rest6.length > 0
+          ? `<span title="${restTooltip}" class="inline-flex items-center px-2 py-0.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 text-[10px] font-semibold cursor-help mb-1">+${rest6.length} more skills ⓘ</span>`
+          : "";
 
         return `
           <tr class="${isSelected ? 'bg-red-50/40' : 'hover:bg-slate-50'} transition align-top">
@@ -2529,24 +2616,23 @@
               <div class="font-bold text-slate-900">${j.title}</div>
               <div class="text-[10px] font-mono text-slate-500">SOC ${j.soc} • O*NET ${j.onet}</div>
             </td>
-            <td class="py-3 px-2.5">
+            <td class="py-3 px-2">
               <div class="font-semibold text-slate-800 text-[11px]">${j.schools.map(s => s.split(" ")[0]).join(", ")}</div>
               <div class="text-[10px] text-slate-500">${j.majors.join(", ")}</div>
             </td>
-            <td class="py-3 px-2.5 max-w-md">${skillsPills}</td>
-            <td class="py-3 px-1.5 text-right font-semibold">${j.inEmp.toLocaleString()}</td>
-            <td class="py-3 px-1.5 text-right font-bold text-slate-800">$${j.inMeanWage.toLocaleString()}</td>
-            <td class="py-3 px-1.5 text-center"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${growthBadge}">+${j.epGrowth5Yr}%</span></td>
-            <td class="py-3 px-1.5 text-center"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${baseSvBadge}">${calc.jobBaseSV.toFixed(1)}</span></td>
-            <td class="py-3 px-1.5 text-center"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${svLiftBadge}">+${calc.jobSvLift.toFixed(1)}</span></td>
-            <td class="py-3 px-1.5 text-center"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${svBadge}">${calc.jobDefSV.toFixed(1)}</span></td>
-            <td class="py-3 px-1.5 text-center"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${humanBadge}">${calc.jobHumanBase.toFixed(1)}</span></td>
-            <td class="py-3 px-1.5 text-center"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${aiBadge}">+${calc.jobAiLift.toFixed(1)}</span></td>
-            <td class="py-3 px-1.5 text-center"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${totalRBadge}">${calc.jobHumanAiTotal.toFixed(1)}</span></td>
-            <td class="py-3 px-1.5 text-center"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${shiftBadge}">+${shift} pts</span></td>
-            <td class="py-3 px-3 text-right whitespace-nowrap">
-              <button onclick="inspectJob('${j.id}')" class="${isSelected ? 'bg-slate-800 text-white' : 'bg-red-800 hover:bg-red-900 text-white'} font-semibold px-3 py-1.5 rounded-lg text-[11px] transition shadow-sm">
-                ${isSelected ? 'Viewing Above ✓' : 'Inspect Skills ↑'}
+            <td class="py-3 px-2.5 max-w-md">${top2Pills}${moreBadge}</td>
+            <td class="py-3 px-1.5 text-right font-semibold border-l-2 border-slate-700 bg-amber-50/15 ${bottomFrameBorder}">${j.inEmp.toLocaleString()}</td>
+            <td class="py-3 px-1.5 text-right font-bold text-slate-800 bg-amber-50/15 ${bottomFrameBorder}">$${j.inMeanWage.toLocaleString()}</td>
+            <td class="py-3 px-1.5 text-center border-r-2 border-slate-700 bg-amber-50/15 ${bottomFrameBorder}"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${growthBadge}">+${j.epGrowth5Yr}%</span></td>
+            <td class="py-3 px-1.5 text-center border-l-2 border-slate-700 bg-sky-50/20 ${bottomFrameBorder}"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${baseSvBadge}">${calc.jobBaseSV.toFixed(1)}</span></td>
+            <td class="py-3 px-1.5 text-center bg-sky-50/20 ${bottomFrameBorder}"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${svLiftBadge}">+${calc.jobSvLift.toFixed(1)}</span></td>
+            <td class="py-3 px-1.5 text-center border-r-2 border-slate-700 bg-sky-50/20 ${bottomFrameBorder}"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${svBadge}">${calc.jobDefSV.toFixed(1)}</span></td>
+            <td class="py-3 px-1.5 text-center border-l-2 border-slate-700 bg-emerald-50/20 ${bottomFrameBorder}"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${humanBadge}">${calc.jobHumanBase.toFixed(1)}</span></td>
+            <td class="py-3 px-1.5 text-center bg-emerald-50/20 ${bottomFrameBorder}"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${aiBadge}">+${calc.jobAiLift.toFixed(1)}</span></td>
+            <td class="py-3 px-1.5 text-center border-r-2 border-slate-700 bg-emerald-50/20 ${bottomFrameBorder}"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${totalRBadge}">${calc.jobHumanAiTotal.toFixed(1)}</span></td>
+            <td class="py-3 px-2.5 text-right">
+              <button onclick="selectJobFromTable('${j.id}')" class="bg-slate-800 hover:bg-red-800 text-white font-semibold px-2.5 py-1.5 rounded-lg text-[11px] transition whitespace-nowrap">
+                Inspect Skills ↑
               </button>
             </td>
           </tr>
@@ -2558,6 +2644,7 @@
       const progs = getFilteredPrograms();
       const horizon = document.getElementById("globalHorizon").value;
       const weightMode = document.getElementById("globalWeighting").value;
+      const activeSchoolFilter = document.getElementById("globalSchoolFilter").value;
 
       document.getElementById("horizonBadgePortfolio").textContent = horizon === "2025" ? "2025/2026 Baseline" : "5-Year BLS Projection (2030)";
       document.getElementById("weightModeLabel").textContent = weightMode === "headcount" ? "Graduate Headcount" : "Indiana 5-Yr Wage-Bill";
@@ -2587,22 +2674,30 @@
         const sr = (wr / tw).toFixed(1);
         const avgWage = Math.round(wageSum / grads);
         const color = SCHOOL_COLORS[schoolName];
+        const isSelectedSchool = activeSchoolFilter === schoolName;
+        const isDimmed = activeSchoolFilter !== "ALL" && !isSelectedSchool;
 
         return `
-          <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50/70 hover:bg-slate-50 transition">
+          <div onclick="toggleSchoolCardFilter('${schoolName.replace(/'/g, "\\'")}')" class="cursor-pointer p-3.5 rounded-xl border-2 transition ${
+            isSelectedSchool ? 'border-red-800 bg-red-50/30 shadow-md' : (isDimmed ? 'border-slate-200 bg-slate-50/40 opacity-60 hover:opacity-100' : 'border-slate-200 bg-slate-50/70 hover:border-slate-300 hover:bg-slate-50')
+          }">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2">
-                <span class="w-3 h-3 rounded-full" style="background:${color}"></span>
-                <a href="${sProgs[0].schoolUrl}" target="_blank" class="font-bold text-xs text-slate-900 hover:underline">${schoolName} (${sProgs.length} Majors) ↗</a>
+                <span class="w-3.5 h-3.5 rounded-full shrink-0" style="background:${color}"></span>
+                <span class="font-bold text-xs text-slate-900">${schoolName} (${sProgs.length} Majors)</span>
+                ${isSelectedSchool ? '<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-red-800 text-white">Active Filter ✕</span>' : ''}
               </div>
-              <span class="text-[11px] text-slate-500 font-medium">${grads.toLocaleString()} grads • $${(avgWage/1000).toFixed(1)}k 5-yr med</span>
+              <div class="flex items-center gap-2">
+                <span class="text-[11px] text-slate-500 font-medium">${grads.toLocaleString()} grads • $${(avgWage/1000).toFixed(1)}k 5-yr med</span>
+                <a href="${sProgs[0].schoolUrl}" target="_blank" onclick="event.stopPropagation()" class="text-[11px] text-red-700 underline">Site ↗</a>
+              </div>
             </div>
             <div class="grid grid-cols-6 gap-1.5 mt-2.5 text-center">
               <div class="bg-white p-1.5 rounded-lg border border-slate-200/80"><div class="text-[9px] text-slate-500 uppercase">AI Res Base</div><div class="text-xs font-extrabold text-sky-900">${sBaseSV}</div></div>
-              <div class="bg-white p-1.5 rounded-lg border border-slate-200/80"><div class="text-[9px] text-slate-500 uppercase">AI Res (Incremental)</div><div class="text-xs font-extrabold text-sky-600">+${sSvLift}</div></div>
+              <div class="bg-white p-1.5 rounded-lg border border-slate-200/80"><div class="text-[9px] text-slate-500 uppercase">AI Res (Incr)</div><div class="text-xs font-extrabold text-sky-600">+${sSvLift}</div></div>
               <div class="bg-sky-50/70 p-1.5 rounded-lg border border-sky-200"><div class="text-[9px] text-sky-800 font-bold uppercase">AI Res Total (X)</div><div class="text-xs font-extrabold text-sky-700">${sDefSV}</div></div>
               <div class="bg-white p-1.5 rounded-lg border border-slate-200/80"><div class="text-[9px] text-slate-500 uppercase">Human Dist Base</div><div class="text-xs font-extrabold text-emerald-800">${sh}</div></div>
-              <div class="bg-white p-1.5 rounded-lg border border-slate-200/80"><div class="text-[9px] text-slate-500 uppercase">Human Dist (Incremental)</div><div class="text-xs font-extrabold text-teal-600">+${sai}</div></div>
+              <div class="bg-white p-1.5 rounded-lg border border-slate-200/80"><div class="text-[9px] text-slate-500 uppercase">Human Dist (Incr)</div><div class="text-xs font-extrabold text-teal-600">+${sai}</div></div>
               <div class="bg-emerald-50/70 p-1.5 rounded-lg border border-emerald-200"><div class="text-[9px] text-emerald-800 font-bold uppercase">Human Dist Total (Y)</div><div class="text-xs font-extrabold text-emerald-700">${sr}</div></div>
             </div>
           </div>
@@ -2617,10 +2712,9 @@
       const majorHumanMed = getColumnMedian(allMajorMetrics.map(x => x.m.humanBase));
       const majorAiMed = getColumnMedian(allMajorMetrics.map(x => x.m.aiLift));
       const majorTotalRMed = getColumnMedian(allMajorMetrics.map(x => x.m.r));
-      const majorShiftMed = getColumnMedian(allMajorMetrics.map(x => x.m.vDelta));
 
       document.getElementById("majorTableBody").innerHTML = progs.map((p, rowIdx) => {
-        const { baseSV, svLift, defSV, humanBase, aiLift, r, vDelta } = getProgramMetrics(p);
+        const { baseSV, svLift, defSV, humanBase, aiLift, r } = getProgramMetrics(p);
         const blsGrowth = getMajorBlsGrowth(p);
         const color = SCHOOL_COLORS[p.school];
         const growthBadge = getGrowthBadge(blsGrowth, majorGrowthMed);
@@ -2630,7 +2724,6 @@
         const humanBadge = getHigherBetterBadge(humanBase, majorHumanMed, 1.5);
         const aiBadge = getHigherBetterBadge(aiLift, majorAiMed, 0.8);
         const totalRBadge = getHigherBetterBadge(r, majorTotalRMed, 1.5);
-        const shiftBadge = getShiftBadge(vDelta, majorShiftMed);
         const bottomFrameBorder = rowIdx === progs.length - 1 ? "border-b-2 border-slate-700" : "";
         return `
           <tr class="hover:bg-slate-50 transition">
@@ -2642,8 +2735,7 @@
             <td class="py-2.5 px-1.5 text-slate-600 text-[10.5px] leading-snug break-words">${p.socs}</td>
             <td class="py-2.5 px-1 text-right font-semibold border-l-2 border-slate-700 bg-amber-50/15 ${bottomFrameBorder}">${p.grads}</td>
             <td class="py-2.5 px-1 text-right font-bold text-slate-800 bg-amber-50/15 ${bottomFrameBorder}">$${p.wages.y5.toLocaleString()}</td>
-            <td class="py-2.5 px-1 text-center bg-amber-50/15 ${bottomFrameBorder}"><span class="px-1.5 py-0.5 rounded-full text-[10.5px] font-bold border ${growthBadge}">+${blsGrowth}%</span></td>
-            <td class="py-2.5 px-1 text-center border-r-2 border-slate-700 bg-amber-50/15 ${bottomFrameBorder}"><span class="px-1.5 py-0.5 rounded-full text-[10.5px] font-bold border ${shiftBadge}">+${vDelta} pts</span></td>
+            <td class="py-2.5 px-1 text-center border-r-2 border-slate-700 bg-amber-50/15 ${bottomFrameBorder}"><span class="px-1.5 py-0.5 rounded-full text-[10.5px] font-bold border ${growthBadge}">+${blsGrowth}%</span></td>
             <td class="py-2.5 px-1 text-center border-l-2 border-slate-700 bg-sky-50/20 ${bottomFrameBorder}"><span class="px-1.5 py-0.5 rounded-full text-[10.5px] font-bold border ${baseSvBadge}">${baseSV.toFixed(1)}</span></td>
             <td class="py-2.5 px-1 text-center bg-sky-50/20 ${bottomFrameBorder}"><span class="px-1.5 py-0.5 rounded-full text-[10.5px] font-bold border ${svLiftBadge}">+${svLift.toFixed(1)}</span></td>
             <td class="py-2.5 px-1 text-center border-r-2 border-slate-700 bg-sky-50/20 ${bottomFrameBorder}"><span class="px-1.5 py-0.5 rounded-full text-[10.5px] font-bold border ${defSvBadge}">${defSV.toFixed(1)}</span></td>
@@ -2663,8 +2755,6 @@
       const ctx = document.getElementById("portfolioBubbleChart").getContext("2d");
       if (bubbleChartInstance) bubbleChartInstance.destroy();
 
-      // Bubble is positioned at Baseline (x: baseSV, y: humanBase)
-      // Faded arrow originates at the outer edge of the Baseline bubble (x, y) and points toward Baseline + AI-Augmented (xTarget: defSV, yTarget: r)
       const datasets = Object.keys(SCHOOL_COLORS).map(schoolName => {
         const schoolProgs = progs.filter(p => p.school === schoolName);
         return {
@@ -2696,38 +2786,29 @@
 
       const humanAiArrowPlugin = {
         id: "humanAiArrowPlugin",
-        beforeDatasetsDraw(chart) {
-          const { ctx: c, chartArea, scales: { x: xScale, y: yScale } } = chart;
-          if (!chartArea) return;
-          const { left, right, top, bottom } = chartArea;
-          const breakValX = 55;
-          const breakValY = 65;
-          const midX = xScale.getPixelForValue(breakValX);
-          const midY = yScale.getPixelForValue(breakValY);
-
+        beforeDraw(chart) {
+          const { ctx: c, chartArea: { left, right, top, bottom }, scales: { x: xScale, y: yScale } } = chart;
+          const midX = xScale.getPixelForValue(55);
+          const midY = yScale.getPixelForValue(65);
           c.save();
-          // Quadrant 1 (Top-Right: X >= 55, Y >= 65)
+
           if (midX < right && midY > top) {
             c.fillStyle = "rgba(16, 185, 129, 0.055)";
             c.fillRect(midX, top, right - midX, midY - top);
           }
-          // Quadrant 2 (Top-Left: X < 55, Y >= 65)
           if (midX > left && midY > top) {
             c.fillStyle = "rgba(14, 165, 233, 0.055)";
             c.fillRect(left, top, midX - left, midY - top);
           }
-          // Quadrant 3 (Bottom-Left: X < 55, Y < 65)
           if (midX > left && midY < bottom) {
             c.fillStyle = "rgba(239, 68, 68, 0.055)";
             c.fillRect(left, midY, midX - left, bottom - midY);
           }
-          // Quadrant 4 (Bottom-Right: X >= 55, Y < 65)
           if (midX < right && midY < bottom) {
             c.fillStyle = "rgba(245, 158, 11, 0.055)";
             c.fillRect(midX, midY, right - midX, bottom - midY);
           }
 
-          // Draw Quadrant Break Lines at X = 55 and Y = 65
           c.strokeStyle = "#475569";
           c.lineWidth = 1.6;
           c.setLineDash([6, 4]);
@@ -2745,23 +2826,23 @@
           }
           c.setLineDash([]);
 
-          // Quadrant Corner Watermark Labels (+2pt larger, criteria & break labels removed)
-          c.font = "bold 12.7px -apple-system, BlinkMacSystemFont, sans-serif";
+          // Aligned Quadrant Corner Watermark Labels
+          c.font = "bold 12.5px -apple-system, BlinkMacSystemFont, sans-serif";
           c.fillStyle = "#047857";
           c.textAlign = "right";
           c.fillText("High AI Resilience & High Human Distinctive", right - 10, top + 18);
 
           c.fillStyle = "#0369a1";
           c.textAlign = "left";
-          c.fillText("AI-Augmented Transition", left + 10, top + 18);
+          c.fillText("Low AI Resilience & High Human Distinctive", left + 10, top + 18);
 
           c.fillStyle = "#b91c1c";
           c.textAlign = "left";
-          c.fillText("Priority Curriculum Defense", left + 10, bottom - 10);
+          c.fillText("Low AI Resilience & Baseline Human Distinctive", left + 10, bottom - 10);
 
           c.fillStyle = "#b45309";
           c.textAlign = "right";
-          c.fillText("AI Resilient / Baseline Human Distinctive", right - 10, bottom - 10);
+          c.fillText("High AI Resilience & Baseline Human Distinctive", right - 10, bottom - 10);
           c.restore();
         },
         afterDatasetsDraw(chart) {
@@ -2784,18 +2865,14 @@
 
               const ux = dx / dist;
               const uy = dy / dist;
-
-              // Fade the school color for the connecting line and arrowhead pointing from Baseline (x, y) to Baseline+Augmented (xTarget, yTarget)
               const baseColor = raw.color || "#0f172a";
               const endDotRadius = 3.6;
 
-              // Start the arrow shaft just outside the Baseline bubble perimeter and stop at the edge of the endpoint dot
               const startX = pxBubble + ux * (raw.r + 1.5);
               const startY = pyBubble + uy * (raw.r + 1.5);
               const tipX = pxTarget - ux * (endDotRadius + 1.0);
               const tipY = pyTarget - uy * (endDotRadius + 1.0);
 
-              // Draw faded dashed arrow shaft from Baseline bubble edge to the endpoint dot
               c.globalAlpha = 0.35;
               c.beginPath();
               c.strokeStyle = baseColor;
@@ -2806,7 +2883,6 @@
               c.stroke();
               c.setLineDash([]);
 
-              // Draw faded filled arrowhead pointing into the endpoint dot
               const headLen = 7.2;
               const headHalfWidth = 4.0;
               const pxPerp = -uy;
@@ -2823,7 +2899,6 @@
               c.closePath();
               c.fill();
 
-              // Draw small circle/dot at the exact Baseline+AI-Augmented (X, Y) endpoint (pxTarget, pyTarget)
               c.globalAlpha = 0.85;
               c.beginPath();
               c.fillStyle = baseColor;
@@ -2835,7 +2910,6 @@
             });
           });
 
-          // Draw Single-Line Legend Box in Lower-Right Quadrant (Quadrant 4: X >= 55, Y < 65)
           if (chartArea) {
             const { right, bottom } = chartArea;
             const midX = xScale.getPixelForValue(55);
@@ -2848,7 +2922,6 @@
               { lead: "Arrows: ", body: "Estimated Impact of AI on Baseline AI Resilience & Human Distinctive" }
             ];
 
-            // Auto-fit font size slightly only if needed so the widest single-line item fits cleanly inside Quadrant 4
             const maxQuadW = Math.max(260, right - midX - 16);
             let fontSize = 9.8;
             let maxLineW = 0;
@@ -2919,7 +2992,7 @@
                 label: (ctx) => {
                   const d = ctx.raw;
                   const slope = d.svLift > 0.1 ? (d.aiLift / d.svLift).toFixed(2) : "∞";
-                  return `${d.progName}: Bubble Base (${d.x.toFixed(1)}, ${d.y.toFixed(1)}) → Arrow Augmented (${d.xTarget.toFixed(1)}, ${d.yTarget.toFixed(1)}) [+${d.svLift.toFixed(1)} AI Resilience, +${d.aiLift.toFixed(1)} Human Distinctive | Slope = ${slope}]`;
+                  return `${d.progName}: Bubble Base (${d.x.toFixed(1)}, ${d.y.toFixed(1)}) → Arrow Total (${d.xTarget.toFixed(1)}, ${d.yTarget.toFixed(1)}) [+${d.svLift.toFixed(1)} AI Resilience, +${d.aiLift.toFixed(1)} Human Distinctive | Slope = ${slope}]`;
                 }
               }
             }
@@ -2943,50 +3016,45 @@
       const { baseSV, svLift, defSV, humanBase, aiLift, r: humanAiTotal, courses, selectedInts, skillRows, wSkBaseSV, wSkSvLift, wSkDefSV, wSkHumanBase, wSkAiLift, wSkHumanAiTotal } = metrics;
       const activeSet = majorInterventionsMap[prog.id] || new Set();
 
+      // Streamlined, non-redundant top impact banner
       document.getElementById("simImpactBanner").innerHTML = `
-        <div class="text-center px-2">
-          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">AI Resilience (Base X₀)</div>
-          <div class="text-base font-black text-sky-900">${baseSV.toFixed(1)}</div>
+        <div class="px-3 py-1.5 rounded-lg bg-sky-50 border border-sky-200 text-xs">
+          <span class="text-slate-600 font-semibold">AI Resilience (X):</span>
+          <strong class="text-sky-900 ml-1">${baseSV.toFixed(1)} Base + ${svLift.toFixed(1)} Incr = <span class="text-sm font-black">${defSV.toFixed(1)}</span></strong>
         </div>
-        <div class="text-center px-2">
-          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">AI Resilience (Incremental)</div>
-          <div class="text-base font-black text-sky-600">+${svLift.toFixed(1)}</div>
+        <div class="px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-xs">
+          <span class="text-slate-600 font-semibold">Human Distinctive (Y):</span>
+          <strong class="text-emerald-900 ml-1">${humanBase.toFixed(1)} Base + ${aiLift.toFixed(1)} Incr = <span class="text-sm font-black">${humanAiTotal.toFixed(1)}</span></strong>
         </div>
-        <div class="text-center px-2 bg-sky-50 rounded-lg py-1 border border-sky-200">
-          <div class="text-[9px] uppercase tracking-wider text-sky-800 font-bold">AI Resilience (Total X)</div>
-          <div class="text-base font-black text-sky-700">${defSV.toFixed(1)}</div>
-        </div>
-        <div class="h-8 w-px bg-slate-300"></div>
-        <div class="text-center px-2">
-          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">Human Distinctive (Base Y₀)</div>
-          <div class="text-base font-black text-emerald-800">${humanBase.toFixed(1)}</div>
-        </div>
-        <div class="text-center px-2">
-          <div class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold">Human Distinctive (Incremental)</div>
-          <div class="text-base font-black text-teal-600">+${aiLift.toFixed(1)}</div>
-        </div>
-        <div class="text-center px-2 bg-emerald-50 rounded-lg py-1 border border-emerald-200">
-          <div class="text-[9px] uppercase tracking-wider text-emerald-800 font-bold">Human Distinctive (Total Y)</div>
-          <div class="text-base font-black text-emerald-700">${humanAiTotal.toFixed(1)}</div>
+        <div class="px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs">
+          <span class="text-slate-500">5-Yr Med Wage:</span> <strong class="text-slate-900">$${prog.wages.y5.toLocaleString()}</strong>
+          <span class="text-slate-300 mx-1">•</span>
+          <span class="text-slate-500">Active Defenses:</span> <strong class="text-red-800">${selectedInts.length} / 8</strong>
         </div>
       `;
 
+      const simDrawerBadge = document.getElementById("simDrawerSummaryBadge");
+      if (simDrawerBadge) {
+        simDrawerBadge.innerHTML = `Weighted Total — <strong class="text-sky-800">AI Res: ${wSkDefSV.toFixed(1)}</strong> • <strong class="text-emerald-800">Human Dist: ${wSkHumanAiTotal.toFixed(1)}</strong>`;
+      }
+
       const skSVMed = getColumnMedian(skillRows.map(s => s.skDefSV));
       const skRMed = getColumnMedian(skillRows.map(s => s.skHumanAiTotal));
+
       document.getElementById("skillTableBody").innerHTML = skillRows.map(sk => {
         const svBadge = getHigherBetterBadge(sk.skDefSV, skSVMed, 3.0);
         const rBadge = getHigherBetterBadge(sk.skHumanAiTotal, skRMed, 3.0);
         return `
           <tr class="hover:bg-slate-50">
             <td class="py-2 px-2.5 font-semibold text-slate-800">${sk.name}</td>
-            <td class="py-2 px-1.5 text-right font-mono font-bold text-slate-800 border-l-2 border-r-2 border-slate-700 bg-amber-50/15">${(sk.weight * 100).toFixed(0)}%</td>
+            <td class="py-2 px-1.5 text-right font-mono text-slate-700 border-l-2 border-r-2 border-slate-700 bg-amber-50/15">${(sk.weight * 100).toFixed(0)}%</td>
             <td class="py-2 px-1.5 text-center font-bold text-sky-900 border-l-2 border-slate-700 bg-sky-50/20">${sk.skBaseSV.toFixed(1)}</td>
             <td class="py-2 px-1.5 text-center font-bold text-sky-600 bg-sky-50/20">+${sk.skSvLift.toFixed(1)}</td>
             <td class="py-2 px-1.5 text-center border-r-2 border-slate-700 bg-sky-50/20"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${svBadge}">${sk.skDefSV.toFixed(1)}</span></td>
             <td class="py-2 px-1.5 text-center font-bold text-emerald-800 border-l-2 border-slate-700 bg-emerald-50/20">${sk.skHumanBase.toFixed(1)}</td>
-            <td class="py-2 px-1.5 text-center font-bold text-teal-700 bg-emerald-50/20">+${sk.skAiLift.toFixed(1)}</td>
+            <td class="py-2 px-1.5 text-center font-bold text-teal-600 bg-emerald-50/20">+${sk.skAiLift.toFixed(1)}</td>
             <td class="py-2 px-1.5 text-center border-r-2 border-slate-700 bg-emerald-50/20"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${rBadge}">${sk.skHumanAiTotal.toFixed(1)}</span></td>
-            <td class="py-2 px-2 text-[11px] text-slate-500">${sk.driver}</td>
+            <td class="py-2 px-2 text-slate-600">${sk.driver}</td>
           </tr>
         `;
       }).join("");
@@ -3046,7 +3114,7 @@
       skillChartInstance = new Chart(ctx, {
         type: "bar",
         data: {
-          labels: skillRows.map(s => s.name.length > 32 ? s.name.slice(0, 32) + "…" : s.name),
+          labels: skillRows.map(s => `[${(s.weight * 100).toFixed(0)}%] ` + (s.name.length > 30 ? s.name.slice(0, 30) + "…" : s.name)),
           datasets: [
             { label: "AI Resilience (Base)", data: skillRows.map(s => s.skBaseSV), backgroundColor: "#0284c7", borderRadius: 3, stack: "sv_stack" },
             { label: "AI Resilience (Incremental)", data: skillRows.map(s => s.skSvLift), backgroundColor: "#38bdf8", borderRadius: 3, stack: "sv_stack" },
@@ -3057,7 +3125,7 @@
         options: {
           indexAxis: "y", responsive: true, maintainAspectRatio: false,
           scales: {
-            x: { stacked: true, min: 0, max: 100, title: { display: true, text: "Score (0–100 Scale • Higher = Better | Both AI Resilience & Human Distinctive Show Base + AI-Augmented Lift)" } },
+            x: { stacked: true, min: 0, max: 100, title: { display: true, text: "Score (0–100 Scale • Higher = Better | Both AI Resilience & Human Distinctive Show Base + Incremental Lift)" } },
             y: { stacked: true }
           },
           plugins: { legend: { position: "top", labels: { boxWidth: 12, font: { size: 11 } } } }
@@ -3507,7 +3575,7 @@
       c.restore();
     }
 
-    // Tab 4: Render Options 1, 3, and 5 Stacked Vertically + Detailed Bridge Directory
+    // Tab 4: Render Visualizations A, B, and C Stacked Vertically (Bridge Directory Cards Removed)
     function renderPipeline() {
       const progs = getFilteredPrograms();
       const progsWithRet = progs.map(p => ({ p, ret: getProgramRetentionDynamics(p) }));
@@ -3527,10 +3595,10 @@
         wfBadge.textContent = `+$${totalPayrollLiftM.toFixed(1)}M/Yr Additional 5-Yr Retained IN Graduate Payroll`;
       }
 
-      // (A) Render Option 1: Three-Stage Alluvial / Sankey Flow
+      // (A) Render Three-Stage Alluvial / Sankey Flow
       renderPipelineSankey(progsWithRet);
 
-      // (B) Render Option 3: Indiana Industry (NAICS) Talent Retention & At-Risk Waterfall
+      // (B) Render Indiana Industry (NAICS) Talent Retention & At-Risk Waterfall
       const sectorAgg = {};
       CANONICAL_NAICS_SECTORS.forEach(sec => {
         sectorAgg[sec.id] = { ...sec, baseGrads: 0, liftGrads: 0, gapGrads: 0, payrollM: 0, svSum: 0, rSum: 0, wSum: 0 };
@@ -3601,7 +3669,7 @@
                   const sec = activeSectors[items[0].dataIndex];
                   const avgSV = (sec.svSum / (sec.wSum || 1)).toFixed(1);
                   const avgR = (sec.rSum / (sec.wSum || 1)).toFixed(1);
-                  return `Total 5-Yr AI-Defended IN Grads: ${sec.baseGrads + sec.liftGrads} (+${sec.liftGrads} Defense Lift) | Sector Avg AI Resilience: ${avgSV} • Human Distinctive: ${avgR}`;
+                  return `Total 5-Yr Defended IN Grads: ${sec.baseGrads + sec.liftGrads} (+${sec.liftGrads} Defense Lift) | Sector Avg AI Resilience: ${avgSV} • Human Distinctive: ${avgR}`;
                 }
               }
             }
@@ -3609,11 +3677,11 @@
         }
       });
 
-      // (C) Render Option 5: CIP × NAICS → SOC Retention & Exposure Matrix Heatmap (Fits 100% in 1283px Width Without Horizontal Scroll)
+      // (C) Render CIP × NAICS → SOC Retention & Exposure Matrix Heatmap
       const heatmapEl = document.getElementById("pipelineMatrixHeatmapContainer");
       if (heatmapEl) {
         const headerCols = CANONICAL_NAICS_SECTORS.map(sec =>
-          `<th class="py-2 px-1 text-center w-[9.8%] text-[9px] leading-tight break-words">${sec.shortLabel}</th>`
+          `<th class="py-2 px-1 text-center w-[9.8%] text-[9px] leading-tight break-words" title="${sec.fullLabel}">${sec.shortLabel}</th>`
         ).join("");
 
         const bodyRows = progsWithRet.map(({ p, ret }, rowIdx) => {
@@ -3643,7 +3711,7 @@
             const socShortTitle = flow.topSoc.split(" ").slice(1, 3).join(" ").replace(/[,;]/g, "");
             return `
               <td class="py-1.5 px-1 align-middle overflow-hidden">
-                <div class="p-1 rounded-lg border ${intensity} text-center leading-tight shadow-2xs overflow-hidden" title="NAICS ${flow.sector} → ${flow.topSoc}">
+                <div class="p-1 rounded-lg border ${intensity} text-center leading-tight shadow-2xs overflow-hidden" title="${p.name} (CIP ${p.cip})\nIndustry: NAICS ${flow.sector} (${(flow.share*100).toFixed(0)}% flow)\nPrimary Role: ${flow.topSoc}\n5-Yr Defended Grads: ${cellGrads} (+${cellLift} Defense Lift)\n5-Yr Med Wage: $${p.wages.y5.toLocaleString()}">
                   <div class="font-extrabold text-[10px] truncate">${(flow.share * 100).toFixed(0)}% <span class="font-normal opacity-80">(${cellGrads}g)</span></div>
                   <div class="text-[8.5px] font-bold text-emerald-700 truncate">+${cellLift} Defense Lift</div>
                   <div class="text-[8px] font-mono opacity-80 truncate">${socCode} ${socShortTitle}</div>
@@ -3654,12 +3722,12 @@
 
           return `
             <tr onclick="launchSimulatorForMajor('${p.id}')" class="hover:bg-slate-50 cursor-pointer transition border-b border-slate-100">
-              <td class="py-2 px-2 font-bold text-slate-900 overflow-hidden">
+              <td class="py-2 px-2 font-bold text-slate-900 overflow-hidden" title="${p.name} • Cohort: ${p.grads} grads • 5-Yr Med Wage: $${p.wages.y5.toLocaleString()}">
                 <div class="flex items-center gap-1.5">
                   <span class="w-2 h-2 rounded-full shrink-0" style="background:${color}"></span>
-                  <span class="truncate text-[11px]" title="${p.name}">${p.name}</span>
+                  <span class="truncate text-[11px]">${p.name}</span>
                 </div>
-                <div class="text-[9px] font-normal text-slate-500 pl-3.5 truncate">CIP ${p.cip} • ${p.shortSchool}</div>
+                <div class="text-[9px] font-normal text-slate-500 pl-3.5 truncate">CIP ${p.cip} • ${p.grads}g • $${(p.wages.y5/1000).toFixed(0)}k</div>
               </td>
               ${sectorCells}
               <td class="py-1.5 px-1 text-center border-l-2 border-r-2 border-slate-700 bg-amber-50/20 ${bottomBorder}">
@@ -3667,8 +3735,8 @@
                 <div class="text-[9px] font-bold text-emerald-700 whitespace-nowrap">+${(ret.retLiftRate * 100).toFixed(1)}% (+${ret.gradsY5Lift}g)</div>
               </td>
               <td class="py-1.5 px-1 text-center border-l-2 border-r-2 border-slate-700 bg-sky-50/20 ${bottomBorder}">
-                <div class="font-bold text-[9.5px] text-sky-800 whitespace-nowrap" title="AI Resilience (Total X)">AI Res: ${ret.defSV.toFixed(1)}</div>
-                <div class="font-bold text-[9.5px] text-emerald-800 whitespace-nowrap" title="Human Distinctive (Total Y)">Hum Dist: ${ret.r.toFixed(1)}</div>
+                <div class="font-bold text-[9.5px] text-sky-800 whitespace-nowrap" title="AI Resilience (Base ${ret.baseSV.toFixed(1)} + Incr ${ret.svLift.toFixed(1)} = Total ${ret.defSV.toFixed(1)})">AI Res: ${ret.defSV.toFixed(1)}</div>
+                <div class="font-bold text-[9.5px] text-emerald-800 whitespace-nowrap" title="Human Distinctive (Base ${ret.humanBase.toFixed(1)} + Incr ${ret.aiLift.toFixed(1)} = Total ${ret.r.toFixed(1)})">Hum Dist: ${ret.r.toFixed(1)}</div>
               </td>
             </tr>
           `;
@@ -3688,52 +3756,39 @@
           </table>
         `;
       }
-
-      // Render Detailed Bridge Directory Cards below
-      document.getElementById("bridgeMatrixContainer").innerHTML = progsWithRet.map(({ p, ret }) => {
-        const { baseSV, svLift, defSV, humanBase, aiLift, r, retY5Base, retY5Def, retLiftRate, gradsY5Lift } = ret;
-        const schoolColor = SCHOOL_COLORS[p.school] || "#990000";
-        return `
-          <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100/60 transition">
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
-              <div class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full shrink-0" style="background:${schoolColor}"></span>
-                <span class="font-bold text-xs text-slate-900">${p.name} <span class="text-slate-500 font-normal">(CIP ${p.cip} • ${p.shortSchool})</span></span>
-              </div>
-              <div class="flex flex-wrap items-center gap-2.5 text-[11px]">
-                <span class="text-slate-600 font-medium">Cohort: <strong>${p.grads}</strong> grads</span>
-                <span class="text-slate-600 font-medium">5-Yr Med Wage: <strong>$${p.wages.y5.toLocaleString()}</strong></span>
-                <span class="font-semibold text-red-800 bg-red-50 px-2 py-0.5 rounded border border-red-200">5-Yr IN Match: ${(retY5Base * 100).toFixed(0)}% Base → <strong>${(retY5Def * 100).toFixed(0)}% Defended-Lift (+${(retLiftRate * 100).toFixed(1)}% / +${gradsY5Lift}g)</strong></span>
-              </div>
-            </div>
-            <div class="flex flex-wrap items-center gap-2 mb-2.5 text-[10px]">
-              <span class="px-2 py-0.5 rounded bg-sky-100 text-sky-900 font-bold">AI Resilience (Base): ${baseSV.toFixed(1)}</span>
-              <span class="px-2 py-0.5 rounded bg-sky-50 text-sky-700 border border-sky-200 font-bold">AI Resilience (Incremental): +${svLift.toFixed(1)}</span>
-              <span class="px-2 py-0.5 rounded bg-sky-700 text-white font-bold">AI Resilience (Total X): ${defSV.toFixed(1)}</span>
-              <span class="text-slate-300">|</span>
-              <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-900 font-bold">Human Distinctive (Base): ${humanBase.toFixed(1)}</span>
-              <span class="px-2 py-0.5 rounded bg-teal-50 text-teal-700 border border-teal-200 font-bold">Human Distinctive (Incremental): +${aiLift.toFixed(1)}</span>
-              <span class="px-2 py-0.5 rounded bg-emerald-700 text-white font-bold">Human Distinctive (Total Y): ${r.toFixed(1)}</span>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
-              ${p.naicsFlows.map(f => `
-                <div class="flex items-center justify-between text-[11px] bg-white px-3 py-2 rounded-lg border border-slate-200/90 shadow-2xs">
-                  <div class="truncate pr-2">
-                    <div class="text-slate-800 font-semibold truncate">NAICS ${f.sector}</div>
-                    <div class="text-[10px] text-slate-500 truncate">→ ${f.topSoc}</div>
-                  </div>
-                  <span class="font-extrabold text-xs text-red-800 bg-red-50 px-2 py-0.5 rounded border border-red-100 shrink-0">${(f.share * 100).toFixed(0)}%</span>
-                </div>
-              `).join("")}
-            </div>
-          </div>
-        `;
-      }).join("");
     }
 
-    // Dual Additive Group Metrics for Tab 5:
-    // - Substitution Vulnerability (X): baseSV (100 - g.v) + svLift (reskilling insulation lift) = defSV (Total X)
-    // - Human+AI Skills (Y): humanBase + aiLift = humanAiTotal (Total Y)
+    // -------------------------------------------------------------------------
+    // TAB 5: CONSOLIDATED SOC GROUPS (ALL 22 vs TOP 7) + ENHANCED 15-MSA MAP
+    // -------------------------------------------------------------------------
+    let indianaSocScope = "all22";
+
+    const IU_CAMPUS_ANCHORS = {
+      "msa-bloomington": { badge: "★ IU Bloomington Flagship", detail: "Home of IUB Flagship Campus (Kelley, Luddy, Arts & Sciences, O'Neill)" },
+      "msa-indy": { badge: "◆ IU Indianapolis", detail: "Host of IU Indianapolis, IU School of Medicine & Executive Education" },
+      "msa-gary": { badge: "◆ IU Northwest (Gary)", detail: "Host of IU Northwest Regional Campus" },
+      "msa-ftwayne": { badge: "◆ IU Fort Wayne", detail: "Host of IU Fort Wayne Regional Health & Computing Programs" },
+      "msa-southbend": { badge: "◆ IU South Bend", detail: "Host of IU South Bend Regional Campus" },
+      "msa-louisville": { badge: "◆ IU Southeast (New Albany)", detail: "Host of IU Southeast Regional Campus (Southern Indiana)" },
+      "msa-kokomo": { badge: "◆ IU Kokomo", detail: "Host of IU Kokomo Regional Campus" }
+    };
+
+    function setIndianaSocScope(scope) {
+      indianaSocScope = scope;
+      const bAll = document.getElementById("btnSocScopeAll22");
+      const bTop = document.getElementById("btnSocScopeTop7");
+      if (bAll && bTop) {
+        if (scope === "all22") {
+          bAll.className = "px-2.5 py-1 rounded-lg font-bold transition bg-red-800 text-white shadow-2xs";
+          bTop.className = "px-2.5 py-1 rounded-lg font-bold transition text-slate-600 hover:text-slate-900";
+        } else {
+          bTop.className = "px-2.5 py-1 rounded-lg font-bold transition bg-red-800 text-white shadow-2xs";
+          bAll.className = "px-2.5 py-1 rounded-lg font-bold transition text-slate-600 hover:text-slate-900";
+        }
+      }
+      renderIndiana();
+    }
+
     function getGroupMetrics(g) {
       const baseSV = +(100 - g.v).toFixed(1);
       const aiLift = parseFloat(g.lift.replace(/[^0-9.]/g, "")) || 9.0;
@@ -3746,84 +3801,61 @@
     }
 
     function renderIndiana() {
-      const top7Metrics = INDIANA_OCC_GROUPS.map(g => ({ g, m: getGroupMetrics(g) }));
-      const top7BaseSVMed = getColumnMedian(top7Metrics.map(x => x.m.baseSV));
-      const top7SvLiftMed = getColumnMedian(top7Metrics.map(x => x.m.svLift));
-      const top7SVMed = getColumnMedian(top7Metrics.map(x => x.m.defSV));
-      const top7HumanMed = getColumnMedian(top7Metrics.map(x => x.m.humanBase));
-      const top7AiMed = getColumnMedian(top7Metrics.map(x => x.m.aiLift));
-      const top7TotalRMed = getColumnMedian(top7Metrics.map(x => x.m.humanAiTotal));
+      const sortMode = (document.getElementById("indianaSocSort") || {}).value || "resilience_asc";
+      const metricView = (document.getElementById("indianaSocMetricView") || {}).value || "both";
 
-      document.getElementById("indianaTableBody").innerHTML = top7Metrics.map(({ g, m }, rowIdx) => {
-        const baseSvBadge = getHigherBetterBadge(m.baseSV, top7BaseSVMed, 1.8);
-        const svLiftBadge = getHigherBetterBadge(m.svLift, top7SvLiftMed, 0.8);
-        const svBadge = getHigherBetterBadge(m.defSV, top7SVMed, 1.8);
-        const humanBadge = getHigherBetterBadge(m.humanBase, top7HumanMed, 1.8);
-        const aiBadge = getHigherBetterBadge(m.aiLift, top7AiMed, 0.8);
-        const totalRBadge = getHigherBetterBadge(m.humanAiTotal, top7TotalRMed, 1.8);
-        const bottomFrameBorder = rowIdx === top7Metrics.length - 1 ? "border-b-2 border-slate-700" : "";
-        return `
-          <tr class="hover:bg-slate-50">
-            <td class="py-2.5 px-2.5 font-bold text-slate-900">${g.title}<div class="text-[10px] font-normal text-slate-500">SOC ${g.soc} • Est. Payroll $${g.payrollB}B</div></td>
-            <td class="py-2.5 px-1.5 text-right font-medium text-slate-700 border-l-2 border-r-2 border-slate-700 bg-amber-50/15 ${bottomFrameBorder}">${g.wage}</td>
-            <td class="py-2.5 px-1.5 text-center border-l-2 border-slate-700 bg-sky-50/20 ${bottomFrameBorder}"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${baseSvBadge}">${m.baseSV.toFixed(1)}</span></td>
-            <td class="py-2.5 px-1.5 text-center bg-sky-50/20 ${bottomFrameBorder}"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${svLiftBadge}">+${m.svLift.toFixed(1)}</span></td>
-            <td class="py-2.5 px-1.5 text-center border-r-2 border-slate-700 bg-sky-50/20 ${bottomFrameBorder}"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${svBadge}">${m.defSV.toFixed(1)}</span></td>
-            <td class="py-2.5 px-1.5 text-center border-l-2 border-slate-700 bg-emerald-50/20 ${bottomFrameBorder}"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${humanBadge}">${m.humanBase.toFixed(1)}</span></td>
-            <td class="py-2.5 px-1.5 text-center bg-emerald-50/20 ${bottomFrameBorder}"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${aiBadge}">+${m.aiLift.toFixed(1)}</span></td>
-            <td class="py-2.5 px-1.5 text-center border-r-2 border-slate-700 bg-emerald-50/20 ${bottomFrameBorder}"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${totalRBadge}">${m.humanAiTotal.toFixed(1)}</span></td>
-            <td class="py-2.5 px-2.5 text-[11px] text-slate-600">${g.pathway}</td>
-          </tr>
-        `;
-      }).join("");
+      const top7Socs = new Set(INDIANA_OCC_GROUPS.map(g => g.soc));
+      const rawList = indianaSocScope === "top7"
+        ? INDIANA_ALL_MAJOR_GROUPS.filter(g => top7Socs.has(g.soc))
+        : [...INDIANA_ALL_MAJOR_GROUPS];
 
-      const ctx = document.getElementById("indianaStateChart").getContext("2d");
-      if (indianaChartInstance) indianaChartInstance.destroy();
+      const groupItems = rawList.map(g => ({ g, m: getGroupMetrics(g) }));
 
-      indianaChartInstance = new Chart(ctx, {
-        type: "bar",
-        data: {
-          labels: top7Metrics.map(({ g }) => g.soc + " " + g.title.split(" ")[0]),
-          datasets: [
-            { label: "AI Resilience (Base)", data: top7Metrics.map(x => x.m.baseSV), backgroundColor: "#0284c7", borderRadius: 4, stack: "sv_stack" },
-            { label: "AI Resilience (Incremental)", data: top7Metrics.map(x => x.m.svLift), backgroundColor: "#38bdf8", borderRadius: 4, stack: "sv_stack" },
-            { label: "Human Distinctive (Base)", data: top7Metrics.map(x => x.m.humanBase), backgroundColor: "#059669", borderRadius: 4, stack: "human_ai" },
-            { label: "Human Distinctive (Incremental)", data: top7Metrics.map(x => x.m.aiLift), backgroundColor: "#34d399", borderRadius: 4, stack: "human_ai" }
-          ]
-        },
-        options: {
-          responsive: true, maintainAspectRatio: false,
-          scales: {
-            x: { stacked: true },
-            y: { stacked: true, min: 0, max: 100, title: { display: true, text: "Score (0–100 • Higher = Better | Both AI Resilience & Human Distinctive Show Base + AI-Augmented Lift)" } }
-          },
-          plugins: {
-            legend: { position: "top", labels: { boxWidth: 12, font: { size: 11 } } }
-          }
-        }
+      groupItems.sort((a, b) => {
+        if (sortMode === "resilience_asc") return a.m.defSV - b.m.defSV;
+        if (sortMode === "payroll_desc") return b.g.payrollB - a.g.payrollB;
+        if (sortMode === "lift_desc") return (b.m.svLift + b.m.aiLift) - (a.m.svLift + a.m.aiLift);
+        return a.g.soc.localeCompare(b.g.soc);
       });
 
-      // Render All 22 Two-Digit Major Occupational Groups (SOC 11-0000 through 53-0000)
-      const all22Metrics = INDIANA_ALL_MAJOR_GROUPS.map(g => ({ g, m: getGroupMetrics(g) }));
-      const allBaseSVMed = getColumnMedian(all22Metrics.map(x => x.m.baseSV));
-      const allSvLiftMed = getColumnMedian(all22Metrics.map(x => x.m.svLift));
-      const allSVMed = getColumnMedian(all22Metrics.map(x => x.m.defSV));
-      const allHumanMed = getColumnMedian(all22Metrics.map(x => x.m.humanBase));
-      const allAiMed = getColumnMedian(all22Metrics.map(x => x.m.aiLift));
-      const allTotalRMed = getColumnMedian(all22Metrics.map(x => x.m.humanAiTotal));
+      const headingEl = document.getElementById("indianaGroupsHeading");
+      if (headingEl) {
+        headingEl.textContent = indianaSocScope === "top7"
+          ? "High-Priority Indiana Occupational Groups (Top 7): AI Resilience vs. Human Distinctive"
+          : "All 22 Two-Digit Major Occupational Groups (SOC 11- through 53-): AI Resilience vs. Human Distinctive";
+      }
+      const summaryTitleEl = document.getElementById("indianaTableSummaryTitle");
+      if (summaryTitleEl) {
+        summaryTitleEl.textContent = indianaSocScope === "top7"
+          ? "Statewide Occupational Group Scorecard & IU/DWD Reskilling Pathways (Priority Top 7 Groups)"
+          : "Statewide Occupational Group Scorecard & IU/DWD Reskilling Pathways (All 22 Two-Digit SOC Groups)";
+      }
 
-      document.getElementById("indianaAllGroupsTableBody").innerHTML = all22Metrics.map(({ g, m }, rowIdx) => {
+      const chartWrap = document.getElementById("indianaAllGroupsChartWrap");
+      if (chartWrap) {
+        chartWrap.style.height = indianaSocScope === "top7" ? "360px" : (metricView === "both" ? "640px" : "520px");
+      }
+
+      const allBaseSVMed = getColumnMedian(groupItems.map(x => x.m.baseSV));
+      const allSvLiftMed = getColumnMedian(groupItems.map(x => x.m.svLift));
+      const allSVMed = getColumnMedian(groupItems.map(x => x.m.defSV));
+      const allHumanMed = getColumnMedian(groupItems.map(x => x.m.humanBase));
+      const allAiMed = getColumnMedian(groupItems.map(x => x.m.aiLift));
+      const allTotalRMed = getColumnMedian(groupItems.map(x => x.m.humanAiTotal));
+
+      document.getElementById("indianaAllGroupsTableBody").innerHTML = groupItems.map(({ g, m }, rowIdx) => {
         const baseSvBadge = getHigherBetterBadge(m.baseSV, allBaseSVMed, 1.8);
         const svLiftBadge = getHigherBetterBadge(m.svLift, allSvLiftMed, 0.8);
         const svBadge = getHigherBetterBadge(m.defSV, allSVMed, 1.8);
         const humanBadge = getHigherBetterBadge(m.humanBase, allHumanMed, 1.8);
         const aiBadge = getHigherBetterBadge(m.aiLift, allAiMed, 0.8);
         const totalRBadge = getHigherBetterBadge(m.humanAiTotal, allTotalRMed, 1.8);
-        const bottomFrameBorder = rowIdx === all22Metrics.length - 1 ? "border-b-2 border-slate-700" : "";
+        const bottomFrameBorder = rowIdx === groupItems.length - 1 ? "border-b-2 border-slate-700" : "";
         return `
           <tr class="hover:bg-slate-50">
-            <td class="py-2.5 px-2.5 font-bold text-slate-900">${g.title}<div class="text-[10px] font-normal text-slate-500">SOC ${g.soc} • Est. Payroll $${g.payrollB}B</div></td>
-            <td class="py-2.5 px-1.5 text-right font-medium text-slate-700 border-l-2 border-r-2 border-slate-700 bg-amber-50/15 ${bottomFrameBorder}">${g.wage}</td>
+            <td class="py-2.5 px-2.5 font-bold text-slate-900">${g.title}<div class="text-[10px] font-normal text-slate-500">SOC ${g.soc}</div></td>
+            <td class="py-2.5 px-1.5 text-right font-extrabold text-slate-900 border-l-2 border-slate-700 bg-amber-50/15 ${bottomFrameBorder}">$${g.payrollB.toFixed(1)}B</td>
+            <td class="py-2.5 px-1.5 text-right font-medium text-slate-700 border-r-2 border-slate-700 bg-amber-50/15 ${bottomFrameBorder}">${g.wage}</td>
             <td class="py-2.5 px-1.5 text-center border-l-2 border-slate-700 bg-sky-50/20 ${bottomFrameBorder}"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${baseSvBadge}">${m.baseSV.toFixed(1)}</span></td>
             <td class="py-2.5 px-1.5 text-center bg-sky-50/20 ${bottomFrameBorder}"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${svLiftBadge}">+${m.svLift.toFixed(1)}</span></td>
             <td class="py-2.5 px-1.5 text-center border-r-2 border-slate-700 bg-sky-50/20 ${bottomFrameBorder}"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${svBadge}">${m.defSV.toFixed(1)}</span></td>
@@ -3838,24 +3870,57 @@
       const ctxAll = document.getElementById("indianaAllGroupsChart").getContext("2d");
       if (indianaAllGroupsChartInstance) indianaAllGroupsChartInstance.destroy();
 
+      const datasets = [];
+      if (metricView === "both" || metricView === "resilience") {
+        datasets.push(
+          { label: "AI Resilience (Base)", data: groupItems.map(x => x.m.baseSV), backgroundColor: "#0284c7", borderRadius: 3, stack: "sv_stack" },
+          { label: "AI Resilience (Incremental)", data: groupItems.map(x => x.m.svLift), backgroundColor: "#38bdf8", borderRadius: 3, stack: "sv_stack" }
+        );
+      }
+      if (metricView === "both" || metricView === "distinctive") {
+        datasets.push(
+          { label: "Human Distinctive (Base)", data: groupItems.map(x => x.m.humanBase), backgroundColor: "#059669", borderRadius: 3, stack: "human_ai" },
+          { label: "Human Distinctive (Incremental)", data: groupItems.map(x => x.m.aiLift), backgroundColor: "#34d399", borderRadius: 3, stack: "human_ai" }
+        );
+      }
+
+      const threshold55Plugin = {
+        id: "threshold55Plugin",
+        afterDraw(chart) {
+          const { ctx: c, chartArea: { top, bottom }, scales: { x: xScale } } = chart;
+          const x55 = xScale.getPixelForValue(55);
+          if (!x55) return;
+          c.save();
+          c.strokeStyle = "#dc2626";
+          c.lineWidth = 1.6;
+          c.setLineDash([5, 4]);
+          c.beginPath();
+          c.moveTo(x55, top);
+          c.lineTo(x55, bottom);
+          c.stroke();
+          c.setLineDash([]);
+          c.fillStyle = "#991b1b";
+          c.font = "bold 10px -apple-system, BlinkMacSystemFont, sans-serif";
+          c.textAlign = "left";
+          c.fillText("Priority Threshold (X = 55)", x55 + 5, top + 12);
+          c.restore();
+        }
+      };
+
       indianaAllGroupsChartInstance = new Chart(ctxAll, {
         type: "bar",
         data: {
-          labels: all22Metrics.map(x => x.g.shortLabel),
-          datasets: [
-            { label: "AI Resilience (Base)", data: all22Metrics.map(x => x.m.baseSV), backgroundColor: "#0284c7", borderRadius: 3, stack: "sv_stack" },
-            { label: "AI Resilience (Incremental)", data: all22Metrics.map(x => x.m.svLift), backgroundColor: "#38bdf8", borderRadius: 3, stack: "sv_stack" },
-            { label: "Human Distinctive (Base)", data: all22Metrics.map(x => x.m.humanBase), backgroundColor: "#059669", borderRadius: 3, stack: "human_ai" },
-            { label: "Human Distinctive (Incremental)", data: all22Metrics.map(x => x.m.aiLift), backgroundColor: "#34d399", borderRadius: 3, stack: "human_ai" }
-          ]
+          labels: groupItems.map(x => `${x.g.shortLabel} ($${x.g.payrollB.toFixed(1)}B)`),
+          datasets
         },
+        plugins: [threshold55Plugin],
         options: {
           indexAxis: "y",
           responsive: true,
           maintainAspectRatio: false,
           scales: {
-            x: { stacked: true, min: 0, max: 100, title: { display: true, text: "Score (0–100 Scale • Higher = Better | Both AI Resilience & Human Distinctive Show Base + AI-Augmented Lift)" } },
-            y: { stacked: true, ticks: { font: { size: 10 } } }
+            x: { stacked: true, min: 0, max: 100, title: { display: true, text: "Score (0–100 Scale • Higher = Better | Shows Base + Incremental Lift • Dashed Line = Priority Threshold 55)" } },
+            y: { stacked: true, ticks: { font: { size: 10.5, weight: "600" } } }
           },
           plugins: {
             legend: { position: "top", labels: { boxWidth: 12, font: { size: 11 } } }
@@ -3876,7 +3941,7 @@
         const aiLift = gm.aiLift;
         const humanBase = +(occ.r - aiLift).toFixed(1);
         const humanAiTotal = +(humanBase + aiLift).toFixed(1);
-        return { baseSV, svLift, defSV, sv: defSV, humanBase, aiLift, humanAiTotal };
+        return { baseSV, svLift, defSV, sv: defSV, humanBase, aiLift, humanAiTotal, pathway: matchedGroup.pathway };
       }
       const baseSV = +(100 - occ.v).toFixed(1);
       const aiLift = +(occ.r * 0.15).toFixed(1);
@@ -3884,12 +3949,38 @@
       const defSV = Math.min(96, +(baseSV + svLift).toFixed(1));
       const humanBase = +(occ.r - aiLift).toFixed(1);
       const humanAiTotal = +(humanBase + aiLift).toFixed(1);
-      return { baseSV, svLift, defSV, sv: defSV, humanBase, aiLift, humanAiTotal };
+      return { baseSV, svLift, defSV, sv: defSV, humanBase, aiLift, humanAiTotal, pathway: "IU Expand & Next Level Jobs Regional Workforce Reskilling" };
+    }
+
+    // Compute Employment-Weighted Aggregate Metrics for an MSA across its Top 3 Major Occupational Groups
+    function getMsaAggregateMetrics(msa) {
+      let empSum = 0, wBaseX = 0, wLiftX = 0, wDefX = 0, wBaseY = 0, wLiftY = 0, wDefY = 0;
+      msa.top3.forEach(occ => {
+        const m = getMsaOccMetrics(occ);
+        const w = occ.emp || 1;
+        empSum += w;
+        wBaseX += w * m.baseSV;
+        wLiftX += w * m.svLift;
+        wDefX += w * m.defSV;
+        wBaseY += w * m.humanBase;
+        wLiftY += w * m.aiLift;
+        wDefY += w * m.humanAiTotal;
+      });
+      const wageHr = parseFloat((msa.meanWage.match(/\$([0-9.]+)/) || [0, 25.0])[1]);
+      return {
+        avgBaseSV: +(wBaseX / empSum).toFixed(1),
+        avgSvLift: +(wLiftX / empSum).toFixed(1),
+        avgDefSV: +(wDefX / empSum).toFixed(1),
+        avgHuman: +(wBaseY / empSum).toFixed(1),
+        avgAi: +(wLiftY / empSum).toFixed(1),
+        avgTotalR: +(wDefY / empSum).toFixed(1),
+        wageHr
+      };
     }
 
     function buildMsaTop3Html(msa, isDark = false) {
       return msa.top3.map((occ, idx) => {
-        const { baseSV, svLift, defSV, humanBase, aiLift, humanAiTotal } = getMsaOccMetrics(occ);
+        const { baseSV, svLift, defSV, humanBase, aiLift, humanAiTotal, pathway } = getMsaOccMetrics(occ);
         const svBadge = defSV >= 65
           ? (isDark ? "bg-emerald-500/25 text-emerald-200 border-emerald-400/40" : "bg-emerald-100 text-emerald-800 border-emerald-200")
           : defSV >= 50
@@ -3899,17 +3990,18 @@
           ? "bg-blue-500/25 text-blue-200 border-blue-400/40"
           : "bg-blue-50 text-blue-800 border-blue-200";
         return `
-          <div class="${isDark ? 'bg-slate-900/90 border-slate-700' : 'bg-white border-slate-200'} p-2.5 rounded-xl border">
+          <div class="${isDark ? 'bg-slate-900/90 border-slate-700' : 'bg-white border-slate-200'} p-3 rounded-xl border">
             <div class="flex items-center justify-between gap-2">
-              <div class="font-bold ${isDark ? 'text-white' : 'text-slate-900'} text-[11px]">
+              <div class="font-bold ${isDark ? 'text-white' : 'text-slate-900'} text-xs">
                 #${idx + 1} • SOC ${occ.soc}: ${occ.title}
               </div>
-              <span class="text-[10px] font-mono ${isDark ? 'text-slate-300' : 'text-slate-500'} whitespace-nowrap">${occ.emp.toLocaleString()} jobs (${occ.share})</span>
+              <span class="text-[10.5px] font-mono ${isDark ? 'text-slate-300' : 'text-slate-600'} font-semibold whitespace-nowrap">${occ.emp.toLocaleString()} jobs (${occ.share})</span>
             </div>
-            <div class="mt-1.5 flex flex-wrap items-center justify-between gap-1.5 text-[10px]">
-              <span class="px-2 py-0.5 rounded-full font-bold border ${svBadge}">AI Resilience: ${defSV.toFixed(1)} (Base ${baseSV.toFixed(1)} + AI +${svLift.toFixed(1)})</span>
-              <span class="px-2 py-0.5 rounded-full font-bold border ${rBadge}">Human Distinctive: ${humanAiTotal.toFixed(1)} (Base ${humanBase.toFixed(1)} + AI +${aiLift.toFixed(1)})</span>
+            <div class="mt-2 flex flex-wrap items-center justify-between gap-1.5 text-[10.5px]">
+              <span class="px-2 py-0.5 rounded-full font-bold border ${svBadge}">AI Resilience: ${defSV.toFixed(1)} (Base ${baseSV.toFixed(1)} + Incr +${svLift.toFixed(1)})</span>
+              <span class="px-2 py-0.5 rounded-full font-bold border ${rBadge}">Human Distinctive: ${humanAiTotal.toFixed(1)} (Base ${humanBase.toFixed(1)} + Incr +${aiLift.toFixed(1)})</span>
             </div>
+            ${!isDark ? `<div class="mt-1.5 text-[10.5px] text-slate-500"><strong>Regional Upskilling Pathway:</strong> ${pathway}</div>` : ''}
           </div>
         `;
       }).join("");
@@ -3923,24 +4015,29 @@
       const tooltip = document.getElementById("msaHoverTooltip");
       const wrapper = document.getElementById("indianaMsaMapWrapper");
       if (tooltip && wrapper && evt) {
+        const agg = getMsaAggregateMetrics(msa);
+        const iuAnchor = IU_CAMPUS_ANCHORS[msa.id];
         tooltip.innerHTML = `
-          <div class="flex items-start justify-between gap-2 pb-2 mb-2 border-b border-slate-700">
+          <div class="flex items-start justify-between gap-2 pb-1.5 mb-1.5 border-b border-slate-700">
             <div>
-              <div class="text-[10px] uppercase tracking-wider text-amber-400 font-bold">CBSA ${msa.cbsa} • ${msa.counties}</div>
-              <div class="font-extrabold text-sm text-white">${msa.name}</div>
+              <div class="text-[10px] uppercase tracking-wider text-amber-400 font-bold">CBSA ${msa.cbsa}</div>
+              <div class="font-extrabold text-xs text-white">${msa.name}</div>
+              ${iuAnchor ? `<div class="text-[10px] text-amber-300 font-semibold mt-0.5">${iuAnchor.badge}</div>` : ''}
             </div>
-            <span class="px-2 py-0.5 rounded bg-white/10 text-[10px] font-mono text-slate-200 whitespace-nowrap">${msa.totalEmp.toLocaleString()} Emp</span>
+            <span class="px-2 py-0.5 rounded bg-white/10 text-[10px] font-mono text-slate-200 whitespace-nowrap">${msa.totalEmp.toLocaleString()} Jobs</span>
           </div>
-          <div class="text-[11px] text-slate-300 mb-2"><strong>BLS Mean Wage:</strong> ${msa.meanWage}</div>
-          <div class="text-[10px] uppercase tracking-wider text-sky-300 font-bold mb-1.5">Top 3 Two-Digit Occupations (Dual Additive Base + AI Lift):</div>
-          <div class="space-y-1.5">${buildMsaTop3Html(msa, true)}</div>
+          <div class="text-[11px] text-slate-300 mb-1"><strong>BLS Mean Wage:</strong> ${msa.meanWage}</div>
+          <div class="flex items-center justify-between text-[10.5px] bg-slate-900 px-2 py-1 rounded border border-slate-700">
+            <span class="text-sky-300 font-bold">AI Res: ${agg.avgBaseSV}+${agg.avgSvLift}=${agg.avgDefSV}</span>
+            <span class="text-emerald-300 font-bold">Human Dist: ${agg.avgHuman}+${agg.avgAi}=${agg.avgTotalR}</span>
+          </div>
         `;
         tooltip.classList.remove("hidden");
         const rect = wrapper.getBoundingClientRect();
         const relX = evt.clientX - rect.left;
         const relY = evt.clientY - rect.top;
-        const leftPos = relX > rect.width * 0.52 ? Math.max(8, relX - 380) : Math.min(rect.width - 375, relX + 16);
-        const topPos = Math.max(8, Math.min(rect.height - 310, relY - 30));
+        const leftPos = relX > rect.width * 0.52 ? Math.max(6, relX - 310) : Math.min(rect.width - 305, relX + 14);
+        const topPos = Math.max(6, Math.min(rect.height - 140, relY - 20));
         tooltip.style.left = leftPos + "px";
         tooltip.style.top = topPos + "px";
       }
@@ -3960,32 +4057,46 @@
     function updateMsaSpotlightAndSelection(msa) {
       const spotlight = document.getElementById("msaSpotlightCard");
       if (spotlight) {
-        const occMetrics = msa.top3.map(o => getMsaOccMetrics(o));
-        const avgBaseSV = (occMetrics.reduce((s, o) => s + o.baseSV, 0) / 3).toFixed(1);
-        const avgSvLift = (occMetrics.reduce((s, o) => s + o.svLift, 0) / 3).toFixed(1);
-        const avgDefSV = (occMetrics.reduce((s, o) => s + o.defSV, 0) / 3).toFixed(1);
-        const avgHuman = (occMetrics.reduce((s, o) => s + o.humanBase, 0) / 3).toFixed(1);
-        const avgAi = (occMetrics.reduce((s, o) => s + o.aiLift, 0) / 3).toFixed(1);
-        const avgTotalR = (occMetrics.reduce((s, o) => s + o.humanAiTotal, 0) / 3).toFixed(1);
+        const agg = getMsaAggregateMetrics(msa);
+        const iuAnchor = IU_CAMPUS_ANCHORS[msa.id];
         spotlight.innerHTML = `
-          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pb-3 mb-3 border-b border-slate-200">
-            <div>
-              <div class="flex items-center gap-2">
-                <span class="px-2 py-0.5 rounded bg-red-800 text-white text-[10px] font-bold uppercase">CBSA ${msa.cbsa}</span>
-                <span class="text-[11px] text-slate-500 font-medium">${msa.counties}</span>
+          <div>
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 pb-3 mb-3 border-b border-slate-200">
+              <div>
+                <div class="flex flex-wrap items-center gap-1.5">
+                  <span class="px-2 py-0.5 rounded bg-red-800 text-white text-[10px] font-bold uppercase">CBSA ${msa.cbsa}</span>
+                  ${iuAnchor ? `<span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-bold">${iuAnchor.badge}</span>` : ''}
+                </div>
+                <h4 class="text-base font-extrabold text-slate-900 mt-1">${msa.name}</h4>
+                <div class="text-[11px] text-slate-500">${msa.counties}</div>
+                ${iuAnchor ? `<div class="text-[11px] text-red-800 font-medium mt-0.5">${iuAnchor.detail}</div>` : ''}
               </div>
-              <h4 class="text-sm font-extrabold text-slate-900 mt-1">${msa.name}</h4>
+              <div class="text-left sm:text-right shrink-0 bg-white px-3 py-2 rounded-xl border border-slate-200">
+                <div class="text-sm font-black text-slate-900">${msa.totalEmp.toLocaleString()} Total Jobs</div>
+                <div class="text-[11px] text-slate-600 font-semibold">${msa.meanWage}</div>
+              </div>
             </div>
-            <div class="text-right">
-              <div class="text-xs font-extrabold text-slate-900">${msa.totalEmp.toLocaleString()} Total Jobs</div>
-              <div class="text-[11px] text-slate-600">${msa.meanWage}</div>
+
+            <!-- Employment-Weighted MSA Summary Strip -->
+            <div class="grid grid-cols-2 gap-2.5 mb-3">
+              <div class="bg-sky-50/70 p-2.5 rounded-xl border border-sky-200">
+                <div class="text-[10px] font-bold uppercase text-sky-900">MSA Employment-Wtd AI Resilience (X)</div>
+                <div class="text-lg font-black text-sky-800 mt-0.5">${agg.avgDefSV} <span class="text-xs font-semibold text-sky-700">(Base ${agg.avgBaseSV} + Incr +${agg.avgSvLift})</span></div>
+              </div>
+              <div class="bg-emerald-50/70 p-2.5 rounded-xl border border-emerald-200">
+                <div class="text-[10px] font-bold uppercase text-emerald-900">MSA Employment-Wtd Human Distinctive (Y)</div>
+                <div class="text-lg font-black text-emerald-800 mt-0.5">${agg.avgTotalR} <span class="text-xs font-semibold text-emerald-700">(Base ${agg.avgHuman} + Incr +${agg.avgAi})</span></div>
+              </div>
             </div>
+
+            <div class="text-xs font-bold text-slate-800 mb-2">Three Largest Two-Digit Occupations in ${msa.shortName} (BLS OEWS):</div>
+            <div class="space-y-2.5">${buildMsaTop3Html(msa, false)}</div>
           </div>
-          <div class="flex flex-wrap items-center justify-between text-xs mb-2 gap-1">
-            <span class="font-bold text-slate-800">Three Largest Two-Digit Occupations (BLS OEWS):</span>
-            <span class="text-[11px] text-slate-600">Top-3 Avg: <strong class="text-sky-800">AI Resilience ${avgBaseSV} + ${avgSvLift} = ${avgDefSV}</strong> • <strong class="text-emerald-800">Human Distinctive ${avgHuman} + ${avgAi} = ${avgTotalR}</strong></span>
+
+          <div class="mt-3 pt-2.5 border-t border-slate-200 flex items-center justify-between text-[11px] text-slate-500">
+            <span>Data Source: <a href="${msa.blsUrl}" target="_blank" class="text-red-700 underline font-semibold">BLS Metro OEWS (${msa.shortName}) ↗</a></span>
+            <span>Click any node on the map to switch region</span>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5">${buildMsaTop3Html(msa, false)}</div>
         `;
       }
 
@@ -3995,8 +4106,8 @@
         const circleEl = document.getElementById("node-" + m.id);
         const cardEl = document.getElementById("card-" + m.id);
         if (polyEl) {
-          polyEl.setAttribute("fill-opacity", isAct ? "0.35" : "0.14");
-          polyEl.setAttribute("stroke-width", isAct ? "2" : "1");
+          polyEl.setAttribute("fill-opacity", isAct ? "0.38" : "0.14");
+          polyEl.setAttribute("stroke-width", isAct ? "2.2" : "1");
         }
         if (circleEl) {
           circleEl.setAttribute("stroke-width", isAct ? "3.5" : "1.8");
@@ -4014,42 +4125,90 @@
       const polyLayer = document.getElementById("indianaMsaPolygonsLayer");
       const nodeLayer = document.getElementById("indianaMsaNodesLayer");
       const dirGrid = document.getElementById("msaDirectoryGrid");
+      const modeSel = document.getElementById("msaColorMode");
+      const modeSubtitle = document.getElementById("msaMapModeSubtitle");
+      const legendPills = document.getElementById("msaMapLegendPills");
       if (!polyLayer || !nodeLayer || !dirGrid) return;
 
+      const colorMode = modeSel ? modeSel.value : "resilience";
+
+      if (modeSubtitle && legendPills) {
+        if (colorMode === "resilience") {
+          modeSubtitle.innerHTML = "<strong>Node Score</strong> = Employment-Wtd AI Resilience (Total X)";
+          legendPills.innerHTML = `
+            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-red-500 inline-block"></span>Lower (&lt;55)</span>
+            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span>Moderate (55–61)</span>
+            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span>Higher (&gt;61)</span>
+          `;
+        } else if (colorMode === "lift") {
+          modeSubtitle.innerHTML = "<strong>Node Score</strong> = Incremental Reskilling Lift (+ΔX)";
+          legendPills.innerHTML = `
+            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span>Moderate Lift (&lt;7.5)</span>
+            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-sky-400 inline-block"></span>Strong Lift (7.5–8.2)</span>
+            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span>High Lift (&gt;8.2)</span>
+          `;
+        } else {
+          modeSubtitle.innerHTML = "<strong>Node Score</strong> = BLS Regional Mean Hourly Wage ($/hr)";
+          legendPills.innerHTML = `
+            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span>&lt;$25.50/hr</span>
+            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-sky-400 inline-block"></span>$25.50–$27.50/hr</span>
+            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span>&gt;$27.50/hr</span>
+          `;
+        }
+      }
+
+      function getMsaColorAndText(m) {
+        const agg = getMsaAggregateMetrics(m);
+        if (colorMode === "lift") {
+          const col = agg.avgSvLift >= 8.2 ? "#10b981" : agg.avgSvLift >= 7.5 ? "#38bdf8" : "#f59e0b";
+          return { col, nodeText: "+" + agg.avgSvLift.toFixed(1) };
+        }
+        if (colorMode === "wage") {
+          const col = agg.wageHr >= 27.5 ? "#10b981" : agg.wageHr >= 25.5 ? "#38bdf8" : "#f59e0b";
+          return { col, nodeText: "$" + agg.wageHr.toFixed(0) };
+        }
+        const col = agg.avgDefSV >= 61 ? "#10b981" : agg.avgDefSV >= 55 ? "#f59e0b" : "#ef4444";
+        return { col, nodeText: agg.avgDefSV.toFixed(0) };
+      }
+
       polyLayer.innerHTML = INDIANA_MSAS.map(m => {
-        const top1SV = +(100 - m.top3[0].v).toFixed(1);
-        const fillCol = top1SV >= 58 ? "#10b981" : top1SV >= 45 ? "#f59e0b" : "#ef4444";
-        return `<polygon id="poly-${m.id}" points="${m.poly}" fill="${fillCol}" fill-opacity="0.14" stroke="${fillCol}" stroke-width="1" stroke-dasharray="2,2" class="cursor-pointer transition"
+        const { col } = getMsaColorAndText(m);
+        return `<polygon id="poly-${m.id}" points="${m.poly}" fill="${col}" fill-opacity="0.14" stroke="${col}" stroke-width="1" stroke-dasharray="2,2" class="cursor-pointer transition"
           onmouseenter="handleMsaHover('${m.id}', event)" onmousemove="handleMsaHover('${m.id}', event)" onmouseleave="hideMsaTooltip()" onclick="selectMsaCard('${m.id}')" />`;
       }).join("");
 
       nodeLayer.innerHTML = INDIANA_MSAS.map(m => {
-        const avgSV = m.top3.reduce((s, o) => s + (100 - o.v), 0) / 3;
-        const fillCol = avgSV >= 55 ? "#10b981" : avgSV >= 45 ? "#f59e0b" : "#ef4444";
-        const dx = m.labelPos === "left" ? -(m.r + 5) : m.labelPos === "right" ? (m.r + 5) : 0;
-        const dy = m.labelPos === "bottom" ? (m.r + 11) : 3;
+        const { col, nodeText } = getMsaColorAndText(m);
+        const hasIuCampus = !!IU_CAMPUS_ANCHORS[m.id];
+        const dx = m.labelPos === "left" ? -(m.r + 6) : m.labelPos === "right" ? (m.r + 6) : 0;
+        const dy = m.labelPos === "bottom" ? (m.r + 12) : 3;
         const anchor = m.labelPos === "left" ? "end" : m.labelPos === "right" ? "start" : "middle";
+        const campusRing = hasIuCampus
+          ? `<circle cx="${m.x}" cy="${m.y}" r="${m.r + 4}" fill="none" stroke="#fbbf24" stroke-width="1.8" stroke-dasharray="3,2" />`
+          : "";
         return `
           <g class="cursor-pointer" onmouseenter="handleMsaHover('${m.id}', event)" onmousemove="handleMsaHover('${m.id}', event)" onmouseleave="hideMsaTooltip()" onclick="selectMsaCard('${m.id}')">
-            <circle id="node-${m.id}" cx="${m.x}" cy="${m.y}" r="${m.r}" fill="${fillCol}" fill-opacity="0.88" stroke="#f8fafc" stroke-width="1.8" filter="url(#msaGlow)" />
-            <text x="${m.x}" y="${m.y + 3}" text-anchor="middle" fill="#0f172a" font-size="8.5" font-weight="900">${m.top3[0].soc.slice(0,2)}</text>
+            ${campusRing}
+            <circle id="node-${m.id}" cx="${m.x}" cy="${m.y}" r="${m.r}" fill="${col}" fill-opacity="0.90" stroke="#f8fafc" stroke-width="1.8" filter="url(#msaGlow)" />
+            <text x="${m.x}" y="${m.y + 3}" text-anchor="middle" fill="#0f172a" font-size="8.2" font-weight="900">${nodeText}</text>
             <text x="${m.x + dx}" y="${m.y + dy}" text-anchor="${anchor}" fill="#f8fafc" font-size="9.5" font-weight="700" style="paint-order: stroke; stroke: #0f172a; stroke-width: 3px; stroke-linecap: round; stroke-linejoin: round;">${m.shortName}</text>
           </g>
         `;
       }).join("");
 
       dirGrid.innerHTML = INDIANA_MSAS.map(m => {
-        const top1 = getMsaOccMetrics(m.top3[0]);
+        const agg = getMsaAggregateMetrics(m);
+        const iuAnchor = IU_CAMPUS_ANCHORS[m.id];
         return `
           <div id="card-${m.id}" onmouseenter="selectMsaCard('${m.id}')" onclick="selectMsaCard('${m.id}')" class="cursor-pointer p-2.5 rounded-xl border border-slate-200 bg-white hover:border-slate-300 transition text-xs">
             <div class="flex items-center justify-between gap-1">
               <span class="font-bold text-slate-900 truncate">${m.shortName}</span>
               <span class="text-[10px] font-mono text-slate-500">${(m.totalEmp / 1000).toFixed(1)}k</span>
             </div>
-            <div class="mt-1 text-[10px] text-slate-600 truncate">Top: <strong>${m.top3.map(t => t.soc.slice(0, 3)).join(", ")}</strong></div>
+            ${iuAnchor ? `<div class="text-[9.5px] font-bold text-amber-800 truncate mt-0.5">${iuAnchor.badge}</div>` : `<div class="text-[9.5px] text-slate-400 truncate mt-0.5">CBSA ${m.cbsa}</div>`}
             <div class="mt-1 flex items-center justify-between text-[10px]">
-              <span class="text-sky-700 font-semibold">#1 AI Res: ${top1.baseSV.toFixed(0)}+${top1.svLift.toFixed(0)}=${top1.defSV.toFixed(0)}</span>
-              <span class="text-emerald-700 font-semibold">#1 Human Dist: ${top1.humanBase.toFixed(0)}+${top1.aiLift.toFixed(0)}=${top1.humanAiTotal.toFixed(0)}</span>
+              <span class="text-sky-800 font-bold">AI Res: ${agg.avgDefSV}</span>
+              <span class="text-emerald-800 font-bold">Hum Dist: ${agg.avgTotalR}</span>
             </div>
           </div>
         `;
