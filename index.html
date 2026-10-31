@@ -2826,15 +2826,15 @@
           }
           c.setLineDash([]);
 
-          // Aligned Quadrant Corner Watermark Labels
-          c.font = "bold 12.5px -apple-system, BlinkMacSystemFont, sans-serif";
+          // Aligned Quadrant Corner Watermark Labels (+2pt larger: 14.5px)
+          c.font = "bold 14.5px -apple-system, BlinkMacSystemFont, sans-serif";
           c.fillStyle = "#047857";
           c.textAlign = "right";
-          c.fillText("High AI Resilience & High Human Distinctive", right - 10, top + 18);
+          c.fillText("High AI Resilience & High Human Distinctive", right - 10, top + 20);
 
           c.fillStyle = "#0369a1";
           c.textAlign = "left";
-          c.fillText("Low AI Resilience & High Human Distinctive", left + 10, top + 18);
+          c.fillText("Low AI Resilience & High Human Distinctive", left + 10, top + 20);
 
           c.fillStyle = "#b91c1c";
           c.textAlign = "left";
@@ -2922,26 +2922,20 @@
               { lead: "Arrows: ", body: "Estimated Impact of AI on Baseline AI Resilience & Human Distinctive" }
             ];
 
-            const maxQuadW = Math.max(260, right - midX - 16);
-            let fontSize = 9.8;
+            const fontSize = 10.8;
             let maxLineW = 0;
-            while (fontSize >= 7.8) {
-              maxLineW = 0;
-              legendItems.forEach(item => {
-                c.font = `bold ${fontSize}px -apple-system, BlinkMacSystemFont, sans-serif`;
-                const lw = c.measureText(item.lead).width;
-                c.font = `500 ${fontSize}px -apple-system, BlinkMacSystemFont, sans-serif`;
-                const bw = c.measureText(item.body).width;
-                if (lw + bw > maxLineW) maxLineW = lw + bw;
-              });
-              if (maxLineW + 20 <= maxQuadW) break;
-              fontSize = +(fontSize - 0.3).toFixed(1);
-            }
+            legendItems.forEach(item => {
+              c.font = `bold ${fontSize}px -apple-system, BlinkMacSystemFont, sans-serif`;
+              const lw = c.measureText(item.lead).width;
+              c.font = `500 ${fontSize}px -apple-system, BlinkMacSystemFont, sans-serif`;
+              const bw = c.measureText(item.body).width;
+              if (lw + bw > maxLineW) maxLineW = lw + bw;
+            });
 
-            const boxW = Math.ceil(maxLineW + 20);
-            const boxH = 74;
+            const boxW = Math.ceil(maxLineW + 22);
+            const boxH = 80;
             const boxX = right - boxW - 8;
-            const boxY = Math.max(midY + 12, bottom - boxH - 28);
+            const boxY = Math.max(midY + 12, bottom - boxH - 30);
 
             c.globalAlpha = 1.0;
             c.fillStyle = "rgba(255, 255, 255, 0.93)";
@@ -2954,15 +2948,15 @@
 
             c.textAlign = "left";
             c.fillStyle = "#990000";
-            let textY = boxY + 16;
+            let textY = boxY + 18;
             legendItems.forEach(item => {
               c.font = `bold ${fontSize}px -apple-system, BlinkMacSystemFont, sans-serif`;
               const leadW = c.measureText(item.lead).width;
-              c.fillText(item.lead, boxX + 10, textY);
+              c.fillText(item.lead, boxX + 11, textY);
 
               c.font = `500 ${fontSize}px -apple-system, BlinkMacSystemFont, sans-serif`;
-              c.fillText(item.body, boxX + 10 + leadW, textY);
-              textY += 16;
+              c.fillText(item.body, boxX + 11 + leadW, textY);
+              textY += 17.5;
             });
           }
 
@@ -2998,8 +2992,8 @@
             }
           },
           scales: {
-            x: { title: { display: true, text: "AI Resilience (20–90 Scale • Bubble = Baseline X₀ • Arrow Tip = Baseline + Incremental) → Higher = Better", font: { weight: "bold", size: 11.5 } }, min: 20, max: 90, ticks: { stepSize: 10 }, grid: { color: "#e2e8f0" } },
-            y: { title: { display: true, text: "Human Distinctive (30–100 Scale • Bubble = Baseline Y₀ • Arrow Tip = Baseline + Incremental)", font: { weight: "bold", size: 11.5 } }, min: 30, max: 100, ticks: { stepSize: 10 }, grid: { color: "#e2e8f0" } }
+            x: { title: { display: true, text: "AI Resilience (20–90 Scale • Bubble = Baseline X₀ • Arrow Tip = Baseline + Incremental) → Higher = Better", font: { weight: "bold", size: 13.5 } }, min: 20, max: 90, ticks: { stepSize: 10 }, grid: { color: "#e2e8f0" } },
+            y: { title: { display: true, text: "Human Distinctive (30–100 Scale • Bubble = Baseline Y₀ • Arrow Tip = Baseline + Incremental)", font: { weight: "bold", size: 13.5 } }, min: 30, max: 100, ticks: { stepSize: 10 }, grid: { color: "#e2e8f0" } }
           }
         }
       });
