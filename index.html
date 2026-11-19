@@ -24,12 +24,12 @@
         <div class="w-12 h-12 rounded-lg bg-white/15 border border-white/30 flex items-center justify-center font-black text-2xl tracking-tighter">IU</div>
         <div>
           <div class="flex items-center gap-2">
-            <span class="text-xs uppercase tracking-widest bg-white/20 px-2.5 py-0.5 rounded-full font-semibold">Executive Decision Support Prototype (v1.7 Vertical Slice)</span>
+            <span class="text-xs uppercase tracking-widest bg-white/20 px-2.5 py-0.5 rounded-full font-semibold">Executive Decision Support Prototype (v1.8 • O*NET 30.1 Edition)</span>
             <span class="text-xs text-red-100">IUB Leadership Edition</span>
           </div>
           <h1 class="text-xl md:text-2xl font-bold tracking-tight mt-0.5">Workforce AI Resilience, Human Distinctive &amp; Curriculum Defense Platform</h1>
           <p class="text-xs text-red-100 mt-0.5">
-            Integrating <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" class="underline hover:text-white">BLS OEWS</a>, <a href="https://www.onetcenter.org/database.html" target="_blank" class="underline hover:text-white">O*NET 29.0</a>, <a href="https://www.bls.gov/emp/data.htm" target="_blank" class="underline hover:text-white">BLS 5-Year Projections</a>, <a href="https://lehd.ces.census.gov/data/pseo_experimental.html" target="_blank" class="underline hover:text-white">Census PSEO</a>, <a href="https://www.hoosierdata.in.gov/infographics/iu-workforce-outcomes.asp" target="_blank" class="underline hover:text-white">ICHE/DWD IU Workforce Outcomes</a> &amp; Multi-Index AI Benchmarks
+            Integrating <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" class="underline hover:text-white">BLS OEWS</a>, <a href="https://www.onetcenter.org/dictionary/30.1/excel/" target="_blank" class="underline hover:text-white">O*NET 30.1</a>, <a href="https://www.bls.gov/emp/data.htm" target="_blank" class="underline hover:text-white">BLS 5-Year Projections</a>, <a href="https://lehd.ces.census.gov/data/pseo_experimental.html" target="_blank" class="underline hover:text-white">Census PSEO</a>, <a href="https://www.hoosierdata.in.gov/infographics/iu-workforce-outcomes.asp" target="_blank" class="underline hover:text-white">ICHE/DWD IU Workforce Outcomes</a> &amp; Multi-Index AI Benchmarks
           </p>
         </div>
       </div>
@@ -193,7 +193,7 @@
               <h3 class="text-base font-bold text-slate-900">Degree-Weighted O*NET Skill Decomposition</h3>
               <p class="text-xs text-slate-500">Shows additive <strong>Baseline + Incremental Defense = Total</strong> for both <strong>AI Resilience (X)</strong> and <strong>Human Distinctive (Y)</strong>.</p>
             </div>
-            <a href="https://www.onetcenter.org/database.html" target="_blank" class="text-xs text-red-700 underline font-medium">O*NET 29.0 Taxonomy ↗</a>
+            <a href="https://www.onetcenter.org/dictionary/30.1/excel/" target="_blank" class="text-xs text-red-700 underline font-medium">O*NET 30.1 Taxonomy ↗</a>
           </div>
           <div class="h-[400px] my-2"><canvas id="skillDecompositionChart"></canvas></div>
 
@@ -211,7 +211,8 @@
                 <thead>
                   <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 text-[10px] uppercase leading-tight">
                     <th class="py-2 px-2.5">O*NET Skill / Work Activity</th>
-                    <th class="py-2 px-1.5 text-right border-t-2 border-l-2 border-r-2 border-slate-700 bg-amber-50/50 text-slate-900">Major<br>Weight</th>
+                    <th class="py-2 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-amber-50/50 text-slate-900">Std Imp<br>(0–100)</th>
+                    <th class="py-2 px-1.5 text-right border-t-2 border-r-2 border-slate-700 bg-amber-50/50 text-slate-900">O*NET 30.1<br>Weight</th>
                     <th class="py-2 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Base)</th>
                     <th class="py-2 px-1.5 text-center border-t-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Incremental)</th>
                     <th class="py-2 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Total X)</th>
@@ -226,6 +227,9 @@
               </table>
             </div>
           </details>
+
+          <!-- O*NET 30.1 Work Styles & Employer In-Demand Tech Skills Panel (Degree Mapped) -->
+          <div id="simOnet30Panel" class="mt-3 p-4 rounded-xl bg-slate-50/80 border border-slate-200"></div>
         </div>
 
         <div class="lg:col-span-5 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
@@ -247,7 +251,7 @@
         <div class="flex-1">
           <div class="flex items-center gap-2">
             <span class="text-[11px] font-bold uppercase tracking-wider text-red-700">BLS / O*NET Occupation-to-Skill Decomposer</span>
-            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-medium">w(o,s) = Normalized(Importance^0.5 × Level^0.5)</span>
+            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-medium">w(o,s) = Imp₁₀₀(o,s) / ∑ Imp₁₀₀(o,k) • O*NET 30.1 Standardized (0–100)</span>
           </div>
           <div class="flex flex-wrap items-center gap-3 mt-1.5">
             <label for="jobSelectDropdown" class="text-sm font-bold text-slate-800">Select Occupation (SOC):</label>
@@ -264,7 +268,7 @@
               <h3 class="text-base font-bold text-slate-900" id="selectedJobHeading">Occupation Skill Decomposition</h3>
               <p class="text-xs text-slate-500" id="selectedJobSubheading"></p>
             </div>
-            <a href="https://www.onetcenter.org/database.html" target="_blank" class="text-xs text-red-700 underline font-medium whitespace-nowrap">O*NET 29.0 ↗</a>
+            <a id="selectedJobOnetTopLink" href="https://www.onetonline.org/link/details/13-2011.00" target="_blank" class="text-xs text-red-700 underline font-medium whitespace-nowrap">O*NET 30.1 Profile ↗</a>
           </div>
           <div class="h-[400px] my-2"><canvas id="jobSkillBarChart"></canvas></div>
 
@@ -282,7 +286,7 @@
                 <thead>
                   <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 text-[10px] uppercase leading-tight">
                     <th class="py-2 px-2.5">O*NET Skill / Work Activity (Element ID)</th>
-                    <th class="py-2 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-amber-50/50 text-slate-900">Imp / Lvl</th>
+                    <th class="py-2 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-amber-50/50 text-slate-900">Std Imp<br>(0–100)</th>
                     <th class="py-2 px-1.5 text-right border-t-2 border-r-2 border-slate-700 bg-amber-50/50 text-slate-900">Weight<br>w(o,s)</th>
                     <th class="py-2 px-1.5 text-center border-t-2 border-l-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Base)</th>
                     <th class="py-2 px-1.5 text-center border-t-2 border-slate-700 bg-sky-50/60 text-sky-950">AI Resilience<br>(Incremental)</th>
@@ -298,6 +302,9 @@
               </table>
             </div>
           </details>
+
+          <!-- O*NET 30.1 Work Styles & Employer In-Demand Tech Skills Panel (Occupation) -->
+          <div id="jobOnet30Panel" class="mt-3 p-4 rounded-xl bg-slate-50/80 border border-slate-200"></div>
         </div>
 
         <div class="lg:col-span-5 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between space-y-4">
@@ -326,10 +333,10 @@
               <span class="text-red-700 text-xs transition-transform group-open:rotate-90">▶</span>
               <h3 class="text-base font-bold text-slate-900">Master Summary of Mapped Occupations (22 SOC Jobs), Top Bottleneck Skills &amp; Weighted Scores</h3>
             </div>
-            <p class="text-xs text-slate-500 pl-5">Shows the <strong>Top 2 Bottleneck O*NET Skills</strong> per occupation (hover over <code>+6 more skills</code> for all 8). Click <strong>"Inspect Skills ↑"</strong> on any row to load its full decomposition above.</p>
+            <p class="text-xs text-slate-500 pl-5">Shows <strong>O*NET 30.1 Standardized Bottleneck Skills</strong>, <strong>Top Work Style Impact</strong>, and <strong>Employer In-Demand Tech Skills (% Job Postings)</strong> across all 22 occupations.</p>
           </div>
           <div class="text-xs text-slate-500 whitespace-nowrap">
-            Sources: <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" onclick="event.stopPropagation()" class="text-red-700 underline font-medium">BLS Indiana OEWS</a> • <a href="https://www.onetcenter.org/database.html" target="_blank" onclick="event.stopPropagation()" class="text-red-700 underline font-medium">O*NET 29.0</a>
+            Sources: <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" onclick="event.stopPropagation()" class="text-red-700 underline font-medium">BLS Indiana OEWS</a> • <a href="https://www.onetcenter.org/dictionary/30.1/excel/" target="_blank" onclick="event.stopPropagation()" class="text-red-700 underline font-medium">O*NET 30.1</a>
           </div>
         </summary>
         <div class="overflow-x-auto">
@@ -338,7 +345,7 @@
               <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 uppercase tracking-tight text-[10px] leading-tight">
                 <th class="py-3 px-3">Occupation Title (SOC / O*NET)</th>
                 <th class="py-3 px-2">Mapped IUB Schools &amp; Majors</th>
-                <th class="py-3 px-2.5">Top 2 Bottleneck O*NET Skills (Hover +6 for All 8)</th>
+                <th class="py-3 px-2.5">Top 2 Bottleneck Skills • O*NET 30.1 Work Styles &amp; In-Demand Tech</th>
                 <th class="py-3 px-1.5 text-right border-t-2 border-l-2 border-slate-700 bg-amber-50/50 text-slate-900">IN Emp</th>
                 <th class="py-3 px-1.5 text-right border-t-2 border-slate-700 bg-amber-50/50 text-slate-900">IN Mean<br>Wage</th>
                 <th class="py-3 px-1.5 text-center border-t-2 border-r-2 border-slate-700 bg-amber-50/50 text-slate-900">5-Yr BLS<br>Growth</th>
@@ -605,7 +612,7 @@
       <div class="flex flex-wrap gap-3">
         <a href="https://www.hoosierdata.in.gov/infographics/iu-workforce-outcomes.asp" target="_blank" class="hover:text-red-700 underline">IU Workforce Outcomes</a>
         <a href="https://www.bls.gov/oes/2023/may/oes_in.htm" target="_blank" class="hover:text-red-700 underline">Indiana BLS OEWS</a>
-        <a href="https://www.onetcenter.org/database.html" target="_blank" class="hover:text-red-700 underline">O*NET 29.0</a>
+        <a href="https://www.onetcenter.org/dictionary/30.1/excel/" target="_blank" class="hover:text-red-700 underline">O*NET 30.1</a>
         <a href="https://www.anthropic.com/economic-index" target="_blank" class="hover:text-red-700 underline">Anthropic Economic Index</a>
         <a href="https://pubmed.ncbi.nlm.nih.gov/38900883/" target="_blank" class="hover:text-red-700 underline">Eloundou et al. (2024)</a>
       </div>
@@ -1691,7 +1698,7 @@
     let selectedJobId = "soc-13-2011";
     let selectedMajorId = "kelley-acct";
 
-    // Expand all 22 SOC Jobs (Tab 2) and all 23 IUB Majors (Tab 3) from 5 to 8 O*NET 29.0 Skills / Work Activities
+    // Expand all 22 SOC Jobs and all 23 IUB Majors from 5 to 8 O*NET 30.1 Standardized Skills / Work Activities
     const EXTRA_JOB_SKILLS = {
       "soc-13-2011": [
         { id: "sk-6", code: "4.A.2.b.3", name: "Updating & Applying FASB / SEC Regulatory Standards (O*NET GWA)", imp: 4.3, lvl: 4.8, v: 64, r: 72, driver: "AI regulatory search copilot + human statutory sign-off" },
@@ -1923,39 +1930,737 @@
       ]
     };
 
-    // Append the 3 extra skills to each Job (8 total) and normalize weights to sum to 1.00 while preserving baseline weighted V and R
+
+    // ============================================================================
+    // O*NET 30.1 STANDARDIZED OCCUPATIONAL PROFILES (22 MAPPED SOC OCCUPATIONS)
+    // Direct standardized 0-100 Importance ratings for Skills & GWAs, revamped
+    // O*NET 30.1 Work Styles (0-100 Impact), Employer In-Demand & Hot Technology
+    // Skills (% job postings via Lightcast/O*NET), and Work Context indicators.
+    // ============================================================================
+    const ONET_30_1_PROFILES = {
+      "soc-13-2011": {
+        onetCode: "13-2011.00",
+        onetUrl: "https://www.onetonline.org/link/details/13-2011.00",
+        demandUrl: "https://www.onetonline.org/link/demand/13-2011.00",
+        skillImp100: [72, 60, 81, 41, 73, 78, 63, 53],
+        workStyles: [
+          { name: "Attention to Detail", impact: 100, agency: false },
+          { name: "Integrity", impact: 98, agency: true },
+          { name: "Dependability", impact: 88, agency: false },
+          { name: "Cautiousness", impact: 85, agency: false },
+          { name: "Intellectual Curiosity", impact: 67, agency: true },
+          { name: "Leadership Orientation", impact: 28, agency: true }
+        ],
+        wsAgencyScore: 53.0,
+        hotCount: 37,
+        inDemandCount: 6,
+        techSkills: [
+          { name: "Microsoft Excel", pct: 28, hot: true },
+          { name: "Microsoft Office", pct: 17, hot: true },
+          { name: "Intuit QuickBooks", pct: 8, hot: true },
+          { name: "SAP ERP", pct: 6, hot: true },
+          { name: "SQL / Alteryx / Tableau", pct: 4, hot: true }
+        ],
+        workContext: { autoModHighPct: 73, seriousErrorPct: 51, decisionFreedomPct: 66, faceToFacePct: 66, summary: "73% Mod/High Automated • 51% Serious Error • 66% Decision Freedom" }
+      },
+      "soc-13-2051": {
+        onetCode: "13-2051.00",
+        onetUrl: "https://www.onetonline.org/link/details/13-2051.00",
+        demandUrl: "https://www.onetonline.org/link/demand/13-2051.00",
+        benchmarkNote: "Work Styles & In-Demand Tech directly from 13-2051.00; GWA/Skill Importance benchmarked from O*NET sibling profiles 13-2061.00 & 11-3031.00 during active O*NET survey refresh.",
+        skillImp100: [88, 87, 69, 54, 77, 86, 58, 72],
+        workStyles: [
+          { name: "Attention to Detail", impact: 100, agency: false },
+          { name: "Integrity", impact: 93, agency: true },
+          { name: "Dependability", impact: 86, agency: false },
+          { name: "Intellectual Curiosity", impact: 83, agency: true },
+          { name: "Achievement Orientation", impact: 75, agency: true },
+          { name: "Tolerance for Ambiguity", impact: 61, agency: true }
+        ],
+        wsAgencyScore: 68.4,
+        hotCount: 33,
+        inDemandCount: 8,
+        techSkills: [
+          { name: "Microsoft Excel", pct: 32, hot: true },
+          { name: "PowerPoint", pct: 16, hot: true },
+          { name: "Microsoft Power BI", pct: 8, hot: true },
+          { name: "SQL", pct: 7, hot: true },
+          { name: "SAP", pct: 7, hot: true },
+          { name: "Tableau", pct: 5, hot: true }
+        ],
+        workContext: { autoModHighPct: 52, seriousErrorPct: 64, decisionFreedomPct: 78, faceToFacePct: 72, summary: "52% Mod/High Automated (Sibling Benchmark) • 64% Serious Error • 78% Decision Freedom" }
+      },
+      "soc-13-1111": {
+        onetCode: "13-1111.00",
+        onetUrl: "https://www.onetonline.org/link/details/13-1111.00",
+        demandUrl: "https://www.onetonline.org/link/demand/13-1111.00",
+        skillImp100: [93, 79, 72, 74, 72, 73, 53, 69],
+        workStyles: [
+          { name: "Attention to Detail", impact: 87, agency: false },
+          { name: "Integrity", impact: 77, agency: true },
+          { name: "Achievement Orientation", impact: 76, agency: true },
+          { name: "Innovation", impact: 75, agency: true },
+          { name: "Intellectual Curiosity", impact: 73, agency: true },
+          { name: "Adaptability", impact: 68, agency: true }
+        ],
+        wsAgencyScore: 71.3,
+        hotCount: 104,
+        inDemandCount: 11,
+        techSkills: [
+          { name: "Microsoft Excel", pct: 21, hot: true },
+          { name: "SQL", pct: 20, hot: true },
+          { name: "Microsoft Power BI", pct: 11, hot: true },
+          { name: "Atlassian JIRA", pct: 10, hot: true },
+          { name: "Tableau", pct: 9, hot: true },
+          { name: "Salesforce", pct: 6, hot: true },
+          { name: "Python", pct: 5, hot: true }
+        ],
+        workContext: { autoModHighPct: 50, seriousErrorPct: 52, decisionFreedomPct: 76, faceToFacePct: 74, summary: "50% Mod/High Automated • 52% Serious Error • 76% Decision Freedom • 74% Daily Face-to-Face" }
+      },
+      "soc-11-2021": {
+        onetCode: "11-2021.00",
+        onetUrl: "https://www.onetonline.org/link/details/11-2021.00",
+        demandUrl: "https://www.onetonline.org/link/demand/11-2021.00",
+        skillImp100: [83, 60, 66, 71, 69, 81, 72, 92],
+        workStyles: [
+          { name: "Innovation", impact: 83, agency: true },
+          { name: "Leadership Orientation", impact: 80, agency: true },
+          { name: "Achievement Orientation", impact: 79, agency: true },
+          { name: "Adaptability", impact: 77, agency: true },
+          { name: "Social Orientation", impact: 73, agency: true },
+          { name: "Intellectual Curiosity", impact: 66, agency: true }
+        ],
+        wsAgencyScore: 76.3,
+        hotCount: 68,
+        inDemandCount: 6,
+        techSkills: [
+          { name: "Microsoft Excel", pct: 9, hot: true },
+          { name: "PowerPoint", pct: 8, hot: true },
+          { name: "Salesforce CRM", pct: 7, hot: true },
+          { name: "SQL", pct: 6, hot: true },
+          { name: "Atlassian JIRA", pct: 5, hot: true },
+          { name: "Google Analytics / HubSpot", pct: 4, hot: true }
+        ],
+        workContext: { autoModHighPct: 12, seriousErrorPct: 48, decisionFreedomPct: 90, faceToFacePct: 76, summary: "12% Mod Automated • 90/100 Decision Freedom • High Creative & Brand Agency" }
+      },
+      "soc-13-1161": {
+        onetCode: "13-1161.00",
+        onetUrl: "https://www.onetonline.org/link/details/13-1161.00",
+        demandUrl: "https://www.onetonline.org/link/details/13-1161.00#TechSkills",
+        skillImp100: [70, 75, 53, 98, 95, 86, 75, 46],
+        workStyles: [
+          { name: "Attention to Detail", impact: 77, agency: false },
+          { name: "Intellectual Curiosity", impact: 72, agency: true },
+          { name: "Achievement Orientation", impact: 67, agency: true },
+          { name: "Dependability", impact: 66, agency: false },
+          { name: "Innovation", impact: 65, agency: true },
+          { name: "Adaptability", impact: 61, agency: true }
+        ],
+        wsAgencyScore: 59.0,
+        hotCount: 51,
+        inDemandCount: 9,
+        techSkills: [
+          { name: "Microsoft Excel", pct: 16, hot: true },
+          { name: "PowerPoint", pct: 13, hot: true },
+          { name: "Salesforce", pct: 10, hot: true },
+          { name: "Canva", pct: 6, hot: false },
+          { name: "Google Analytics", pct: 5, hot: true },
+          { name: "Adobe Creative Cloud", pct: 5, hot: true }
+        ],
+        workContext: { autoModHighPct: 30, seriousErrorPct: 70, decisionFreedomPct: 90, faceToFacePct: 62, summary: "30% Mod Automated • 70% Fairly/Very Serious Error • 90% Decision Freedom" }
+      },
+      "soc-15-1252": {
+        onetCode: "15-1252.00",
+        onetUrl: "https://www.onetonline.org/link/details/15-1252.00",
+        demandUrl: "https://www.onetonline.org/link/demand/15-1252.00",
+        skillImp100: [75, 41, 63, 84, 57, 70, 44, 43],
+        workStyles: [
+          { name: "Attention to Detail", impact: 89, agency: false },
+          { name: "Innovation", impact: 84, agency: true },
+          { name: "Dependability", impact: 80, agency: false },
+          { name: "Intellectual Curiosity", impact: 78, agency: true },
+          { name: "Achievement Orientation", impact: 71, agency: true },
+          { name: "Adaptability", impact: 70, agency: true }
+        ],
+        wsAgencyScore: 72.6,
+        hotCount: 152,
+        inDemandCount: 30,
+        techSkills: [
+          { name: "Python", pct: 29, hot: true },
+          { name: "Amazon Web Services (AWS)", pct: 26, hot: true },
+          { name: "Java", pct: 25, hot: true },
+          { name: "SQL", pct: 24, hot: true },
+          { name: "JavaScript / React", pct: 20, hot: true },
+          { name: "Microsoft Azure", pct: 19, hot: true },
+          { name: "Kubernetes & Docker", pct: 14, hot: true }
+        ],
+        workContext: { autoModHighPct: 48, seriousErrorPct: 58, decisionFreedomPct: 87, faceToFacePct: 55, summary: "48% Mod Automated • 87% Decision Freedom • 30 In-Demand Engineering Tools" }
+      },
+      "soc-15-1211": {
+        onetCode: "15-1211.00",
+        onetUrl: "https://www.onetonline.org/link/details/15-1211.00",
+        demandUrl: "https://www.onetonline.org/link/demand/15-1211.00",
+        skillImp100: [65, 47, 69, 57, 86, 53, 44, 39],
+        workStyles: [
+          { name: "Attention to Detail", impact: 86, agency: false },
+          { name: "Intellectual Curiosity", impact: 78, agency: true },
+          { name: "Innovation", impact: 77, agency: true },
+          { name: "Dependability", impact: 72, agency: false },
+          { name: "Adaptability", impact: 62, agency: true },
+          { name: "Integrity", impact: 59, agency: true }
+        ],
+        wsAgencyScore: 67.2,
+        hotCount: 119,
+        inDemandCount: 10,
+        techSkills: [
+          { name: "SQL", pct: 16, hot: true },
+          { name: "Microsoft Excel", pct: 15, hot: true },
+          { name: "SAP ERP", pct: 13, hot: true },
+          { name: "ServiceNow", pct: 6, hot: true },
+          { name: "Atlassian JIRA", pct: 6, hot: true },
+          { name: "Python", pct: 6, hot: true },
+          { name: "Power BI", pct: 5, hot: true }
+        ],
+        workContext: { autoModHighPct: 60, seriousErrorPct: 59, decisionFreedomPct: 92, faceToFacePct: 64, summary: "60% Mod/High Automated • 59% Serious Error • 92% Decision Freedom" }
+      },
+      "soc-15-2051": {
+        onetCode: "15-2051.00",
+        onetUrl: "https://www.onetonline.org/link/details/15-2051.00",
+        demandUrl: "https://www.onetonline.org/link/demand/15-2051.00",
+        skillImp100: [69, 85, 69, 44, 39, 94, 60, 65],
+        workStyles: [
+          { name: "Intellectual Curiosity", impact: 100, agency: true },
+          { name: "Attention to Detail", impact: 100, agency: false },
+          { name: "Innovation", impact: 81, agency: true },
+          { name: "Dependability", impact: 79, agency: false },
+          { name: "Integrity", impact: 70, agency: true },
+          { name: "Tolerance for Ambiguity", impact: 66, agency: true }
+        ],
+        wsAgencyScore: 75.8,
+        hotCount: 55,
+        inDemandCount: 21,
+        techSkills: [
+          { name: "Python", pct: 66, hot: true },
+          { name: "SQL", pct: 51, hot: true },
+          { name: "R", pct: 34, hot: true },
+          { name: "Tableau", pct: 22, hot: true },
+          { name: "Power BI", pct: 19, hot: true },
+          { name: "AWS", pct: 17, hot: true },
+          { name: "TensorFlow / PyTorch", pct: 11, hot: true }
+        ],
+        workContext: { autoModHighPct: 48, seriousErrorPct: 39, decisionFreedomPct: 80, faceToFacePct: 52, summary: "48% Mod/High Automated • 80% Decision Freedom • 66% Python / 51% SQL Postings" }
+      },
+      "soc-17-2199": {
+        onetCode: "17-2199.08",
+        onetUrl: "https://www.onetonline.org/link/details/17-2199.08",
+        demandUrl: "https://www.onetonline.org/link/details/17-2199.08#TechSkills",
+        skillImp100: [53, 60, 81, 72, 74, 83, 66, 56],
+        workStyles: [
+          { name: "Attention to Detail", impact: 91, agency: false },
+          { name: "Innovation", impact: 85, agency: true },
+          { name: "Dependability", impact: 80, agency: false },
+          { name: "Intellectual Curiosity", impact: 79, agency: true },
+          { name: "Cautiousness", impact: 76, agency: true },
+          { name: "Adaptability", impact: 68, agency: true }
+        ],
+        wsAgencyScore: 76.0,
+        hotCount: 28,
+        inDemandCount: 10,
+        techSkills: [
+          { name: "Python", pct: 34, hot: true },
+          { name: "C++", pct: 23, hot: true },
+          { name: "SolidWorks CAD", pct: 11, hot: true },
+          { name: "Linux / ROS", pct: 7, hot: true },
+          { name: "C#", pct: 7, hot: true },
+          { name: "AutoCAD / MATLAB", pct: 6, hot: true }
+        ],
+        workContext: { autoModHighPct: 35, seriousErrorPct: 60, decisionFreedomPct: 86, faceToFacePct: 80, summary: "60% Extremely/Very Serious Physical Error • 80% Daily Face-to-Face Lab Work" }
+      },
+      "soc-15-1212": {
+        onetCode: "15-1212.00",
+        onetUrl: "https://www.onetonline.org/link/details/15-1212.00",
+        demandUrl: "https://www.onetonline.org/link/demand/15-1212.00",
+        skillImp100: [76, 28, 60, 74, 78, 76, 60, 53],
+        workStyles: [
+          { name: "Attention to Detail", impact: 100, agency: false },
+          { name: "Integrity", impact: 98, agency: true },
+          { name: "Cautiousness", impact: 93, agency: true },
+          { name: "Dependability", impact: 88, agency: false },
+          { name: "Innovation", impact: 79, agency: true },
+          { name: "Intellectual Curiosity", impact: 79, agency: true }
+        ],
+        wsAgencyScore: 79.8,
+        hotCount: 93,
+        inDemandCount: 14,
+        techSkills: [
+          { name: "Firewall Software", pct: 18, hot: false },
+          { name: "Linux", pct: 14, hot: true },
+          { name: "Splunk SIEM", pct: 12, hot: true },
+          { name: "Python", pct: 12, hot: true },
+          { name: "Azure / AWS Cloud", pct: 12, hot: true },
+          { name: "MITRE ATT&CK", pct: 7, hot: false }
+        ],
+        workContext: { autoModHighPct: 46, seriousErrorPct: 51, decisionFreedomPct: 87, faceToFacePct: 63, summary: "51% Extremely/Very Serious Breach Consequence • 87% Decision Freedom" }
+      },
+      "soc-15-2051-bi": {
+        onetCode: "15-2051.01",
+        onetUrl: "https://www.onetonline.org/link/details/15-2051.01",
+        demandUrl: "https://www.onetonline.org/link/demand/15-2051.01",
+        skillImp100: [63, 93, 60, 53, 50, 89, 53, 60],
+        workStyles: [
+          { name: "Attention to Detail", impact: 92, agency: false },
+          { name: "Integrity", impact: 77, agency: true },
+          { name: "Dependability", impact: 73, agency: false },
+          { name: "Achievement Orientation", impact: 69, agency: true },
+          { name: "Tolerance for Ambiguity", impact: 62, agency: true },
+          { name: "Intellectual Curiosity", impact: 55, agency: true }
+        ],
+        wsAgencyScore: 64.5,
+        hotCount: 100,
+        inDemandCount: 14,
+        techSkills: [
+          { name: "SQL", pct: 35, hot: true },
+          { name: "Microsoft Power BI", pct: 20, hot: true },
+          { name: "Python", pct: 20, hot: true },
+          { name: "Tableau", pct: 19, hot: true },
+          { name: "SAP", pct: 19, hot: true },
+          { name: "R / AWS / Snowflake", pct: 10, hot: true }
+        ],
+        workContext: { autoModHighPct: 53, seriousErrorPct: 32, decisionFreedomPct: 96, faceToFacePct: 60, summary: "53% Mod/High Automated • 96% Decision Freedom • 35% SQL / 20% Power BI" }
+      },
+      "soc-15-2041": {
+        onetCode: "15-2041.00",
+        onetUrl: "https://www.onetonline.org/link/details/15-2041.00",
+        demandUrl: "https://www.onetonline.org/link/demand/15-2041.00",
+        skillImp100: [97, 99, 72, 75, 59, 78, 75, 75],
+        workStyles: [
+          { name: "Attention to Detail", impact: 100, agency: false },
+          { name: "Intellectual Curiosity", impact: 89, agency: true },
+          { name: "Dependability", impact: 80, agency: false },
+          { name: "Achievement Orientation", impact: 71, agency: true },
+          { name: "Integrity", impact: 70, agency: true },
+          { name: "Innovation", impact: 63, agency: true }
+        ],
+        wsAgencyScore: 73.2,
+        hotCount: 26,
+        inDemandCount: 11,
+        techSkills: [
+          { name: "R", pct: 43, hot: true },
+          { name: "SAS", pct: 40, hot: true },
+          { name: "Python", pct: 28, hot: true },
+          { name: "SQL", pct: 18, hot: true },
+          { name: "Tableau / Stata / SPSS", pct: 8, hot: true }
+        ],
+        workContext: { autoModHighPct: 24, seriousErrorPct: 35, decisionFreedomPct: 85, faceToFacePct: 58, summary: "76% Slightly/Not Automated • 85% Decision Freedom • 43% R / 40% SAS" }
+      },
+      "soc-19-3011": {
+        onetCode: "19-3011.00",
+        onetUrl: "https://www.onetonline.org/link/details/19-3011.00",
+        demandUrl: "https://www.onetonline.org/link/details/19-3011.00#TechSkills",
+        skillImp100: [94, 78, 53, 98, 79, 63, 56, 87],
+        workStyles: [
+          { name: "Intellectual Curiosity", impact: 100, agency: true },
+          { name: "Attention to Detail", impact: 84, agency: false },
+          { name: "Achievement Orientation", impact: 72, agency: true },
+          { name: "Integrity", impact: 71, agency: true },
+          { name: "Innovation", impact: 63, agency: true },
+          { name: "Tolerance for Ambiguity", impact: 63, agency: true }
+        ],
+        wsAgencyScore: 73.8,
+        hotCount: 24,
+        inDemandCount: 12,
+        techSkills: [
+          { name: "Python", pct: 27, hot: true },
+          { name: "R", pct: 27, hot: true },
+          { name: "Microsoft Excel", pct: 27, hot: true },
+          { name: "SQL", pct: 15, hot: true },
+          { name: "SAS", pct: 14, hot: true },
+          { name: "Power BI / Stata", pct: 8, hot: true }
+        ],
+        workContext: { autoModHighPct: 17, seriousErrorPct: 48, decisionFreedomPct: 100, faceToFacePct: 55, summary: "83% Slightly/Not Automated • 100% Decision Freedom • 27% Python & R" }
+      },
+      "soc-27-3041": {
+        onetCode: "27-3041.00",
+        onetUrl: "https://www.onetonline.org/link/details/27-3041.00",
+        demandUrl: "https://www.onetonline.org/link/demand/27-3041.00",
+        skillImp100: [85, 100, 90, 72, 92, 91, 72, 64],
+        workStyles: [
+          { name: "Attention to Detail", impact: 100, agency: false },
+          { name: "Dependability", impact: 88, agency: false },
+          { name: "Intellectual Curiosity", impact: 71, agency: true },
+          { name: "Leadership Orientation", impact: 71, agency: true },
+          { name: "Integrity", impact: 63, agency: true },
+          { name: "Innovation", impact: 62, agency: true }
+        ],
+        wsAgencyScore: 66.8,
+        hotCount: 22,
+        inDemandCount: 8,
+        techSkills: [
+          { name: "Microsoft Office", pct: 13, hot: true },
+          { name: "Microsoft Excel", pct: 11, hot: true },
+          { name: "Adobe Photoshop", pct: 8, hot: true },
+          { name: "HTML / Web CMS", pct: 6, hot: true },
+          { name: "Google Analytics / InDesign", pct: 4, hot: true }
+        ],
+        workContext: { autoModHighPct: 31, seriousErrorPct: 45, decisionFreedomPct: 91, faceToFacePct: 67, summary: "69% Not Automated • 91% Decision Freedom • High Editorial Verification Demand" }
+      },
+      "soc-19-1029": {
+        onetCode: "19-1029.04",
+        onetUrl: "https://www.onetonline.org/link/details/19-1029.04",
+        demandUrl: "https://www.onetonline.org/link/details/19-1029.04#TechSkills",
+        skillImp100: [56, 88, 87, 67, 65, 97, 51, 91],
+        workStyles: [
+          { name: "Intellectual Curiosity", impact: 100, agency: true },
+          { name: "Attention to Detail", impact: 84, agency: false },
+          { name: "Innovation", impact: 77, agency: true },
+          { name: "Dependability", impact: 69, agency: false },
+          { name: "Integrity", impact: 68, agency: true },
+          { name: "Achievement Orientation", impact: 65, agency: true }
+        ],
+        wsAgencyScore: 77.5,
+        hotCount: 17,
+        inDemandCount: 4,
+        techSkills: [
+          { name: "Python", pct: 13, hot: true },
+          { name: "R", pct: 11, hot: true },
+          { name: "Microsoft Excel", pct: 7, hot: true },
+          { name: "ESRI ArcGIS", pct: 3, hot: true },
+          { name: "SQL / Bioinformatics", pct: 3, hot: true }
+        ],
+        workContext: { autoModHighPct: 16, seriousErrorPct: 54, decisionFreedomPct: 94, faceToFacePct: 72, summary: "69% Not Automated • 54% Serious Lab/Clinical Error • 94% Decision Freedom" }
+      },
+      "soc-33-3021": {
+        onetCode: "33-3021.00",
+        onetUrl: "https://www.onetonline.org/link/details/33-3021.00",
+        demandUrl: "https://www.onetonline.org/link/details/33-3021.00#TechSkills",
+        skillImp100: [94, 94, 78, 85, 78, 93, 88, 88],
+        workStyles: [
+          { name: "Stress Tolerance", impact: 100, agency: true },
+          { name: "Dependability", impact: 98, agency: false },
+          { name: "Integrity", impact: 98, agency: true },
+          { name: "Attention to Detail", impact: 89, agency: false },
+          { name: "Cautiousness", impact: 82, agency: true },
+          { name: "Perseverance", impact: 82, agency: true }
+        ],
+        wsAgencyScore: 87.8,
+        hotCount: 11,
+        inDemandCount: 2,
+        techSkills: [
+          { name: "Microsoft Office", pct: 10, hot: true },
+          { name: "Microsoft Excel", pct: 9, hot: true },
+          { name: "SQL / Forensic DBs", pct: 4, hot: true },
+          { name: "SAS / Link Analysis", pct: 3, hot: true }
+        ],
+        workContext: { autoModHighPct: 14, seriousErrorPct: 99, decisionFreedomPct: 100, faceToFacePct: 84, summary: "99% Extremely/Very Serious Constitutional & Safety Error • 84% Daily Face-to-Face" }
+      },
+      "soc-19-3092": {
+        onetCode: "19-3092.00",
+        onetUrl: "https://www.onetonline.org/link/details/19-3092.00",
+        demandUrl: "https://www.onetonline.org/link/details/19-3092.00#TechSkills",
+        skillImp100: [78, 90, 22, 53, 74, 89, 60, 61],
+        workStyles: [
+          { name: "Intellectual Curiosity", impact: 82, agency: true },
+          { name: "Attention to Detail", impact: 76, agency: false },
+          { name: "Innovation", impact: 75, agency: true },
+          { name: "Dependability", impact: 69, agency: false },
+          { name: "Adaptability", impact: 58, agency: true },
+          { name: "Tolerance for Ambiguity", impact: 57, agency: true }
+        ],
+        wsAgencyScore: 68.0,
+        hotCount: 14,
+        inDemandCount: 6,
+        techSkills: [
+          { name: "ESRI ArcGIS", pct: 72, hot: true },
+          { name: "Python (ArcPy/GeoAI)", pct: 38, hot: true },
+          { name: "SQL / PostGIS", pct: 25, hot: true },
+          { name: "AutoCAD", pct: 18, hot: true },
+          { name: "R / Remote Sensing", pct: 6, hot: true }
+        ],
+        workContext: { autoModHighPct: 30, seriousErrorPct: 55, decisionFreedomPct: 95, faceToFacePct: 60, summary: "70% Slightly/Not Automated • 95% Decision Freedom • 72% ArcGIS / 38% Python" }
+      },
+      "soc-11-1021": {
+        onetCode: "11-1021.00",
+        onetUrl: "https://www.onetonline.org/link/details/11-1021.00",
+        demandUrl: "https://www.onetonline.org/link/demand/11-1021.00",
+        skillImp100: [74, 50, 53, 63, 69, 76, 72, 80],
+        workStyles: [
+          { name: "Leadership Orientation", impact: 98, agency: true },
+          { name: "Dependability", impact: 88, agency: false },
+          { name: "Integrity", impact: 84, agency: true },
+          { name: "Achievement Orientation", impact: 79, agency: true },
+          { name: "Self-Confidence", impact: 76, agency: true },
+          { name: "Initiative", impact: 74, agency: true }
+        ],
+        wsAgencyScore: 82.2,
+        hotCount: 49,
+        inDemandCount: 3,
+        techSkills: [
+          { name: "Microsoft Excel", pct: 11, hot: true },
+          { name: "Microsoft Office", pct: 11, hot: true },
+          { name: "PowerPoint", pct: 7, hot: true },
+          { name: "Salesforce / SAP / SQL", pct: 3, hot: true }
+        ],
+        workContext: { autoModHighPct: 28, seriousErrorPct: 46, decisionFreedomPct: 86, faceToFacePct: 86, summary: "86% Daily Face-to-Face • 86% High Decision Freedom • 98/100 Leadership Impact" }
+      },
+      "soc-19-3094": {
+        onetCode: "19-3094.00",
+        onetUrl: "https://www.onetonline.org/link/details/19-3094.00",
+        demandUrl: "https://www.onetonline.org/link/demand/19-3094.00",
+        skillImp100: [75, 95, 75, 71, 66, 89, 56, 69],
+        workStyles: [
+          { name: "Intellectual Curiosity", impact: 100, agency: true },
+          { name: "Integrity", impact: 77, agency: true },
+          { name: "Attention to Detail", impact: 73, agency: false },
+          { name: "Achievement Orientation", impact: 71, agency: true },
+          { name: "Tolerance for Ambiguity", impact: 68, agency: true },
+          { name: "Innovation", impact: 63, agency: true }
+        ],
+        wsAgencyScore: 75.8,
+        hotCount: 16,
+        inDemandCount: 5,
+        techSkills: [
+          { name: "Microsoft Excel", pct: 17, hot: true },
+          { name: "Microsoft Office", pct: 14, hot: true },
+          { name: "PowerPoint", pct: 13, hot: true },
+          { name: "SharePoint", pct: 4, hot: true },
+          { name: "R / Python / Stata / Tableau", pct: 4, hot: true }
+        ],
+        workContext: { autoModHighPct: 16, seriousErrorPct: 44, decisionFreedomPct: 85, faceToFacePct: 54, summary: "84% Slightly/Not Automated • 85% High Decision Freedom • 100/100 Curiosity" }
+      },
+      "soc-11-9151-arts": {
+        onetCode: "11-9151.00",
+        onetUrl: "https://www.onetonline.org/link/details/11-9151.00",
+        demandUrl: "https://www.onetonline.org/link/demand/11-9151.00",
+        skillImp100: [71, 62, 41, 56, 72, 78, 56, 69],
+        workStyles: [
+          { name: "Dependability", impact: 88, agency: false },
+          { name: "Leadership Orientation", impact: 87, agency: true },
+          { name: "Cooperation", impact: 81, agency: true },
+          { name: "Social Orientation", impact: 79, agency: true },
+          { name: "Empathy", impact: 78, agency: true },
+          { name: "Integrity", impact: 77, agency: true }
+        ],
+        wsAgencyScore: 80.4,
+        hotCount: 7,
+        inDemandCount: 1,
+        techSkills: [
+          { name: "Microsoft Office", pct: 7, hot: true },
+          { name: "Excel / Donor CRM", pct: 5, hot: true },
+          { name: "PowerPoint / Project", pct: 4, hot: true }
+        ],
+        workContext: { autoModHighPct: 18, seriousErrorPct: 68, decisionFreedomPct: 100, faceToFacePct: 94, summary: "94% Daily Face-to-Face • 100% Decision Freedom • High Civic & Empathy Agency" }
+      },
+      "soc-19-2041": {
+        onetCode: "19-2041.00",
+        onetUrl: "https://www.onetonline.org/link/details/19-2041.00",
+        demandUrl: "https://www.onetonline.org/link/demand/19-2041.00",
+        skillImp100: [62, 75, 85, 54, 85, 79, 91, 50],
+        workStyles: [
+          { name: "Attention to Detail", impact: 89, agency: false },
+          { name: "Dependability", impact: 82, agency: false },
+          { name: "Integrity", impact: 81, agency: true },
+          { name: "Intellectual Curiosity", impact: 80, agency: true },
+          { name: "Cautiousness", impact: 70, agency: true },
+          { name: "Innovation", impact: 68, agency: true }
+        ],
+        wsAgencyScore: 74.8,
+        hotCount: 17,
+        inDemandCount: 7,
+        techSkills: [
+          { name: "Microsoft Office", pct: 19, hot: true },
+          { name: "Microsoft Excel", pct: 17, hot: true },
+          { name: "PowerPoint", pct: 9, hot: true },
+          { name: "ESRI ArcGIS", pct: 7, hot: true },
+          { name: "GIS Systems", pct: 5, hot: false },
+          { name: "AutoCAD / SQL", pct: 4, hot: true }
+        ],
+        workContext: { autoModHighPct: 15, seriousErrorPct: 87, decisionFreedomPct: 88, faceToFacePct: 80, summary: "71% Not Automated • 87% Serious Environmental Error • 80% Daily Field/Team Contact" }
+      },
+      "soc-11-9111": {
+        onetCode: "11-9111.00",
+        onetUrl: "https://www.onetonline.org/link/details/11-9111.00",
+        demandUrl: "https://www.onetonline.org/link/hot_tech/11-9111.00",
+        skillImp100: [77, 56, 89, 82, 72, 84, 83, 88],
+        workStyles: [
+          { name: "Dependability", impact: 98, agency: false },
+          { name: "Leadership Orientation", impact: 91, agency: true },
+          { name: "Attention to Detail", impact: 87, agency: false },
+          { name: "Integrity", impact: 85, agency: true },
+          { name: "Cooperation", impact: 81, agency: true },
+          { name: "Adaptability", impact: 77, agency: true }
+        ],
+        wsAgencyScore: 81.6,
+        hotCount: 40,
+        inDemandCount: 4,
+        techSkills: [
+          { name: "Microsoft Office", pct: 11, hot: true },
+          { name: "Microsoft Excel", pct: 10, hot: true },
+          { name: "Outlook", pct: 6, hot: true },
+          { name: "PowerPoint", pct: 5, hot: true },
+          { name: "Epic EHR / Tableau / SQL", pct: 2, hot: true }
+        ],
+        workContext: { autoModHighPct: 64, seriousErrorPct: 74, decisionFreedomPct: 74, faceToFacePct: 75, summary: "74% Serious Clinical/Safety Error • 75% Daily Face-to-Face • 91/100 Leadership" }
+      }
+    };
+
+    // Explicit CIP-to-SOC Empirical Weight Mapping for all 23 IUB Degree Programs
+    const MAJOR_TO_JOB_WEIGHTS = {
+      "kelley-acct": [["soc-13-2011", 1.00]],
+      "kelley-fin":  [["soc-13-2051", 0.70], ["soc-13-1111", 0.30]],
+      "kelley-mkt":  [["soc-11-2021", 0.55], ["soc-13-1161", 0.45]],
+      "kelley-mgmt": [["soc-11-1021", 0.55], ["soc-13-1111", 0.45]],
+      "kelley-ba":   [["soc-15-2051", 0.55], ["soc-13-1111", 0.45]],
+      "kelley-is":   [["soc-15-1211", 0.65], ["soc-15-1252", 0.35]],
+      "luddy-cs":    [["soc-15-1252", 1.00]],
+      "luddy-info":  [["soc-15-1211", 0.75], ["soc-15-1252", 0.25]],
+      "luddy-ds":    [["soc-15-2051", 0.75], ["soc-15-2041", 0.25]],
+      "luddy-rob":   [["soc-17-2199", 1.00]],
+      "luddy-cyber": [["soc-15-1212", 1.00]],
+      "luddy-bids":  [["soc-15-2051-bi", 0.70], ["soc-15-2051", 0.30]],
+      "cas-econ":    [["soc-19-3011", 0.70], ["soc-13-1111", 0.30]],
+      "cas-eng":     [["soc-27-3041", 1.00]],
+      "cas-biol":    [["soc-19-1029", 1.00]],
+      "cas-cjus":    [["soc-33-3021", 1.00]],
+      "cas-geog":    [["soc-19-3092", 0.75], ["soc-19-2041", 0.25]],
+      "cas-math":    [["soc-15-2041", 0.75], ["soc-15-2051", 0.25]],
+      "oneill-pmp":  [["soc-11-1021", 0.65], ["soc-13-1111", 0.35]],
+      "oneill-pa":   [["soc-19-3094", 0.75], ["soc-11-1021", 0.25]],
+      "oneill-arts": [["soc-11-9151-arts", 1.00]],
+      "oneill-env":  [["soc-19-2041", 1.00]],
+      "oneill-hmp":  [["soc-11-9111", 1.00]]
+    };
+
+    // Append the 3 extra skills to each Job (8 total), apply direct O*NET 30.1 standardized 0-100 Importance
+    // weights w(o,s) = imp100 / sum(imp100), and fold in O*NET 30.1 Work Styles (Human Distinctive calibration)
+    // and Work Context / In-Demand Tech Skills (AI Resilience & Tech Augmentation calibration).
     JOBS.forEach(j => {
       const extras = EXTRA_JOB_SKILLS[j.id] || [];
-      const origV = j.skills.reduce((s, sk) => s + sk.weight * sk.v, 0);
-      const origR = j.skills.reduce((s, sk) => s + sk.weight * sk.r, 0);
-      const scaledExisting = j.skills.map(sk => ({ ...sk, weight: +(sk.weight * 0.70).toFixed(2) }));
-      const extraWeights = [0.12, 0.10, 0.08];
-      const added = extras.map((ex, idx) => ({ ...ex, weight: extraWeights[idx] || 0.10 }));
-      const all8 = [...scaledExisting, ...added];
-      const wSum = all8.reduce((s, sk) => s + sk.weight, 0);
-      all8[0].weight = +(all8[0].weight + (1 - wSum)).toFixed(2);
-      // Calibrate the 3 extra skills slightly so the 8-skill weighted job baseline matches the verified 5-skill job baseline
-      const newV = all8.reduce((s, sk) => s + sk.weight * sk.v, 0);
-      const newR = all8.reduce((s, sk) => s + sk.weight * sk.r, 0);
-      const vDiff = origV - newV;
-      const rDiff = origR - newR;
-      for (let k = 5; k < all8.length; k++) {
-        all8[k].v = Math.min(95, Math.max(10, Math.round(all8[k].v + vDiff / 0.30)));
-        all8[k].r = Math.min(96, Math.max(35, Math.round(all8[k].r + rDiff / 0.30)));
-      }
+      const prof = ONET_30_1_PROFILES[j.id];
+      const all8 = [...j.skills, ...extras];
+      const impArr = prof ? prof.skillImp100 : all8.map(sk => Math.round(((sk.imp || 4.2) - 1) * 25));
+      const impSum = impArr.reduce((a, b) => a + b, 0);
+
+      // O*NET 30.1 Work Styles Human-Agency nudge (centered at 73.5 across 22 SOCs)
+      const wsDeltaY = prof ? +((prof.wsAgencyScore - 73.5) * 0.22).toFixed(2) : 0;
+      // O*NET 30.1 Work Context structural insulation nudge (lower routine automation + higher error consequence -> lower substitution risk v)
+      const wcInsulation = prof
+        ? (((42 - prof.workContext.autoModHighPct) * 0.045) + ((prof.workContext.seriousErrorPct - 55) * 0.035))
+        : 0;
+      const vDelta = -Math.max(-2.8, Math.min(2.8, wcInsulation));
+
+      let runningW = 0;
+      all8.forEach((sk, idx) => {
+        const imp100 = impArr[idx] || 70;
+        sk.imp100 = imp100;
+        sk.imp = +(1 + 4 * (imp100 / 100)).toFixed(2);
+        sk.lvl = sk.lvl || +(1.5 + 4.5 * (imp100 / 100)).toFixed(1);
+        const w = idx < all8.length - 1 ? +(imp100 / impSum).toFixed(3) : +(1 - runningW).toFixed(3);
+        runningW = +(runningW + w).toFixed(3);
+        sk.weight = w;
+        sk.v = Math.min(94, Math.max(11, +(sk.v + vDelta).toFixed(1)));
+        sk.r = Math.min(96, Math.max(36, +(sk.r + wsDeltaY).toFixed(1)));
+      });
+
       j.skills = all8;
+      j.onet30 = prof;
+      // Pathway A tech augmentation multiplier from O*NET 30.1 In-Demand Tech Skills density (1.00x to 1.08x)
+      j.techAugMult = prof ? +(1 + Math.min(0.08, prof.inDemandCount * 0.003)).toFixed(3) : 1.0;
     });
 
-    // Append the 3 extra skills to each Major (8 total) and normalize weights to sum to 1.00
+    // Propagate O*NET 30.1 standardized occupational skill weights, Work Styles, and In-Demand Tech Skills to all 23 Majors
     PROGRAMS.forEach(p => {
       const extras = EXTRA_MAJOR_SKILLS[p.id] || [];
-      const scaledExisting = p.skills.map(sk => ({ ...sk, weight: +(sk.weight * 0.70).toFixed(2) }));
-      const extraWeights = [0.12, 0.10, 0.08];
-      const added = extras.map((ex, idx) => ({ ...ex, weight: extraWeights[idx] || 0.10 }));
-      const all8 = [...scaledExisting, ...added];
-      const wSum = all8.reduce((s, sk) => s + sk.weight, 0);
-      all8[0].weight = +(all8[0].weight + (1 - wSum)).toFixed(2);
+      const all8 = [...p.skills, ...extras];
+      const mapList = MAJOR_TO_JOB_WEIGHTS[p.id] || [["soc-13-1111", 1.0]];
+
+      // Blend standardized 0-100 Importance across the major's mapped SOC occupations
+      const blendedImp100 = all8.map((_, idx) => {
+        let s = 0;
+        mapList.forEach(([jid, jw]) => {
+          const prof = ONET_30_1_PROFILES[jid];
+          s += jw * (prof ? prof.skillImp100[idx] : 72);
+        });
+        return Math.round(s);
+      });
+      const impSum = blendedImp100.reduce((a, b) => a + b, 0);
+
+      // Blend Work Styles, Tech Skills, and Work Style / Work Context calibrations
+      const wsMap = new Map();
+      const techMap = new Map();
+      let blendedWsAgency = 0, blendedHot = 0, blendedInDemand = 0, blendedAuto = 0, blendedErr = 0;
+
+      mapList.forEach(([jid, jw]) => {
+        const prof = ONET_30_1_PROFILES[jid];
+        if (!prof) return;
+        blendedWsAgency += jw * prof.wsAgencyScore;
+        blendedHot += jw * prof.hotCount;
+        blendedInDemand += jw * prof.inDemandCount;
+        blendedAuto += jw * prof.workContext.autoModHighPct;
+        blendedErr += jw * prof.workContext.seriousErrorPct;
+
+        prof.workStyles.forEach(ws => {
+          const prev = wsMap.get(ws.name) || { name: ws.name, impact: 0, w: 0, agency: ws.agency };
+          prev.impact += jw * ws.impact;
+          prev.w += jw;
+          wsMap.set(ws.name, prev);
+        });
+        prof.techSkills.forEach(ts => {
+          const prev = techMap.get(ts.name) || { name: ts.name, pct: 0, hot: ts.hot };
+          prev.pct += jw * ts.pct;
+          techMap.set(ts.name, prev);
+        });
+      });
+
+      const wsDeltaY = +((blendedWsAgency - 73.5) * 0.22).toFixed(2);
+      const wcInsulation = ((42 - blendedAuto) * 0.045) + ((blendedErr - 55) * 0.035);
+      const vDelta = -Math.max(-2.8, Math.min(2.8, wcInsulation));
+
+      let runningW = 0;
+      all8.forEach((sk, idx) => {
+        const imp100 = blendedImp100[idx];
+        sk.imp100 = imp100;
+        const w = idx < all8.length - 1 ? +(imp100 / impSum).toFixed(3) : +(1 - runningW).toFixed(3);
+        runningW = +(runningW + w).toFixed(3);
+        sk.weight = w;
+        sk.v = Math.min(94, Math.max(11, +(sk.v + vDelta).toFixed(1)));
+        sk.r = Math.min(96, Math.max(36, +(sk.r + wsDeltaY).toFixed(1)));
+      });
       p.skills = all8;
+
+      // Synchronize Major top-level 2025/2030 scores with empirical O*NET 30.1 weighted skill baselines
+      const empV = all8.reduce((s, sk) => s + sk.weight * sk.v, 0);
+      const empR = all8.reduce((s, sk) => s + sk.weight * sk.r, 0);
+      const oldCompV = p.scores.composite.v2025;
+      const oldCompR = p.scores.composite.r2025;
+      // Smooth 55% empirical O*NET 30.1 skill/work-style pull + 45% multi-index prior so all 4 AI models preserve relative spread
+      const shiftV = (empV - oldCompV) * 0.55;
+      const shiftR = (empR - oldCompR) * 0.55;
+      Object.keys(p.scores).forEach(mKey => {
+        p.scores[mKey].v2025 = Math.min(78, Math.max(22, +(p.scores[mKey].v2025 + shiftV).toFixed(1)));
+        p.scores[mKey].v2030 = Math.min(78, Math.max(21, +(p.scores[mKey].v2030 + shiftV).toFixed(1)));
+        p.scores[mKey].r2025 = Math.min(92, Math.max(46, +(p.scores[mKey].r2025 + shiftR).toFixed(1)));
+        p.scores[mKey].r2030 = Math.min(93, Math.max(47, +(p.scores[mKey].r2030 + shiftR).toFixed(1)));
+      });
+
+      const primaryJobId = mapList[0][0];
+      const primaryProf = ONET_30_1_PROFILES[primaryJobId];
+      p.onet30 = {
+        primaryOnetCode: primaryProf ? primaryProf.onetCode : "",
+        onetUrl: primaryProf ? primaryProf.onetUrl : "https://www.onetonline.org/",
+        demandUrl: primaryProf ? primaryProf.demandUrl : "https://www.onetonline.org/",
+        wsAgencyScore: +blendedWsAgency.toFixed(1),
+        hotCount: Math.round(blendedHot),
+        inDemandCount: Math.round(blendedInDemand),
+        workStyles: [...wsMap.values()]
+          .map(x => ({ name: x.name, impact: Math.round(x.impact / Math.max(0.01, x.w)), agency: x.agency }))
+          .sort((a, b) => b.impact - a.impact)
+          .slice(0, 6),
+        techSkills: [...techMap.values()]
+          .map(x => ({ name: x.name, pct: Math.max(2, Math.round(x.pct)), hot: x.hot }))
+          .sort((a, b) => b.pct - a.pct)
+          .slice(0, 6)
+      };
+      p.techAugMult = +(1 + Math.min(0.08, p.onet30.inDemandCount * 0.003)).toFixed(3);
     });
 
     // Expand COURSE_CATALOG target indices across the 8 skills [0..7]
@@ -2057,10 +2762,12 @@
         const headroomY = Math.max(0.45, 0.45 + 1.05 * ((98 - humanBase) / 55));
 
         let svBoost = 0, rBoost = 0;
+        const augMult = job.techAugMult || 1.0;
         selectedInts.forEach(intItem => {
           if (intItem.targets.includes(idx)) {
-            svBoost += intItem.vDrop * headroomX * 1.15;
-            rBoost += intItem.rLift * headroomY * 1.15;
+            const pMult = intItem.pathway.includes("Pathway A") ? augMult : 1.0;
+            svBoost += intItem.vDrop * headroomX * 1.15 * pMult;
+            rBoost += intItem.rLift * headroomY * 1.15 * pMult;
           }
         });
 
@@ -2138,10 +2845,12 @@
         const skHeadroomY = Math.max(0.45, 0.45 + 1.05 * ((98 - skHumanBase) / 55));
 
         let svBoost = 0, rBoost = 0;
+        const augMult = prog.techAugMult || 1.0;
         selectedInts.forEach(intItem => {
           if (intItem.targets.includes(idx)) {
-            svBoost += intItem.vDrop * skHeadroomX * 1.18;
-            rBoost += intItem.rLift * skHeadroomY * 1.18;
+            const pMult = intItem.pathway.includes("Pathway A") ? augMult : 1.0;
+            svBoost += intItem.vDrop * skHeadroomX * 1.18 * pMult;
+            rBoost += intItem.rLift * skHeadroomY * 1.18 * pMult;
           }
         });
 
@@ -2423,6 +3132,64 @@
       `;
     }
 
+    
+    function buildOnet30PanelHtml(onet30, contextLabel, workContextSummary, benchmarkNote) {
+      if (!onet30) return "";
+      const wsBars = onet30.workStyles.map(ws => {
+        const barColor = ws.agency ? "bg-emerald-600" : "bg-slate-600";
+        const pillTag = ws.agency ? '<span class="text-[9px] text-emerald-700 font-semibold">Human Agency</span>' : '<span class="text-[9px] text-slate-400">Conscientiousness</span>';
+        return `
+          <div class="space-y-0.5">
+            <div class="flex items-center justify-between text-[11px]">
+              <span class="font-semibold text-slate-800">${ws.name} ${pillTag}</span>
+              <span class="font-mono font-bold text-slate-900">${ws.impact}/100</span>
+            </div>
+            <div class="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
+              <div class="${barColor} h-full rounded-full" style="width:${Math.min(100, ws.impact)}%"></div>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      const techPills = onet30.techSkills.map(ts => `
+        <span class="inline-flex items-center gap-1 px-2 py-1 rounded-lg border ${ts.hot ? 'bg-sky-50 border-sky-200 text-sky-900' : 'bg-white border-slate-200 text-slate-800'} text-[11px]">
+          <span class="font-semibold">${ts.name}</span>
+          <span class="font-mono text-[10px] px-1 py-0.2 rounded bg-white/80 text-red-800 font-bold">${ts.pct}%</span>
+        </span>
+      `).join("");
+
+      return `
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5 pb-2 border-b border-slate-200">
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-red-800">O*NET 30.1 New Work Styles &amp; Employer Tech Demand</span>
+            <h4 class="text-xs font-bold text-slate-900">${contextLabel}</h4>
+          </div>
+          <div class="flex items-center gap-2 text-[11px]">
+            <span class="px-2 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 font-semibold">Agency Index: ${onet30.wsAgencyScore}/100</span>
+            <span class="px-2 py-0.5 rounded-full bg-sky-50 border border-sky-200 text-sky-900 font-semibold">${onet30.inDemandCount} In-Demand • ${onet30.hotCount} Hot Tech</span>
+            <a href="${onet30.onetUrl}" target="_blank" class="text-red-700 underline font-semibold">O*NET 30.1 ↗</a>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <div class="text-[10px] font-bold uppercase text-slate-500 mb-1.5">Top O*NET 30.1 Work Styles (0–100 Impact)</div>
+            <div class="space-y-1.5">${wsBars}</div>
+          </div>
+          <div class="flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="text-[10px] font-bold uppercase text-slate-500">Employer In-Demand Tech (% Job Postings)</span>
+                <a href="${onet30.demandUrl}" target="_blank" class="text-[10px] text-red-700 underline">Demand Profile ↗</a>
+              </div>
+              <div class="flex flex-wrap gap-1.5">${techPills}</div>
+            </div>
+            ${workContextSummary ? `<div class="mt-2.5 pt-2 border-t border-slate-200 text-[10.5px] text-slate-600"><strong>O*NET Work Context:</strong> ${workContextSummary}</div>` : ''}
+            ${benchmarkNote ? `<div class="mt-1.5 text-[10px] text-amber-800 bg-amber-50/80 border border-amber-200 rounded px-2 py-1">${benchmarkNote}</div>` : ''}
+          </div>
+        </div>
+      `;
+    }
+
     function renderJobsTab() {
       const jobs = getFilteredJobs();
       if (!jobs.some(j => j.id === selectedJobId) && jobs.length > 0) selectedJobId = jobs[0].id;
@@ -2470,8 +3237,8 @@
               <div class="font-semibold text-slate-800">${sk.name}</div>
               <div class="text-[10px] font-mono text-slate-500">O*NET Element ${sk.code}</div>
             </td>
-            <td class="py-2 px-1.5 text-center font-mono text-slate-600 border-l-2 border-slate-700 bg-amber-50/15">${sk.imp.toFixed(1)} / ${sk.lvl.toFixed(1)}</td>
-            <td class="py-2 px-1.5 text-right font-mono font-bold text-slate-800 border-r-2 border-slate-700 bg-amber-50/15">${(sk.weight * 100).toFixed(0)}%</td>
+            <td class="py-2 px-1.5 text-center font-mono text-slate-800 border-l-2 border-slate-700 bg-amber-50/15"><span class="font-bold">${sk.imp100}</span> <span class="text-[9.5px] text-slate-400">(${sk.imp.toFixed(1)})</span></td>
+            <td class="py-2 px-1.5 text-right font-mono font-bold text-slate-800 border-r-2 border-slate-700 bg-amber-50/15">${(sk.weight * 100).toFixed(1)}%</td>
             <td class="py-2 px-1.5 text-center font-bold text-sky-900 border-l-2 border-slate-700 bg-sky-50/20">${sk.baseSV.toFixed(1)}</td>
             <td class="py-2 px-1.5 text-center font-bold text-sky-600 bg-sky-50/20">+${sk.svLift.toFixed(1)}</td>
             <td class="py-2 px-1.5 text-center border-r-2 border-slate-700 bg-sky-50/20"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${svBadge}">${sk.defSV.toFixed(1)}</span></td>
@@ -2498,10 +3265,26 @@
         </tr>
       `;
 
+      const topLinkEl = document.getElementById("selectedJobOnetTopLink");
+      if (topLinkEl && job.onet30) {
+        topLinkEl.href = job.onet30.onetUrl;
+        topLinkEl.textContent = `O*NET 30.1 (${job.onet}) ↗`;
+      }
+
+      const jobOnetPanelEl = document.getElementById("jobOnet30Panel");
+      if (jobOnetPanelEl && job.onet30) {
+        jobOnetPanelEl.innerHTML = buildOnet30PanelHtml(
+          job.onet30,
+          `SOC ${job.soc} (${job.onet}): ${job.title}`,
+          job.onet30.workContext ? job.onet30.workContext.summary : "",
+          job.onet30.benchmarkNote || ""
+        );
+      }
+
       document.getElementById("selectedJobMetaBox").innerHTML = `
         <div class="flex items-center justify-between">
           <span class="font-bold text-slate-800">SOC ${job.soc}: ${job.title}</span>
-          <span class="px-2 py-0.5 rounded bg-red-100 text-red-800 font-semibold text-[10px]">O*NET ${job.onet}</span>
+          <a href="${job.onet30 ? job.onet30.onetUrl : 'https://www.onetonline.org/'}" target="_blank" class="px-2 py-0.5 rounded bg-red-100 hover:bg-red-200 text-red-800 font-semibold text-[10px] underline">O*NET 30.1 • ${job.onet} ↗</a>
         </div>
         <div class="text-slate-600"><strong>Mapped IUB Schools:</strong> ${job.schools.join(", ")}</div>
         <div class="text-slate-600"><strong>Primary IUB Majors:</strong> ${job.majors.join(" • ")}</div>
@@ -2550,7 +3333,7 @@
       jobSkillChartInstance = new Chart(ctx, {
         type: "bar",
         data: {
-          labels: rows.map(s => `[${(s.weight * 100).toFixed(0)}%] ` + (s.name.length > 30 ? s.name.slice(0, 30) + "…" : s.name)),
+          labels: rows.map(s => `[${(s.weight * 100).toFixed(1)}%] ` + (s.name.length > 30 ? s.name.slice(0, 30) + "…" : s.name)),
           datasets: [
             { label: "AI Resilience (Base)", data: rows.map(s => s.baseSV), backgroundColor: "#0284c7", borderRadius: 3, stack: "sv_stack" },
             { label: "AI Resilience (Incremental)", data: rows.map(s => s.svLift), backgroundColor: "#38bdf8", borderRadius: 3, stack: "sv_stack" },
@@ -2614,13 +3397,19 @@
           <tr class="${isSelected ? 'bg-red-50/40' : 'hover:bg-slate-50'} transition align-top">
             <td class="py-3 px-3">
               <div class="font-bold text-slate-900">${j.title}</div>
-              <div class="text-[10px] font-mono text-slate-500">SOC ${j.soc} • O*NET ${j.onet}</div>
+              <div class="text-[10px] font-mono text-slate-500">SOC ${j.soc} • <a href="${j.onet30 ? j.onet30.onetUrl : 'https://www.onetonline.org/'}" target="_blank" class="text-red-700 underline">O*NET ${j.onet} ↗</a></div>
             </td>
             <td class="py-3 px-2">
               <div class="font-semibold text-slate-800 text-[11px]">${j.schools.map(s => s.split(" ")[0]).join(", ")}</div>
               <div class="text-[10px] text-slate-500">${j.majors.join(", ")}</div>
             </td>
-            <td class="py-3 px-2.5 max-w-md">${top2Pills}${moreBadge}</td>
+            <td class="py-3 px-2.5 max-w-md">
+              <div>${top2Pills}${moreBadge}</div>
+              ${j.onet30 ? `<div class="mt-1 flex flex-wrap items-center gap-1 text-[10px]">
+                <span class="px-1.5 py-0.5 rounded bg-emerald-50/80 border border-emerald-200 text-emerald-900 font-medium">WS: ${j.onet30.workStyles[0].name} (${j.onet30.workStyles[0].impact})</span>
+                <span class="px-1.5 py-0.5 rounded bg-sky-50/80 border border-sky-200 text-sky-900 font-medium">Tech (${j.onet30.inDemandCount} In-Demand): ${j.onet30.techSkills.slice(0, 2).map(t => t.name + ' ' + t.pct + '%').join(', ')}</span>
+              </div>` : ''}
+            </td>
             <td class="py-3 px-1.5 text-right font-semibold border-l-2 border-slate-700 bg-amber-50/15 ${bottomFrameBorder}">${j.inEmp.toLocaleString()}</td>
             <td class="py-3 px-1.5 text-right font-bold text-slate-800 bg-amber-50/15 ${bottomFrameBorder}">$${j.inMeanWage.toLocaleString()}</td>
             <td class="py-3 px-1.5 text-center border-r-2 border-slate-700 bg-amber-50/15 ${bottomFrameBorder}"><span class="px-1.5 py-0.5 rounded-full text-[11px] font-bold border ${growthBadge}">+${j.epGrowth5Yr}%</span></td>
@@ -3041,7 +3830,8 @@
         return `
           <tr class="hover:bg-slate-50">
             <td class="py-2 px-2.5 font-semibold text-slate-800">${sk.name}</td>
-            <td class="py-2 px-1.5 text-right font-mono text-slate-700 border-l-2 border-r-2 border-slate-700 bg-amber-50/15">${(sk.weight * 100).toFixed(0)}%</td>
+            <td class="py-2 px-1.5 text-center font-mono font-bold text-slate-800 border-l-2 border-slate-700 bg-amber-50/15">${sk.imp100 || 72}</td>
+            <td class="py-2 px-1.5 text-right font-mono font-bold text-slate-800 border-r-2 border-slate-700 bg-amber-50/15">${(sk.weight * 100).toFixed(1)}%</td>
             <td class="py-2 px-1.5 text-center font-bold text-sky-900 border-l-2 border-slate-700 bg-sky-50/20">${sk.skBaseSV.toFixed(1)}</td>
             <td class="py-2 px-1.5 text-center font-bold text-sky-600 bg-sky-50/20">+${sk.skSvLift.toFixed(1)}</td>
             <td class="py-2 px-1.5 text-center border-r-2 border-slate-700 bg-sky-50/20"><span class="px-2 py-0.5 rounded-full text-xs font-bold border ${svBadge}">${sk.skDefSV.toFixed(1)}</span></td>
@@ -3058,7 +3848,8 @@
         footerEl.innerHTML = `
           <tr>
             <td class="py-2.5 px-2.5">Degree-Weighted Skill Total (∑ w × Score)</td>
-            <td class="py-2.5 px-1.5 text-right font-mono border-l-2 border-r-2 border-b-2 border-slate-700 bg-amber-50/30">100%</td>
+            <td class="py-2.5 px-1.5 text-center font-mono text-[10px] text-slate-500 border-l-2 border-b-2 border-slate-700 bg-amber-50/30">O*NET 30.1</td>
+            <td class="py-2.5 px-1.5 text-right font-mono border-r-2 border-b-2 border-slate-700 bg-amber-50/30">100%</td>
             <td class="py-2.5 px-1.5 text-center text-sky-900 border-l-2 border-b-2 border-slate-700 bg-sky-50/40">${wSkBaseSV.toFixed(1)}</td>
             <td class="py-2.5 px-1.5 text-center text-sky-600 border-b-2 border-slate-700 bg-sky-50/40">+${wSkSvLift.toFixed(1)}</td>
             <td class="py-2.5 px-1.5 text-center text-sky-800 border-r-2 border-b-2 border-slate-700 bg-sky-50/40">${wSkDefSV.toFixed(1)}</td>
@@ -3102,13 +3893,23 @@
         `;
       }).join("");
 
+      const simOnetEl = document.getElementById("simOnet30Panel");
+      if (simOnetEl && prog.onet30) {
+        simOnetEl.innerHTML = buildOnet30PanelHtml(
+          prog.onet30,
+          `${prog.name} — Mapped SOC Profiles (${prog.socs.split(";")[0]})`,
+          `Pathway A Tech Augmentation Multiplier: ${prog.techAugMult.toFixed(2)}× (from mapped O*NET 30.1 In-Demand Tech density)`,
+          ""
+        );
+      }
+
       const ctx = document.getElementById("skillDecompositionChart").getContext("2d");
       if (skillChartInstance) skillChartInstance.destroy();
 
       skillChartInstance = new Chart(ctx, {
         type: "bar",
         data: {
-          labels: skillRows.map(s => `[${(s.weight * 100).toFixed(0)}%] ` + (s.name.length > 30 ? s.name.slice(0, 30) + "…" : s.name)),
+          labels: skillRows.map(s => `[${(s.weight * 100).toFixed(1)}%] ` + (s.name.length > 30 ? s.name.slice(0, 30) + "…" : s.name)),
           datasets: [
             { label: "AI Resilience (Base)", data: skillRows.map(s => s.skBaseSV), backgroundColor: "#0284c7", borderRadius: 3, stack: "sv_stack" },
             { label: "AI Resilience (Incremental)", data: skillRows.map(s => s.skSvLift), backgroundColor: "#38bdf8", borderRadius: 3, stack: "sv_stack" },
